@@ -1,0 +1,19 @@
+{
+    "require": {
+        "uspdev/replicado": "^1.14",
+        "vlucas/phpdotenv": "^5.5",
+        "illuminate/database": "^8.83"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        },
+        "files": [
+            "config/dotenv.php",
+            "config/database.php"
+        ],
+        "classmap": [
+            "src/Loading/Models"
+        ]
+    }
+}
