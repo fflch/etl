@@ -65,4 +65,77 @@ class GradSchemas
             //
         ]
     ];
+
+    const graduacoes = [
+
+        "tableName" => "graduacoes",
+
+        "columns" => [
+            "idGraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "numeroUSP" => [
+                "type" => "integer"
+            ],
+            "sequenciaCurso" => [
+                "type" => "tinyInteger"
+            ],
+            "situacao" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "dataInicioVinculo" => [
+                "type" => "dateTime"
+            ],
+            "dataFimVinculo" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "codigoCurso" => [
+                "type" => "integer"
+            ],
+            "nomeCurso" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "tipoIngresso" => [
+                "type" => "string",
+                "size" => 64
+            ],
+            "categoriaIngresso" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "rankIngresso" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "tipoEncerramento" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "idGraduacao"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "numeroUSP",
+                "references" => "numeroUSP",
+                "on" => "alunos_graduacao",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }
