@@ -138,4 +138,65 @@ class GradSchemas
             ]
         ]
     ];
+
+    const habilitacoes = [
+
+        "tableName" => "habilitacoes",
+
+        "columns" => [
+            "idGraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "codigoCurso" => [
+                "type" => "integer"
+            ],
+            "codigoHabilitacao" => [
+                "type" => "integer"
+            ],
+            "nomeHabilitacao" => [
+                "type" => "string",
+                "size" => 64
+            ],
+            "tipoHabilitacao" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "periodoHabilitacao" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "dataInicioHabilitacao" => [
+                "type" => "dateTime"
+            ],
+            "dataFimHabilitacao" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "tipoEncerramento" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idGraduacao",
+                "references" => "idGraduacao",
+                "on" => "graduacoes",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }

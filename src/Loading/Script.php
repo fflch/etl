@@ -7,12 +7,15 @@ use Src\Transformation\Models\AlunoGraduacaoReplicado;
 use Src\Loading\Models\AlunoGraduacao;
 use Src\Transformation\Models\GraduacaoReplicado;
 use Src\Loading\Models\Graduacao;
+use Src\Transformation\Models\HabilitacaoReplicado;
+use Src\Loading\Models\Habilitacao;
 
 class Script
 {
     public function __construct(){
         $this->alunosGraduacao = new Transformer(new AlunoGraduacaoReplicado, 'alunos_graduacao');
         $this->graduacoes = new Transformer(new GraduacaoReplicado, 'graduacoes');
+        $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'habilitacoes');
     }
 
     public function updateAlunosGraduacao()
@@ -36,6 +39,18 @@ class Script
         foreach(array_chunk($graduacoes, 4500) as $chunk) 
         {
             Graduacao::upsert($chunk, ['idGraduacao']);
+        }
+    }
+
+    public function updateHabilitacoes()
+    {
+        $habilitacoes =  $this->habilitacoes->transform();
+
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($habilitacoes, 4500) as $chunk) 
+        {
+            Habilitacao::upsert($chunk, ['idGraduacao', 'codigoCurso', 'codigoHabilitacao', 'dataInicioHabilitacao']);
         }
     }
 }

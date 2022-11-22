@@ -24,3 +24,4 @@ foreach($tables as $table)
 
 $script->updateAlunosGraduacao();
 $script->updateGraduacoes();
+$script->updateHabilitacoes();
