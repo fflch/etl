@@ -199,4 +199,73 @@ class GradSchemas
             ]
         ]
     ];
+
+    const iniciacao = [
+
+        "tableName" => "iniciacoes",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "numeroUSP" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "statusProjeto" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "anoProjeto" => [
+                "type" => "smallInteger"
+            ],
+            "codigoDepartamento" => [
+                "type" => "integer"
+            ],
+            "nomeDepartamento" => [
+                "type" => "string",
+                "size" => 64
+            ],
+            "dataInicioProjeto" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "dataFimProjeto" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "numeroUSPorientador" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "tituloProjeto" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "palavrasChave" => [
+                "type" => "string",
+                "size" => 128
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "idProjeto"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "numeroUSP",
+                "references" => "numeroUSP",
+                "on" => "alunos_graduacao",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }
