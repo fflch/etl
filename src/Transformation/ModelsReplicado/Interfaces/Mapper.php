@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Transformation\Models\Interfaces;
+namespace Src\Transformation\ModelsReplicado\Interfaces;
 
 interface Mapper {
     public function mapping(Array $obj);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Loading\Models;
+namespace Src\Loading\Models\Graduacao;
 
 use Illuminate\Database\Eloquent\Model;
 

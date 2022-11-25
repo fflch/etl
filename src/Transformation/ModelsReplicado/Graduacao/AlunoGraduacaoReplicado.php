@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Transformation\Models;
+namespace Src\Transformation\ModelsReplicado\Graduacao;
 
 use Src\Transformation\Utils\Utils;
 use Src\Transformation\Utils\Deparas;
-use Src\Transformation\Models\Interfaces\Mapper;
+use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class AlunoGraduacaoReplicado implements Mapper
 {

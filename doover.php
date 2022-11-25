@@ -23,7 +23,7 @@ foreach($tables as $table)
 }
 
 $script->updateAlunosGraduacao();
-$script->updateGraduacoes();
-$script->updateHabilitacoes();
-$script->updateIniciacoes();
-$script->updateBolsasIC();
+// $script->updateGraduacoes();
+// $script->updateHabilitacoes();
+// $script->updateIniciacoes();
+// $script->updateBolsasIC();

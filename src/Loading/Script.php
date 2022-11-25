@@ -2,27 +2,27 @@
 
 namespace Src\Loading;
 
-use Src\Transformation\Models\Transformer;
+use Src\Transformation\ModelsReplicado\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\Transformation\Models\AlunoGraduacaoReplicado;
-use Src\Loading\Models\AlunoGraduacao;
-use Src\Transformation\Models\GraduacaoReplicado;
-use Src\Loading\Models\Graduacao;
-use Src\Transformation\Models\HabilitacaoReplicado;
-use Src\Loading\Models\Habilitacao;
-use Src\Transformation\Models\IniciacaoCientificaReplicado;
-use Src\Loading\Models\IniciacaoCientifica;
-use Src\Transformation\Models\BolsaICReplicado;
-use Src\Loading\Models\BolsaIC;
+use Src\Transformation\ModelsReplicado\Graduacao\AlunoGraduacaoReplicado;
+use Src\Loading\Models\Graduacao\AlunoGraduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\GraduacaoReplicado;
+use Src\Loading\Models\Graduacao\Graduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\HabilitacaoReplicado;
+use Src\Loading\Models\Graduacao\Habilitacao;
+use Src\Transformation\ModelsReplicado\Graduacao\IniciacaoCientificaReplicado;
+use Src\Loading\Models\Graduacao\IniciacaoCientifica;
+use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
+use Src\Loading\Models\Graduacao\BolsaIC;
 
 class Script
 {
     public function __construct(){
-        $this->alunosGraduacao = new Transformer(new AlunoGraduacaoReplicado, 'alunos_graduacao');
-        $this->graduacoes = new Transformer(new GraduacaoReplicado, 'graduacoes');
-        $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'habilitacoes');
-        $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'iniciacoes_cientificas');
-        $this->bolsasIC = new Transformer(new BolsaICReplicado, 'bolsas_ic');
+        $this->alunosGraduacao = new Transformer(new AlunoGraduacaoReplicado, 'Graduacao/alunos_graduacao');
+        $this->graduacoes = new Transformer(new GraduacaoReplicado, 'Graduacao/graduacoes');
+        $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
+        $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
+        $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
     }
 
     public function updateAlunosGraduacao()

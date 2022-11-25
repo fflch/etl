@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Transformation\Models;
+namespace Src\Transformation\ModelsReplicado;
 
-use Src\Transformation\Models\Interfaces\Mapper;
+use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 use Src\Extraction\Replicado;
 
 class Transformer
