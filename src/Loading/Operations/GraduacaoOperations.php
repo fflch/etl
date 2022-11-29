@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Loading;
+namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -15,7 +15,7 @@ use Src\Loading\Models\Graduacao\IniciacaoCientifica;
 use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
 use Src\Loading\Models\Graduacao\BolsaIC;
 
-class Script
+class GraduacaoOperations
 {
     public function __construct(){
         $this->alunosGraduacao = new Transformer(new AlunoGraduacaoReplicado, 'Graduacao/alunos_graduacao');

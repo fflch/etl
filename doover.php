@@ -2,28 +2,16 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-use Src\Loading\Script;
-use Src\Loading\SchemaBuilder\Builder;
-use Src\Loading\SchemaBuilder\Schemas\GradSchemas;
+use Src\Loading\Scripts\TablesCreation;
+use Src\Loading\Scripts\GradTables;
+use Src\Loading\Scripts\PosGradTables;
 
-$builder = new Builder();
-$script = new Script();
+$creator = new TablesCreation();
+$creator->newGradTables();
+$creator->newPosGradTables();
 
-$refl = new ReflectionClass(GradSchemas::class);
-$tables = $refl->getConstants();
+$gradTables = new GradTables();
+$gradTables->update();
 
-foreach($tables as $table)
-{
-    $builder->dropTable($table);
-}
-
-foreach($tables as $table)
-{
-    $builder->createTable($table);
-}
-
-$script->updateAlunosGraduacao();
-// $script->updateGraduacoes();
-// $script->updateHabilitacoes();
-// $script->updateIniciacoes();
-// $script->updateBolsasIC();
+$posGradTables = new PosGradTables();
+$posGradTables->update();
