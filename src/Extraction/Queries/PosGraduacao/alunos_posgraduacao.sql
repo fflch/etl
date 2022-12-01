@@ -14,15 +14,9 @@ FROM PESSOA p
     LEFT JOIN PAIS p3 ON c.codpasnas = p3.codpas
     LEFT JOIN LOCALIDADE l ON c.codlocnas = l.codloc
 WHERE p.codpes IN (
-                    SELECT * FROM (
-                        SELECT a.codpes
-                        FROM AGINSCRICAO a
-                            WHERE a.codare BETWEEN 8000 AND 9000
-                                AND YEAR(a.dtainsare) >= 2007
-                        UNION 
-                        SELECT a2.codpes
-                        FROM AGPROGRAMA a2
-                            WHERE a2.codare BETWEEN 8000 AND 9000
-                                AND YEAR(a2.dtaselpgm) >= 2007
-                    ) s
-)
+                    SELECT a.codpes
+                    FROM AGPROGRAMA a
+                        WHERE a.codare BETWEEN 8000 AND 9000
+                            AND YEAR(a.dtaselpgm) >= 2007
+                            AND a.vinalupgm = 'REGULAR'
+                  )

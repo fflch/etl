@@ -66,59 +66,6 @@ class PosGradSchemas
         ]
     ];
 
-    const inscritos_posgraduacao = [
-
-        "tableName" => "inscritos_posgraduacao",
-
-        "columns" => [
-            'idInscricao' => [
-                "type" => "char",
-                "size" => 32
-            ],
-            'numeroUSP' => [
-                "type" => "integer"
-            ],
-            'seqPrograma' => [
-                "type" => "tinyInteger",
-                "nullable" => true
-            ],
-            'codigoArea' => [
-                "type" => "integer"
-            ],
-            'dataInscricao' => [
-                "type" => "dateTime"
-            ],
-            'nivelInscricao' => [
-                "type" => "char",
-                "size" => 2
-            ],
-            'resultadoInscricao' => [
-                "type" => "string",
-                "size" => 16,
-                "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
-        ],
-
-        "primary" => [
-            "idInscricao"
-        ],
-        
-        "foreign" => [
-            [
-                "keys" => "numeroUSP",
-                "references" => "numeroUSP",
-                "on" => "alunos_posgraduacao",
-                "onDelete" => "cascade"
-            ]
-        ]
-    ];
-
     const posgraduacoes = [
 
         "tableName" => "posgraduacoes",

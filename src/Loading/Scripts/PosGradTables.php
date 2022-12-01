@@ -14,7 +14,6 @@ class PosGradTables
     public function update()
     {
         $this->posGraduacaoOp->updateAlunosPosGraduacao();
-        $this->posGraduacaoOp->updateInscritosPosGraduacao();
         $this->posGraduacaoOp->updatePosGraduacoes();
     }
 }
