@@ -21,5 +21,6 @@ SELECT
     ,i2.dtafimfom AS 'dataFimBolsa'
 FROM ICTPROJFOMENTO i2
     LEFT JOIN PROPESQFOMENTO p ON i2.codpgmfcm = p.codpgmfcm
+WHERE i2.codpgmfcm <> 889 -- 889 = 'Sem fomento'
 ) u
 ORDER BY u.dataInicioBolsa ASC
