@@ -18,7 +18,7 @@ class Transformer
         $data = Replicado::getData($query);
 
         if(!empty($orderBy)){
-            $data = Transformer::order($data, $orderBy);
+            $data = $this->order($data, $orderBy);
         }
 
         $mappedData = array_map(
