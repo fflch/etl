@@ -12,4 +12,5 @@ SELECT
     ,i.palcha AS 'palavrasChave'
 FROM ICTPROJETO i
 	LEFT JOIN SETOR s ON i.codsetprj = s.codset
+WHERE i.codpesalu IS NOT NULL
 ORDER BY i.anoprj, i.codprj
