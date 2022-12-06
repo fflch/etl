@@ -16,7 +16,9 @@ class IniciacaoCientificaReplicado implements Mapper
             'numeroUSP' => !is_null($iniciacao['numeroUSP'])
                            ? (int)$iniciacao['numeroUSP']
                            : NULL,
-            'statusProjeto' => $iniciacao['statusProjeto'],
+
+            'statusProjeto' => $this->checkStatus($iniciacao['statusProjeto'], $iniciacao['dataFimProjeto']),
+
             'codigoDepartamento' => (int)$iniciacao['codigoDepartamento'],
             'nomeDepartamento' => $iniciacao['nomeDepartamento'],
             'anoProjeto' => $iniciacao['anoProjeto'],
@@ -28,5 +30,18 @@ class IniciacaoCientificaReplicado implements Mapper
         ];
 
         return $properties;
+    }
+
+    private function checkStatus(string $status, ?string $dataFimProjeto)
+    {
+        $today = date("Y-m-d");
+
+        if($status == 'Ativo' && (strtotime($today) > strtotime($dataFimProjeto))){
+            $novoStatus = 'Pendente';
+            return $novoStatus;
+        }
+        else{
+            return $status;
+        }
     }
 }
