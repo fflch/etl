@@ -87,5 +87,10 @@ class GraduacaoOperations
         {
             BolsaIC::upsert($chunk, ['idProjeto', 'sequenciaBolsa']);
         }
+
+        Capsule::update("UPDATE bolsas_ic bi
+                        RIGHT JOIN iniciacoes i ON bi.idProjeto = i.idProjeto
+                        SET bi.dataFimBolsa = i.dataFimProjeto
+                        WHERE i.statusProjeto = 'Cancelado'");
     }
 }
