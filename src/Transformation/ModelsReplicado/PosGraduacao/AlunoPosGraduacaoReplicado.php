@@ -20,7 +20,7 @@ class AlunoPosGraduacaoReplicado implements Mapper
             'cidadeNascimento' => $alunoPosGraduacao['cidadeNascimento'],
             'estadoNascimento' => $alunoPosGraduacao['estadoNascimento'],
             'paisNascimento' => $alunoPosGraduacao['paisNascimento'],
-            'raca' => Deparas::racas[$alunoPosGraduacao['raca']],
+            'raca' => Deparas::racas[$alunoPosGraduacao['raca']] ?? $alunoPosGraduacao['raca'],
             'sexo' => $alunoPosGraduacao['sexo'],
         ];
 
