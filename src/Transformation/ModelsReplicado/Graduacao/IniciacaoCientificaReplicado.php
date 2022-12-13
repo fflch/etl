@@ -34,14 +34,12 @@ class IniciacaoCientificaReplicado implements Mapper
 
     private function checkStatus(string $status, ?string $dataFimProjeto)
     {
-        $today = date("Y-m-d");
+        $today = date("Y-m-d H:i:s");
 
         if($status == 'Ativo' && (strtotime($today) > strtotime($dataFimProjeto))){
-            $novoStatus = 'Pendente';
-            return $novoStatus;
+            return 'Pendente';
         }
-        else{
-            return $status;
-        }
+
+        return $status;
     }
 }
