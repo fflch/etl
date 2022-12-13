@@ -14,4 +14,5 @@ FROM ICTPROJETO i
 	LEFT JOIN SETOR s ON i.codsetprj = s.codset
 WHERE i.codpesalu IS NOT NULL
 	AND s.codund = 8
+	AND i.staprj <> 'Incompleto'
 ORDER BY i.anoprj, i.codprj

@@ -27,5 +27,6 @@ FROM
     INNER JOIN ICTPROJETO ip ON u.anoProjeto = ip.anoprj AND u.codigoProjeto = ip.codprj
     LEFT JOIN SETOR s ON ip.codsetprj = s.codset
 WHERE ip.codpesalu IS NOT NULL
+    AND ip.staprj <> 'Incompleto'
     AND s.codund = 8
 ORDER BY u.dataInicioBolsa ASC
