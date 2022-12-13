@@ -57,4 +57,10 @@ class Deparas
         'Conv. Duplo Diploma' => 'Convênio Duplo Diploma',
         'Transf Ex officio' => 'Transf Ex officio'
     ];
+
+    const statusProjeto = [
+        'Inscrito PIBI' => 'Inscrito PIBIC',
+        'Não aprovado' => 'Denegado',
+        'Transferido' => 'Cancelado'
+    ];
 }
