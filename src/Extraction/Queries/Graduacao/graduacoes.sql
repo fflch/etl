@@ -3,7 +3,7 @@ SELECT
     ,p.codpgm AS 'sequenciaCurso'
     ,p.stapgm AS 'situacao'
     ,p.dtaing AS 'dataInicioVinculo'
-    ,CASE WHEN p.tipencpgm <> NULL THEN p.dtaini ELSE NULL END AS 'dataFimVinculo'
+    ,CASE WHEN p.tipencpgm IS NOT NULL THEN p.dtaini ELSE NULL END AS 'dataFimVinculo'
     ,hp.codcur AS 'codigoCurso'
     ,c.nomcur AS 'nomeCurso'
     ,p.tiping AS 'tipoIngresso'
