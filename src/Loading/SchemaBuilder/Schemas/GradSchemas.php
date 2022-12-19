@@ -19,6 +19,11 @@ class GradSchemas
             "anoNascimento" => [
                 "type" => "smallInteger"
             ],
+            "email" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
             "nacionalidade" => [
                 "type" => "string",
                 "size" => 128,

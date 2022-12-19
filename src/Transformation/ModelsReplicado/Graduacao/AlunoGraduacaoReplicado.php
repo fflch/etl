@@ -16,6 +16,7 @@ class AlunoGraduacaoReplicado implements Mapper
             'numeroUSP' => $alunoGraduacao['numeroUSP'],
             'nomeAluno' => $alunoGraduacao['nomeAluno'],
             'anoNascimento' => $alunoGraduacao['anoNascimento'],
+            'email' => $alunoGraduacao['email'],
             'nacionalidade' => $alunoGraduacao['nacionalidade'],
             'cidadeNascimento' => $alunoGraduacao['cidadeNascimento'],
             'estadoNascimento' => $alunoGraduacao['estadoNascimento'],
