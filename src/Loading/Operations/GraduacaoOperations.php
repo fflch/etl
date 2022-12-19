@@ -14,6 +14,10 @@ use Src\Transformation\ModelsReplicado\Graduacao\IniciacaoCientificaReplicado;
 use Src\Loading\Models\Graduacao\IniciacaoCientifica;
 use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
 use Src\Loading\Models\Graduacao\BolsaIC;
+use Src\Transformation\ModelsReplicado\Graduacao\RespostaQuestionarioReplicado;
+use Src\Loading\Models\Graduacao\RespostaQuestionario;
+use Src\Transformation\ModelsReplicado\Graduacao\QuestaoQuestionarioReplicado;
+use Src\Loading\Models\Graduacao\QuestaoQuestionario;
 
 class GraduacaoOperations
 {
@@ -23,6 +27,8 @@ class GraduacaoOperations
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
+        $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostasQuestionario');
+        $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoesQuestionario');
     }
 
     public function updateAlunosGraduacao()
@@ -92,5 +98,21 @@ class GraduacaoOperations
                         RIGHT JOIN iniciacoes i ON bi.idProjeto = i.idProjeto
                         SET bi.dataFimBolsa = i.dataFimProjeto
                         WHERE i.statusProjeto = 'Cancelado'");
+    }
+
+    public function updateQuestionarios()
+    {
+        $respostasQuestionario = $this->respostasQuestionario->transform();
+        $questoesQuestionario = $this->questoesQuestionario->transform();
+
+        QuestaoQuestionario::upsert($questoesQuestionario, ['idQuestao', 'codigoAlternativa']);
+    
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($respostasQuestionario, 5000) as $chunk) 
+        {
+            RespostaQuestionario::upsert($chunk, ['idGraduacao']);
+        }
+
     }
 }

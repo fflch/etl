@@ -318,4 +318,86 @@ class GradSchemas
             ]
         ]
     ];
+
+    const questoes_questionario = [
+
+        "tableName" => "questoes_questionario",
+
+        "columns" => [
+            "idQuestao" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "descricaoQuestao" => [
+                "type" => "string",
+                "size" => 512
+            ],
+            "codigoAlternativa" => [
+                "type" => "tinyInteger"
+            ],
+            "descricaoAlternativa" => [
+                "type" => "string",
+                "size" => 1024,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            'idQuestao', 'codigoAlternativa'
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
+    const respostas_questionario = [
+
+        "tableName" => "respostas_questionario",
+
+        "columns" => [
+            "idGraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "idQuestao" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "alternativaEscolhida" => [
+                "type" => "integer"
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idGraduacao",
+                "references" => "idGraduacao",
+                "on" => "graduacoes",
+                "onDelete" => "cascade"
+            ],
+            [
+                "keys" => "idQuestao",
+                "references" => "idQuestao",
+                "on" => "questoes_questionario",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }

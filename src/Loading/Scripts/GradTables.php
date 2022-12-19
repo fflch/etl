@@ -18,5 +18,6 @@ class GradTables
         $this->graduacaoOps->updateHabilitacoes();
         $this->graduacaoOps->updateIniciacoes();
         $this->graduacaoOps->updateBolsasIC();
+        $this->graduacaoOps->updateQuestionarios();
     }
 }
