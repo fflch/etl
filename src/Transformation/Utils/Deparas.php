@@ -7,7 +7,7 @@ class Deparas
     const racas = [
         1 => 'Indígena',
         2 => 'Branca',
-        3 => 'Preta/Negra',
+        3 => 'Preta',
         4 => 'Amarela',
         5 => 'Parda',
         6 => 'Não informada',
