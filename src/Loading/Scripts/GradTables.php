@@ -19,5 +19,6 @@ class GradTables
         $this->graduacaoOps->updateIniciacoes();
         $this->graduacaoOps->updateBolsasIC();
         $this->graduacaoOps->updateQuestionarios();
+        $this->graduacaoOps->updateSIICUSP();
     }
 }

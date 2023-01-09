@@ -63,4 +63,10 @@ class Deparas
         'Não aprovado' => 'Denegado',
         'Transferido' => 'Cancelado'
     ];
+
+    const SIICUSPBool = [
+        'S' => True,
+        'N' => False,
+        Null => False
+    ];
 }

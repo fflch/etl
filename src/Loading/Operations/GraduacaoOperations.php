@@ -18,6 +18,8 @@ use Src\Transformation\ModelsReplicado\Graduacao\RespostaQuestionarioReplicado;
 use Src\Loading\Models\Graduacao\RespostaQuestionario;
 use Src\Transformation\ModelsReplicado\Graduacao\QuestaoQuestionarioReplicado;
 use Src\Loading\Models\Graduacao\QuestaoQuestionario;
+use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPInscricaoReplicado;
+use Src\Loading\Models\Graduacao\SIICUSPInscricao;
 
 class GraduacaoOperations
 {
@@ -29,6 +31,7 @@ class GraduacaoOperations
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
         $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostas_questionario');
         $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoes_questionario');
+        $this->SIICUSPInscricoes = new Transformer(new SIICUSPInscricaoReplicado, 'Graduacao/SIICUSP_inscricoes');
     }
 
     public function updateAlunosGraduacao()
@@ -113,6 +116,17 @@ class GraduacaoOperations
         {
             RespostaQuestionario::upsert($chunk, ['idGraduacao']);
         }
+    }
 
+    public function updateSIICUSP()
+    {
+        $SIICUSPInscricoes = $this->SIICUSPInscricoes->transform();
+    
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($SIICUSPInscricoes, 5000) as $chunk) 
+        {
+            SIICUSPInscricao::upsert($SIICUSPInscricoes, 'idTrabalho');
+        }
     }
 }

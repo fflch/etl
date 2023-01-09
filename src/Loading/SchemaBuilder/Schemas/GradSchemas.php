@@ -405,4 +405,73 @@ class GradSchemas
             ]
         ]
     ];
+
+    const SIICUSP_inscricoes = [
+
+        "tableName" => "SIICUSP_inscricoes",
+
+        "columns" => [
+            "idTrabalho" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "tituloTrabalho" => [
+                "type" => "string",
+                "size" => 512
+            ],
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12,
+                "nullable" => true
+            ],
+            "edicaoSIICUSP" => [
+                "type" => "smallInteger",
+            ],
+            "apresentadoSIICUSP" => [
+                "type" => "string",
+                "size" => 12,
+                "nullable" => true
+            ],
+            "tipoParticipanteApresentou" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "proxEtapaRecomendado" => [
+                "type" => "boolean",
+                "nullable" => true
+            ],
+            "proxEtapaApresentado" => [
+                "type" => "boolean",
+                "nullable" => true
+            ],
+            "mencaoHonrosa" => [
+                "type" => "boolean",
+                "nullable" => true
+            ],
+            "codigoDptoApresentacao" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nomeDptoApresentacao" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "idTrabalho"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
 }
