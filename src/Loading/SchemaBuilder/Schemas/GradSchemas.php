@@ -376,7 +376,7 @@ class GradSchemas
                 "size" => 12
             ],
             "alternativaEscolhida" => [
-                "type" => "integer"
+                "type" => "tinyInteger"
             ],
             "created_at" => [
                 "type" => "timestamp"
@@ -398,8 +398,8 @@ class GradSchemas
                 "onDelete" => "cascade"
             ],
             [
-                "keys" => "idQuestao",
-                "references" => "idQuestao",
+                "keys" => ["idQuestao", "alternativaEscolhida"],
+                "references" => ["idQuestao", "codigoAlternativa"],
                 "on" => "questoes_questionario",
                 "onDelete" => "cascade"
             ]
