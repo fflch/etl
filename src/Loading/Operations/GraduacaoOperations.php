@@ -27,8 +27,8 @@ class GraduacaoOperations
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
-        $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostasQuestionario');
-        $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoesQuestionario');
+        $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostas_questionario');
+        $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoes_questionario');
     }
 
     public function updateAlunosGraduacao()
