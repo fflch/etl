@@ -419,7 +419,7 @@ class GradSchemas
                 "type" => "string",
                 "size" => 512
             ],
-            "idProjeto" => [
+            "idProjetoIC" => [
                 "type" => "string",
                 "size" => 12,
                 "nullable" => true
@@ -449,11 +449,11 @@ class GradSchemas
                 "type" => "boolean",
                 "nullable" => true
             ],
-            "codigoDptoApresentacao" => [
+            "codigoDptoOrientador" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "nomeDptoApresentacao" => [
+            "nomeDptoOrientador" => [
                 "type" => "string",
                 "size" => 256,
                 "nullable" => true
@@ -472,6 +472,73 @@ class GradSchemas
         
         "foreign" => [
             //
+        ]
+    ];
+
+    const SIICUSP_participantes = [
+
+        "tableName" => "SIICUSP_participantes",
+
+        "columns" => [
+            'idTrabalho' => [
+                "type" => "string",
+                "size" => 12
+            ],
+            'numeroUSP' => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            'nome' => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            'tipoParticipante' => [
+                "type" => "string",
+                "size" => 32
+            ],
+            'codigoUnidade' => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            'siglaUnidade' => [
+                "type" => "string",
+                "size" => 24,
+                "nullable" => true
+            ],
+            'codigoDepartamento' => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            'nomeDepartamento' => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            'apresentou' => [
+                "type" => "char", //bool
+                "size" => 1,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idTrabalho",
+                "references" => "idTrabalho",
+                "on" => "SIICUSP_inscricoes",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 }

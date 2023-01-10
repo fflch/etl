@@ -9,10 +9,12 @@ SELECT
 	,st.starmdprxetp AS 'proxEtapaRecomendado'
 	,st.staaptprxetp AS 'proxEtapaApresentado'
 	,st.starcbmenhnr AS 'mencaoHonrosa'
-	,st.codsetapttrb AS 'codigoDptoApresentacao'
-	,s.nomset AS 'nomeDptoApresentacao'
+	,sp.codsetpcp AS 'codigoDptoOrientador'
+	,s.nomset AS 'nomeDptoOrientador'
 FROM dbo.SIIUTRABALHO st
-	LEFT JOIN SETOR s ON st.codsetapttrb = s.codset
+	LEFT JOIN SIIUPARTICIPTRABALHO spt ON st.edisii = spt.edisii AND st.codtrbsii = spt.codtrbsii AND spt.tipptptrb = 'O'
+	LEFT JOIN SIIUPARTICIPANTE sp ON spt.codpcpsii = sp.codpcpsii
+	LEFT JOIN SETOR s ON sp.codsetpcp = s.codset
 WHERE st.sittrb <> 'Incompleto'
 	AND st.edisii >= 25
 ORDER BY st.edisii, st.codtrbsii

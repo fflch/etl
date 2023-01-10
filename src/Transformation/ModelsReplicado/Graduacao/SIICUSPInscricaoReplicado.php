@@ -15,7 +15,7 @@ class SIICUSPInscricaoReplicado implements Mapper
         $properties = [
             'idTrabalho' => $inscricao['edicaoSIICUSP'] . "-" . $inscricao['codigoTrabalho'],
             'tituloTrabalho' => $inscricao['tituloTrabalho'],
-            'idProjeto' => isset($inscricao['codigoProjeto'])
+            'idProjetoIC' => isset($inscricao['codigoProjeto'])
                            ? $inscricao['anoProjeto'] . "-" . $inscricao['codigoProjeto']
                            : null,
             'edicaoSIICUSP' => $inscricao['edicaoSIICUSP'],
@@ -24,8 +24,8 @@ class SIICUSPInscricaoReplicado implements Mapper
             'proxEtapaRecomendado' => Deparas::SIICUSPBool[$inscricao['proxEtapaRecomendado']] ?? false,
             'proxEtapaApresentado' => Deparas::SIICUSPBool[$inscricao['proxEtapaApresentado']] ?? false,
             'mencaoHonrosa' => Deparas::SIICUSPBool[$inscricao['mencaoHonrosa']] ?? false,
-            'codigoDptoApresentacao' => $inscricao['codigoDptoApresentacao'],
-            'nomeDptoApresentacao' => $inscricao['nomeDptoApresentacao'],
+            'codigoDptoOrientador' => $inscricao['codigoDptoOrientador'],
+            'nomeDptoOrientador' => $inscricao['nomeDptoOrientador'],
         ];
 
         return $properties;

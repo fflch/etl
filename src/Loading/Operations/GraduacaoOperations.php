@@ -20,6 +20,8 @@ use Src\Transformation\ModelsReplicado\Graduacao\QuestaoQuestionarioReplicado;
 use Src\Loading\Models\Graduacao\QuestaoQuestionario;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPInscricaoReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPInscricao;
+use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
+use Src\Loading\Models\Graduacao\SIICUSPParticipante;
 
 class GraduacaoOperations
 {
@@ -32,6 +34,7 @@ class GraduacaoOperations
         $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostas_questionario');
         $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoes_questionario');
         $this->SIICUSPInscricoes = new Transformer(new SIICUSPInscricaoReplicado, 'Graduacao/SIICUSP_inscricoes');
+        $this->SIICUSPParticipantes = new Transformer(new SIICUSPParticipanteReplicado, 'Graduacao/SIICUSP_participantes');
     }
 
     public function updateAlunosGraduacao()
@@ -114,19 +117,25 @@ class GraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($respostasQuestionario, 5000) as $chunk) 
         {
-            RespostaQuestionario::upsert($chunk, ['idGraduacao']);
+            RespostaQuestionario::upsert($chunk, ['idGraduacao', 'idQuestao']);
         }
     }
 
     public function updateSIICUSP()
     {
         $SIICUSPInscricoes = $this->SIICUSPInscricoes->transform();
+        $SIICUSPParticipantes = $this->SIICUSPParticipantes->transform();
     
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($SIICUSPInscricoes, 5000) as $chunk) 
         {
-            SIICUSPInscricao::upsert($SIICUSPInscricoes, 'idTrabalho');
+            SIICUSPInscricao::upsert($chunk, 'idTrabalho');
+        }
+
+        foreach(array_chunk($SIICUSPParticipantes, 5000) as $chunk) 
+        {
+            SIICUSPParticipante::upsert($chunk, 'idTrabalho');
         }
     }
 }

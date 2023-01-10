@@ -65,8 +65,15 @@ class Deparas
     ];
 
     const SIICUSPBool = [
-        'S' => True,
-        'N' => False,
-        Null => False
+        'S' => true,
+        'N' => false,
+        null => false
+    ];
+
+    const tiposParticipantes = [
+        'A' => 'Autor',
+        'O' => 'Orientador',
+        'C' => 'Colaborador',
+        'D' => 'Autor adicional'
     ];
 }
