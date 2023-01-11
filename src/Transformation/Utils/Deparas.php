@@ -64,7 +64,7 @@ class Deparas
         'Transferido' => 'Cancelado'
     ];
 
-    const SIICUSPBool = [
+    const boolSIICUSP = [
         'S' => true,
         'N' => false,
         null => false
@@ -75,5 +75,10 @@ class Deparas
         'O' => 'Orientador',
         'C' => 'Colaborador',
         'D' => 'Autor adicional'
+    ];
+
+    const apresentacaoSIICUSP = [
+        'S' => 'Apresentado',
+        'N' => 'Não apresentado'
     ];
 }

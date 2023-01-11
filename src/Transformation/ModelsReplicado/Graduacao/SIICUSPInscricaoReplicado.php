@@ -19,15 +19,31 @@ class SIICUSPInscricaoReplicado implements Mapper
                            ? $inscricao['anoProjeto'] . "-" . $inscricao['codigoProjeto']
                            : null,
             'edicaoSIICUSP' => $inscricao['edicaoSIICUSP'],
-            'apresentadoSIICUSP' => $inscricao['apresentadoSIICUSP'],
-            'tipoParticipanteApresentou' => $inscricao['tipoParticipanteApresentou'],
-            'proxEtapaRecomendado' => Deparas::SIICUSPBool[$inscricao['proxEtapaRecomendado']] ?? false,
-            'proxEtapaApresentado' => Deparas::SIICUSPBool[$inscricao['proxEtapaApresentado']] ?? false,
-            'mencaoHonrosa' => Deparas::SIICUSPBool[$inscricao['mencaoHonrosa']] ?? false,
+            'situacaoSIICUSP' => $this->apresentacaoSIICUSP(
+                                                        $inscricao['apresentadoSIICUSP'], 
+                                                        $inscricao['tipoParticipanteApresentou']
+                                    ),
+            'proxEtapaRecomendado' => Deparas::boolSIICUSP[$inscricao['proxEtapaRecomendado']] ?? false,
+            'proxEtapaApresentado' => Deparas::boolSIICUSP[$inscricao['proxEtapaApresentado']] ?? false,
+            'mencaoHonrosa' => Deparas::boolSIICUSP[$inscricao['mencaoHonrosa']] ?? false,
             'codigoDptoOrientador' => $inscricao['codigoDptoOrientador'],
             'nomeDptoOrientador' => $inscricao['nomeDptoOrientador'],
         ];
 
         return $properties;
+    }
+
+    
+    private function apresentacaoSIICUSP(?string $apresentado, ?string $tipoParticipante)
+    {
+        if($tipoParticipante == 'F'){
+            return 'Apresentador faltante';
+        }
+        elseif($tipoParticipante == 'J'){
+            return 'Ausência justificada';
+        }
+        else{
+            return Deparas::apresentacaoSIICUSP[$apresentado] ?? $apresentado;
+        }
     }
 }

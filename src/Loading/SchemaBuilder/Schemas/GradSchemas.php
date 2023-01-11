@@ -427,14 +427,9 @@ class GradSchemas
             "edicaoSIICUSP" => [
                 "type" => "smallInteger",
             ],
-            "apresentadoSIICUSP" => [
+            "situacaoSIICUSP" => [
                 "type" => "string",
-                "size" => 12,
-                "nullable" => true
-            ],
-            "tipoParticipanteApresentou" => [
-                "type" => "char",
-                "size" => 1,
+                "size" => 24,
                 "nullable" => true
             ],
             "proxEtapaRecomendado" => [
