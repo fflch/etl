@@ -4,8 +4,8 @@ namespace Src\Loading\Models\Graduacao;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SIICUSPInscricao extends Model
+class SIICUSPTrabalho extends Model
 {
-    protected $table = 'SIICUSP_inscricoes';
+    protected $table = 'SIICUSP_trabalhos';
     protected $guarded = [];
 }

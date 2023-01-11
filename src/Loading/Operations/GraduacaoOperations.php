@@ -18,8 +18,8 @@ use Src\Transformation\ModelsReplicado\Graduacao\RespostaQuestionarioReplicado;
 use Src\Loading\Models\Graduacao\RespostaQuestionario;
 use Src\Transformation\ModelsReplicado\Graduacao\QuestaoQuestionarioReplicado;
 use Src\Loading\Models\Graduacao\QuestaoQuestionario;
-use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPInscricaoReplicado;
-use Src\Loading\Models\Graduacao\SIICUSPInscricao;
+use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPTrabalhoReplicado;
+use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPParticipante;
 
@@ -33,7 +33,7 @@ class GraduacaoOperations
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
         $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostas_questionario');
         $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoes_questionario');
-        $this->SIICUSPInscricoes = new Transformer(new SIICUSPInscricaoReplicado, 'Graduacao/SIICUSP_inscricoes');
+        $this->SIICUSPTrabalhos = new Transformer(new SIICUSPTrabalhoReplicado, 'Graduacao/SIICUSP_trabalhos');
         $this->SIICUSPParticipantes = new Transformer(new SIICUSPParticipanteReplicado, 'Graduacao/SIICUSP_participantes');
     }
 
@@ -123,14 +123,14 @@ class GraduacaoOperations
 
     public function updateSIICUSP()
     {
-        $SIICUSPInscricoes = $this->SIICUSPInscricoes->transform();
+        $SIICUSPTrabalhos = $this->SIICUSPTrabalhos->transform();
         $SIICUSPParticipantes = $this->SIICUSPParticipantes->transform();
     
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($SIICUSPInscricoes, 5000) as $chunk) 
+        foreach(array_chunk($SIICUSPTrabalhos, 5000) as $chunk) 
         {
-            SIICUSPInscricao::upsert($chunk, 'idTrabalho');
+            SIICUSPTrabalho::upsert($chunk, 'idTrabalho');
         }
 
         foreach(array_chunk($SIICUSPParticipantes, 5000) as $chunk) 

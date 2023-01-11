@@ -406,9 +406,9 @@ class GradSchemas
         ]
     ];
 
-    const SIICUSP_inscricoes = [
+    const SIICUSP_trabalhos = [
 
-        "tableName" => "SIICUSP_inscricoes",
+        "tableName" => "SIICUSP_trabalhos",
 
         "columns" => [
             "idTrabalho" => [
@@ -529,7 +529,7 @@ class GradSchemas
             [
                 "keys" => "idTrabalho",
                 "references" => "idTrabalho",
-                "on" => "SIICUSP_inscricoes",
+                "on" => "SIICUSP_trabalhos",
                 "onDelete" => "cascade"
             ]
         ]
