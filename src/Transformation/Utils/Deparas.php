@@ -55,7 +55,7 @@ class Deparas
         'Cortesia Diplomática' => 'Cortesia Diplomática',
         'anterior a out/2002' => 'Anterior a OUT/2002',
         'Conv. Duplo Diploma' => 'Convênio Duplo Diploma',
-        'Transf Ex officio' => 'Transf Ex officio'
+        'Transf Ex officio' => 'Transferência ex officio'
     ];
 
     const statusProjeto = [
