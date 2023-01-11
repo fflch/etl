@@ -14,14 +14,14 @@ class SIICUSPParticipanteReplicado implements Mapper
 
         $properties = [
             'idTrabalho' => $participante['edicaoSIICUSP'] . "-" . $participante['codigoTrabalho'],
-            'numeroUSP' => $participante['numeroUSP'],
-            'nome' => $participante['nome'],
             'tipoParticipante' => Deparas::tiposParticipantes[$participante['tipoParticipante']] ?? $participante['tipoParticipante'],
+            'numeroUSP' => $participante['numeroUSP'],
+            'nomeParticipante' => $participante['nomeParticipante'],
             'codigoUnidade' => $participante['codigoUnidade'],
             'siglaUnidade' => $participante['siglaUnidade'],
             'codigoDepartamento' => $participante['codigoDepartamento'],
             'nomeDepartamento' => $participante['nomeDepartamento'],
-            'apresentou' => $participante['apresentou']
+            'apresentador' => Deparas::boolSIICUSP[$participante['apresentador']] ?? false
         ];
 
         return $properties;

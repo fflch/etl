@@ -479,18 +479,18 @@ class GradSchemas
                 "type" => "string",
                 "size" => 12
             ],
+            'tipoParticipante' => [
+                "type" => "string",
+                "size" => 32
+            ],
             'numeroUSP' => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            'nome' => [
+            'nomeParticipante' => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
-            ],
-            'tipoParticipante' => [
-                "type" => "string",
-                "size" => 32
             ],
             'codigoUnidade' => [
                 "type" => "smallInteger",
@@ -510,10 +510,8 @@ class GradSchemas
                 "size" => 256,
                 "nullable" => true
             ],
-            'apresentou' => [
-                "type" => "char", //bool
-                "size" => 1,
-                "nullable" => true
+            'apresentador' => [
+                "type" => "boolean"
             ],
             "created_at" => [
                 "type" => "timestamp"

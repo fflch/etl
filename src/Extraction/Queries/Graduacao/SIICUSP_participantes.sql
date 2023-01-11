@@ -1,9 +1,9 @@
 SELECT
 	spt.edisii AS 'edicaoSIICUSP'
 	,spt.codtrbsii AS 'codigoTrabalho'
-	,spe.codpes AS 'numeroUSP'
-	,spe.nompcpsii AS 'nome'
 	,spt.tipptptrb AS 'tipoParticipante'
+	,spe.codpes AS 'numeroUSP'
+	,spe.nompcpsii AS 'nomeParticipante'
 	,spe.codundpcp AS 'codigoUnidade'
 	,u.sglund AS 'siglaUnidade'
 	,spe.codsetpcp AS 'codigoDepartamento'
@@ -14,7 +14,7 @@ SELECT
 		WHEN spt.staapttrb = 'S'
 			THEN 'S'
 		ELSE NULL
-		END AS 'apresentou'
+		END AS 'apresentador'
 FROM dbo.SIIUPARTICIPTRABALHO spt
 	INNER JOIN SIIUTRABALHO st ON (spt.edisii = st.edisii AND spt.codtrbsii = st.codtrbsii)
 	LEFT JOIN SIIUPARTICIPANTE spe ON spt.codpcpsii = spe.codpcpsii
