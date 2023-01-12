@@ -5,7 +5,7 @@ namespace Src\Transformation\ModelsReplicado\Graduacao;
 use Src\Transformation\Utils\Utils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
-class RespostaQuestionarioReplicado implements Mapper
+class QuestionarioRespostaReplicado implements Mapper
 {
     public function mapping(Array $resposta)
     {

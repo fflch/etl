@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SIICUSPParticipante extends Model
 {
-    protected $table = 'SIICUSP_participantes';
+    protected $table = 'siicusp_participantes';
     protected $guarded = [];
 }

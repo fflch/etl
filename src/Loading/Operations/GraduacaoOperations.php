@@ -14,10 +14,10 @@ use Src\Transformation\ModelsReplicado\Graduacao\IniciacaoCientificaReplicado;
 use Src\Loading\Models\Graduacao\IniciacaoCientifica;
 use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
 use Src\Loading\Models\Graduacao\BolsaIC;
-use Src\Transformation\ModelsReplicado\Graduacao\RespostaQuestionarioReplicado;
-use Src\Loading\Models\Graduacao\RespostaQuestionario;
-use Src\Transformation\ModelsReplicado\Graduacao\QuestaoQuestionarioReplicado;
-use Src\Loading\Models\Graduacao\QuestaoQuestionario;
+use Src\Transformation\ModelsReplicado\Graduacao\QuestionarioRespostaReplicado;
+use Src\Loading\Models\Graduacao\QuestionarioResposta;
+use Src\Transformation\ModelsReplicado\Graduacao\QuestionarioQuestaoReplicado;
+use Src\Loading\Models\Graduacao\QuestionarioQuestao;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPTrabalhoReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
@@ -31,8 +31,8 @@ class GraduacaoOperations
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
-        $this->respostasQuestionario = new Transformer(new RespostaQuestionarioReplicado, 'Graduacao/respostas_questionario');
-        $this->questoesQuestionario = new Transformer(new QuestaoQuestionarioReplicado, 'Graduacao/questoes_questionario');
+        $this->questionarioRespostas = new Transformer(new QuestionarioRespostaReplicado, 'Graduacao/questionario_respostas');
+        $this->questionarioQuestoes = new Transformer(new QuestionarioQuestaoReplicado, 'Graduacao/questionario_questoes');
         $this->SIICUSPTrabalhos = new Transformer(new SIICUSPTrabalhoReplicado, 'Graduacao/SIICUSP_trabalhos');
         $this->SIICUSPParticipantes = new Transformer(new SIICUSPParticipanteReplicado, 'Graduacao/SIICUSP_participantes');
     }
@@ -108,16 +108,16 @@ class GraduacaoOperations
 
     public function updateQuestionarios()
     {
-        $respostasQuestionario = $this->respostasQuestionario->transform();
-        $questoesQuestionario = $this->questoesQuestionario->transform();
+        $questionarioRespostas = $this->questionarioRespostas->transform();
+        $questionarioQuestoes = $this->questionarioQuestoes->transform();
 
-        QuestaoQuestionario::upsert($questoesQuestionario, ['idQuestao', 'codigoAlternativa']);
+        QuestionarioQuestao::upsert($questionarioQuestoes, ['idQuestao', 'codigoAlternativa']);
     
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($respostasQuestionario, 5000) as $chunk) 
+        foreach(array_chunk($questionarioRespostas, 5000) as $chunk) 
         {
-            RespostaQuestionario::upsert($chunk, ['idGraduacao', 'idQuestao']);
+            QuestionarioResposta::upsert($chunk, ['idGraduacao', 'idQuestao']);
         }
     }
 

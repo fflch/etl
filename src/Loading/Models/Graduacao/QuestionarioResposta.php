@@ -4,8 +4,8 @@ namespace Src\Loading\Models\Graduacao;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuestaoQuestionario extends Model
+class QuestionarioResposta extends Model
 {
-    protected $table = 'questoes_questionario';
+    protected $table = 'questionario_respostas';
     protected $guarded = [];
 }

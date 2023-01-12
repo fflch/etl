@@ -5,7 +5,7 @@ namespace Src\Transformation\ModelsReplicado\Graduacao;
 use Src\Transformation\Utils\Utils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
-class QuestaoQuestionarioReplicado implements Mapper
+class QuestionarioQuestaoReplicado implements Mapper
 {
     public function mapping(Array $questao)
     {

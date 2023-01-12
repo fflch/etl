@@ -324,9 +324,9 @@ class GradSchemas
         ]
     ];
 
-    const questoes_questionario = [
+    const questionario_questoes = [
 
-        "tableName" => "questoes_questionario",
+        "tableName" => "questionario_questoes",
 
         "columns" => [
             "idQuestao" => [
@@ -362,9 +362,9 @@ class GradSchemas
         ]
     ];
 
-    const respostas_questionario = [
+    const questionario_respostas = [
 
-        "tableName" => "respostas_questionario",
+        "tableName" => "questionario_respostas",
 
         "columns" => [
             "idGraduacao" => [
@@ -400,15 +400,15 @@ class GradSchemas
             [
                 "keys" => ["idQuestao", "alternativaEscolhida"],
                 "references" => ["idQuestao", "codigoAlternativa"],
-                "on" => "questoes_questionario",
+                "on" => "questionario_questoes",
                 "onDelete" => "cascade"
             ]
         ]
     ];
 
-    const SIICUSP_trabalhos = [
+    const siicusp_trabalhos = [
 
-        "tableName" => "SIICUSP_trabalhos",
+        "tableName" => "siicusp_trabalhos",
 
         "columns" => [
             "idTrabalho" => [
@@ -470,9 +470,9 @@ class GradSchemas
         ]
     ];
 
-    const SIICUSP_participantes = [
+    const siicusp_participantes = [
 
-        "tableName" => "SIICUSP_participantes",
+        "tableName" => "siicusp_participantes",
 
         "columns" => [
             'idTrabalho' => [
@@ -529,7 +529,7 @@ class GradSchemas
             [
                 "keys" => "idTrabalho",
                 "references" => "idTrabalho",
-                "on" => "SIICUSP_trabalhos",
+                "on" => "siicusp_trabalhos",
                 "onDelete" => "cascade"
             ]
         ]
