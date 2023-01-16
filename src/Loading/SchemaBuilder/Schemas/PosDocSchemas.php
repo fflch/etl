@@ -65,4 +65,61 @@ class PosDocSchemas
             //
         ]
     ];
+
+    const posdoutorados = [
+
+        "tableName" => "posdoutorados",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "numeroUSP" => [
+                "type" => "integer"
+            ],
+            "dataInicioProjeto" => [
+                "type" => "dateTime"
+            ],
+            "dataFimProjeto" => [
+                "type" => "dateTime"
+            ],
+            "situacaoProjeto" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "codigoDepartamento" => [
+                "type" => "integer"
+            ],
+            "nomeDepartamento" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "tituloProjeto" => [
+                "type" => "string",
+                "size" => 1024
+            ],
+            "palavrasChave" => [
+                "type" => "string",
+                "size" => "128"
+            ],
+            "codigoModalidade" => [
+                "type" => "tinyInteger"
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
 }

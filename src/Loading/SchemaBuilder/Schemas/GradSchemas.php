@@ -427,7 +427,11 @@ class GradSchemas
             "edicaoSIICUSP" => [
                 "type" => "smallInteger",
             ],
-            "situacaoSIICUSP" => [
+            "situacaoInscricao" => [
+                "type" => "string",
+                "size" => 24
+            ],
+            "situacaoApresentacao" => [
                 "type" => "string",
                 "size" => 24,
                 "nullable" => true
@@ -510,7 +514,7 @@ class GradSchemas
                 "size" => 256,
                 "nullable" => true
             ],
-            'apresentador' => [
+            'participanteApresentador' => [
                 "type" => "boolean"
             ],
             "created_at" => [

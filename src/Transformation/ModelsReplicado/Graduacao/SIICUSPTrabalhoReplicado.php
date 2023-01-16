@@ -19,7 +19,8 @@ class SIICUSPTrabalhoReplicado implements Mapper
                            ? $trabalho['anoProjeto'] . "-" . $trabalho['codigoProjeto']
                            : null,
             'edicaoSIICUSP' => $trabalho['edicaoSIICUSP'],
-            'situacaoSIICUSP' => $this->checkSituacaoSIICUSP(
+            'situacaoInscricao' => $trabalho['situacaoInscricao'],
+            'situacaoApresentacao' => $this->checkSituacaoApresentacao(
                                                         $trabalho['apresentadoSIICUSP'], 
                                                         $trabalho['tipoParticipanteApresentou']
                                     ),
@@ -34,7 +35,7 @@ class SIICUSPTrabalhoReplicado implements Mapper
     }
 
     
-    private function checkSituacaoSIICUSP(?string $apresentado, ?string $tipoParticipante)
+    private function checkSituacaoApresentacao(?string $apresentado, ?string $tipoParticipante)
     {
         if($tipoParticipante == 'F'){
             return 'Apresentador faltante';

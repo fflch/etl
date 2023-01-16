@@ -21,7 +21,7 @@ class SIICUSPParticipanteReplicado implements Mapper
             'siglaUnidade' => $participante['siglaUnidade'],
             'codigoDepartamento' => $participante['codigoDepartamento'],
             'nomeDepartamento' => $participante['nomeDepartamento'],
-            'apresentador' => Deparas::boolSIICUSP[$participante['apresentador']] ?? false
+            'participanteApresentador' => Deparas::boolSIICUSP[$participante['participanteApresentador']] ?? false
         ];
 
         return $properties;
