@@ -128,4 +128,57 @@ class PosDocSchemas
             ],
         ]
     ];
+
+    const periodos_posdoutorado = [
+
+        "tableName" => "periodos_posdoutorado",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaPeriodo" => [
+                "type" => "smallInteger",
+            ],
+            "dataInicioPeriodo" => [
+                "type" => "dateTime"
+            ],
+            "dataFimPeriodo" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "situacaoPeriodo" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "fonteRecurso" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "horasSemanais" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "idProjeto", "sequenciaPeriodo"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idProjeto",
+                "references" => "idProjeto",
+                "on" => "posdoutorados",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
 }

@@ -15,5 +15,6 @@ class PosDocTables
     {
         $this->posDoutoradoOp->updateAlunosPosDoutorado();
         $this->posDoutoradoOp->updatePosDoutorados();
+        $this->posDoutoradoOp->updatePeriodosPosDoutorado();
     }
 }

@@ -14,7 +14,7 @@ class PosDoutoradoReplicado implements Mapper
 
         $properties = [
             'idProjeto' => $posDoutorado['anoProjeto'] . '-' . $posDoutorado['codigoProjeto'],
-            'programa' => Deparas::modalidadesPD[$posDoutorado['codigoModalidade']],
+            'programa' => Deparas::modalidadesPD[$posDoutorado['codigoModalidade']] ?? 'XX',
             'numeroUSP' => $posDoutorado['numeroUSP'],
             'dataInicioProjeto' => $posDoutorado['dataInicioProjeto'],
             'dataFimProjeto' => $posDoutorado['dataFimProjeto'],

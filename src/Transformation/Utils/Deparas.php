@@ -86,4 +86,11 @@ class Deparas
         2 => 'PD', // Pós-Doutorado
         24 => 'PC' // Pesquisador Colaborador
     ];
+
+    const situacoesPD = [
+        'I' => 'Inicial',
+        'P' => 'Prorrogação',
+        'S' => 'Substituição',
+        'A' => 'Afastamento'
+    ];
 }
