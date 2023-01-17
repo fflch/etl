@@ -13,6 +13,7 @@ class PosDoutoradoOperations
     public function __construct()
     {
         $this->alunosPosDoutorado = new Transformer(new AlunoPosDoutoradoReplicado, 'PosDoutorado/alunos_posdoutorado');
+        $this->posDoutorados = new Transformer(new PosDoutoradoReplicado, 'PosDoutorado/posdoutorados');
     }
 
     public function updateAlunosPosDoutorado()
@@ -24,6 +25,18 @@ class PosDoutoradoOperations
         foreach(array_chunk($alunosPosDoutorado, 3000) as $chunk) 
         {
             AlunoPosDoutorado::upsert($chunk, ["numeroUSP"]);
+        }
+    }
+
+    public function updatePosDoutorados()
+    {
+        $posDoutorados = $this->posDoutorados->transform();
+
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($posDoutorados, 3000) as $chunk) 
+        {
+            PosDoutorado::upsert($chunk, ["idProjeto"]);
         }
     }
 }

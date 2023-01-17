@@ -81,4 +81,9 @@ class Deparas
         'S' => 'Apresentado',
         'N' => 'Não apresentado'
     ];
+
+    const modalidadesPD = [
+        2 => 'PD', // Pós-Doutorado
+        24 => 'PC' // Pesquisador Colaborador
+    ];
 }

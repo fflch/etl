@@ -75,36 +75,37 @@ class PosDocSchemas
                 "type" => "string",
                 "size" => 12
             ],
+            "programa" => [
+                "type" => "char",
+                "size" => 2
+            ],
             "numeroUSP" => [
                 "type" => "integer"
             ],
             "dataInicioProjeto" => [
-                "type" => "dateTime"
+                "type" => "dateTime",
+                "nullable" => true
             ],
             "dataFimProjeto" => [
-                "type" => "dateTime"
+                "type" => "dateTime",
+                "nullable" => true
             ],
             "situacaoProjeto" => [
                 "type" => "string",
                 "size" => 16
             ],
             "codigoDepartamento" => [
-                "type" => "integer"
+                "type" => "integer",
+                "nullable" => true
             ],
             "nomeDepartamento" => [
                 "type" => "string",
-                "size" => 256
+                "size" => 256,
+                "nullable" => true
             ],
             "tituloProjeto" => [
                 "type" => "string",
                 "size" => 1024
-            ],
-            "palavrasChave" => [
-                "type" => "string",
-                "size" => "128"
-            ],
-            "codigoModalidade" => [
-                "type" => "tinyInteger"
             ],
             "created_at" => [
                 "type" => "timestamp"
@@ -115,11 +116,16 @@ class PosDocSchemas
         ],
 
         "primary" => [
-            //
+            "idProjeto"
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => "numeroUSP",
+                "references" => "numeroUSP",
+                "on" => "alunos_posdoutorado",
+                "onDelete" => "cascade"
+            ],
         ]
     ];
 }

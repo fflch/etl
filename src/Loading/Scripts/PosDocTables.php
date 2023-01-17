@@ -14,5 +14,6 @@ class PosDocTables
     public function update()
     {
         $this->posDoutoradoOp->updateAlunosPosDoutorado();
+        $this->posDoutoradoOp->updatePosDoutorados();
     }
 }
