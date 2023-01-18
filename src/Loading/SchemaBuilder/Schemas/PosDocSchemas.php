@@ -4,9 +4,9 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class PosDocSchemas
 {
-    const alunos_posdoutorado = [
+    const alunos_posdoc = [
 
-        "tableName" => "alunos_posdoutorado",
+        "tableName" => "alunos_posdoc",
 
         "columns" => [
             "numeroUSP" => [
@@ -66,9 +66,9 @@ class PosDocSchemas
         ]
     ];
 
-    const posdoutorados = [
+    const projetos_posdoc = [
 
-        "tableName" => "posdoutorados",
+        "tableName" => "projetos_posdoc",
 
         "columns" => [
             "idProjeto" => [
@@ -123,15 +123,15 @@ class PosDocSchemas
             [
                 "keys" => "numeroUSP",
                 "references" => "numeroUSP",
-                "on" => "alunos_posdoutorado",
+                "on" => "alunos_posdoc",
                 "onDelete" => "cascade"
             ],
         ]
     ];
 
-    const periodos_posdoutorado = [
+    const periodos_posdoc = [
 
-        "tableName" => "periodos_posdoutorado",
+        "tableName" => "periodos_posdoc",
 
         "columns" => [
             "idProjeto" => [
@@ -176,7 +176,7 @@ class PosDocSchemas
             [
                 "keys" => "idProjeto",
                 "references" => "idProjeto",
-                "on" => "posdoutorados",
+                "on" => "projetos_posdoc",
                 "onDelete" => "cascade"
             ],
         ]

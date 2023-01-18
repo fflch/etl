@@ -2,19 +2,19 @@
 
 namespace Src\Loading\Scripts;
 
-use Src\Loading\Operations\PosDoutoradoOperations;
+use Src\Loading\Operations\PosDocOperations;
 
 class PosDocTables
 {
     public function __construct()
     {
-        $this->posDoutoradoOp = new PosDoutoradoOperations(); 
+        $this->posDocOp = new PosDocOperations(); 
     }
 
     public function update()
     {
-        $this->posDoutoradoOp->updateAlunosPosDoutorado();
-        $this->posDoutoradoOp->updatePosDoutorados();
-        $this->posDoutoradoOp->updatePeriodosPosDoutorado();
+        $this->posDocOp->updateAlunosPosDoc();
+        $this->posDocOp->updateProjetosPosDoc();
+        $this->posDocOp->updatePeriodosPosDoc();
     }
 }
