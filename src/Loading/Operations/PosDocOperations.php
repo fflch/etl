@@ -11,6 +11,8 @@ use Src\Transformation\ModelsReplicado\PosDoc\PeriodoPosDocReplicado;
 use Src\Loading\Models\PosDoc\PeriodoPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\BolsaPosDocReplicado;
 use Src\Loading\Models\PosDoc\BolsaPosDoc;
+use Src\Transformation\ModelsReplicado\PosDoc\AfastEmpresaPosDocReplicado;
+use Src\Loading\Models\PosDoc\AfastEmpresaPosDoc;
 
 class PosDocOperations
 {
@@ -20,6 +22,7 @@ class PosDocOperations
         $this->projetosPosDoc = new Transformer(new ProjetoPosDocReplicado, 'PosDoc/projetos_posdoc');
         $this->periodosPosDoc = new Transformer(new PeriodoPosDocReplicado, 'PosDoc/periodos_posdoc');
         $this->bolsasPosDoc = new Transformer(new BolsaPosDocReplicado, 'PosDoc/bolsas_posdoc');
+        $this->afastEmpresasPosDoc = new Transformer(new AfastEmpresaPosDocReplicado, 'PosDoc/afastempresas_posdoc');
     }
 
     public function updateAlunosPosDoc()
@@ -61,12 +64,18 @@ class PosDocOperations
     public function updateFontesRecursoPosDoc()
     {
         $bolsasPD = $this->bolsasPosDoc->transform();
+        $afastEmpresa = $this->afastEmpresasPosDoc->transform();
 
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($bolsasPD, 3000) as $chunk) 
         {
             BolsaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "sequenciaFomento"]);
+        }
+
+        foreach(array_chunk($afastEmpresa, 3000) as $chunk) 
+        {
+            AfastEmpresaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "seqVinculoEmpresa"]);
         }
     }
 }

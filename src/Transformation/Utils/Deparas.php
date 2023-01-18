@@ -93,4 +93,9 @@ class Deparas
         'S' => 'Substituição',
         'A' => 'Afastamento'
     ];
+
+    const tiposVinculoPD = [
+        'AR' => 'Afastamento Remunerado',
+        'JP' => "Jornada Parcial"
+    ];
 }

@@ -238,7 +238,67 @@ class PosDocSchemas
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => ["idProjeto", "sequenciaPeriodo"],
+                "references" => ["idProjeto", "sequenciaPeriodo"],
+                "on" => "periodos_posdoc",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const afastempresas_posdoc = [
+
+        "tableName" => "afastempresas_posdoc",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaPeriodo" => [
+                "type" => "smallInteger",
+            ],
+            "seqVinculoEmpresa" => [
+                "type" => 'tinyInteger'
+            ],
+            "nomeEmpresa" => [
+                "type" => "string",
+                "size" => 512
+            ],
+            "dataInicioAfastamento" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "dataFimAfastamento" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "tipoVinculo" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["idProjeto", "sequenciaPeriodo", "seqVinculoEmpresa"],
+            "keyName" => "afastamentos_empregaticios_primary"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => ["idProjeto", "sequenciaPeriodo"],
+                "references" => ["idProjeto", "sequenciaPeriodo"],
+                "on" => "periodos_posdoc",
+                "onDelete" => "cascade"
+            ],
         ]
     ];
 }
