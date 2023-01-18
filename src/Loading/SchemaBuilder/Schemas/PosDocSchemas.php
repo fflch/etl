@@ -181,4 +181,59 @@ class PosDocSchemas
             ],
         ]
     ];
+
+    const bolsas_posdoc = [
+
+        "tableName" => "bolsas_posdoc",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaPeriodo" => [
+                "type" => "smallInteger",
+            ],
+            "sequenciaFomento" => [
+                "type" => "tinyInteger"
+            ],
+            "codigoFomento" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "nomeFomento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "dataInicioFomento" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "dataFimFomento" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "idFomento" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["idProjeto", "sequenciaPeriodo", "sequenciaFomento"],
+            "keyName" => "bolsasposdoc_primary"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
 }

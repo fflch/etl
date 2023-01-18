@@ -16,5 +16,6 @@ class PosDocTables
         $this->posDocOp->updateAlunosPosDoc();
         $this->posDocOp->updateProjetosPosDoc();
         $this->posDocOp->updatePeriodosPosDoc();
+        $this->posDocOp->updateFontesRecursoPosDoc();
     }
 }
