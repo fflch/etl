@@ -58,7 +58,7 @@ class PosGradSchemas
         ],
 
         "primary" => [
-            "numeroUSP"
+            "key" => ["numeroUSP"]
         ],
         
         "foreign" => [
@@ -134,7 +134,7 @@ class PosGradSchemas
         ],
 
         "primary" => [
-            "idPosGraduacao"
+            "key" => ["idPosGraduacao"]
         ],
         
         "foreign" => [

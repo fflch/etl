@@ -63,7 +63,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            "numeroUSP"
+            "key" => ["numeroUSP"]
         ],
         
         "foreign" => [
@@ -131,7 +131,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            "idGraduacao"
+            "key" => ["idGraduacao"]
         ],
         
         "foreign" => [
@@ -192,7 +192,7 @@ class GradSchemas
         ],
 
         "primary" => [
-
+            //        
         ],
         
         "foreign" => [
@@ -261,7 +261,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            "idProjeto"
+            "key" => ["idProjeto"]
         ],
         
         "foreign" => [
@@ -311,7 +311,7 @@ class GradSchemas
         ],
 
         "primary" => [
-
+            //
         ],
         
         "foreign" => [
@@ -354,7 +354,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            'idQuestao', 'codigoAlternativa'
+            "key" => ['idQuestao', 'codigoAlternativa']
         ],
         
         "foreign" => [
@@ -466,7 +466,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            "idTrabalho"
+            "key" => ["idTrabalho"]
         ],
         
         "foreign" => [

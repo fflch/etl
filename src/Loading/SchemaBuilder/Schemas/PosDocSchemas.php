@@ -58,7 +58,7 @@ class PosDocSchemas
         ],
 
         "primary" => [
-            "numeroUSP"
+            "key" => ["numeroUSP"]
         ],
         
         "foreign" => [
@@ -116,7 +116,7 @@ class PosDocSchemas
         ],
 
         "primary" => [
-            "idProjeto"
+            "key" => ["idProjeto"]
         ],
         
         "foreign" => [
@@ -169,7 +169,7 @@ class PosDocSchemas
         ],
 
         "primary" => [
-            "idProjeto", "sequenciaPeriodo"
+            "key" => ["idProjeto", "sequenciaPeriodo"]
         ],
         
         "foreign" => [

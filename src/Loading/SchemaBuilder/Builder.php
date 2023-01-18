@@ -28,8 +28,14 @@ class Builder
                 }
             }
 
-            if(!empty($tableProps['primary'])){
-                $table->primary($tableProps['primary']);
+            $primary = $tableProps['primary'];
+            if(!empty($primary)){
+                if(array_key_exists('keyName', $primary)){
+                    $table->primary($primary['key'], $primary['keyName']);
+                }
+                else{
+                    $table->primary($primary['key']);
+                }
             }
 
             if(!empty($tableProps['foreign'])){
