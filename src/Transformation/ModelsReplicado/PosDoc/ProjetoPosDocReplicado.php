@@ -22,8 +22,21 @@ class ProjetoPosDocReplicado implements Mapper
             'codigoDepartamento' => $projetoPosDoc['codigoDepartamento'],
             'nomeDepartamento' => $projetoPosDoc['nomeDepartamento'],
             'tituloProjeto' => $projetoPosDoc['tituloProjeto'],
+            'palavrasChave' => $this->palavrasChave(
+                                                    array(
+                                                        $projetoPosDoc['palcha1'],
+                                                        $projetoPosDoc['palcha2'],
+                                                        $projetoPosDoc['palcha3']
+                                                    )),
         ];
 
         return $properties;
+    }
+
+    private function palavrasChave(array $palavras)
+    {
+        $palavrasChave = array_filter($palavras, function ($palavra) { return !empty($palavra); });
+
+        return mb_strtoupper(implode("; ", $palavrasChave), 'UTF-8');
     }
 }

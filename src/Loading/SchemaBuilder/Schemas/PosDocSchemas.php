@@ -107,6 +107,11 @@ class PosDocSchemas
                 "type" => "string",
                 "size" => 1024
             ],
+            "palavrasChave" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
             "created_at" => [
                 "type" => "timestamp"
             ],
