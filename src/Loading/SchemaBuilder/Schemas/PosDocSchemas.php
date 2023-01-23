@@ -301,4 +301,52 @@ class PosDocSchemas
             ],
         ]
     ];
+
+    const supervisoes_posdoc = [
+
+        "tableName" => "supervisoes_posdoc",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaSupervisao" => [
+                "type" => "smallInteger",
+            ],
+            "numeroUSPSupervisor" => [
+                "type" => "integer"
+            ],
+            "tipoSupervisao" => [
+                "type" => "string",
+                "size" => 40
+            ],
+            "dataInicioSupervisao" => [
+                "type" => "date"
+            ],
+            "dataFimSupervisao" => [
+                "type" => "date"
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["idProjeto", "sequenciaSupervisao", "tipoSupervisao"],
+            "keyName" => "supervisoes_posdoc_primary"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idProjeto",
+                "references" => "idProjeto",
+                "on" => "projetos_posdoc",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
 }
