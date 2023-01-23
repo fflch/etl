@@ -91,10 +91,10 @@ class GradSchemas
                 "size" => 16
             ],
             "dataInicioVinculo" => [
-                "type" => "dateTime"
+                "type" => "date"
             ],
             "dataFimVinculo" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "codigoCurso" => [
@@ -172,10 +172,10 @@ class GradSchemas
                 "size" => 32
             ],
             "dataInicioHabilitacao" => [
-                "type" => "dateTime"
+                "type" => "date"
             ],
             "dataFimHabilitacao" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "tipoEncerramento" => [
@@ -233,11 +233,11 @@ class GradSchemas
                 "size" => 64
             ],
             "dataInicioProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "numeroUSPorientador" => [
@@ -295,11 +295,11 @@ class GradSchemas
                 "nullable" => true
             ],
             "dataInicioBolsa" => [
-                "type" => "DateTime",
+                "type" => "Date",
                 "nullable" => true
             ],
             "dataFimBolsa" => [
-                "type" => "DateTime",
+                "type" => "Date",
                 "nullable" => true
             ],
             "created_at" => [
