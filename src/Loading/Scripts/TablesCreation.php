@@ -3,7 +3,6 @@
 namespace Src\Loading\Scripts;
 
 use Src\Loading\SchemaBuilder\Builder;
-use Src\Loading\SchemaBuilder\Schemas\GradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 
@@ -14,12 +13,17 @@ class TablesCreation
         $this->builder = new Builder();
     }
 
-    public function recreateTables(array $tables)
+    public function getTablesNames($class)
     {
-        foreach($tables as $table)
-        {
-            $this->builder->dropTable($table);
-        }
+        $refl = new \ReflectionClass($class);
+        $tables = $refl->getConstants();
+
+        return $tables;
+    }
+
+    public function createTables($class)
+    {
+        $tables = $this->getTablesNames($class);
 
         foreach($tables as $table)
         {
@@ -27,24 +31,19 @@ class TablesCreation
         }
     }
 
-    public function newGradTables()
+    public function dropTables($class)
     {
-        $refl = new \ReflectionClass(GradSchemas::class);
-        $gradTables = $refl->getConstants();
-        $this->recreateTables($gradTables);
+        $tables = $this->getTablesNames($class);
+
+        foreach($tables as $table)
+        {
+            $this->builder->dropTable($table);
+        }
     }
 
-    public function newPosGradTables()
+    public function recreateTables($class)
     {
-        $refl = new \ReflectionClass(PosGradSchemas::class);
-        $posGradTables = $refl->getConstants();
-        $this->recreateTables($posGradTables);
-    }
-
-    public function newPosDocTables()
-    {
-        $refl = new \ReflectionClass(PosDocSchemas::class);
-        $posDocTables = $refl->getConstants();
-        $this->recreateTables($posDocTables);
+       $this->dropTables($class);
+       $this->createTables($class);
     }
 }
