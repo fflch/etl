@@ -4,6 +4,75 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class CEUSchemas
 {
+    const cursos_culturaextensao = [
+
+        "tableName" => "cursos_culturaextensao",
+
+        "columns" => [
+            "codigoCursoCEU" => [
+                "type" => "integer"
+            ],
+            "siglaUnidade" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "codigoDepartamento" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nomeDepartamento" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "modalidadeCurso" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "nomeCurso" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "tipo" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "codigoColegiado" => [
+                "type" => "smallInteger"
+            ],
+            "siglaColegiado" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "areaConhecimento" => [
+                "type" => "string",
+                "size" => 128
+            ],
+            "areaTematica" => [
+                "type" => "string",
+                "size" => 128
+            ],
+            "linhaExtensao" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["codigoCursoCEU"]
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
     const oferecimentos_ccex = [
 
         "tableName" => "oferecimentos_ccex",
@@ -90,7 +159,12 @@ class CEUSchemas
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => "codigoCursoCEU",
+                "references" => "codigoCursoCEU",
+                "on" => "cursos_culturaextensao",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 }
