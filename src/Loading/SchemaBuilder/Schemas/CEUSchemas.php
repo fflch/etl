@@ -216,4 +216,63 @@ class CEUSchemas
             ]
         ]
     ];
+
+    const matriculas_ccex = [
+
+        "tableName" => "matriculas_ccex",
+
+        "columns" => [
+            "codigoMatriculaCEU" => [
+                "type" => "integer"
+            ],
+            "numeroUSP" => [
+                "type" => "integer"
+            ],
+            "codigoOferecimento" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "dataMatricula" => [
+                "type" => "dateTime"
+            ],
+            "statusMatricula" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "dataInicioCurso" => [
+                "type" => "date"
+            ],
+            "dataFimCurso" => [
+                "type" => "date"
+            ],
+            "frequenciaAluno" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "conceitoFinalAluno" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["codigoMatriculaCEU"]
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "codigoOferecimento",
+                "references" => "codigoOferecimento",
+                "on" => "oferecimentos_ccex",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }

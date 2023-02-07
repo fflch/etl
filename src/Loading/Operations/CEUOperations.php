@@ -9,6 +9,8 @@ use Src\Transformation\ModelsReplicado\CEU\OferecimentoCCExReplicado;
 use Src\Loading\Models\CEU\OferecimentoCCEx;
 use Src\Transformation\ModelsReplicado\CEU\InscricaoCCExReplicado;
 use Src\Loading\Models\CEU\InscricaoCCEx;
+use Src\Transformation\ModelsReplicado\CEU\MatriculaCCExReplicado;
+use Src\Loading\Models\CEU\MatriculaCCEx;
 
 class CEUOperations
 {
@@ -17,6 +19,7 @@ class CEUOperations
         $this->cursosCEU = new Transformer(new CursoCulturaExtensaoReplicado, 'CEU/cursos_culturaextensao');
         $this->oferecimentosCursos = new Transformer(new OferecimentoCCExReplicado, 'CEU/oferecimentos_ccex');
         $this->inscricoesCursos = new Transformer(new InscricaoCCExReplicado, 'CEU/inscricoes_ccex');
+        $this->matriculasCursos = new Transformer(new MatriculaCCExReplicado, 'CEU/matriculas_ccex');
     }
 
     public function updateCursosCEU()
@@ -52,6 +55,18 @@ class CEUOperations
         foreach(array_chunk($inscricoesCursos, 9000) as $chunk) 
         {
             InscricaoCCEx::upsert($chunk, ["codigoOferecimento", "numeroCEU", "dataInscricao", "situacaoInscricao", "origemInscricao"]);
+        }
+    }
+
+    public function updateMatriculasCursos()
+    {
+        $matriculasCursos = $this->matriculasCursos->transform();
+
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($matriculasCursos, 5000) as $chunk) 
+        {
+            MatriculaCCEx::upsert($chunk, ["codigoMatriculaCEU"]);
         }
     }
 }
