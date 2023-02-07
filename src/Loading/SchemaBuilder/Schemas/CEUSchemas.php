@@ -167,4 +167,53 @@ class CEUSchemas
             ]
         ]
     ];
+
+    const inscricoes_ccex = [
+
+        "tableName" => "inscricoes_ccex",
+
+        "columns" => [
+            "codigoOferecimento" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "numeroCEU" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "dataInscricao" => [
+                "type" => "dateTime",
+                "nullable" => true
+            ],
+            "situacaoInscricao" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true //corrigir
+            ],
+            "origemInscricao" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "codigoOferecimento",
+                "references" => "codigoOferecimento",
+                "on" => "oferecimentos_ccex",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }
