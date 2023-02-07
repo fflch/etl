@@ -4,6 +4,73 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class CEUSchemas
 {
+    const alunos_ccex = [
+
+        "tableName" => "alunos_ccex",
+
+        "columns" => [
+            "numeroUSP" => [
+                "type" => "integer"
+            ],
+            "nomeAluno" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "anoNascimento" => [
+                "type" => "smallInteger"
+            ],
+            "email" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "nacionalidade" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "cidadeNascimento" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "estadoNascimento" => [
+                "type" => "string",
+                "size" => 2,
+                "nullable" => true
+            ],
+            "paisNascimento" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "raca" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "sexo" => [
+                "type" => "string",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["numeroUSP"]
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
     const cursos_culturaextensao = [
 
         "tableName" => "cursos_culturaextensao",
@@ -267,6 +334,12 @@ class CEUSchemas
         ],
         
         "foreign" => [
+            [
+                "keys" => "numeroUSP",
+                "references" => "numeroUSP",
+                "on" => "alunos_ccex",
+                "onDelete" => "cascade"
+            ],
             [
                 "keys" => "codigoOferecimento",
                 "references" => "codigoOferecimento",
