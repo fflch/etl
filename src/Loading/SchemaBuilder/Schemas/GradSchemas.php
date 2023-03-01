@@ -86,7 +86,7 @@ class GradSchemas
             "sequenciaCurso" => [
                 "type" => "tinyInteger"
             ],
-            "situacao" => [
+            "situacaoCurso" => [
                 "type" => "string",
                 "size" => 16
             ],
@@ -117,9 +117,13 @@ class GradSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "tipoEncerramento" => [
+            "tipoEncerramentoBacharel" => [
                 "type" => "string",
                 "size" => 128,
+                "nullable" => true
+            ],
+            "dataEncerramentoBacharel" => [
+                "type" => "datetime",
                 "nullable" => true
             ],
             "created_at" => [

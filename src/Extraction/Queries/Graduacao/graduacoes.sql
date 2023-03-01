@@ -1,7 +1,7 @@
 SELECT
     p.codpes AS 'numeroUSP'
     ,p.codpgm AS 'sequenciaCurso'
-    ,p.stapgm AS 'situacao'
+    ,p.stapgm AS 'situacaoCurso'
     ,p.dtaing AS 'dataInicioVinculo'
     ,CASE WHEN p.tipencpgm IS NOT NULL THEN p.dtaini ELSE NULL END AS 'dataFimVinculo'
     ,hp.codcur AS 'codigoCurso'
@@ -9,7 +9,8 @@ SELECT
     ,p.tiping AS 'tipoIngresso'
     ,p.sglacaafm AS 'categoriaIngresso'
     ,p.clsing AS 'rankIngresso'
-    ,p.tipencpgm AS 'tipoEncerramento'
+    ,hp.tipenchab AS 'tipoEncerramentoBacharel'
+    ,hp.dtafim AS 'dataEncerramentoBacharel'
 FROM HABILPROGGR hp
     INNER JOIN (
         SELECT hp2.codpes AS 'codpes', hp2.codpgm as 'codpgm', MAX(hp2.dtaini) AS 'ultimoBA'
