@@ -83,11 +83,11 @@ class PosDocSchemas
                 "type" => "integer"
             ],
             "dataInicioProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "situacaoProjeto" => [
@@ -147,10 +147,10 @@ class PosDocSchemas
                 "type" => "smallInteger",
             ],
             "dataInicioPeriodo" => [
-                "type" => "dateTime"
+                "type" => "date"
             ],
             "dataFimPeriodo" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "situacaoPeriodo" => [
@@ -212,11 +212,11 @@ class PosDocSchemas
                 "nullable" => true
             ],
             "dataInicioFomento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimFomento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "idFomento" => [
@@ -267,11 +267,11 @@ class PosDocSchemas
                 "size" => 512
             ],
             "dataInicioAfastamento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimAfastamento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "tipoVinculo" => [
