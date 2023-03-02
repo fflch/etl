@@ -9,14 +9,14 @@ class CEUSchemas
         "tableName" => "alunos_ccex",
 
         "columns" => [
-            "numeroUSP" => [
+            "numero_usp" => [
                 "type" => "integer"
             ],
-            "nomeAluno" => [
+            "nome_aluno" => [
                 "type" => "string",
                 "size" => 256
             ],
-            "anoNascimento" => [
+            "ano_nascimento" => [
                 "type" => "smallInteger"
             ],
             "email" => [
@@ -29,17 +29,17 @@ class CEUSchemas
                 "size" => 128,
                 "nullable" => true
             ],
-            "cidadeNascimento" => [
+            "cidade_nascimento" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            "estadoNascimento" => [
+            "estado_nascimento" => [
                 "type" => "string",
                 "size" => 2,
                 "nullable" => true
             ],
-            "paisNascimento" => [
+            "pais_nascimento" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
@@ -54,16 +54,10 @@ class CEUSchemas
                 "size" => 1,
                 "nullable" => true
             ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
         ],
 
         "primary" => [
-            "key" => ["numeroUSP"]
+            "key" => ["numero_usp"]
         ],
         
         "foreign" => [
@@ -76,27 +70,27 @@ class CEUSchemas
         "tableName" => "cursos_culturaextensao",
 
         "columns" => [
-            "codigoCursoCEU" => [
+            "codigo_curso_ceu" => [
                 "type" => "integer"
             ],
-            "siglaUnidade" => [
+            "sigla_unidade" => [
                 "type" => "string",
                 "size" => 16
             ],
-            "codigoDepartamento" => [
+            "codigo_departamento" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "nomeDepartamento" => [
+            "nome_departamento" => [
                 "type" => "string",
                 "size" => 64,
                 "nullable" => true
             ],
-            "modalidadeCurso" => [
+            "modalidade_curso" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "nomeCurso" => [
+            "nome_curso" => [
                 "type" => "string",
                 "size" => 256
             ],
@@ -104,35 +98,29 @@ class CEUSchemas
                 "type" => "string",
                 "size" => 32
             ],
-            "codigoColegiado" => [
+            "codigo_colegiado" => [
                 "type" => "smallInteger"
             ],
-            "siglaColegiado" => [
+            "sigla_colegiado" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "areaConhecimento" => [
+            "area_conhecimento" => [
                 "type" => "string",
                 "size" => 128
             ],
-            "areaTematica" => [
+            "area_tematica" => [
                 "type" => "string",
                 "size" => 128
             ],
-            "linhaExtensao" => [
+            "linha_extensao" => [
                 "type" => "string",
                 "size" => 256
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
             ],
         ],
 
         "primary" => [
-            "key" => ["codigoCursoCEU"]
+            "key" => ["codigo_curso_ceu"]
         ],
         
         "foreign" => [
@@ -145,90 +133,84 @@ class CEUSchemas
         "tableName" => "oferecimentos_ccex",
 
         "columns" => [
-            "codigoOferecimento" => [
+            "codigo_oferecimento" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "codigoCursoCEU" => [
+            "codigo_curso_ceu" => [
                 "type" => "integer"
             ],
-            "situacaoOferecimento" => [
+            "situacao_oferecimento" => [
                 "type" => "string",
                 "size" => 32,
                 "nullable" => true
             ],
-            "dataInicioOferecimento" => [
+            "data_inicio_oferecimento" => [
                 "type" => "date"
             ],
-            "dataFimOferecimento" => [
+            "data_fim_oferecimento" => [
                 "type" => "date"
             ],
-            "totalCargaHoraria" => [
+            "total_carga_horaria" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "qntdVagasOfertadas" => [
+            "qntd_vagas_ofertadas" => [
                 "type" => "smallInteger"
             ],
-            "cursoPago" => [
+            "curso_pago" => [
                 "type" => "char",
                 "size" => 1
             ],
-            "valorInscricaoEdicao" => [
+            "valor_inscricao_edicao" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "qntdVagasGratuitas" => [
+            "qntd_vagas_gratuitas" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "valorPrevistoArrecadacao" => [
+            "valor_previsto_arrecadacao" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "valorPrevistoCustos" => [
+            "valor_previsto_custos" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "valorPrevistoPRCE" => [
+            "valor_previsto_prce" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "cursoParaEmpresas" => [
+            "curso_para_empresas" => [
                 "type" => "char",
                 "size" => 1
             ],
-            "localCurso" => [
+            "local_curso" => [
                 "type" => "string",
                 "size" => 256
             ],
-            "dataInicioInscricoes" => [
+            "data_inicio_inscricoes" => [
                 "type" => "date"
             ],
-            "dataFimInscricoes" => [
+            "data_fim_inscricoes" => [
                 "type" => "date"
             ],
-            "permiteInscricaoOnline" => [
+            "permite_inscricao_online" => [
                 "type" => "char",
                 "size" => 1,
                 "nullable" => true
             ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
         ],
 
         "primary" => [
-            "key" => ["codigoOferecimento"]
+            "key" => ["codigo_oferecimento"]
         ],
         
         "foreign" => [
             [
-                "keys" => "codigoCursoCEU",
-                "references" => "codigoCursoCEU",
+                "keys" => "codigo_curso_ceu",
+                "references" => "codigo_curso_ceu",
                 "on" => "cursos_culturaextensao",
                 "onDelete" => "cascade"
             ]
@@ -240,33 +222,27 @@ class CEUSchemas
         "tableName" => "inscricoes_ccex",
 
         "columns" => [
-            "codigoOferecimento" => [
+            "codigo_oferecimento" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "numeroCEU" => [
+            "numero_ceu" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "dataInscricao" => [
+            "data_inscricao" => [
                 "type" => "dateTime",
                 "nullable" => true
             ],
-            "situacaoInscricao" => [
+            "situacao_inscricao" => [
                 "type" => "string",
                 "size" => 32,
                 "nullable" => true //corrigir
             ],
-            "origemInscricao" => [
+            "origem_inscricao" => [
                 "type" => "string",
                 "size" => 16,
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
             ],
         ],
 
@@ -276,8 +252,8 @@ class CEUSchemas
         
         "foreign" => [
             [
-                "keys" => "codigoOferecimento",
-                "references" => "codigoOferecimento",
+                "keys" => "codigo_oferecimento",
+                "references" => "codigo_oferecimento",
                 "on" => "oferecimentos_ccex",
                 "onDelete" => "cascade"
             ]
@@ -289,60 +265,54 @@ class CEUSchemas
         "tableName" => "matriculas_ccex",
 
         "columns" => [
-            "codigoMatriculaCEU" => [
+            "codigo_matricula_ceu" => [
                 "type" => "integer"
             ],
-            "numeroUSP" => [
+            "numero_usp" => [
                 "type" => "integer"
             ],
-            "codigoOferecimento" => [
+            "codigo_oferecimento" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "dataMatricula" => [
+            "data_matricula" => [
                 "type" => "dateTime"
             ],
-            "statusMatricula" => [
+            "status_matricula" => [
                 "type" => "string",
                 "size" => 16
             ],
-            "dataInicioCurso" => [
+            "data_inicio_curso" => [
                 "type" => "date"
             ],
-            "dataFimCurso" => [
+            "data_fim_curso" => [
                 "type" => "date"
             ],
-            "frequenciaAluno" => [
+            "frequencia_aluno" => [
                 "type" => "tinyInteger",
                 "nullable" => true
             ],
-            "conceitoFinalAluno" => [
+            "conceito_final_aluno" => [
                 "type" => "string",
                 "size" => 16,
                 "nullable" => true
             ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
         ],
 
         "primary" => [
-            "key" => ["codigoMatriculaCEU"]
+            "key" => ["codigo_matricula_ceu"]
         ],
         
         "foreign" => [
             [
-                "keys" => "numeroUSP",
-                "references" => "numeroUSP",
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
                 "on" => "alunos_ccex",
                 "onDelete" => "cascade"
             ],
             [
-                "keys" => "codigoOferecimento",
-                "references" => "codigoOferecimento",
+                "keys" => "codigo_oferecimento",
+                "references" => "codigo_oferecimento",
                 "on" => "oferecimentos_ccex",
                 "onDelete" => "cascade"
             ]

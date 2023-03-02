@@ -33,7 +33,7 @@ class CEUOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($alunosCEU, 5000) as $chunk) 
         {
-            AlunoCCEx::upsert($chunk, ["codigoMatriculaCEU"]);
+            AlunoCCEx::insert($chunk);
         }
     }
 
@@ -45,7 +45,7 @@ class CEUOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($cursosCEU, 3000) as $chunk) 
         {
-            CursoCulturaExtensao::upsert($chunk, ["codigoCursoCEU"]);
+            CursoCulturaExtensao::insert($chunk);
         }
     }
 
@@ -57,7 +57,7 @@ class CEUOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($oferecimentosCursos, 3000) as $chunk) 
         {
-            OferecimentoCCEx::upsert($chunk, ["codigoOferecimento"]);
+            OferecimentoCCEx::insert($chunk);
         }
     }
 
@@ -69,7 +69,7 @@ class CEUOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($inscricoesCursos, 9000) as $chunk) 
         {
-            InscricaoCCEx::upsert($chunk, ["codigoOferecimento", "numeroCEU", "dataInscricao", "situacaoInscricao", "origemInscricao"]);
+            InscricaoCCEx::insert($chunk);
         }
     }
 
@@ -81,7 +81,7 @@ class CEUOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($matriculasCursos, 5000) as $chunk) 
         {
-            MatriculaCCEx::upsert($chunk, ["codigoMatriculaCEU"]);
+            MatriculaCCEx::insert($chunk);
         }
     }
 }

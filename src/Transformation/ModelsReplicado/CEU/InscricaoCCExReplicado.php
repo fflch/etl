@@ -12,15 +12,15 @@ class InscricaoCCExReplicado implements Mapper
         $inscricaoCCEx = Utils::emptiesToNull($inscricaoCCEx);
 
         $properties = [
-            'codigoOferecimento' => strtoupper(md5(
-                                        $inscricaoCCEx['codigoCursoCEU'] . 
-                                        $inscricaoCCEx['codigoEdicaoCurso'] . 
-                                        $inscricaoCCEx['sequenciaOferecimento']
+            'codigo_oferecimento' => strtoupper(md5(
+                                        $inscricaoCCEx['codigo_curso_ceu'] . 
+                                        $inscricaoCCEx['codigo_edicao_curso'] . 
+                                        $inscricaoCCEx['sequencia_oferecimento']
                                     )),
-            'numeroCEU' => $inscricaoCCEx['numeroCEU'],
-            'dataInscricao' => $inscricaoCCEx['dataInscricao'],
-            'situacaoInscricao' => $inscricaoCCEx['situacaoInscricao'],
-            'origemInscricao' => $inscricaoCCEx['origemInscricao'],
+            'numero_ceu' => $inscricaoCCEx['numero_ceu'],
+            'data_inscricao' => $inscricaoCCEx['data_inscricao'],
+            'situacao_inscricao' => $inscricaoCCEx['situacao_inscricao'],
+            'origem_inscricao' => $inscricaoCCEx['origem_inscricao'],
         ];
 
         return $properties;

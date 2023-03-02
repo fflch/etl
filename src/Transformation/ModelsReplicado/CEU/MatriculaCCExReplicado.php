@@ -12,19 +12,19 @@ class MatriculaCCExReplicado implements Mapper
         $matriculaCCEx = Utils::emptiesToNull($matriculaCCEx);
 
         $properties = [
-            'codigoMatriculaCEU' => $matriculaCCEx['codigoMatriculaCEU'],
-            'numeroUSP' => $matriculaCCEx['numeroUSP'],
-            'codigoOferecimento' => strtoupper(md5(
-                                        $matriculaCCEx['codigoCursoCEU'] . 
-                                        $matriculaCCEx['codigoEdicaoCurso'] . 
-                                        $matriculaCCEx['sequenciaOferecimento']
+            'codigo_matricula_ceu' => $matriculaCCEx['codigo_matricula_ceu'],
+            'numero_usp' => $matriculaCCEx['numero_usp'],
+            'codigo_oferecimento' => strtoupper(md5(
+                                        $matriculaCCEx['codigo_curso_ceu'] . 
+                                        $matriculaCCEx['codigo_edicao_curso'] . 
+                                        $matriculaCCEx['sequencia_oferecimento']
                                     )),
-            'dataMatricula' => $matriculaCCEx['dataMatricula'],
-            'statusMatricula' => $matriculaCCEx['statusMatricula'],
-            'dataInicioCurso' => $matriculaCCEx['dataInicioCurso'],
-            'dataFimCurso' => $matriculaCCEx['dataFimCurso'],
-            'frequenciaAluno' => $matriculaCCEx['frequenciaAluno'],
-            'conceitoFinalAluno' => $matriculaCCEx['conceitoFinalAluno'],
+            'data_matricula' => $matriculaCCEx['data_matricula'],
+            'status_matricula' => $matriculaCCEx['status_matricula'],
+            'data_inicio_curso' => $matriculaCCEx['data_inicio_curso'],
+            'data_fim_curso' => $matriculaCCEx['data_fim_curso'],
+            'frequencia_aluno' => $matriculaCCEx['frequencia_aluno'],
+            'conceito_final_aluno' => $matriculaCCEx['conceito_final_aluno'],
         ];
 
         return $properties;

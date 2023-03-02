@@ -13,14 +13,14 @@ class AlunoCCExReplicado implements Mapper
         $alunoCCEx = Utils::emptiesToNull($alunoCCEx);
 
         $properties = [
-            'numeroUSP' => $alunoCCEx['numeroUSP'],
-            'nomeAluno' => $alunoCCEx['nomeAluno'],
-            'anoNascimento' => $alunoCCEx['anoNascimento'],
+            'numero_uSP' => $alunoCCEx['numero_usp'],
+            'nome_aluno' => $alunoCCEx['nome_aluno'],
+            'ano_nascimento' => $alunoCCEx['ano_nascimento'],
             'email' => $alunoCCEx['email'],
             'nacionalidade' => $alunoCCEx['nacionalidade'],
-            'cidadeNascimento' => $alunoCCEx['cidadeNascimento'],
-            'estadoNascimento' => $alunoCCEx['estadoNascimento'],
-            'paisNascimento' => $alunoCCEx['paisNascimento'],
+            'cidade_nascimento' => $alunoCCEx['cidade_nascimento'],
+            'estado_nascimento' => $alunoCCEx['estado_nascimento'],
+            'pais_nascimento' => $alunoCCEx['pais_nascimento'],
             'raca' => Deparas::racas[$alunoCCEx['raca']] ?? $alunoCCEx['raca'],
             'sexo' => $alunoCCEx['sexo'],
         ];

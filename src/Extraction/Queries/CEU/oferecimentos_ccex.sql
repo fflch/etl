@@ -1,40 +1,40 @@
 SELECT
-	ec.codcurceu AS 'codigoCursoCEU'
-	,ec.codedicurceu AS 'codigoEdicaoCurso'
-	,e.numseqofeedi AS 'sequenciaOferecimento'
+	ec.codcurceu AS 'codigo_curso_ceu'
+	,ec.codedicurceu AS 'codigo_edicao_curso'
+	,e.numseqofeedi AS 'sequencia_oferecimento'
 	,CASE 
 		WHEN ec.staediiva IS NOT NULL
 			THEN 'INV'
 		WHEN ec.staedicvl IS NOT NULL
 			THEN 'APR' --HMG?
 		ELSE ec.staedi 
-		END AS 'situacaoOferecimento'
-	,e.dtainiofeedi AS 'dataInicioOferecimento'
-	,e.dtafimofeedi AS 'dataFimOferecimento'
-	,p.totcgahorpgm AS 'totalCargaHoraria'
-	,e.qtdvagofe AS 'qntdVagasOfertadas'
-	,e.stacurpag AS 'cursoPago'
-	,e.vlrins AS 'valorInscricaoEdicao'
+		END AS 'situacao_oferecimento'
+	,e.dtainiofeedi AS 'data_inicio_oferecimento'
+	,e.dtafimofeedi AS 'data_fim_oferecimento'
+	,p.totcgahorpgm AS 'total_carga_horaria'
+	,e.qtdvagofe AS 'qntd_vagas_ofertadas'
+	,e.stacurpag AS 'curso_pago'
+	,e.vlrins AS 'valor_inscricao_edicao'
 	,CASE e.stacurpag
 		WHEN 'N' THEN e.qtdvagofe
 		ELSE e.qtdvaggrt
-		END AS 'qntdVagasGratuitas'
-	,e.vlrpvsarc AS 'valorPrevistoArrecadacao'
-	,e.vlrpvscus AS 'valorPrevistoCustos'
-	,e.vlrpvsprrceu AS 'valorPrevistoPRCE'
-	,e.stacurepr AS 'cursoParaEmpresas'
-	,e.dsclocexe AS 'localCurso'
-	,e.stainsweb AS 'permiteInscricaoOnline'
+		END AS 'qntd_vagas_gratuitas'
+	,e.vlrpvsarc AS 'valor_previsto_arrecadacao'
+	,e.vlrpvscus AS 'valor_previsto_custos'
+	,e.vlrpvsprrceu AS 'valor_previsto_prce'
+	,e.stacurepr AS 'curso_para_empresas'
+	,e.dsclocexe AS 'local_curso'
+	,e.stainsweb AS 'permite_inscricao_online'
 	,CASE 
 		WHEN (e.dtainiins < e.dtainiinsweb OR e.dtainiinsweb IS NULL)
 			THEN e.dtainiins
 		ELSE e.dtainiinsweb
-		END AS 'dataInicioInscricoes'
+		END AS 'data_inicio_inscricoes'
 	,CASE 
 		WHEN (e.dtafimins > e.dtafiminsweb OR e.dtafiminsweb IS NULL)
 			THEN e.dtafimins
 		ELSE e.dtafiminsweb
-		END AS 'dataFimInscricoes'
+		END AS 'data_fim_inscricoes'
 FROM CURSOCEU c
 	INNER JOIN EDICAOCURSOCEU ec ON c.codcurceu = ec.codcurceu
 	INNER JOIN EDICAOCURSOOFECEU e ON (ec.codcurceu = e.codcurceu AND ec.codedicurceu = e.codedicurceu)

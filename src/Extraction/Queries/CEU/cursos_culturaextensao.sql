@@ -1,20 +1,20 @@
 SELECT
-	c.codcurceu AS 'codigoCursoCEU'
-	,u.sglund AS 'siglaUnidade'
-	,c.codsetdep AS 'codigoDepartamento'
-	,s.nomset AS 'nomeDepartamento'
-	,m.dscmdlceu AS 'modalidadeCurso'
-	,c.nomcurceu AS 'nomeCurso'
+	c.codcurceu AS 'codigo_curso_ceu'
+	,u.sglund AS 'sigla_unidade'
+	,c.codsetdep AS 'codigo_departamento'
+	,s.nomset AS 'nome_departamento'
+	,m.dscmdlceu AS 'modalidade_curso'
+	,c.nomcurceu AS 'nome_curso'
 	,CASE c.fmtcurceu
 		WHEN 'PRES' THEN 'Presencial'
 		WHEN 'DIST' THEN 'EAD'
 		ELSE c.fmtcurceu
 		END AS 'tipo'
-	,c.codclg AS 'codigoColegiado'
-	,c.sglclg AS 'siglaColegiado'
-	,a.nomarecnh AS 'areaConhecimento'
-	,a2.nomaretem AS 'areaTematica'
-	,l.nomlnhext AS 'linhaExtensao'
+	,c.codclg AS 'codigo_colegiado'
+	,c.sglclg AS 'sigla_colegiado'
+	,a.nomarecnh AS 'area_conhecimento'
+	,a2.nomaretem AS 'area_tematica'
+	,l.nomlnhext AS 'linha_extensao'
 FROM CURSOCEU c
 	LEFT JOIN UNIDADE u ON c.codund = u.codund
 	LEFT JOIN SETOR s ON c.codsetdep = s.codset

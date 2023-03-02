@@ -1,12 +1,12 @@
 SELECT
-    p.codpes AS 'numeroUSP'
-    ,p.nompes AS 'nomeAluno'
-    ,YEAR(p.dtanas) AS 'anoNascimento'
+    p.codpes AS 'numero_usp'
+    ,p.nompes AS 'nome_aluno'
+    ,YEAR(p.dtanas) AS 'ano_nascimento'
     ,e.codema AS 'email'
     ,p2.nacpas AS 'nacionalidade'
-    ,CASE WHEN l.codpas = 1 THEN l.cidloc ELSE NULL END AS 'cidadeNascimento'
-    ,CASE WHEN l.codpas = 1 THEN l.sglest ELSE NULL END AS 'estadoNascimento'
-    ,p3.nompas AS 'paisNascimento'
+    ,CASE WHEN l.codpas = 1 THEN l.cidloc ELSE NULL END AS 'cidade_nascimento'
+    ,CASE WHEN l.codpas = 1 THEN l.sglest ELSE NULL END AS 'estado_nascimento'
+    ,p3.nompas AS 'pais_nascimento'
     ,c.codraccor AS 'raca'
     ,p.sexpes AS 'sexo'
 FROM PESSOA p
