@@ -14,7 +14,7 @@ class Deparas
         NULL => 'Não informada',
     ];
 
-    const situacoes = [
+    const situacoesGR = [
         'A' => 'Ativo',
         'E' => 'Encerrado',
         'T' => 'Trancado',
@@ -97,5 +97,40 @@ class Deparas
     const tiposVinculoPD = [
         'AR' => 'Afastamento Remunerado',
         'JP' => "Jornada Parcial"
+    ];
+
+    const situacoesServidores = [
+        'A' => 'Ativo',
+        'P' => 'Aposentado',
+        'D' => 'Desativado'
+    ];
+
+    const tiposVinculoServidores = [
+        'SERVIDOR' => 'Servidor',
+        'ESTAGIARIO' => 'Estagiário',
+        'ESTAGIARIORH' => 'Estagiário',
+        'ESTAGIARIOPOS' => 'Estagiário',
+    ];
+
+    const funcoesDesignadas = [
+        'Contad Ch' => 'Contador Chefe',
+        'Chefe Tec Serv' => 'Chefe Técnico de Serviço',
+        'Chefe de Seção' => 'Chefe de Seção',
+        'Sec Depto Ens Usp' => 'Secr. Depto Ensino',
+        'A T D IV' => 'Assist. Técnico de Direção IV',
+        'Chefe Adm Serviço' => 'Chefe Adm. Serviço',
+        'Ch Sc Tec' => 'Chefe Seção Técnico',
+        'Secret Unid Ensino' => 'Secr. Unidade de Ensino',
+        'A D' => 'Assistente de Direção',
+        'Sup Tec Ser' => 'Supervisor Tecn. Serviço',
+        'Enc Setor' => 'Encarregado de Setor',
+        'Chefe Tec Div' => 'Chefe Técnico de Divisão',
+        'Dir Presid Edusp' => 'Diretor Presidente EDUSP',
+        'Asr T Gab I' => 'Assessor Técn. Gabinete I',
+        'Sec V Reit' => 'Secretário V Reitor',
+        'Vice Dir Tusp' => 'Vice-Diretor Técnico',
+        'Coord Exec TI' => 'Coordenador Executivo de TI',
+        'Coord Exec ABCD' => 'Coordenador Executivo ABCD',
+        'Asr de Gabinete' => 'Assessor de Gabinete',
     ];
 }
