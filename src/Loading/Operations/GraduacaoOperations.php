@@ -55,7 +55,7 @@ class GraduacaoOperations
 
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($graduacoes, 4500) as $chunk) 
+        foreach(array_chunk($graduacoes, 4000) as $chunk) 
         {
             Graduacao::upsert($chunk, ['idGraduacao']);
         }

@@ -102,10 +102,10 @@ class PosGradSchemas
                 "nullable" => true
             ],
             'dataSelecao' => [
-                "type" => "dateTime"
+                "type" => "date"
             ],
             'primeiraMatricula' => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             'tipoUltimaOcorrencia' => [
@@ -114,15 +114,15 @@ class PosGradSchemas
                 "nullable" => true
             ],
             'dataUltimaOcorrencia' => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             'dataDepositoTrabalho' => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             'dataAprovacaoTrabalho' => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "created_at" => [

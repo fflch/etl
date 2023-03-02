@@ -83,11 +83,11 @@ class PosDocSchemas
                 "type" => "integer"
             ],
             "dataInicioProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimProjeto" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "situacaoProjeto" => [
@@ -147,10 +147,10 @@ class PosDocSchemas
                 "type" => "smallInteger",
             ],
             "dataInicioPeriodo" => [
-                "type" => "dateTime"
+                "type" => "date"
             ],
             "dataFimPeriodo" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "situacaoPeriodo" => [
@@ -212,11 +212,11 @@ class PosDocSchemas
                 "nullable" => true
             ],
             "dataInicioFomento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimFomento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "idFomento" => [
@@ -267,11 +267,11 @@ class PosDocSchemas
                 "size" => 512
             ],
             "dataInicioAfastamento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "dataFimAfastamento" => [
-                "type" => "dateTime",
+                "type" => "date",
                 "nullable" => true
             ],
             "tipoVinculo" => [
@@ -297,6 +297,54 @@ class PosDocSchemas
                 "keys" => ["idProjeto", "sequenciaPeriodo"],
                 "references" => ["idProjeto", "sequenciaPeriodo"],
                 "on" => "periodos_posdoc",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const supervisoes_posdoc = [
+
+        "tableName" => "supervisoes_posdoc",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaSupervisao" => [
+                "type" => "smallInteger",
+            ],
+            "numeroUSPSupervisor" => [
+                "type" => "integer"
+            ],
+            "tipoSupervisao" => [
+                "type" => "string",
+                "size" => 40
+            ],
+            "dataInicioSupervisao" => [
+                "type" => "date"
+            ],
+            "dataFimSupervisao" => [
+                "type" => "date"
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["idProjeto", "sequenciaSupervisao", "tipoSupervisao"],
+            "keyName" => "supervisoes_posdoc_primary"
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idProjeto",
+                "references" => "idProjeto",
+                "on" => "projetos_posdoc",
                 "onDelete" => "cascade"
             ],
         ]
