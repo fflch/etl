@@ -317,6 +317,10 @@ class PosDocSchemas
             "numeroUSPSupervisor" => [
                 "type" => "integer"
             ],
+            "nomeSupervisor" => [
+                "type" => "string",
+                "size" => 256
+            ],
             "tipoSupervisao" => [
                 "type" => "string",
                 "size" => 40
@@ -326,6 +330,10 @@ class PosDocSchemas
             ],
             "dataFimSupervisao" => [
                 "type" => "date"
+            ],
+            "ultimoSupervisorResp" => [
+                "type" => "char",
+                "size" => 1
             ],
             "created_at" => [
                 "type" => "timestamp"
