@@ -3,8 +3,6 @@
 namespace Src\Loading\Scripts;
 
 use Src\Loading\SchemaBuilder\Builder;
-use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
-use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 
 class TablesCreation
 {

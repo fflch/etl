@@ -16,7 +16,7 @@ class GraduacaoReplicado implements Mapper
             'idGraduacao' => strtoupper(md5($graduacao['numeroUSP'] . $graduacao['sequenciaCurso'])),
             'numeroUSP' => (int)$graduacao['numeroUSP'],
             'sequenciaCurso' => (int)$graduacao['sequenciaCurso'],
-            'situacaoCurso' => Deparas::situacoes[$graduacao['situacaoCurso']] ?? $graduacao['situacaoCurso'],
+            'situacaoCurso' => Deparas::situacoesGR[$graduacao['situacaoCurso']] ?? $graduacao['situacaoCurso'],
             'dataInicioVinculo' => $graduacao['dataInicioVinculo'],
             'dataFimVinculo' => $graduacao['dataFimVinculo'],
             'codigoCurso' => (int)$graduacao['codigoCurso'],
