@@ -3,8 +3,9 @@
 namespace Src\Loading\Scripts;
 
 use Src\Loading\SchemaBuilder\Builder;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-class TablesCreation
+class TablesMethods
 {
     public function __construct()
     {
@@ -39,9 +40,17 @@ class TablesCreation
         }
     }
 
-    public function recreateTables($class)
+    public function updateTables($class)
     {
-       $this->dropTables($class);
-       $this->createTables($class);
+        $newclass = new $class;
+
+        $classMethods = get_class_methods($class);
+
+        foreach($classMethods as $method){
+            if($method != '__construct')
+            {
+                $newclass->{$method}();
+            }
+        }
     }
 }

@@ -4,68 +4,6 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class PosDocSchemas
 {
-    const alunos_posdoc = [
-
-        "tableName" => "alunos_posdoc",
-
-        "columns" => [
-            "numeroUSP" => [
-                "type" => "integer"
-            ],
-            "nomeAluno" => [
-                "type" => "string",
-                "size" => 256
-            ],
-            "anoNascimento" => [
-                "type" => "smallInteger"
-            ],
-            "nacionalidade" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "cidadeNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "estadoNascimento" => [
-                "type" => "string",
-                "size" => 2,
-                "nullable" => true
-            ],
-            "paisNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "raca" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ],
-            "sexo" => [
-                "type" => "string",
-                "size" => 1,
-                "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
-        ],
-
-        "primary" => [
-            "key" => ["numeroUSP"]
-        ],
-        
-        "foreign" => [
-            //
-        ]
-    ];
-
     const projetos_posdoc = [
 
         "tableName" => "projetos_posdoc",
@@ -127,8 +65,8 @@ class PosDocSchemas
         "foreign" => [
             [
                 "keys" => "numeroUSP",
-                "references" => "numeroUSP",
-                "on" => "alunos_posdoc",
+                "references" => "numero_usp",
+                "on" => "pessoas",
                 "onDelete" => "cascade"
             ],
         ]

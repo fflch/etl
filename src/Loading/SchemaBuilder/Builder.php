@@ -8,7 +8,6 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Builder
 {
-
     public function createTable(array $tableProps)
     {
         Capsule::schema()->create($tableProps['tableName'], function ($table) use ($tableProps) {
@@ -51,8 +50,6 @@ class Builder
 
     public function dropTable(array $tableProps)
     {
-        Capsule::schema()->disableForeignKeyConstraints(); //gambi
         Capsule::schema()->dropIfExists($tableProps['tableName']);
-        Capsule::schema()->enableForeignKeyConstraints();
     }
 }

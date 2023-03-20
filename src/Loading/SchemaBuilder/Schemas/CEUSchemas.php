@@ -4,67 +4,6 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class CEUSchemas
 {
-    const alunos_ccex = [
-
-        "tableName" => "alunos_ccex",
-
-        "columns" => [
-            "numero_usp" => [
-                "type" => "integer"
-            ],
-            "nome_aluno" => [
-                "type" => "string",
-                "size" => 256
-            ],
-            "ano_nascimento" => [
-                "type" => "smallInteger"
-            ],
-            "email" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "nacionalidade" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "cidade_nascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "estado_nascimento" => [
-                "type" => "string",
-                "size" => 2,
-                "nullable" => true
-            ],
-            "pais_nascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "raca" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ],
-            "sexo" => [
-                "type" => "string",
-                "size" => 1,
-                "nullable" => true
-            ],
-        ],
-
-        "primary" => [
-            "key" => ["numero_usp"]
-        ],
-        
-        "foreign" => [
-            //
-        ]
-    ];
-
     const cursos_culturaextensao = [
 
         "tableName" => "cursos_culturaextensao",
@@ -307,7 +246,7 @@ class CEUSchemas
             [
                 "keys" => "numero_usp",
                 "references" => "numero_usp",
-                "on" => "alunos_ccex",
+                "on" => "pessoas",
                 "onDelete" => "cascade"
             ],
             [
