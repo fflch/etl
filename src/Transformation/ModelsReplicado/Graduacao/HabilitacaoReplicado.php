@@ -12,15 +12,15 @@ class HabilitacaoReplicado implements Mapper
         $habilitacao = Utils::emptiesToNull($habilitacao);
 
         $properties = [
-            'idGraduacao' => strtoupper(md5($habilitacao['numeroUSP'] . $habilitacao['sequenciaCurso'])),
-            'codigoCurso' => $habilitacao['codigoCurso'],
-            'codigoHabilitacao' => (int)$habilitacao['codigoHabilitacao'],
-            'nomeHabilitacao' => $habilitacao['nomeHabilitacao'],
-            'tipoHabilitacao' => $habilitacao['tipoHabilitacao'],
-            'periodoHabilitacao' => $habilitacao['periodoHabilitacao'],
-            'dataInicioHabilitacao' => $habilitacao['dataInicioHabilitacao'],
-            'dataFimHabilitacao' => $habilitacao['dataFimHabilitacao'],
-            'tipoEncerramento' => $habilitacao['tipoEncerramento']
+            'id_graduacao' => strtoupper(md5($habilitacao['numero_usp'] . $habilitacao['sequencia_curso'])),
+            'codigo_curso' => $habilitacao['codigo_curso'],
+            'codigo_habilitacao' => (int)$habilitacao['codigo_habilitacao'],
+            'nome_habilitacao' => $habilitacao['nome_habilitacao'],
+            'tipo_habilitacao' => $habilitacao['tipo_habilitacao'],
+            'periodo_habilitacao' => $habilitacao['periodo_habilitacao'],
+            'data_inicio_habilitacao' => $habilitacao['data_inicio_habilitacao'],
+            'data_fim_habilitacao' => $habilitacao['data_fim_habilitacao'],
+            'tipo_encerramento' => $habilitacao['tipo_encerramento']
         ];
 
         return $properties;

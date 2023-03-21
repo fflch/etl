@@ -1,30 +1,30 @@
 SELECT 			
-	ap.codpes AS 'numeroUSP'
-	,ap.numseqpgm AS 'seqPrograma'
-	,ap.codare AS 'codigoArea'
-	,n.nomare AS 'nomeArea'
-	,a.codcur AS 'codigoPrograma'
-	,n2.nomcur AS 'nomePrograma'
-	,ap.dtaselpgm AS 'dataSelecao'
-	,jn.primeiraOcorrencia AS 'primeiraMatricula'
-	,jn3.tiphstpgm AS 'tipoUltimaOcorrencia'
-	,jn3.dtaocopgm AS 'dataUltimaOcorrencia'
-	,ap.nivpgm AS 'nivelPrograma'
-	,ap.dtadpopgm AS 'dataDepositoTrabalho'
-	,ap.dtaaprbantrb AS 'dataAprovacaoTrabalho'
+	ap.codpes AS 'numero_usp'
+	,ap.numseqpgm AS 'seq_programa'
+	,ap.codare AS 'codigo_area'
+	,n.nomare AS 'nome_area'
+	,a.codcur AS 'codigo_programa'
+	,n2.nomcur AS 'nome_programa'
+	,ap.dtaselpgm AS 'data_selecao'
+	,jn.primeira_ocorrencia AS 'primeira_matricula'
+	,jn3.tiphstpgm AS 'tipo_ultima_ocorrencia'
+	,jn3.dtaocopgm AS 'data_ultima_ocorrencia'
+	,ap.nivpgm AS 'nivel_programa'
+	,ap.dtadpopgm AS 'data_deposito_trabalho'
+	,ap.dtaaprbantrb AS 'data_aprovacao_trabalho'
 FROM AGPROGRAMA ap
 	LEFT JOIN
 		(SELECT 
-			h2.codpes AS 'numeroUSP'
-			,h2.numseqpgm AS 'seqPrograma'
-			,h2.codare AS 'codigoArea'
-			,MIN(h2.dtaocopgm) AS 'primeiraOcorrencia'
+			h2.codpes AS 'numero_usp'
+			,h2.numseqpgm AS 'seq_programa'
+			,h2.codare AS 'codigo_area'
+			,MIN(h2.dtaocopgm) AS 'primeira_ocorrencia'
 		FROM HISTPROGRAMA h2
 		WHERE h2.tiphstpgm = 'MAR'
 		GROUP BY h2.codpes, h2.numseqpgm, h2.codare) jn
-			ON jn.numeroUSP = ap.codpes 
-				AND jn.seqPrograma = ap.numseqpgm
-				AND jn.codigoArea = ap.codare
+			ON jn.numero_usp = ap.codpes 
+				AND jn.seq_programa = ap.numseqpgm
+				AND jn.codigo_area = ap.codare
 	LEFT JOIN (SELECT
 					h3.codpes
 					,h3.numseqpgm
@@ -33,16 +33,16 @@ FROM AGPROGRAMA ap
 					,h3.tiphstpgm
 				FROM HISTPROGRAMA h3
 					INNER JOIN (SELECT 
-									h2.codpes AS 'numeroUSP'
-									,h2.numseqpgm AS 'seqPrograma'
-									,h2.codare AS 'codigoArea'
-									,MAX(h2.dtaocopgm) AS 'ultimaOcorrencia'
+									h2.codpes AS 'numero_usp'
+									,h2.numseqpgm AS 'seq_programa'
+									,h2.codare AS 'codigo_area'
+									,MAX(h2.dtaocopgm) AS 'ultima_ocorrencia'
 										FROM HISTPROGRAMA h2
 										GROUP BY h2.codpes, h2.numseqpgm, h2.codare) jn2
-											ON jn2.numeroUSP = h3.codpes
-												AND jn2.seqPrograma = h3.numseqpgm
-												AND jn2.codigoArea = h3.codare
-												AND jn2.ultimaOcorrencia = h3.dtaocopgm
+											ON jn2.numero_usp = h3.codpes
+												AND jn2.seq_programa = h3.numseqpgm
+												AND jn2.codigo_area = h3.codare
+												AND jn2.ultima_ocorrencia = h3.dtaocopgm
 				) jn3 											
 					ON jn3.codpes = ap.codpes
 						AND jn3.numseqpgm = ap.numseqpgm

@@ -1,15 +1,15 @@
 SELECT
-	i.anoprj AS 'anoProjeto'
-	,i.codprj AS 'codigoProjeto'
-    ,i.codsetprj AS 'codigoDepartamento'
-	,s.nomset AS 'nomeDepartamento'
-	,i.dtainiprj AS 'dataInicioProjeto'
-	,i.dtafimprj AS 'dataFimProjeto'
-	,i.staprj AS 'statusProjeto'
-	,i.codpesalu AS 'numeroUSP'
-	,i.codpesrsp AS 'numeroUSPorientador'
-	,i.titprj AS 'tituloProjeto'
-    ,i.palcha AS 'palavrasChave'
+	i.anoprj AS 'ano_projeto'
+	,i.codprj AS 'codigo_projeto'
+    ,i.codsetprj AS 'codigo_departamento'
+	,s.nomset AS 'nome_departamento'
+	,i.dtainiprj AS 'data_inicio_projeto'
+	,i.dtafimprj AS 'data_fim_projeto'
+	,i.staprj AS 'status_projeto'
+	,i.codpesalu AS 'numero_usp'
+	,i.codpesrsp AS 'numero_usp_orientador'
+	,i.titprj AS 'titulo_projeto'
+    ,i.palcha AS 'palavras_chave'
 FROM ICTPROJETO i
 	LEFT JOIN SETOR s ON i.codsetprj = s.codset
 WHERE i.codpesalu IS NOT NULL

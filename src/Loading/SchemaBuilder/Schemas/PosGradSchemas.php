@@ -9,57 +9,57 @@ class PosGradSchemas
         "tableName" => "posgraduacoes",
 
         "columns" => [
-            'idPosGraduacao' => [
+            "id_pos_graduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
-            'numeroUSP' => [
+            "numero_usp" => [
                 "type" => "integer"
             ],
-            'seqPrograma' => [
+            "seq_programa" => [
                 "type" => "tinyInteger"
             ],
-            'nivelPrograma' => [
+            "nivel_programa" => [
                 "type" => "char",
                 "size" => 2
             ],
-            'codigoArea' => [
+            "codigo_area" => [
                 "type" => "integer"
             ],
-            'nomeArea' => [
+            "nome_area" => [
                 "type" => "string",
                 "size" => 64,
                 "nullable" => true
             ],
-            'codigoPrograma' => [
+            "codigo_programa" => [
                 "type" => "integer"
             ],
-            'nomePrograma' => [
+            "nome_programa" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            'dataSelecao' => [
+            "data_selecao" => [
                 "type" => "date"
             ],
-            'primeiraMatricula' => [
+            "primeira_matricula" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'tipoUltimaOcorrencia' => [
+            "tipo_ultima_ocorrencia" => [
                 "type" => "string",
                 "size" => 32,
                 "nullable" => true
             ],
-            'dataUltimaOcorrencia' => [
+            "data_ultima_ocorrencia" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'dataDepositoTrabalho' => [
+            "data_deposito_trabalho" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'dataAprovacaoTrabalho' => [
+            "data_aprovacao_trabalho" => [
                 "type" => "date",
                 "nullable" => true
             ],
@@ -72,12 +72,12 @@ class PosGradSchemas
         ],
 
         "primary" => [
-            "key" => ["idPosGraduacao"]
+            "key" => ["id_pos_graduacao"]
         ],
         
         "foreign" => [
             [
-                "keys" => "numeroUSP",
+                "keys" => "numero_usp",
                 "references" => "numero_usp",
                 "on" => "pessoas",
                 "onDelete" => "cascade"

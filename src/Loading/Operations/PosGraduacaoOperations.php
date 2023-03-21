@@ -21,7 +21,8 @@ class PosGraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($posGraduacoes, 3000) as $chunk) 
         {
-            PosGraduacao::upsert($chunk, ["idPosGraduacao"]);
+            //gambi para alunos com as duas últimas ocorrências simultâneas
+            PosGraduacao::upsert($chunk, ["id_graduacao"]);
         }
     }
 }

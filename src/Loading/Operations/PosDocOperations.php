@@ -33,7 +33,7 @@ class PosDocOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($projetosPD, 3000) as $chunk) 
         {
-            ProjetoPosDoc::upsert($chunk, ["idProjeto"]);
+            ProjetoPosDoc::insert($chunk);
         }
     }
 
@@ -45,7 +45,8 @@ class PosDocOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($periodosPD, 3000) as $chunk) 
         {
-            PeriodoPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo"]);
+            //gambi para períodos idênticos
+            PeriodoPosDoc::upsert($chunk, ["id_projeto", "sequencia_periodo"]);
         }
     }
 
@@ -58,24 +59,24 @@ class PosDocOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($bolsasPD, 3000) as $chunk) 
         {
-            BolsaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "sequenciaFomento"]);
+            BolsaPosDoc::insert($chunk);
         }
 
         foreach(array_chunk($afastEmpresa, 3000) as $chunk) 
         {
-            AfastEmpresaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "seqVinculoEmpresa"]);
+            AfastEmpresaPosDoc::insert($chunk);
         }
     }
 
     public function updateSupervisoesPosDoc()
     {
-        $supervisoesPD = $this->supervisoesPosDoc->transform($orderBy = ['anoProjeto', 'codigoProjeto']);
+        $supervisoesPD = $this->supervisoesPosDoc->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
 
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($supervisoesPD, 3000) as $chunk) 
         {
-            SupervisaoPosDoc::upsert($chunk, ["idProjeto", "sequenciaSupervisao", "tipoSupervisao"]);
+            SupervisaoPosDoc::insert($chunk);
         }
     }
 }

@@ -13,15 +13,15 @@ class SIICUSPParticipanteReplicado implements Mapper
         $participante = Utils::emptiesToNull($participante);
 
         $properties = [
-            'idTrabalho' => $participante['edicaoSIICUSP'] . "-" . $participante['codigoTrabalho'],
-            'tipoParticipante' => Deparas::tiposParticipantes[$participante['tipoParticipante']] ?? $participante['tipoParticipante'],
-            'numeroUSP' => $participante['numeroUSP'],
-            'nomeParticipante' => $participante['nomeParticipante'],
-            'codigoUnidade' => $participante['codigoUnidade'],
-            'siglaUnidade' => $participante['siglaUnidade'],
-            'codigoDepartamento' => $participante['codigoDepartamento'],
-            'nomeDepartamento' => $participante['nomeDepartamento'],
-            'participanteApresentador' => Deparas::boolSIICUSP[$participante['participanteApresentador']] ?? false
+            'id_trabalho' => $participante['edicao_siicusp'] . "-" . $participante['codigo_trabalho'],
+            'tipo_participante' => Deparas::tiposParticipantes[$participante['tipo_participante']] ?? $participante['tipo_participante'],
+            'numero_usp' => $participante['numero_usp'],
+            'nome_participante' => $participante['nome_participante'],
+            'codigo_unidade' => $participante['codigo_unidade'],
+            'sigla_unidade' => $participante['sigla_unidade'],
+            'codigo_departamento' => $participante['codigo_departamento'],
+            'nome_departamento' => $participante['nome_departamento'],
+            'participante_apresentador' => Deparas::boolSIICUSP[$participante['participante_apresentador']] ?? false
         ];
 
         return $properties;

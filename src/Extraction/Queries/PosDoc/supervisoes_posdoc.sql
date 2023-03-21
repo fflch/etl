@@ -1,17 +1,17 @@
 SELECT 
-	pps.anoprj AS 'anoProjeto'
-	,pps.codprj AS 'codigoProjeto'
-	,pps.numseqspv AS 'sequenciaSupervisao'
-	,pps.tipspv AS 'tipoSupervisao'
-	,pps.codpesspv AS 'numeroUSPSupervisor'
-	,p.nompes AS 'nomeSupervisor'
-	,pps.dtainispv AS 'dataInicioSupervisao'
-	,pps.dtafimspv AS 'dataFimSupervisao'
+	pps.anoprj AS 'ano_projeto'
+	,pps.codprj AS 'codigo_projeto'
+	,pps.numseqspv AS 'sequencia_supervisao'
+	,pps.tipspv AS 'tipo_supervisao'
+	,pps.codpesspv AS 'numero_usp_supervisor'
+	,p.nompes AS 'nome_supervisor'
+	,pps.dtainispv AS 'data_inicio_supervisao'
+	,pps.dtafimspv AS 'data_fim_supervisao'
 	,CASE
 		WHEN ultimoSupervisor.numseqspv IS NOT NULL
 			THEN 'S'
 		ELSE 'N'
-		END AS 'ultimoSupervisorResp'
+		END AS 'ultimo_supervisor_resp'
 FROM PDPROJETOSUPERVISOR pps
 	LEFT JOIN PDPROJETO prj ON pps.anoprj = prj.anoprj AND pps.codprj = prj.codprj
 	LEFT JOIN PESSOA p ON pps.codpesspv = p.codpes

@@ -13,13 +13,13 @@ class AfastEmpresaPosDocReplicado implements Mapper
         $afastamento = Utils::emptiesToNull($afastamento);
 
         $properties = [
-            'idProjeto' => $afastamento['anoProjeto'] . '-' . $afastamento['codigoProjeto'],
-            'sequenciaPeriodo' => $afastamento['sequenciaPeriodo'],
-            'seqVinculoEmpresa' => $afastamento['seqVinculoEmpresa'],
-            'nomeEmpresa' => $afastamento['nomeEmpresa'],
-            'dataInicioAfastamento' => $afastamento['dataInicioAfastamento'],
-            'dataFimAfastamento' => $afastamento['dataFimAfastamento'],
-            'tipoVinculo' => Deparas::tiposVinculoPD[$afastamento['tipoVinculo']] ?? $afastamento['tipoVinculo'],
+            'id_projeto' => $afastamento['ano_projeto'] . '-' . $afastamento['codigo_projeto'],
+            'sequencia_periodo' => $afastamento['sequencia_periodo'],
+            'seq_vinculo_empresa' => $afastamento['seq_vinculo_empresa'],
+            'nome_empresa' => $afastamento['nome_empresa'],
+            'data_inicio_afastamento' => $afastamento['data_inicio_afastamento'],
+            'data_fim_afastamento' => $afastamento['data_fim_afastamento'],
+            'tipo_vinculo' => Deparas::tiposVinculoPD[$afastamento['tipo_vinculo']] ?? $afastamento['tipo_vinculo'],
         ];
 
         return $properties;

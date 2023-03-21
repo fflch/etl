@@ -42,7 +42,7 @@ class GraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($graduacoes, 4000) as $chunk) 
         {
-            Graduacao::upsert($chunk, ['idGraduacao']);
+            Graduacao::insert($chunk);
         }
     }
 
@@ -54,7 +54,7 @@ class GraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($habilitacoes, 4500) as $chunk) 
         {
-            Habilitacao::upsert($chunk, ['idGraduacao', 'codigoCurso', 'codigoHabilitacao', 'dataInicioHabilitacao']);
+            Habilitacao::insert($chunk);
         }
     }
 
@@ -68,7 +68,7 @@ class GraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($iniciacoes, 5000) as $chunk) 
         {
-            IniciacaoCientifica::upsert($chunk, ['projetoId']);
+            IniciacaoCientifica::insert($chunk);
         }
 
         Capsule::schema()->enableForeignKeyConstraints(); //gambi
@@ -76,19 +76,19 @@ class GraduacaoOperations
 
     public function updateBolsasIC()
     {
-        $bolsasIC = $this->bolsasIC->transform($orderBy = ['anoProjeto', 'codigoProjeto']);
+        $bolsasIC = $this->bolsasIC->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
 
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($bolsasIC, 5000) as $chunk) 
         {
-            BolsaIC::upsert($chunk, ['idProjeto', 'sequenciaBolsa']);
+            BolsaIC::insert($chunk);
         }
 
         Capsule::update("UPDATE bolsas_ic bi
-                        RIGHT JOIN iniciacoes i ON bi.idProjeto = i.idProjeto
-                        SET bi.dataFimBolsa = i.dataFimProjeto
-                        WHERE i.statusProjeto = 'Cancelado'");
+                        RIGHT JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
+                        SET bi.data_fim_bolsa = i.data_fim_projeto
+                        WHERE i.status_projeto = 'Cancelado'");
     }
 
     public function updateQuestionarios()
@@ -96,13 +96,13 @@ class GraduacaoOperations
         $questionarioRespostas = $this->questionarioRespostas->transform();
         $questionarioQuestoes = $this->questionarioQuestoes->transform();
 
-        QuestionarioQuestao::upsert($questionarioQuestoes, ['idQuestao', 'codigoAlternativa']);
+        QuestionarioQuestao::insert($questionarioQuestoes);
     
         // Insert placeholders limit is 65535.
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($questionarioRespostas, 5000) as $chunk) 
         {
-            QuestionarioResposta::upsert($chunk, ['idGraduacao', 'idQuestao']);
+            QuestionarioResposta::insert($chunk);
         }
     }
 
@@ -115,12 +115,12 @@ class GraduacaoOperations
         // We need X placeholders for each row at the moment. Let's make room for Y.
         foreach(array_chunk($SIICUSPTrabalhos, 5000) as $chunk) 
         {
-            SIICUSPTrabalho::upsert($chunk, 'idTrabalho');
+            SIICUSPTrabalho::insert($chunk);
         }
 
         foreach(array_chunk($SIICUSPParticipantes, 5000) as $chunk) 
         {
-            SIICUSPParticipante::upsert($chunk, 'idTrabalho');
+            SIICUSPParticipante::insert($chunk);
         }
     }
 }
