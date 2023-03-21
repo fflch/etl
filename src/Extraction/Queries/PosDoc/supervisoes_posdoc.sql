@@ -23,8 +23,6 @@ FROM PDPROJETOSUPERVISOR pps
 					,MAX(numseqspv) AS 'numseqspv'
 				FROM PDPROJETOSUPERVISOR pj
 				WHERE pj.tipspv LIKE 'Respons_vel'
-				AND anoprj = 2009
-				AND codprj = 335
 				GROUP BY pj.anoprj, pj.codprj, pj.tipspv
 				) ultimoSupervisor
 					ON pps.anoprj = ultimoSupervisor.anoprj
