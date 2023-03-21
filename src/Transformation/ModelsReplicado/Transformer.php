@@ -3,7 +3,7 @@
 namespace Src\Transformation\ModelsReplicado;
 
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
-use Src\Extraction\Replicado;
+use Src\Extraction\ReplicadoDB;
 
 class Transformer
 {
@@ -15,7 +15,7 @@ class Transformer
     public function transform(array $orderBy = NULL)
     {
         $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
-        $data = Replicado::getData($query);
+        $data = ReplicadoDB::getData($query);
 
         if(!empty($orderBy)){
             $data = $this->order($data, $orderBy);
