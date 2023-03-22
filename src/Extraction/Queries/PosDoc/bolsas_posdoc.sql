@@ -1,17 +1,17 @@
 SELECT
-	ppf.anoprj AS 'anoProjeto'
-	,ppf.codprj AS 'codigoProjeto'
-	,ppf.numseq_pd AS 'sequenciaPeriodo'
-	,ppf.numseqfom AS 'sequenciaFomento'
-	,ppf.codpgmfcm AS 'codigoFomento'
+	ppf.anoprj AS 'ano_projeto'
+	,ppf.codprj AS 'codigo_projeto'
+	,ppf.numseq_pd AS 'sequencia_periodo'
+	,ppf.numseqfom AS 'sequencia_fomento'
+	,ppf.codpgmfcm AS 'codigo_fomento'
 	,CASE
 		WHEN ppf.codpgmfcm IS NULL
 			THEN ppf.nomagefom
 		ELSE ppfom.nompgmfcm
-	END AS 'nomeFomento'
-	,ppf.dtainifom AS 'dataInicioFomento'
-	,ppf.dtafimfom AS 'dataFimFomento'
-	,ppf.idfprofom AS 'idFomento'
+	END AS 'nome_fomento'
+	,ppf.dtainifom AS 'data_inicio_fomento'
+	,ppf.dtafimfom AS 'data_fim_fomento'
+	,ppf.idfprofom AS 'id_fomento'
 FROM PDPROGRAMAFOMENTO ppf
 	LEFT JOIN PROPESQFOMENTO ppfom ON ppf.codpgmfcm = ppfom.codpgmfcm
 	LEFT JOIN PDPROJETO prj ON ppf.anoprj = prj.anoprj AND ppf.codprj = prj.codprj 

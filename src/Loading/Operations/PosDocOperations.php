@@ -3,8 +3,6 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
-use Src\Transformation\ModelsReplicado\PosDoc\AlunoPosDocReplicado;
-use Src\Loading\Models\PosDoc\AlunoPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\ProjetoPosDocReplicado;
 use Src\Loading\Models\PosDoc\ProjetoPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\PeriodoPosDocReplicado;
@@ -20,7 +18,6 @@ class PosDocOperations
 {
     public function __construct()
     {
-        $this->alunosPosDoc = new Transformer(new AlunoPosDocReplicado, 'PosDoc/alunos_posdoc');
         $this->projetosPosDoc = new Transformer(new ProjetoPosDocReplicado, 'PosDoc/projetos_posdoc');
         $this->periodosPosDoc = new Transformer(new PeriodoPosDocReplicado, 'PosDoc/periodos_posdoc');
         $this->bolsasPosDoc = new Transformer(new BolsaPosDocReplicado, 'PosDoc/bolsas_posdoc');
@@ -28,27 +25,15 @@ class PosDocOperations
         $this->supervisoesPosDoc = new Transformer(new SupervisaoPosDocReplicado, 'PosDoc/supervisoes_posdoc');
     }
 
-    public function updateAlunosPosDoc()
-    {
-        $alunosPD = $this->alunosPosDoc->transform();
-
-        // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($alunosPD, 3000) as $chunk) 
-        {
-            AlunoPosDoc::upsert($chunk, ["numeroUSP"]);
-        }
-    }
-
     public function updateProjetosPosDoc()
     {
         $projetosPD = $this->projetosPosDoc->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($projetosPD, 3000) as $chunk) 
+        // We need 10 placeholders for each row at the moment. Let's make room for 13.
+        foreach(array_chunk($projetosPD, 5400) as $chunk) 
         {
-            ProjetoPosDoc::upsert($chunk, ["idProjeto"]);
+            ProjetoPosDoc::insert($chunk);
         }
     }
 
@@ -57,10 +42,11 @@ class PosDocOperations
         $periodosPD = $this->periodosPosDoc->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($periodosPD, 3000) as $chunk) 
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($periodosPD, 5900) as $chunk) 
         {
-            PeriodoPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo"]);
+            //gambi para períodos idênticos
+            PeriodoPosDoc::upsert($chunk, ["id_projeto", "sequencia_periodo"]);
         }
     }
 
@@ -70,27 +56,29 @@ class PosDocOperations
         $afastEmpresa = $this->afastEmpresasPosDoc->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($bolsasPD, 3000) as $chunk) 
+        // We need 8 placeholders for each row at the moment. Let's make room for 10.
+        foreach(array_chunk($bolsasPD, 6500) as $chunk) 
         {
-            BolsaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "sequenciaFomento"]);
+            BolsaPosDoc::insert($chunk);
         }
 
-        foreach(array_chunk($afastEmpresa, 3000) as $chunk) 
+        // Insert placeholders limit is 65535.
+        // We need 7 placeholders for each row at the moment. Let's make room for 9.
+        foreach(array_chunk($afastEmpresa, 7200) as $chunk) 
         {
-            AfastEmpresaPosDoc::upsert($chunk, ["idProjeto", "sequenciaPeriodo", "seqVinculoEmpresa"]);
+            AfastEmpresaPosDoc::insert($chunk);
         }
     }
 
     public function updateSupervisoesPosDoc()
     {
-        $supervisoesPD = $this->supervisoesPosDoc->transform($orderBy = ['anoProjeto', 'codigoProjeto']);
+        $supervisoesPD = $this->supervisoesPosDoc->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($supervisoesPD, 3000) as $chunk) 
+        // We need 8 placeholders for each row at the moment. Let's make room for 10.
+        foreach(array_chunk($supervisoesPD, 6500) as $chunk) 
         {
-            SupervisaoPosDoc::upsert($chunk, ["idProjeto", "sequenciaSupervisao", "tipoSupervisao"]);
+            SupervisaoPosDoc::insert($chunk);
         }
     }
 }

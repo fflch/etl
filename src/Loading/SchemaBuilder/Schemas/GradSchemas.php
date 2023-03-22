@@ -4,145 +4,72 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class GradSchemas
 {
-    const alunos_graduacao = [
-
-        "tableName" => "alunos_graduacao",
-
-        "columns" => [
-            "numeroUSP" => [
-                "type" => "integer"
-            ],
-            "nomeAluno" => [
-                "type" => "string",
-                "size" => 256
-            ],
-            "anoNascimento" => [
-                "type" => "smallInteger"
-            ],
-            "email" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "nacionalidade" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "cidadeNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "estadoNascimento" => [
-                "type" => "string",
-                "size" => 2,
-                "nullable" => true
-            ],
-            "paisNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "raca" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ],
-            "sexo" => [
-                "type" => "string",
-                "size" => 1,
-                "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
-        ],
-
-        "primary" => [
-            "key" => ["numeroUSP"]
-        ],
-        
-        "foreign" => [
-            //
-        ]
-    ];
-
     const graduacoes = [
 
         "tableName" => "graduacoes",
 
         "columns" => [
-            "idGraduacao" => [
+            "id_graduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "numeroUSP" => [
+            "numero_usp" => [
                 "type" => "integer"
             ],
-            "sequenciaCurso" => [
+            "sequencia_curso" => [
                 "type" => "tinyInteger"
             ],
-            "situacaoCurso" => [
+            "situacao_curso" => [
                 "type" => "string",
                 "size" => 16
             ],
-            "dataInicioVinculo" => [
+            "data_inicio_vinculo" => [
                 "type" => "date"
             ],
-            "dataFimVinculo" => [
+            "data_fim_vinculo" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            "codigoCurso" => [
+            "codigo_curso" => [
                 "type" => "integer"
             ],
-            "nomeCurso" => [
+            "nome_curso" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "tipoIngresso" => [
+            "tipo_ingresso" => [
                 "type" => "string",
                 "size" => 64
             ],
-            "categoriaIngresso" => [
+            "categoria_ingresso" => [
                 "type" => "string",
                 "size" => 64,
                 "nullable" => true
             ],
-            "rankIngresso" => [
+            "rank_ingresso" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "tipoEncerramentoBacharel" => [
+            "tipo_encerramento_bacharel" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            "dataEncerramentoBacharel" => [
+            "data_encerramento_bacharel" => [
                 "type" => "datetime",
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
-            "key" => ["idGraduacao"]
+            "key" => ["id_graduacao"]
         ],
         
         "foreign" => [
             [
-                "keys" => "numeroUSP",
-                "references" => "numeroUSP",
-                "on" => "alunos_graduacao",
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
                 "onDelete" => "cascade"
             ]
         ]
@@ -153,46 +80,40 @@ class GradSchemas
         "tableName" => "habilitacoes",
 
         "columns" => [
-            "idGraduacao" => [
+            "id_graduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "codigoCurso" => [
+            "codigo_curso" => [
                 "type" => "integer"
             ],
-            "codigoHabilitacao" => [
+            "codigo_habilitacao" => [
                 "type" => "integer"
             ],
-            "nomeHabilitacao" => [
+            "nome_habilitacao" => [
                 "type" => "string",
                 "size" => 64
             ],
-            "tipoHabilitacao" => [
+            "tipo_habilitacao" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "periodoHabilitacao" => [
+            "periodo_habilitacao" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "dataInicioHabilitacao" => [
+            "data_inicio_habilitacao" => [
                 "type" => "date"
             ],
-            "dataFimHabilitacao" => [
+            "data_fim_habilitacao" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            "tipoEncerramento" => [
+            "tipo_encerramento" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
@@ -201,8 +122,8 @@ class GradSchemas
         
         "foreign" => [
             [
-                "keys" => "idGraduacao",
-                "references" => "idGraduacao",
+                "keys" => "id_graduacao",
+                "references" => "id_graduacao",
                 "on" => "graduacoes",
                 "onDelete" => "cascade"
             ]
@@ -214,65 +135,58 @@ class GradSchemas
         "tableName" => "iniciacoes",
 
         "columns" => [
-            "idProjeto" => [
+            "id_projeto" => [
                 "type" => "string",
                 "size" => 12
             ],
-            "numeroUSP" => [
-                "type" => "integer",
-                "nullable" => true
+            "numero_usp" => [
+                "type" => "integer"
             ],
-            "statusProjeto" => [
+            "status_projeto" => [
                 "type" => "string",
                 "size" => 32
             ],
-            "anoProjeto" => [
+            "ano_projeto" => [
                 "type" => "smallInteger"
             ],
-            "codigoDepartamento" => [
+            "codigo_departamento" => [
                 "type" => "integer"
             ],
-            "nomeDepartamento" => [
+            "nome_departamento" => [
                 "type" => "string",
                 "size" => 64
             ],
-            "dataInicioProjeto" => [
+            "data_inicio_projeto" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            "dataFimProjeto" => [
+            "data_fim_projeto" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            "numeroUSPorientador" => [
+            "numero_usp_orientador" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "tituloProjeto" => [
+            "titulo_projeto" => [
                 "type" => "string",
                 "size" => 256
             ],
-            "palavrasChave" => [
+            "palavras_chave" => [
                 "type" => "string",
                 "size" => 128
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
-            "key" => ["idProjeto"]
+            "key" => ["id_projeto"]
         ],
         
         "foreign" => [
             [
-                "keys" => "numeroUSP",
-                "references" => "numeroUSP",
-                "on" => "alunos_graduacao",
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
                 "onDelete" => "cascade"
             ]
         ]
@@ -283,35 +197,29 @@ class GradSchemas
         "tableName" => "bolsas_ic",
 
         "columns" => [
-            "idProjeto" => [
+            "id_projeto" => [
                 "type" => "string",
                 "size" => 12
             ],
-            "sequenciaBolsa" => [
+            "sequencia_bolsa" => [
                 "type" => "integer"
             ],
-            "nomePrograma" => [
+            "nome_programa" => [
                 "type" => "string",
                 "size" => 128
             ],
-            "bolsaEdital" => [
+            "bolsa_edital" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "dataInicioBolsa" => [
+            "data_inicio_bolsa" => [
                 "type" => "Date",
                 "nullable" => true
             ],
-            "dataFimBolsa" => [
+            "data_fim_bolsa" => [
                 "type" => "Date",
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
@@ -320,8 +228,8 @@ class GradSchemas
         
         "foreign" => [
             [
-                "keys" => "idProjeto",
-                "references" => "idProjeto",
+                "keys" => "id_projeto",
+                "references" => "id_projeto",
                 "on" => "iniciacoes",
                 "onDelete" => "cascade"
             ]
@@ -333,32 +241,26 @@ class GradSchemas
         "tableName" => "questionario_questoes",
 
         "columns" => [
-            "idQuestao" => [
+            "id_questao" => [
                 "type" => "string",
                 "size" => 12
             ],
-            "descricaoQuestao" => [
+            "descricao_questao" => [
                 "type" => "string",
                 "size" => 512
             ],
-            "codigoAlternativa" => [
+            "codigo_alternativa" => [
                 "type" => "tinyInteger"
             ],
-            "descricaoAlternativa" => [
+            "descricao_alternativa" => [
                 "type" => "string",
                 "size" => 1024,
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
-            "key" => ['idQuestao', 'codigoAlternativa']
+            "key" => ['id_questao', 'codigo_alternativa']
         ],
         
         "foreign" => [
@@ -371,23 +273,17 @@ class GradSchemas
         "tableName" => "questionario_respostas",
 
         "columns" => [
-            "idGraduacao" => [
+            "id_graduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
-            "idQuestao" => [
+            "id_questao" => [
                 "type" => "string",
                 "size" => 12
             ],
-            "alternativaEscolhida" => [
+            "alternativa_escolhida" => [
                 "type" => "tinyInteger"
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
@@ -396,14 +292,14 @@ class GradSchemas
         
         "foreign" => [
             [
-                "keys" => "idGraduacao",
-                "references" => "idGraduacao",
+                "keys" => "id_graduacao",
+                "references" => "id_graduacao",
                 "on" => "graduacoes",
                 "onDelete" => "cascade"
             ],
             [
-                "keys" => ["idQuestao", "alternativaEscolhida"],
-                "references" => ["idQuestao", "codigoAlternativa"],
+                "keys" => ["id_questao", "alternativa_escolhida"],
+                "references" => ["id_questao", "codigo_alternativa"],
                 "on" => "questionario_questoes",
                 "onDelete" => "cascade"
             ]
@@ -415,62 +311,56 @@ class GradSchemas
         "tableName" => "siicusp_trabalhos",
 
         "columns" => [
-            "idTrabalho" => [
+            "id_trabalho" => [
                 "type" => "string",
                 "size" => 12
             ],
-            "tituloTrabalho" => [
+            "titulo_trabalho" => [
                 "type" => "string",
                 "size" => 512
             ],
-            "idProjetoIC" => [
+            "id_projeto_ic" => [
                 "type" => "string",
                 "size" => 12,
                 "nullable" => true
             ],
-            "edicaoSIICUSP" => [
+            "edicao_siicusp" => [
                 "type" => "smallInteger",
             ],
-            "situacaoInscricao" => [
+            "situacao_inscricao" => [
                 "type" => "string",
                 "size" => 24
             ],
-            "situacaoApresentacao" => [
+            "situacao_apresentacao" => [
                 "type" => "string",
                 "size" => 24,
                 "nullable" => true
             ],
-            "proxEtapaRecomendado" => [
+            "prox_etapa_recomendado" => [
                 "type" => "boolean",
                 "nullable" => true
             ],
-            "proxEtapaApresentado" => [
+            "prox_etapa_apresentado" => [
                 "type" => "boolean",
                 "nullable" => true
             ],
-            "mencaoHonrosa" => [
+            "mencao_honrosa" => [
                 "type" => "boolean",
                 "nullable" => true
             ],
-            "codigoDptoOrientador" => [
+            "codigo_dpto_orientador" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "nomeDptoOrientador" => [
+            "nome_dpto_orientador" => [
                 "type" => "string",
                 "size" => 256,
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
-            "key" => ["idTrabalho"]
+            "key" => ["id_trabalho"]
         ],
         
         "foreign" => [
@@ -483,50 +373,44 @@ class GradSchemas
         "tableName" => "siicusp_participantes",
 
         "columns" => [
-            'idTrabalho' => [
+            'id_trabalho' => [
                 "type" => "string",
                 "size" => 12
             ],
-            'tipoParticipante' => [
+            'tipo_participante' => [
                 "type" => "string",
                 "size" => 32
             ],
-            'numeroUSP' => [
+            'numero_usp' => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            'nomeParticipante' => [
+            'nome_participante' => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            'codigoUnidade' => [
+            'codigo_unidade' => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            'siglaUnidade' => [
+            'sigla_unidade' => [
                 "type" => "string",
                 "size" => 24,
                 "nullable" => true
             ],
-            'codigoDepartamento' => [
+            'codigo_departamento' => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            'nomeDepartamento' => [
+            'nome_departamento' => [
                 "type" => "string",
                 "size" => 256,
                 "nullable" => true
             ],
-            'participanteApresentador' => [
+            'participante_apresentador' => [
                 "type" => "boolean"
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [
@@ -535,8 +419,8 @@ class GradSchemas
         
         "foreign" => [
             [
-                "keys" => "idTrabalho",
-                "references" => "idTrabalho",
+                "keys" => "id_trabalho",
+                "references" => "id_trabalho",
                 "on" => "siicusp_trabalhos",
                 "onDelete" => "cascade"
             ]

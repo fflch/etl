@@ -4,124 +4,62 @@ namespace Src\Loading\SchemaBuilder\Schemas;
 
 class PosGradSchemas
 {
-    const alunos_posgraduacao = [
-
-        "tableName" => "alunos_posgraduacao",
-
-        "columns" => [
-            "numeroUSP" => [
-                "type" => "integer"
-            ],
-            "nomeAluno" => [
-                "type" => "string",
-                "size" => 256
-            ],
-            "anoNascimento" => [
-                "type" => "smallInteger"
-            ],
-            "nacionalidade" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "cidadeNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "estadoNascimento" => [
-                "type" => "string",
-                "size" => 2,
-                "nullable" => true
-            ],
-            "paisNascimento" => [
-                "type" => "string",
-                "size" => 128,
-                "nullable" => true
-            ],
-            "raca" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ],
-            "sexo" => [
-                "type" => "string",
-                "size" => 1,
-                "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
-        ],
-
-        "primary" => [
-            "key" => ["numeroUSP"]
-        ],
-        
-        "foreign" => [
-            //
-        ]
-    ];
-
     const posgraduacoes = [
 
         "tableName" => "posgraduacoes",
 
         "columns" => [
-            'idPosGraduacao' => [
+            "id_pos_graduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
-            'numeroUSP' => [
+            "numero_usp" => [
                 "type" => "integer"
             ],
-            'seqPrograma' => [
+            "seq_programa" => [
                 "type" => "tinyInteger"
             ],
-            'nivelPrograma' => [
+            "nivel_programa" => [
                 "type" => "char",
                 "size" => 2
             ],
-            'codigoArea' => [
+            "codigo_area" => [
                 "type" => "integer"
             ],
-            'nomeArea' => [
+            "nome_area" => [
                 "type" => "string",
                 "size" => 64,
                 "nullable" => true
             ],
-            'codigoPrograma' => [
+            "codigo_programa" => [
                 "type" => "integer"
             ],
-            'nomePrograma' => [
+            "nome_programa" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            'dataSelecao' => [
+            "data_selecao" => [
                 "type" => "date"
             ],
-            'primeiraMatricula' => [
+            "primeira_matricula" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'tipoUltimaOcorrencia' => [
+            "tipo_ultima_ocorrencia" => [
                 "type" => "string",
                 "size" => 32,
                 "nullable" => true
             ],
-            'dataUltimaOcorrencia' => [
+            "data_ultima_ocorrencia" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'dataDepositoTrabalho' => [
+            "data_deposito_trabalho" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            'dataAprovacaoTrabalho' => [
+            "data_aprovacao_trabalho" => [
                 "type" => "date",
                 "nullable" => true
             ],
@@ -134,14 +72,14 @@ class PosGradSchemas
         ],
 
         "primary" => [
-            "key" => ["idPosGraduacao"]
+            "key" => ["id_pos_graduacao"]
         ],
         
         "foreign" => [
             [
-                "keys" => "numeroUSP",
-                "references" => "numeroUSP",
-                "on" => "alunos_posgraduacao",
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
                 "onDelete" => "cascade"
             ],
         ]

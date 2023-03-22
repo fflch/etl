@@ -12,14 +12,14 @@ class SupervisaoPosDocReplicado implements Mapper
         $supervisaoPD = Utils::emptiesToNull($supervisaoPD);
 
         $properties = [
-            'idProjeto' => $supervisaoPD['anoProjeto'] . '-' . $supervisaoPD['codigoProjeto'],
-            'sequenciaSupervisao' => $supervisaoPD['order'],
-            'numeroUSPSupervisor' => $supervisaoPD['numeroUSPSupervisor'],
-            'nomeSupervisor' => $supervisaoPD['nomeSupervisor'],
-            'tipoSupervisao' => $supervisaoPD['tipoSupervisao'],
-            'dataInicioSupervisao' => $supervisaoPD['dataInicioSupervisao'],
-            'dataFimSupervisao' => $supervisaoPD['dataFimSupervisao'],
-            'ultimoSupervisorResp' => $supervisaoPD['ultimoSupervisorResp'],
+            'id_projeto' => $supervisaoPD['ano_projeto'] . '-' . $supervisaoPD['codigo_projeto'],
+            'sequencia_supervisao' => $supervisaoPD['order'],
+            'numero_usp_supervisor' => $supervisaoPD['numero_usp_supervisor'],
+            'nome_supervisor' => $supervisaoPD['nome_supervisor'],
+            'tipo_supervisao' => $supervisaoPD['tipo_supervisao'],
+            'data_inicio_supervisao' => $supervisaoPD['data_inicio_supervisao'],
+            'data_fim_supervisao' => $supervisaoPD['data_fim_supervisao'],
+            'ultimo_supervisor_resp' => $supervisaoPD['ultimo_supervisor_resp'],
         ];
 
         return $properties;

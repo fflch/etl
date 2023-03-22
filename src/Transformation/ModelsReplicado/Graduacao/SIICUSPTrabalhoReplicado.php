@@ -13,22 +13,22 @@ class SIICUSPTrabalhoReplicado implements Mapper
         $trabalho = Utils::emptiesToNull($trabalho);
 
         $properties = [
-            'idTrabalho' => $trabalho['edicaoSIICUSP'] . "-" . $trabalho['codigoTrabalho'],
-            'tituloTrabalho' => $trabalho['tituloTrabalho'],
-            'idProjetoIC' => isset($trabalho['codigoProjeto'])
-                           ? $trabalho['anoProjeto'] . "-" . $trabalho['codigoProjeto']
+            'id_trabalho' => $trabalho['edicao_siicusp'] . "-" . $trabalho['codigo_trabalho'],
+            'titulo_trabalho' => $trabalho['titulo_trabalho'],
+            'id_projeto_ic' => isset($trabalho['codigo_projeto'])
+                           ? $trabalho['ano_projeto'] . "-" . $trabalho['codigo_projeto']
                            : null,
-            'edicaoSIICUSP' => $trabalho['edicaoSIICUSP'],
-            'situacaoInscricao' => $trabalho['situacaoInscricao'],
-            'situacaoApresentacao' => $this->checkSituacaoApresentacao(
-                                                        $trabalho['apresentadoSIICUSP'], 
-                                                        $trabalho['tipoParticipanteApresentou']
+            'edicao_siicusp' => $trabalho['edicao_siicusp'],
+            'situacao_inscricao' => $trabalho['situacao_inscricao'],
+            'situacao_apresentacao' => $this->checkSituacaoApresentacao(
+                                                        $trabalho['apresentado_siicusp'], 
+                                                        $trabalho['tipo_participante_apresentou']
                                     ),
-            'proxEtapaRecomendado' => Deparas::boolSIICUSP[$trabalho['proxEtapaRecomendado']] ?? false,
-            'proxEtapaApresentado' => Deparas::boolSIICUSP[$trabalho['proxEtapaApresentado']] ?? false,
-            'mencaoHonrosa' => Deparas::boolSIICUSP[$trabalho['mencaoHonrosa']] ?? false,
-            'codigoDptoOrientador' => $trabalho['codigoDptoOrientador'],
-            'nomeDptoOrientador' => $trabalho['nomeDptoOrientador'],
+            'prox_etapa_recomendado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_recomendado']] ?? false,
+            'prox_etapa_apresentado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_apresentado']] ?? false,
+            'mencao_honrosa' => Deparas::boolSIICUSP[$trabalho['mencao_honrosa']] ?? false,
+            'codigo_dpto_orientador' => $trabalho['codigo_dpto_orientador'],
+            'nome_dpto_orientador' => $trabalho['nome_dpto_orientador'],
         ];
 
         return $properties;

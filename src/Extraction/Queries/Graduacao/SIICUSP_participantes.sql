@@ -1,20 +1,20 @@
 SELECT
-	spt.edisii AS 'edicaoSIICUSP'
-	,spt.codtrbsii AS 'codigoTrabalho'
-	,spt.tipptptrb AS 'tipoParticipante'
-	,spe.codpes AS 'numeroUSP'
-	,spe.nompcpsii AS 'nomeParticipante'
-	,spe.codundpcp AS 'codigoUnidade'
-	,u.sglund AS 'siglaUnidade'
-	,spe.codsetpcp AS 'codigoDepartamento'
-	,s.nomset AS 'nomeDepartamento'
+	spt.edisii AS 'edicao_siicusp'
+	,spt.codtrbsii AS 'codigo_trabalho'
+	,spt.tipptptrb AS 'tipo_participante'
+	,spe.codpes AS 'numero_usp'
+	,spe.nompcpsii AS 'nome_participante'
+	,spe.codundpcp AS 'codigo_unidade'
+	,u.sglund AS 'sigla_unidade'
+	,spe.codsetpcp AS 'codigo_departamento'
+	,s.nomset AS 'nome_departamento'
 	,CASE
 		WHEN st.codpcpsiiapt = spt.codpcpsii
 			THEN 'S'
 		WHEN spt.staapttrb = 'S'
 			THEN 'S'
 		ELSE NULL
-		END AS 'participanteApresentador'
+		END AS 'participante_apresentador'
 FROM dbo.SIIUPARTICIPTRABALHO spt
 	INNER JOIN SIIUTRABALHO st ON (spt.edisii = st.edisii AND spt.codtrbsii = st.codtrbsii)
 	LEFT JOIN SIIUPARTICIPANTE spe ON spt.codpcpsii = spe.codpcpsii

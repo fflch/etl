@@ -13,20 +13,20 @@ class ProjetoPosDocReplicado implements Mapper
         $projetoPosDoc = Utils::emptiesToNull($projetoPosDoc);
 
         $properties = [
-            'idProjeto' => $projetoPosDoc['anoProjeto'] . '-' . $projetoPosDoc['codigoProjeto'],
-            'programa' => Deparas::modalidadesPD[$projetoPosDoc['codigoModalidade']] ?? 'XX',
-            'numeroUSP' => $projetoPosDoc['numeroUSP'],
-            'dataInicioProjeto' => $projetoPosDoc['dataInicioProjeto'],
-            'dataFimProjeto' => $projetoPosDoc['dataFimProjeto'],
-            'situacaoProjeto' => $projetoPosDoc['situacaoProjeto'],
-            'codigoDepartamento' => $projetoPosDoc['codigoDepartamento'],
-            'nomeDepartamento' => $projetoPosDoc['nomeDepartamento'],
-            'tituloProjeto' => $projetoPosDoc['tituloProjeto'],
-            'palavrasChave' => $this->palavrasChave(
+            'id_projeto' => $projetoPosDoc['ano_projeto'] . '-' . $projetoPosDoc['codigo_projeto'],
+            'programa' => Deparas::modalidadesPD[$projetoPosDoc['codigo_modalidade']] ?? 'XX',
+            'numero_usp' => $projetoPosDoc['numero_usp'],
+            'data_inicio_projeto' => $projetoPosDoc['data_inicio_projeto'],
+            'data_fim_projeto' => $projetoPosDoc['data_fim_projeto'],
+            'situacao_projeto' => $projetoPosDoc['situacao_projeto'],
+            'codigo_departamento' => $projetoPosDoc['codigo_departamento'],
+            'nome_departamento' => $projetoPosDoc['nome_departamento'],
+            'titulo_projeto' => $projetoPosDoc['titulo_projeto'],
+            'palavras_chave' => $this->palavrasChave(
                                                     array(
-                                                        $projetoPosDoc['palcha1'],
-                                                        $projetoPosDoc['palcha2'],
-                                                        $projetoPosDoc['palcha3']
+                                                        $projetoPosDoc['palcha_1'],
+                                                        $projetoPosDoc['palcha_2'],
+                                                        $projetoPosDoc['palcha_3']
                                                     )),
         ];
 

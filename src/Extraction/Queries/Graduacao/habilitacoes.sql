@@ -1,14 +1,14 @@
 SELECT
-	hp.codpes AS 'numeroUSP'
-	,hp.codpgm AS 'sequenciaCurso'
-	,hp.codcur AS 'codigoCurso'
-	,hp.codhab AS 'codigoHabilitacao'
-	,hg.nomhab AS 'nomeHabilitacao'
-	,hg.tiphab AS 'tipoHabilitacao'
-	,hg.perhab AS 'periodoHabilitacao'
-	,hp.dtaini AS 'dataInicioHabilitacao'
-	,hp.dtafim AS 'dataFimHabilitacao'
-	,hp.tipenchab AS 'tipoEncerramento'
+	hp.codpes AS 'numero_usp'
+	,hp.codpgm AS 'sequencia_curso'
+	,hp.codcur AS 'codigo_curso'
+	,hp.codhab AS 'codigo_habilitacao'
+	,hg.nomhab AS 'nome_habilitacao'
+	,hg.tiphab AS 'tipo_habilitacao'
+	,hg.perhab AS 'periodo_habilitacao'
+	,hp.dtaini AS 'data_inicio_habilitacao'
+	,hp.dtafim AS 'data_fim_habilitacao'
+	,hp.tipenchab AS 'tipo_encerramento'
 FROM HABILPROGGR hp
 	INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
 	LEFT JOIN CURSOGR c ON (hp.codcur = c.codcur)

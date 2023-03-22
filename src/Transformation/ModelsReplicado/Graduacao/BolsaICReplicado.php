@@ -12,12 +12,12 @@ class BolsaICReplicado implements Mapper
         $bolsaIC = Utils::emptiesToNull($bolsaIC);
 
         $properties = [
-            'idProjeto' => ($bolsaIC['anoProjeto'] . '-' . $bolsaIC['codigoProjeto']),
-            'sequenciaBolsa' => $bolsaIC['order'],
-            'nomePrograma' => $bolsaIC['nomePrograma'],
-            'bolsaEdital' => $bolsaIC['bolsaEdital'],
-            'dataInicioBolsa' => $bolsaIC['dataInicioBolsa'],
-            'dataFimBolsa' => $bolsaIC['dataFimBolsa'],
+            'id_projeto' => ($bolsaIC['ano_projeto'] . '-' . $bolsaIC['codigo_projeto']),
+            'sequencia_bolsa' => $bolsaIC['order'],
+            'nome_programa' => $bolsaIC['nome_programa'],
+            'bolsa_edital' => $bolsaIC['bolsa_edital'],
+            'data_inicio_bolsa' => $bolsaIC['data_inicio_bolsa'],
+            'data_fim_bolsa' => $bolsaIC['data_fim_bolsa'],
         ];
 
         return $properties;

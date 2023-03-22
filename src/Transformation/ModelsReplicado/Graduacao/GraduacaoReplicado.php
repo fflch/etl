@@ -13,19 +13,19 @@ class GraduacaoReplicado implements Mapper
         $graduacao = Utils::emptiesToNull($graduacao);
 
         $properties = [
-            'idGraduacao' => strtoupper(md5($graduacao['numeroUSP'] . $graduacao['sequenciaCurso'])),
-            'numeroUSP' => (int)$graduacao['numeroUSP'],
-            'sequenciaCurso' => (int)$graduacao['sequenciaCurso'],
-            'situacaoCurso' => Deparas::situacoesGR[$graduacao['situacaoCurso']] ?? $graduacao['situacaoCurso'],
-            'dataInicioVinculo' => $graduacao['dataInicioVinculo'],
-            'dataFimVinculo' => $graduacao['dataFimVinculo'],
-            'codigoCurso' => (int)$graduacao['codigoCurso'],
-            'nomeCurso' => $graduacao['nomeCurso'],
-            'tipoIngresso' => Deparas::ingressos[$graduacao['tipoIngresso']] ?? $graduacao['tipoIngresso'],
-            'categoriaIngresso' => $graduacao['categoriaIngresso'],
-            'rankIngresso' => $graduacao['rankIngresso'],
-            'tipoEncerramentoBacharel' => $graduacao['tipoEncerramentoBacharel'],
-            'dataEncerramentoBacharel' => $graduacao['dataEncerramentoBacharel'],
+            'id_graduacao' => strtoupper(md5($graduacao['numero_usp'] . $graduacao['sequencia_curso'])),
+            'numero_usp' => (int)$graduacao['numero_usp'],
+            'sequencia_curso' => (int)$graduacao['sequencia_curso'],
+            'situacao_curso' => Deparas::situacoesGR[$graduacao['situacao_curso']] ?? $graduacao['situacao_curso'],
+            'data_inicio_vinculo' => $graduacao['data_inicio_vinculo'],
+            'data_fim_vinculo' => $graduacao['data_fim_vinculo'],
+            'codigo_curso' => (int)$graduacao['codigo_curso'],
+            'nome_curso' => $graduacao['nome_curso'],
+            'tipo_ingresso' => Deparas::ingressos[$graduacao['tipo_ingresso']] ?? $graduacao['tipo_ingresso'],
+            'categoria_ingresso' => $graduacao['categoria_ingresso'],
+            'rank_ingresso' => $graduacao['rank_ingresso'],
+            'tipo_encerramento_bacharel' => $graduacao['tipo_encerramento_bacharel'],
+            'data_encerramento_bacharel' => $graduacao['data_encerramento_bacharel'],
         ];
 
         return $properties;

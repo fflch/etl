@@ -12,10 +12,10 @@ class QuestionarioQuestaoReplicado implements Mapper
         $questao = Utils::emptiesToNull($questao);
 
         $properties = [
-            'idQuestao' => ($questao['codigoQuestionario'] . "-" . $questao['codigoQuestao']),
-            'descricaoQuestao' => $questao['descricaoQuestao'],
-            'codigoAlternativa' => $questao['codigoAlternativa'],
-            'descricaoAlternativa' => $questao['descricaoAlternativa']
+            'id_questao' => ($questao['codigo_questionario'] . "-" . $questao['codigo_questao']),
+            'descricao_questao' => $questao['descricao_questao'],
+            'codigo_alternativa' => $questao['codigo_alternativa'],
+            'descricao_alternativa' => $questao['descricao_alternativa']
         ];
 
         return $properties;

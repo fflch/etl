@@ -13,21 +13,21 @@ class IniciacaoCientificaReplicado implements Mapper
         $iniciacao = Utils::emptiesToNull($iniciacao);
 
         $properties = [
-            'idProjeto' => ($iniciacao['anoProjeto'] . '-' . $iniciacao['codigoProjeto']),
-            'numeroUSP' => !is_null($iniciacao['numeroUSP'])
-                           ? (int)$iniciacao['numeroUSP']
+            'id_projeto' => ($iniciacao['ano_projeto'] . '-' . $iniciacao['codigo_projeto']),
+            'numero_usp' => !is_null($iniciacao['numero_usp'])
+                           ? (int)$iniciacao['numero_usp']
                            : NULL,
 
-            'statusProjeto' => $this->checkStatus($iniciacao['statusProjeto'], $iniciacao['dataFimProjeto']),
+            'status_projeto' => $this->checkStatus($iniciacao['status_projeto'], $iniciacao['data_fim_projeto']),
 
-            'codigoDepartamento' => (int)$iniciacao['codigoDepartamento'],
-            'nomeDepartamento' => $iniciacao['nomeDepartamento'],
-            'anoProjeto' => $iniciacao['anoProjeto'],
-            'dataInicioProjeto' => $iniciacao['dataInicioProjeto'],
-            'dataFimProjeto' => $iniciacao['dataFimProjeto'],
-            'numeroUSPorientador' => (int)$iniciacao['numeroUSPorientador'],
-            'tituloProjeto' => $iniciacao['tituloProjeto'],
-            'palavrasChave' => $iniciacao['palavrasChave']
+            'codigo_departamento' => (int)$iniciacao['codigo_departamento'],
+            'nome_departamento' => $iniciacao['nome_departamento'],
+            'ano_projeto' => $iniciacao['ano_projeto'],
+            'data_inicio_projeto' => $iniciacao['data_inicio_projeto'],
+            'data_fim_projeto' => $iniciacao['data_fim_projeto'],
+            'numero_usp_orientador' => (int)$iniciacao['numero_usp_orientador'],
+            'titulo_projeto' => $iniciacao['titulo_projeto'],
+            'palavras_chave' => $iniciacao['palavras_chave']
         ];
 
         return $properties;

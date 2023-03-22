@@ -1,9 +1,9 @@
 SELECT
-	p.codpes AS 'numeroUSP'
-	,p.codpgm AS 'sequenciaCurso'
-	,r.codqtn AS 'codigoQuestionario'
-	,r.codqst AS 'codigoQuestao'
-	,r.numatnqst AS 'alternativaEscolhida'
+	p.codpes AS 'numero_usp'
+	,p.codpgm AS 'sequencia_curso'
+	,r.codqtn AS 'codigo_questionario'
+	,r.codqst AS 'codigo_questao'
+	,r.numatnqst AS 'alternativa_escolhida'
 FROM PROGRAMAGR p
 	LEFT JOIN RESPOSTASQUESTAO r ON p.codpes = r.codpes 
 	INNER JOIN QUESTIONARIO q ON (r.codqtn = q.codqtn AND p.dtaing BETWEEN q.dtainiqtn AND q.dtafimqtn)
