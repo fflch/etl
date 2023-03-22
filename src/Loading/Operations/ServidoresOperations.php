@@ -18,8 +18,8 @@ class ServidoresOperations
         $vinculosServidores = $this->vinculosServidores->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($vinculosServidores, 3000) as $chunk) 
+        // We need 19 placeholders for each row at the moment. Let's make room for 21.
+        foreach(array_chunk($vinculosServidores, 3100) as $chunk) 
         {
             VinculoServidor::insert($chunk);
         }

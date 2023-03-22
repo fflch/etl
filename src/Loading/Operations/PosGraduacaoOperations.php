@@ -18,8 +18,8 @@ class PosGraduacaoOperations
         $posGraduacoes = $this->posGraduacoes->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($posGraduacoes, 3000) as $chunk) 
+        // We need 16 placeholders for each row at the moment. Let's make room for 18.
+        foreach(array_chunk($posGraduacoes, 3600) as $chunk) 
         {
             //gambi para alunos com as duas últimas ocorrências simultâneas
             PosGraduacao::upsert($chunk, ["id_graduacao"]);

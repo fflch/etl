@@ -39,8 +39,8 @@ class GraduacaoOperations
         $graduacoes =  $this->graduacoes->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($graduacoes, 4000) as $chunk) 
+        // We need 13 placeholders for each row at the moment. Let's make room for 15.
+        foreach(array_chunk($graduacoes, 4300) as $chunk) 
         {
             Graduacao::insert($chunk);
         }
@@ -51,8 +51,8 @@ class GraduacaoOperations
         $habilitacoes =  $this->habilitacoes->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($habilitacoes, 4500) as $chunk) 
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($habilitacoes, 5900) as $chunk) 
         {
             Habilitacao::insert($chunk);
         }
@@ -65,7 +65,7 @@ class GraduacaoOperations
         Capsule::schema()->disableForeignKeyConstraints(); //gambi
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
+        // We need 11 placeholders for each row at the moment. Let's make room for 13.
         foreach(array_chunk($iniciacoes, 5000) as $chunk) 
         {
             IniciacaoCientifica::insert($chunk);
@@ -79,8 +79,8 @@ class GraduacaoOperations
         $bolsasIC = $this->bolsasIC->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($bolsasIC, 5000) as $chunk) 
+        // We need 6 placeholders for each row at the moment. Let's make room for 8.
+        foreach(array_chunk($bolsasIC, 8100) as $chunk) 
         {
             BolsaIC::insert($chunk);
         }
@@ -99,8 +99,8 @@ class GraduacaoOperations
         QuestionarioQuestao::insert($questionarioQuestoes);
     
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($questionarioRespostas, 5000) as $chunk) 
+        // We need 3 placeholders for each row at the moment. Let's make room for 4.
+        foreach(array_chunk($questionarioRespostas, 16000) as $chunk) 
         {
             QuestionarioResposta::insert($chunk);
         }
@@ -112,12 +112,14 @@ class GraduacaoOperations
         $SIICUSPParticipantes = $this->SIICUSPParticipantes->transform();
     
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($SIICUSPTrabalhos, 5000) as $chunk) 
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($SIICUSPTrabalhos, 5900) as $chunk) 
         {
             SIICUSPTrabalho::insert($chunk);
         }
 
+        // Insert placeholders limit is 65535.
+        // We need 11 placeholders for each row at the moment. Let's make room for 13.
         foreach(array_chunk($SIICUSPParticipantes, 5000) as $chunk) 
         {
             SIICUSPParticipante::insert($chunk);

@@ -27,8 +27,8 @@ class CEUOperations
         $cursosCEU = $this->cursosCEU->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($cursosCEU, 3000) as $chunk) 
+        // We need 12 placeholders for each row at the moment. Let's make room for 14.
+        foreach(array_chunk($cursosCEU, 4600) as $chunk) 
         {
             CursoCulturaExtensao::insert($chunk);
         }
@@ -39,8 +39,8 @@ class CEUOperations
         $oferecimentosCursos = $this->oferecimentosCursos->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($oferecimentosCursos, 3000) as $chunk) 
+        // We need 18 placeholders for each row at the moment. Let's make room for 20.
+        foreach(array_chunk($oferecimentosCursos, 3200) as $chunk) 
         {
             OferecimentoCCEx::insert($chunk);
         }
@@ -51,8 +51,8 @@ class CEUOperations
         $inscricoesCursos = $this->inscricoesCursos->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($inscricoesCursos, 9000) as $chunk) 
+        // We need 5 placeholders for each row at the moment. Let's make room for 7.
+        foreach(array_chunk($inscricoesCursos, 9300) as $chunk) 
         {
             InscricaoCCEx::insert($chunk);
         }
@@ -63,8 +63,8 @@ class CEUOperations
         $matriculasCursos = $this->matriculasCursos->transform();
 
         // Insert placeholders limit is 65535.
-        // We need X placeholders for each row at the moment. Let's make room for Y.
-        foreach(array_chunk($matriculasCursos, 5000) as $chunk) 
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($matriculasCursos, 5900) as $chunk) 
         {
             MatriculaCCEx::insert($chunk);
         }
