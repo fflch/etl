@@ -72,6 +72,10 @@ class GraduacaoOperations
         }
 
         Capsule::schema()->enableForeignKeyConstraints(); //gambi
+
+        Capsule::update("UPDATE iniciacoes i
+                        SET data_fim_projeto = NULL, data_inicio_projeto = NULL
+                        WHERE i.situacao_projeto = 'Denegado'");
     }
 
     public function updateBolsasIC()
@@ -85,10 +89,15 @@ class GraduacaoOperations
             BolsaIC::insert($chunk);
         }
 
+        Capsule::delete("DELETE bi
+                        FROM iniciacoes i
+                            INNER JOIN bolsas_ic bi ON i.id_projeto = bi.id_projeto
+                        WHERE i.situacao_projeto = 'Denegado'");
+
         Capsule::update("UPDATE bolsas_ic bi
-                        RIGHT JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
+                            INNER JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
                         SET bi.data_fim_bolsa = i.data_fim_projeto
-                        WHERE i.status_projeto = 'Cancelado'");
+                        WHERE i.situacao_projeto = 'Cancelado'");
     }
 
     public function updateQuestionarios()
