@@ -3,6 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Transformation\ModelsReplicado\PosDoc\ProjetoPosDocReplicado;
 use Src\Loading\Models\PosDoc\ProjetoPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\PeriodoPosDocReplicado;
@@ -35,6 +36,10 @@ class PosDocOperations
         {
             ProjetoPosDoc::insert($chunk);
         }
+
+        Capsule::update("UPDATE projetos_posdoc pp
+                        SET data_fim_projeto = NULL, data_inicio_projeto = NULL
+                        WHERE pp.situacao_projeto IN ('Incompleto', 'Recusado')");
     }
 
     public function updatePeriodosPosDoc()
@@ -68,6 +73,22 @@ class PosDocOperations
         {
             AfastEmpresaPosDoc::insert($chunk);
         }
+
+        Capsule::delete("DELETE bp, ap
+                        FROM projetos_posdoc pp
+                            LEFT JOIN bolsas_posdoc bp ON bp.id_projeto = pp.id_projeto
+                            LEFT JOIN afastempresas_posdoc ap ON ap.id_projeto = pp.id_projeto
+                        WHERE pp.situacao_projeto IN ('Incompleto', 'Recusado')");
+        
+        Capsule::update("UPDATE bolsas_posdoc bp
+                            INNER JOIN projetos_posdoc pp ON pp.id_projeto = bp.id_projeto
+                        SET bp.data_fim_fomento = pp.data_fim_projeto
+                        WHERE pp.situacao_projeto = 'Cancelado'");
+
+        Capsule::update("UPDATE afastempresas_posdoc ap
+                            INNER JOIN projetos_posdoc pp ON pp.id_projeto = ap.id_projeto
+                        SET ap.data_fim_afastamento = pp.data_fim_projeto
+                        WHERE pp.situacao_projeto = 'Cancelado'");
     }
 
     public function updateSupervisoesPosDoc()

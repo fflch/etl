@@ -142,7 +142,7 @@ class GradSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
-            "status_projeto" => [
+            "situacao_projeto" => [
                 "type" => "string",
                 "size" => 32
             ],
