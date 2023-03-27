@@ -20,12 +20,6 @@ After your database is set up, you may create (or recreate) the tables and popul
 php build.php
 ```
 
-Once you have them, data sync can be updated whenever needed by:
-
-```
-php update.php
-```
-
 Finally, if you'd like to drop all tables, you may run:
 
 ```
