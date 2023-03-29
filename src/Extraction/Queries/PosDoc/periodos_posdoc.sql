@@ -13,6 +13,10 @@ SELECT
 	,pgm.numhorsmn AS 'horas_semanais'
 FROM PDPROGRAMA pgm
 	LEFT JOIN PDPROGRAMAFOMENTO ppf ON pgm.anoprj = ppf.anoprj AND pgm.codprj = ppf.codprj AND pgm.numseq_pd = ppf.numseq_pd
-	LEFT JOIN PDPROGRAMAVINCEMPRESA ppv ON pgm.anoprj = ppv.anoprj AND pgm.codprj = ppv.codprj AND pgm.numseq_pd = ppv.numseq_pd
+	LEFT JOIN (
+		SELECT ppv.anoprj, ppv.codprj, ppv.numseq_pd, MAX(ppv.numseqvinepr) AS 'numseqvinepr'
+		FROM PDPROGRAMAVINCEMPRESA ppv
+		GROUP BY ppv.anoprj, ppv.codprj, ppv.numseq_pd
+    ) ppv ON pgm.anoprj = ppv.anoprj AND pgm.codprj = ppv.codprj AND pgm.numseq_pd = ppv.numseq_pd
 	LEFT JOIN PDPROJETO prj ON pgm.anoprj = prj.anoprj AND pgm.codprj = prj.codprj 
 WHERE YEAR(prj.dtainiprj) >= 2007

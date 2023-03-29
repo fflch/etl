@@ -51,7 +51,7 @@ class PosDocOperations
         foreach(array_chunk($periodosPD, 5900) as $chunk) 
         {
             //gambi para períodos idênticos
-            PeriodoPosDoc::upsert($chunk, ["id_projeto", "sequencia_periodo"]);
+            PeriodoPosDoc::insert($chunk);
         }
     }
 
