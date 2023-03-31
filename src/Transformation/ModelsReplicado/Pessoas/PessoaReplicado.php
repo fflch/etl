@@ -16,6 +16,7 @@ class PessoaReplicado implements Mapper
             'numero_usp' => $pessoa['numero_usp'],
             'nome' => $pessoa['nome'],
             'data_nascimento' => $pessoa['data_nascimento'],
+            'email' => $pessoa['email'],
             'nacionalidade' => $pessoa['nacionalidade'],
             'cidade_nascimento' => $pessoa['cidade_nascimento'],
             'estado_nascimento' => $pessoa['estado_nascimento'],
