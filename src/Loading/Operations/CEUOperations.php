@@ -24,7 +24,7 @@ class CEUOperations
 
     public function updateCursosCEU()
     {
-        $cursosCEU = $this->cursosCEU->transform();
+        $cursosCEU = $this->cursosCEU->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 12 placeholders for each row at the moment. Let's make room for 14.
@@ -36,7 +36,7 @@ class CEUOperations
 
     public function updateOferecimentosCursos()
     {
-        $oferecimentosCursos = $this->oferecimentosCursos->transform();
+        $oferecimentosCursos = $this->oferecimentosCursos->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 18 placeholders for each row at the moment. Let's make room for 20.
@@ -48,7 +48,7 @@ class CEUOperations
 
     public function updateInscricoesCursos()
     {
-        $inscricoesCursos = $this->inscricoesCursos->transform();
+        $inscricoesCursos = $this->inscricoesCursos->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 5 placeholders for each row at the moment. Let's make room for 7.
@@ -60,7 +60,7 @@ class CEUOperations
 
     public function updateMatriculasCursos()
     {
-        $matriculasCursos = $this->matriculasCursos->transform();
+        $matriculasCursos = $this->matriculasCursos->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 9 placeholders for each row at the moment. Let's make room for 11.

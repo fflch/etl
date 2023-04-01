@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use Src\Extraction\TempTables\TempManager;
 use Src\Loading\Scripts\DatabaseBuilder;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GradSchemas;
@@ -15,6 +16,8 @@ use Src\Loading\Operations\PosGraduacaoOperations;
 use Src\Loading\Operations\PosDocOperations;
 use Src\Loading\Operations\CEUOperations;
 use Src\Loading\Operations\ServidoresOperations;
+
+TempManager::generateTempTables();
 
 $bob = new DatabaseBuilder;
 

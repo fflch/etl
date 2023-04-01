@@ -96,13 +96,7 @@ class PosDocSchemas
             "horas_semanais" => [
                 "type" => "tinyInteger",
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [

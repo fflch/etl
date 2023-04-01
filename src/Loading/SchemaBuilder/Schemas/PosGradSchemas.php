@@ -62,13 +62,7 @@ class PosGradSchemas
             "data_aprovacao_trabalho" => [
                 "type" => "date",
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [

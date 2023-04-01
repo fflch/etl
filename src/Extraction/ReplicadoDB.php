@@ -31,7 +31,7 @@ class ReplicadoDB
         return self::$instance;
     }
 
-    public static function getData(string $query, array $param = [])
+    public static function fetchData(string $query, array $param = [])
     {
         $db = self::getInstance();
 
@@ -53,5 +53,19 @@ class ReplicadoDB
         }
 
         return $result;
+    }
+
+    public static function executeBatch(string $query)
+    {
+        $db = self::getInstance();
+
+        $statements = explode(';', $query);
+        
+        $statements = array_filter($statements);
+        
+        foreach ($statements as $statement) {
+            $stmt = $db->prepare($statement);
+            $stmt->execute();
+        }
     }
 }

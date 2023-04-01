@@ -12,40 +12,37 @@ class Transformer
         $this->queryPath = $queryPath;
     }
 
-    public function transform(array $orderBy = NULL)
+    public function getData($rowLimit, $offset)
     {
         $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
-        $data = ReplicadoDB::getData($query);
+        $formattedQuery = $this->formatQuery($query, $rowLimit, $offset);
+        $data = ReplicadoDB::fetchData($formattedQuery);
 
-        if(!empty($orderBy)){
-            $data = $this->order($data, $orderBy);
-        }
-
-        $mappedData = array_map(
-            function($n) {
-                return $this->mapper->mapping($n);
-            }, $data
-        );
-
-        return $mappedData;
+        return $data;
     }
 
-    public function order(array $data, array $orderBy)
+    public function mapData($data)
     {
-        $aux = [];
-
-        foreach ($data as &$row) {
-            $combined = "";
-            foreach($orderBy as $attr){
-                $combined .= $row[$attr];
-            }
-            $aux[$combined] = isset($aux[$combined])
-                              ? $aux[$combined] + 1
-                              : 1;
-
-            $row['order'] = $aux[$combined];
+        foreach($data as &$n) {
+            $n = $this->mapper->mapping($n);
         }
 
-        return($data);
+        return $data;
+    }
+    
+    public function transformData(int $rowLimit = null, int $offset = null)
+    {
+        $data = $this->getData($rowLimit, $offset);
+
+        return $this->mapData($data);
+    }
+
+    public function formatQuery($query, $rowLimit, $offset)
+    {
+        if(!is_null($rowLimit)) {
+            $query .= "\n ROWS LIMIT {$rowLimit} OFFSET {$offset}";
+        }
+
+        return $query;
     }
 }

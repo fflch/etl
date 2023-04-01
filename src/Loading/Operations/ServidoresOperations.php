@@ -15,7 +15,7 @@ class ServidoresOperations
 
     public function updateVinculosServidores()
     {
-        $vinculosServidores = $this->vinculosServidores->transform();
+        $vinculosServidores = $this->vinculosServidores->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 19 placeholders for each row at the moment. Let's make room for 21.

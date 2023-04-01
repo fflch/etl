@@ -15,7 +15,7 @@ class PessoasOperations
 
     public function updatePessoas()
     {
-        $pessoas = $this->pessoas->transform();
+        $pessoas = $this->pessoas->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 11 placeholders for each row at the moment. Let's make room for 13.
