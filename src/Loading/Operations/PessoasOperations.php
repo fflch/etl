@@ -15,13 +15,14 @@ class PessoasOperations
 
     public function updatePessoas()
     {
-        $pessoas = $this->pessoas->transformData();
+        $rowsLimit = 5000;
+        $offset = 0;
 
-        // Insert placeholders limit is 65535.
-        // We need 11 placeholders for each row at the moment. Let's make room for 13.
-        foreach(array_chunk($pessoas, 5000) as $chunk) 
-        {
-            Pessoa::insert($chunk);
-        }
+        do {
+            $data = $this->pessoas->transformData($rowsLimit, $offset);
+            Pessoa::insert($data);
+
+            $offset += $rowsLimit;
+        } while (!empty($data));
     }
 }
