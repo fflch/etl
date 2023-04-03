@@ -5,10 +5,10 @@ SELECT
     ,CASE
         WHEN i.codctgedi = 1 THEN 'CNPQ - PIBIC'
         WHEN i.codctgedi = 2 THEN 'CNPQ - PIBIT'
-    END AS 'nome_programa'
-    ,i.codboledi AS 'bolsa_edital'
-    ,i.dtainibol AS 'data_inicio_bolsa'
-    ,i.dtafimbol AS 'data_fim_bolsa'
+    END AS 'nome_fomento'
+    ,i.codboledi AS 'fomento_edital'
+    ,i.dtainibol AS 'data_inicio_fomento'
+    ,i.dtafimbol AS 'data_fim_fomento'
 INTO #bolsas_pibic
 FROM ICTPROJEDITALBOLSA i;
 
@@ -17,10 +17,10 @@ FROM ICTPROJEDITALBOLSA i;
 SELECT
     i2.anoprj AS 'ano_projeto'
     ,i2.codprj AS 'codigo_projeto'
-    ,p.nompgmfcm AS 'nome_programa'
-    ,NULL AS 'bolsa_edital'
-    ,i2.dtainifom AS 'data_inicio_bolsa'
-    ,i2.dtafimfom AS 'data_fim_bolsa'
+    ,p.nompgmfcm AS 'nome_fomento'
+    ,NULL AS 'fomento_edital'
+    ,i2.dtainifom AS 'data_inicio_fomento'
+    ,i2.dtafimfom AS 'data_fim_fomento'
 INTO #outras_bolsas
 FROM ICTPROJFOMENTO i2
     LEFT JOIN PROPESQFOMENTO p ON i2.codpgmfcm = p.codpgmfcm
@@ -39,29 +39,29 @@ FROM (
 ) b;
 
 
--- gambi: Change data_inicio_bolsa dates so we don't have conflicts
+-- gambi: Change data_inicio_fomento dates so we don't have conflicts
 UPDATE #all_bolsas
-SET data_inicio_bolsa = DATEADD(minute, 
-                                CASE WHEN nome_programa LIKE '%PIBI%' THEN 1
-                                     WHEN nome_programa LIKE '%USP%' THEN 2
-                                     WHEN nome_programa LIKE '%FAPESP%' THEN 3
+SET data_inicio_fomento = DATEADD(minute, 
+                                CASE WHEN nome_fomento LIKE '%PIBI%' THEN 1
+                                     WHEN nome_fomento LIKE '%USP%' THEN 2
+                                     WHEN nome_fomento LIKE '%FAPESP%' THEN 3
                                 END,
-                                data_inicio_bolsa)
-WHERE nome_programa LIKE '%PIBI%' OR nome_programa LIKE '%USP%' OR nome_programa LIKE '%FAPESP%';
+                                data_inicio_fomento)
+WHERE nome_fomento LIKE '%PIBI%' OR nome_fomento LIKE '%USP%' OR nome_fomento LIKE '%FAPESP%';
 
 
--- Now we can add sequencia_bolsa order
+-- Now we can add sequencia_fomento order
 SELECT
 	a1.*
-	,COUNT(a2.data_inicio_bolsa) + 1 AS 'sequencia_bolsa'
+	,COUNT(a2.data_inicio_fomento) + 1 AS 'sequencia_fomento'
 INTO #ordered_bolsas
 FROM #all_bolsas a1
 LEFT JOIN #all_bolsas a2
 	ON a1.ano_projeto = a2.ano_projeto 
 		AND a1.codigo_projeto = a2.codigo_projeto 
-		AND a1.data_inicio_bolsa > a2.data_inicio_bolsa
-GROUP BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_bolsa
-ORDER BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_bolsa;
+		AND a1.data_inicio_fomento > a2.data_inicio_fomento
+GROUP BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_fomento
+ORDER BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_fomento;
 
 
 -- Filter

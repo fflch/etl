@@ -97,7 +97,7 @@ class GraduacaoOperations
 
         Capsule::update("UPDATE bolsas_ic bi
                             INNER JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
-                        SET bi.data_fim_bolsa = i.data_fim_projeto
+                        SET bi.data_fim_fomento = i.data_fim_projeto
                         WHERE i.situacao_projeto = 'Cancelado'");
     }
 
