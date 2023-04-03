@@ -257,4 +257,105 @@ class CEUSchemas
             ]
         ]
     ];
+
+    const ministrantes_ccex = [
+
+        "tableName" => "ministrantes_ccex",
+
+        "columns" => [
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "codigo_oferecimento" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "turma" => [
+                "type" => "integer"
+            ],
+            "funcao" => [
+                "type" => "string",
+                "size" => 24
+            ],
+            "forma_exercicio" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "carga_horaria_minutos" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "data_inicio_turma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_fim_turma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+            [
+                "keys" => "codigo_oferecimento",
+                "references" => "codigo_oferecimento",
+                "on" => "oferecimentos_ccex",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const coordenadores_ccex = [
+
+        "tableName" => "coordenadores_ccex",
+
+        "columns" => [
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "codigo_oferecimento" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "funcao" => [
+                "type" => "string",
+                "size" => 24
+            ],
+            "forma_exercicio" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+            [
+                "keys" => "codigo_oferecimento",
+                "references" => "codigo_oferecimento",
+                "on" => "oferecimentos_ccex",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
 }
