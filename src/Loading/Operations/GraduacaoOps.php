@@ -21,7 +21,7 @@ use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPParticipante;
 
-class GraduacaoOperations
+class GraduacaoOps
 {
     public function __construct()
     {

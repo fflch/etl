@@ -10,12 +10,14 @@ use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
-use Src\Loading\Operations\PessoasOperations;
-use Src\Loading\Operations\GraduacaoOperations;
-use Src\Loading\Operations\PosGraduacaoOperations;
-use Src\Loading\Operations\PosDocOperations;
-use Src\Loading\Operations\CEUOperations;
-use Src\Loading\Operations\ServidoresOperations;
+use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
+use Src\Loading\Operations\PessoasOps;
+use Src\Loading\Operations\GraduacaoOps;
+use Src\Loading\Operations\PosGraduacaoOps;
+use Src\Loading\Operations\PosDocOps;
+use Src\Loading\Operations\CEUOps;
+use Src\Loading\Operations\ServidoresOps;
+use Src\Loading\Operations\LattesOps;
 
 TempManager::generateTempTables();
 
@@ -27,16 +29,18 @@ $schemas = [
     PosGradSchemas::class,
     PosDocSchemas::class,
     CEUSchemas::class,
-    ServidoresSchemas::class
+    ServidoresSchemas::class,
+    LattesSchemas::class
 ];
 
 $ops = [
-    PessoasOperations::class,
-    GraduacaoOperations::class,
-    PosGraduacaoOperations::class,
-    PosDocOperations::class,
-    CEUOperations::class,
-    ServidoresOperations::class
+    PessoasOps::class,
+    GraduacaoOps::class,
+    PosGraduacaoOps::class,
+    PosDocOps::class,
+    CEUOps::class,
+    ServidoresOps::class,
+    LattesOps::class
 ];
 
 $bob->dropAllTables($schemas);

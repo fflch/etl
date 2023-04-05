@@ -12,7 +12,7 @@ use Src\Loading\Models\CEU\InscricaoCCEx;
 use Src\Transformation\ModelsReplicado\CEU\MatriculaCCExReplicado;
 use Src\Loading\Models\CEU\MatriculaCCEx;
 
-class CEUOperations
+class CEUOps
 {
     public function __construct()
     {

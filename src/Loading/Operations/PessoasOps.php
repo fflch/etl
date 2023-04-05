@@ -6,7 +6,7 @@ use Src\Transformation\ModelsReplicado\Transformer;
 use Src\Transformation\ModelsReplicado\Pessoas\PessoaReplicado;
 use Src\Loading\Models\Pessoas\Pessoa;
 
-class PessoasOperations
+class PessoasOps
 {
     public function __construct()
     {

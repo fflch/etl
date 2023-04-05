@@ -10,7 +10,7 @@ class TempManager
     {
         $folder = __DIR__ . '/Scripts';
 
-        $files = glob($folder . '/*');
+        $files = glob($folder . '/*.sql');
 
         foreach($files as $file) {
             $stmts = file_get_contents($file);

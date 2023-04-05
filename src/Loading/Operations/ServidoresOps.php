@@ -6,7 +6,7 @@ use Src\Transformation\ModelsReplicado\Transformer;
 use Src\Transformation\ModelsReplicado\Servidores\VinculoServidorReplicado;
 use Src\Loading\Models\Servidores\VinculoServidor;
 
-class ServidoresOperations
+class ServidoresOps
 {
     public function __construct()
     {

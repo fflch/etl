@@ -6,7 +6,7 @@ use Src\Transformation\ModelsReplicado\Transformer;
 use Src\Transformation\ModelsReplicado\PosGraduacao\PosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\PosGraduacao;
 
-class PosGraduacaoOperations
+class PosGraduacaoOps
 {
     public function __construct()
     {

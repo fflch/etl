@@ -15,7 +15,7 @@ use Src\Loading\Models\PosDoc\AfastEmpresaPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\SupervisaoPosDocReplicado;
 use Src\Loading\Models\PosDoc\SupervisaoPosDoc;
 
-class PosDocOperations
+class PosDocOps
 {
     public function __construct()
     {

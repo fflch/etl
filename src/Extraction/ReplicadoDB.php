@@ -3,7 +3,7 @@
 namespace Src\Extraction;
 
 use PDO;
-use Src\Transformation\Utils\ReplicadoUtils;
+use Src\Transformation\Utils\Utils;
 
 class ReplicadoDB
 {
@@ -48,8 +48,8 @@ class ReplicadoDB
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
-            $result = ReplicadoUtils::utf8_converter($result);
-            $result = ReplicadoUtils::trim_recursivo($result);
+            $result = Utils::utf8_converter($result);
+            $result = Utils::trim_recursivo($result);
         }
 
         return $result;
