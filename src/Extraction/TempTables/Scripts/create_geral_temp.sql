@@ -29,6 +29,24 @@ FROM (
     WHERE m.codund = 8
         AND YEAR(e.dtainiofeedi) >= 2007
     UNION ALL
+    --coordenadores_ceu
+    SELECT r.codpes
+    FROM RESPONSAVELEDICAOCEU r
+        LEFT JOIN EDICAOCURSOOFECEU e
+            ON r.codcurceu = e.codcurceu AND r.codedicurceu = e.codedicurceu AND r.numseqofeedi = e.numseqofeedi
+    WHERE YEAR(e.dtainiofeedi) >= 2007
+    UNION ALL
+    --ministrantes_ceu
+    SELECT m.codpes
+    FROM MINISTRANTECEU m
+        LEFT JOIN ATUACAOCEU a 
+            ON m.codatc = a.codatc
+        LEFT JOIN OFERECIMENTOATIVIDADECEU o
+            ON m.codofeatvceu = o.codofeatvceu
+        LEFT JOIN dbo.EDICAOCURSOOFECEU e
+            ON o.codcurceu = e.codcurceu AND o.codedicurceu = e.codedicurceu AND o.numseqofeedi = e.numseqofeedi
+    WHERE YEAR(e.dtainiofeedi) >= 2007
+    UNION ALL
     -- servidores e docentes
     SELECT v.codpes
     FROM VINCULOPESSOAUSP v

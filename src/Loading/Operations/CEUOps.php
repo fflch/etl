@@ -11,6 +11,10 @@ use Src\Transformation\ModelsReplicado\CEU\InscricaoCCExReplicado;
 use Src\Loading\Models\CEU\InscricaoCCEx;
 use Src\Transformation\ModelsReplicado\CEU\MatriculaCCExReplicado;
 use Src\Loading\Models\CEU\MatriculaCCEx;
+use Src\Transformation\ModelsReplicado\CEU\MinistranteCCExReplicado;
+use Src\Loading\Models\CEU\MinistranteCCEx;
+use Src\Transformation\ModelsReplicado\CEU\CoordenadorCCExReplicado;
+use Src\Loading\Models\CEU\CoordenadorCCEx;
 
 class CEUOps
 {
@@ -20,6 +24,8 @@ class CEUOps
         $this->oferecimentosCursos = new Transformer(new OferecimentoCCExReplicado, 'CEU/oferecimentos_ccex');
         $this->inscricoesCursos = new Transformer(new InscricaoCCExReplicado, 'CEU/inscricoes_ccex');
         $this->matriculasCursos = new Transformer(new MatriculaCCExReplicado, 'CEU/matriculas_ccex');
+        $this->ministrantesCursos = new Transformer(new MinistranteCCExReplicado, 'CEU/ministrantes_ccex');
+        $this->coordenadoresCursos = new Transformer(new CoordenadorCCExReplicado, 'CEU/coordenadores_ccex');
     }
 
     public function updateCursosCEU()
@@ -67,6 +73,30 @@ class CEUOps
         foreach(array_chunk($matriculasCursos, 5900) as $chunk) 
         {
             MatriculaCCEx::insert($chunk);
+        }
+    }
+
+    public function updateMinistrantesCursos()
+    {
+        $ministrantesCursos = $this->ministrantesCursos->transformData();
+
+        // Insert placeholders limit is 65535.
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($ministrantesCursos, 5900) as $chunk) 
+        {
+            MinistranteCCEx::insert($chunk);
+        }
+    }
+
+    public function updateCoordenadoresCursos()
+    {
+        $coordenadoresCursos = $this->coordenadoresCursos->transformData();
+
+        // Insert placeholders limit is 65535.
+        // We need 9 placeholders for each row at the moment. Let's make room for 11.
+        foreach(array_chunk($coordenadoresCursos, 5900) as $chunk) 
+        {
+            CoordenadorCCEx::insert($chunk);
         }
     }
 }
