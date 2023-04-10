@@ -22,12 +22,12 @@ class LattesSchemas
                 "type" => "date",
                 "nullable" => true
             ],
-            "updated_here_at" => [
-                "type" => "timestamp"
-            ],
             "lattes" => [
                 "type" => "json",
                 "nullable" => true
+            ],
+            null => [
+                "type" => "timestamps"
             ],
         ],
 

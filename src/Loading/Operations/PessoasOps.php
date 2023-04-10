@@ -15,14 +15,13 @@ class PessoasOps
 
     public function updatePessoas()
     {
-        $rowsLimit = 5000;
-        $offset = 0;
+        $pagination = ['limit' => 5000, 'offset' => 0];
 
         do {
-            $data = $this->pessoas->transformData($rowsLimit, $offset);
+            $data = $this->pessoas->transformData($pagination);
             Pessoa::insert($data);
 
-            $offset += $rowsLimit;
+            $pagination['offset'] += $pagination['limit'];
         } while (!empty($data));
     }
 }

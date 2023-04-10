@@ -30,7 +30,7 @@ $schemas = [
     PosDocSchemas::class,
     CEUSchemas::class,
     ServidoresSchemas::class,
-    LattesSchemas::class
+    // LattesSchemas::class
 ];
 
 $ops = [
@@ -40,7 +40,7 @@ $ops = [
     PosDocOps::class,
     CEUOps::class,
     ServidoresOps::class,
-    LattesOps::class
+    // LattesOps::class
 ];
 
 $bob->dropAllTables($schemas);

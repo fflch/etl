@@ -12,37 +12,44 @@ class Transformer
         $this->queryPath = $queryPath;
     }
 
-    public function getData($rowLimit, $offset)
+    public function transformData(array $pagination = null, array $replace = null)
+    {
+        $data = $this->getData($pagination, $replace);
+
+        return $this->mapData($data);
+    }
+
+    private function getData($pagination, $replace)
     {
         $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
-        $formattedQuery = $this->formatQuery($query, $rowLimit, $offset);
-        $data = ReplicadoDB::fetchData($formattedQuery);
+
+        if(isset($pagination) || isset($replace)) {
+            $query = $this->formatQuery($query, $pagination, $replace);
+        }
+
+        $data = ReplicadoDB::fetchData($query);
 
         return $data;
     }
 
-    public function mapData($data)
+    private function formatQuery(string $query, ?array $pagination, ?array $replace)
+    {
+        if(!is_null($replace)) {
+            $query = str_replace($replace['subject'], $replace['replacement'], $query);
+        }
+        if(!is_null($pagination)) {
+            $query .= "\n ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
+        }
+
+        return $query;
+    }
+
+    private function mapData($data)
     {
         foreach($data as &$n) {
             $n = $this->mapper->mapping($n);
         }
 
         return $data;
-    }
-    
-    public function transformData(int $rowLimit = null, int $offset = null)
-    {
-        $data = $this->getData($rowLimit, $offset);
-
-        return $this->mapData($data);
-    }
-
-    public function formatQuery($query, $rowLimit, $offset)
-    {
-        if(!is_null($rowLimit)) {
-            $query .= "\n ROWS LIMIT {$rowLimit} OFFSET {$offset}";
-        }
-
-        return $query;
     }
 }

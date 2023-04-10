@@ -17,7 +17,6 @@ class LattesReplicado implements Mapper
             'numero_usp' => $cvlattes['numero_usp'],
             'data_atualizacao_cv' => $cvlattes['data_atualizacao_cv'],
             'data_extracao_cv' => $cvlattes['data_extracao_cv'],
-            'updated_here_at' => date("Y-m-d H:i:s"),
             'lattes' => $this->obterJson($cvlattes['xml_zipped'])
         ];
 

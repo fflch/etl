@@ -1,5 +1,5 @@
 -- Get NUSPs
-SELECT DISTINCT(codpes)
+SELECT DISTINCT(codpes) AS 'numero_usp'
 INTO #nusps
 FROM (
     -- alunos_graduacao
@@ -57,7 +57,7 @@ FROM PESSOA p
     LEFT JOIN PAIS p3 ON c.codpasnas = p3.codpas
     LEFT JOIN LOCALIDADE l ON c.codlocnas = l.codloc
     LEFT JOIN EMAILPESSOA e ON p.codpes = e.codpes AND e.stamtr = 'S'
-WHERE p.codpes IN (SELECT codpes FROM #nusps);
+WHERE p.codpes IN (SELECT numero_usp FROM #nusps);
 
 -- Drop all unnecessary temp tables
 DROP TABLE #nusps;
