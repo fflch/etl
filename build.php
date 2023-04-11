@@ -10,18 +10,21 @@ use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
-use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 use Src\Loading\Operations\PessoasOps;
 use Src\Loading\Operations\GraduacaoOps;
 use Src\Loading\Operations\PosGraduacaoOps;
 use Src\Loading\Operations\PosDocOps;
 use Src\Loading\Operations\CEUOps;
 use Src\Loading\Operations\ServidoresOps;
-use Src\Loading\Operations\LattesOps;
 
-TempManager::generateTempTables();
-
-$bob = new DatabaseBuilder;
+$preScripts = [
+    'create_bolsasic_temp',
+    'create_geral_temp',
+    'create_posgrad_temp',
+    'create_respostasQuest_temp',
+    'create_supervisoesPD_temp',
+    'create_ultimoBA_temp'
+];
 
 $schemas = [
     PessoasSchemas::class,
@@ -30,7 +33,6 @@ $schemas = [
     PosDocSchemas::class,
     CEUSchemas::class,
     ServidoresSchemas::class,
-    // LattesSchemas::class
 ];
 
 $ops = [
@@ -40,9 +42,11 @@ $ops = [
     PosDocOps::class,
     CEUOps::class,
     ServidoresOps::class,
-    // LattesOps::class
 ];
 
+TempManager::generateTempTables($preScripts);
+
+$bob = new DatabaseBuilder;
 $bob->dropAllTables($schemas);
 $bob->createAllTables($schemas);
 $bob->updateAllTables($ops);

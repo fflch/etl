@@ -6,13 +6,10 @@ use Src\Extraction\ReplicadoDB;
 
 class TempManager
 {
-    public static function generateTempTables()
+    public static function generateTempTables($scripts)
     {
-        $folder = __DIR__ . '/Scripts';
-
-        $files = glob($folder . '/*.sql');
-
-        foreach($files as $file) {
+        foreach($scripts as $script) {
+            $file = __DIR__ . '/Scripts/' . $script . '.sql';
             $stmts = file_get_contents($file);
             ReplicadoDB::executeBatch($stmts);
         }

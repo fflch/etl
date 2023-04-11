@@ -36,12 +36,12 @@ class LattesSchemas
         ],
         
         "foreign" => [
-            [
-                "keys" => "numero_usp",
-                "references" => "numero_usp",
-                "on" => "pessoas",
-                "onDelete" => "cascade"
-            ],
+            // [
+            //     "keys" => "numero_usp",
+            //     "references" => "numero_usp",
+            //     "on" => "pessoas",
+            //     "onDelete" => "cascade"
+            // ],
         ]
     ];
 }
