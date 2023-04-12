@@ -3,7 +3,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Extraction\TempTables\TempManager;
-use Src\Loading\Scripts\DatabaseBuilder;
+use Src\Loading\Scripts\Transactions;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
@@ -45,8 +45,4 @@ $ops = [
 ];
 
 TempManager::generateTempTables($preScripts);
-
-$bob = new DatabaseBuilder;
-$bob->dropAllTables($schemas);
-$bob->createAllTables($schemas);
-$bob->updateAllTables($ops);
+Transactions::recreateAndOrUpdateTables($schemas, $ops);
