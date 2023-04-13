@@ -3,7 +3,7 @@
 namespace Src\Extraction;
 
 use PDO;
-use Src\Transformation\Utils\ReplicadoUtils;
+use Src\Transformation\Utils\Utils;
 
 class ReplicadoDB
 {
@@ -31,7 +31,7 @@ class ReplicadoDB
         return self::$instance;
     }
 
-    public static function getData(string $query, array $param = [])
+    public static function fetchData(string $query, array $param = [])
     {
         $db = self::getInstance();
 
@@ -48,10 +48,24 @@ class ReplicadoDB
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
-            $result = ReplicadoUtils::utf8_converter($result);
-            $result = ReplicadoUtils::trim_recursivo($result);
+            $result = Utils::utf8_converter($result);
+            $result = Utils::trim_recursivo($result);
         }
 
         return $result;
+    }
+
+    public static function executeBatch(string $query)
+    {
+        $db = self::getInstance();
+
+        $statements = explode(';', $query);
+        
+        $statements = array_filter($statements);
+        
+        foreach ($statements as $statement) {
+            $stmt = $db->prepare($statement);
+            $stmt->execute();
+        }
     }
 }

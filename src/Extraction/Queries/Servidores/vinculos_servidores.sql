@@ -9,8 +9,7 @@ SELECT
 	,s.nomset AS 'nome_ultimo_setor'
 	,v.tiping AS 'tipo_ingresso'
 	,CASE
-		WHEN v.sitatl <> 'A'
-			THEN v.sitoco
+		WHEN v.sitatl <> 'A' THEN v.sitoco
 		ELSE NULL
 	END AS 'ultima_ocorrencia'
 	,v.dtainisitoco AS 'data_inicio_ultima_ocorrencia'
@@ -19,9 +18,8 @@ SELECT
 	,v.nomabvcla AS 'nome_classe'
 	,v.nivgrupvm AS 'nome_grau_provimento'
 	,v.dtainisitfun AS 'data_ultima_alteracao_funcional'
-	,CASE
-		WHEN l.tipvinext = 'Servidor Designado'
-			THEN l.nomfnc
+	,CASE l.tipvinext
+		WHEN 'Servidor Designado' THEN l.nomfnc
 		ELSE NULL
 	END AS 'cargo'
 	,v.tipjor AS 'tipo_jornada'

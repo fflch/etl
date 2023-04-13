@@ -15,7 +15,7 @@ use Src\Loading\Models\PosDoc\AfastEmpresaPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\SupervisaoPosDocReplicado;
 use Src\Loading\Models\PosDoc\SupervisaoPosDoc;
 
-class PosDocOperations
+class PosDocOps
 {
     public function __construct()
     {
@@ -28,7 +28,7 @@ class PosDocOperations
 
     public function updateProjetosPosDoc()
     {
-        $projetosPD = $this->projetosPosDoc->transform();
+        $projetosPD = $this->projetosPosDoc->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 10 placeholders for each row at the moment. Let's make room for 13.
@@ -44,7 +44,7 @@ class PosDocOperations
 
     public function updatePeriodosPosDoc()
     {
-        $periodosPD = $this->periodosPosDoc->transform();
+        $periodosPD = $this->periodosPosDoc->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 9 placeholders for each row at the moment. Let's make room for 11.
@@ -57,8 +57,8 @@ class PosDocOperations
 
     public function updateFontesRecursoPosDoc()
     {
-        $bolsasPD = $this->bolsasPosDoc->transform();
-        $afastEmpresa = $this->afastEmpresasPosDoc->transform();
+        $bolsasPD = $this->bolsasPosDoc->transformData();
+        $afastEmpresa = $this->afastEmpresasPosDoc->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 8 placeholders for each row at the moment. Let's make room for 10.
@@ -93,7 +93,7 @@ class PosDocOperations
 
     public function updateSupervisoesPosDoc()
     {
-        $supervisoesPD = $this->supervisoesPosDoc->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
+        $supervisoesPD = $this->supervisoesPosDoc->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 8 placeholders for each row at the moment. Let's make room for 10.

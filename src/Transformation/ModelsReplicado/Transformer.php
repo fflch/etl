@@ -12,40 +12,44 @@ class Transformer
         $this->queryPath = $queryPath;
     }
 
-    public function transform(array $orderBy = NULL)
+    public function transformData(array $pagination = null, array $replace = null)
     {
-        $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
-        $data = ReplicadoDB::getData($query);
+        $data = $this->getData($pagination, $replace);
 
-        if(!empty($orderBy)){
-            $data = $this->order($data, $orderBy);
-        }
-
-        $mappedData = array_map(
-            function($n) {
-                return $this->mapper->mapping($n);
-            }, $data
-        );
-
-        return $mappedData;
+        return $this->mapData($data);
     }
 
-    public function order(array $data, array $orderBy)
+    private function getData($pagination, $replace)
     {
-        $aux = [];
+        $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
 
-        foreach ($data as &$row) {
-            $combined = "";
-            foreach($orderBy as $attr){
-                $combined .= $row[$attr];
-            }
-            $aux[$combined] = isset($aux[$combined])
-                              ? $aux[$combined] + 1
-                              : 1;
-
-            $row['order'] = $aux[$combined];
+        if(isset($pagination) || isset($replace)) {
+            $query = $this->formatQuery($query, $pagination, $replace);
         }
 
-        return($data);
+        $data = ReplicadoDB::fetchData($query);
+
+        return $data;
+    }
+
+    private function formatQuery(string $query, ?array $pagination, ?array $replace)
+    {
+        if(!is_null($replace)) {
+            $query = str_replace($replace['subject'], $replace['replacement'], $query);
+        }
+        if(!is_null($pagination)) {
+            $query .= "\n ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
+        }
+
+        return $query;
+    }
+
+    private function mapData($data)
+    {
+        foreach($data as &$n) {
+            $n = $this->mapper->mapping($n);
+        }
+
+        return $data;
     }
 }

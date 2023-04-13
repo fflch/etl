@@ -46,9 +46,9 @@ class TablesMethods
 
         $classMethods = get_class_methods($class);
 
-        foreach($classMethods as $method){
-            if($method != '__construct')
-            {
+        foreach($classMethods as $method)
+        {
+            if($method != '__construct') {
                 $newclass->{$method}();
             }
         }

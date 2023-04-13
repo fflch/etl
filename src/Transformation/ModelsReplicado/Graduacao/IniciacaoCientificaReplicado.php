@@ -17,14 +17,12 @@ class IniciacaoCientificaReplicado implements Mapper
             'numero_usp' => !is_null($iniciacao['numero_usp'])
                            ? (int)$iniciacao['numero_usp']
                            : NULL,
-
+            'data_inicio_projeto' => $iniciacao['data_inicio_projeto'],
+            'data_fim_projeto' => $iniciacao['data_fim_projeto'],
             'situacao_projeto' => $this->checkStatus($iniciacao['situacao_projeto'], $iniciacao['data_fim_projeto']),
-
             'codigo_departamento' => (int)$iniciacao['codigo_departamento'],
             'nome_departamento' => $iniciacao['nome_departamento'],
             'ano_projeto' => $iniciacao['ano_projeto'],
-            'data_inicio_projeto' => $iniciacao['data_inicio_projeto'],
-            'data_fim_projeto' => $iniciacao['data_fim_projeto'],
             'numero_usp_orientador' => (int)$iniciacao['numero_usp_orientador'],
             'titulo_projeto' => $iniciacao['titulo_projeto'],
             'palavras_chave' => $iniciacao['palavras_chave']

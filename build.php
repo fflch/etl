@@ -2,21 +2,29 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-use Src\Loading\Scripts\DatabaseBuilder;
+use Src\Extraction\TempTables\TempManager;
+use Src\Loading\Scripts\Transactions;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGradSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
-use Src\Loading\Operations\PessoasOperations;
-use Src\Loading\Operations\GraduacaoOperations;
-use Src\Loading\Operations\PosGraduacaoOperations;
-use Src\Loading\Operations\PosDocOperations;
-use Src\Loading\Operations\CEUOperations;
-use Src\Loading\Operations\ServidoresOperations;
+use Src\Loading\Operations\PessoasOps;
+use Src\Loading\Operations\GraduacaoOps;
+use Src\Loading\Operations\PosGraduacaoOps;
+use Src\Loading\Operations\PosDocOps;
+use Src\Loading\Operations\CEUOps;
+use Src\Loading\Operations\ServidoresOps;
 
-$bob = new DatabaseBuilder;
+$preScripts = [
+    'create_bolsasic_temp',
+    'create_geral_temp',
+    'create_posgrad_temp',
+    'create_respostasQuest_temp',
+    'create_supervisoesPD_temp',
+    'create_ultimoBA_temp'
+];
 
 $schemas = [
     PessoasSchemas::class,
@@ -24,18 +32,17 @@ $schemas = [
     PosGradSchemas::class,
     PosDocSchemas::class,
     CEUSchemas::class,
-    ServidoresSchemas::class
+    ServidoresSchemas::class,
 ];
 
 $ops = [
-    PessoasOperations::class,
-    GraduacaoOperations::class,
-    PosGraduacaoOperations::class,
-    PosDocOperations::class,
-    CEUOperations::class,
-    ServidoresOperations::class
+    PessoasOps::class,
+    GraduacaoOps::class,
+    PosGraduacaoOps::class,
+    PosDocOps::class,
+    CEUOps::class,
+    ServidoresOps::class,
 ];
 
-$bob->dropAllTables($schemas);
-$bob->createAllTables($schemas);
-$bob->updateAllTables($ops);
+TempManager::generateTempTables($preScripts);
+Transactions::recreateAndOrUpdateTables($schemas, $ops);

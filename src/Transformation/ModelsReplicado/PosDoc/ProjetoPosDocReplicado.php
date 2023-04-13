@@ -14,7 +14,7 @@ class ProjetoPosDocReplicado implements Mapper
 
         $properties = [
             'id_projeto' => $projetoPosDoc['ano_projeto'] . '-' . $projetoPosDoc['codigo_projeto'],
-            'programa' => Deparas::modalidadesPD[$projetoPosDoc['codigo_modalidade']] ?? 'XX',
+            'modalidade' => Deparas::modalidadesPD[$projetoPosDoc['codigo_modalidade']] ?? 'XX',
             'numero_usp' => $projetoPosDoc['numero_usp'],
             'data_inicio_projeto' => $projetoPosDoc['data_inicio_projeto'],
             'data_fim_projeto' => $projetoPosDoc['data_fim_projeto'],
@@ -22,6 +22,7 @@ class ProjetoPosDocReplicado implements Mapper
             'codigo_departamento' => $projetoPosDoc['codigo_departamento'],
             'nome_departamento' => $projetoPosDoc['nome_departamento'],
             'titulo_projeto' => $projetoPosDoc['titulo_projeto'],
+            'area_cnpq' => $projetoPosDoc['area_cnpq'],
             'palavras_chave' => $this->palavrasChave(
                                                     array(
                                                         $projetoPosDoc['palcha_1'],

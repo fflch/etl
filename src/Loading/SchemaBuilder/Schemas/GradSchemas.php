@@ -142,6 +142,14 @@ class GradSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
+            "data_inicio_projeto" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_fim_projeto" => [
+                "type" => "date",
+                "nullable" => true
+            ],
             "situacao_projeto" => [
                 "type" => "string",
                 "size" => 32
@@ -155,14 +163,6 @@ class GradSchemas
             "nome_departamento" => [
                 "type" => "string",
                 "size" => 64
-            ],
-            "data_inicio_projeto" => [
-                "type" => "date",
-                "nullable" => true
-            ],
-            "data_fim_projeto" => [
-                "type" => "date",
-                "nullable" => true
             ],
             "numero_usp_orientador" => [
                 "type" => "integer",
@@ -201,22 +201,22 @@ class GradSchemas
                 "type" => "string",
                 "size" => 12
             ],
-            "sequencia_bolsa" => [
+            "sequencia_fomento" => [
                 "type" => "integer"
             ],
-            "nome_programa" => [
+            "nome_fomento" => [
                 "type" => "string",
                 "size" => 128
             ],
-            "bolsa_edital" => [
+            "fomento_edital" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            "data_inicio_bolsa" => [
+            "data_inicio_fomento" => [
                 "type" => "Date",
                 "nullable" => true
             ],
-            "data_fim_bolsa" => [
+            "data_fim_fomento" => [
                 "type" => "Date",
                 "nullable" => true
             ]

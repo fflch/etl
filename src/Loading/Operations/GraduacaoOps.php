@@ -21,9 +21,10 @@ use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPParticipante;
 
-class GraduacaoOperations
+class GraduacaoOps
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->graduacoes = new Transformer(new GraduacaoReplicado, 'Graduacao/graduacoes');
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
@@ -36,7 +37,7 @@ class GraduacaoOperations
 
     public function updateGraduacoes()
     {
-        $graduacoes =  $this->graduacoes->transform();
+        $graduacoes =  $this->graduacoes->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 13 placeholders for each row at the moment. Let's make room for 15.
@@ -48,7 +49,7 @@ class GraduacaoOperations
 
     public function updateHabilitacoes()
     {
-        $habilitacoes =  $this->habilitacoes->transform();
+        $habilitacoes =  $this->habilitacoes->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 9 placeholders for each row at the moment. Let's make room for 11.
@@ -60,7 +61,7 @@ class GraduacaoOperations
 
     public function updateIniciacoes()
     {
-        $iniciacoes = $this->iniciacoes->transform();
+        $iniciacoes = $this->iniciacoes->transformData();
 
         Capsule::schema()->disableForeignKeyConstraints(); //gambi
 
@@ -80,7 +81,7 @@ class GraduacaoOperations
 
     public function updateBolsasIC()
     {
-        $bolsasIC = $this->bolsasIC->transform($orderBy = ['ano_projeto', 'codigo_projeto']);
+        $bolsasIC = $this->bolsasIC->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 6 placeholders for each row at the moment. Let's make room for 8.
@@ -96,14 +97,14 @@ class GraduacaoOperations
 
         Capsule::update("UPDATE bolsas_ic bi
                             INNER JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
-                        SET bi.data_fim_bolsa = i.data_fim_projeto
+                        SET bi.data_fim_fomento = i.data_fim_projeto
                         WHERE i.situacao_projeto = 'Cancelado'");
     }
 
     public function updateQuestionarios()
     {
-        $questionarioRespostas = $this->questionarioRespostas->transform();
-        $questionarioQuestoes = $this->questionarioQuestoes->transform();
+        $questionarioRespostas = $this->questionarioRespostas->transformData();
+        $questionarioQuestoes = $this->questionarioQuestoes->transformData();
 
         QuestionarioQuestao::insert($questionarioQuestoes);
     
@@ -117,8 +118,8 @@ class GraduacaoOperations
 
     public function updateSIICUSP()
     {
-        $SIICUSPTrabalhos = $this->SIICUSPTrabalhos->transform();
-        $SIICUSPParticipantes = $this->SIICUSPParticipantes->transform();
+        $SIICUSPTrabalhos = $this->SIICUSPTrabalhos->transformData();
+        $SIICUSPParticipantes = $this->SIICUSPParticipantes->transformData();
     
         // Insert placeholders limit is 65535.
         // We need 9 placeholders for each row at the moment. Let's make room for 11.

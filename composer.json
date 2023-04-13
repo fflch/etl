@@ -1,7 +1,8 @@
 {
     "require": {
         "vlucas/phpdotenv": "^5.5",
-        "illuminate/database": "^8.83"
+        "illuminate/database": "^8.83",
+        "uspdev/replicado": "^1.16"
     },
     "autoload": {
         "psr-4": {

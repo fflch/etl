@@ -13,7 +13,7 @@ class PosDocSchemas
                 "type" => "string",
                 "size" => 12
             ],
-            "programa" => [
+            "modalidade" => [
                 "type" => "char",
                 "size" => 2
             ],
@@ -44,6 +44,11 @@ class PosDocSchemas
             "titulo_projeto" => [
                 "type" => "string",
                 "size" => 1024
+            ],
+            "area_cnpq" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
             ],
             "palavras_chave" => [
                 "type" => "string",
@@ -96,13 +101,7 @@ class PosDocSchemas
             "horas_semanais" => [
                 "type" => "tinyInteger",
                 "nullable" => true
-            ],
-            "created_at" => [
-                "type" => "timestamp"
-            ],
-            "updated_at" => [
-                "type" => "timestamp"
-            ],
+            ]
         ],
 
         "primary" => [

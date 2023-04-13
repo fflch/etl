@@ -12,16 +12,11 @@ SELECT
     ,hp.tipenchab AS 'tipo_encerramento_bacharel'
     ,hp.dtafim AS 'data_encerramento_bacharel'
 FROM HABILPROGGR hp
-    INNER JOIN (
-        SELECT hp2.codpes AS 'codpes', hp2.codpgm as 'codpgm', MAX(hp2.dtaini) AS 'ultimoBA'
-        FROM HABILPROGGR hp2
-            LEFT JOIN HABILITACAOGR hg ON (hp2.codcur = hg.codcur AND hp2.codhab = hg.codhab)
-        WHERE hg.tiphab <> 'L'
-        GROUP BY hp2.codpes, hp2.codpgm) jn
-            ON (jn.codpes = hp.codpes AND jn.ultimoBA = hp.dtaini)
     INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
     LEFT JOIN HABILITACAOGR hg ON (hp.codcur = hg.codcur AND hp.codhab = hg.codhab)
     LEFT JOIN CURSOGR c ON (hp.codcur = c.codcur)
+    --Filter:
+    INNER JOIN #ultimo_bacharelado ub ON (ub.codpes = hp.codpes AND ub.codpgm = hp.codpgm AND ub.data_ultimo_bacharelado = hp.dtaini)
 WHERE hp.codcur BETWEEN 8000 AND 9000
     AND hg.tiphab <> 'L'
     AND YEAR(p.dtaing) >= 2007

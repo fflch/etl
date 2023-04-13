@@ -6,7 +6,7 @@ use Src\Transformation\ModelsReplicado\Transformer;
 use Src\Transformation\ModelsReplicado\Pessoas\PessoaReplicado;
 use Src\Loading\Models\Pessoas\Pessoa;
 
-class PessoasOperations
+class PessoasOps
 {
     public function __construct()
     {
@@ -15,13 +15,13 @@ class PessoasOperations
 
     public function updatePessoas()
     {
-        $pessoas = $this->pessoas->transform();
+        $pagination = ['limit' => 5000, 'offset' => 0];
 
-        // Insert placeholders limit is 65535.
-        // We need 11 placeholders for each row at the moment. Let's make room for 13.
-        foreach(array_chunk($pessoas, 5000) as $chunk) 
-        {
-            Pessoa::insert($chunk);
-        }
+        do {
+            $data = $this->pessoas->transformData($pagination);
+            Pessoa::insert($data);
+
+            $pagination['offset'] += $pagination['limit'];
+        } while (!empty($data));
     }
 }

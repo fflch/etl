@@ -13,7 +13,7 @@ class SupervisaoPosDocReplicado implements Mapper
 
         $properties = [
             'id_projeto' => $supervisaoPD['ano_projeto'] . '-' . $supervisaoPD['codigo_projeto'],
-            'sequencia_supervisao' => $supervisaoPD['order'],
+            'sequencia_supervisao' => $supervisaoPD['sequencia_supervisao'],
             'numero_usp_supervisor' => $supervisaoPD['numero_usp_supervisor'],
             'nome_supervisor' => $supervisaoPD['nome_supervisor'],
             'tipo_supervisao' => $supervisaoPD['tipo_supervisao'],
