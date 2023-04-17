@@ -133,4 +133,18 @@ class Deparas
         'Coord Exec ABCD' => 'Coordenador Executivo ABCD',
         'Asr de Gabinete' => 'Assessor de Gabinete',
     ];
+
+    const statusTurma = [
+        'A' => 'Ativa',
+        'D' => 'Não ativa',
+        'C' => 'Consolidada',
+        // OBS: O status inicial é 'A' e após todas as notas 
+        // serem transcritas e validadas pelo professor ou 
+        //Serviço de Graduação o status muda para 'C'.
+    ];
+
+    const periodicidadeProf = [
+        'N' => 'Semanalmente',
+        'A' => 'Quinzenalmente',
+    ];
 }

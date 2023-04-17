@@ -9,7 +9,7 @@ class Utils
     public static function emptiesToNull(Array $attrs)
     {
         foreach($attrs as $key => $value){
-            $newAttrs[$key] = !empty($value) ? $value : NULL;
+            $newAttrs[$key] = (!empty($value) || $value === "0") ? $value : NULL;
         }
 
         return $newAttrs;

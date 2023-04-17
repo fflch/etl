@@ -11,21 +11,20 @@ class Transactions
     {
         try {
             $bob = new DatabaseBuilder;
-            Capsule::transaction(function() use ($bob, $schemas, $ops) {
+            Capsule::transaction(function() use ($bob, $schemas, $ops) { // no effect. fix later
                 $bob->dropAllTables($schemas);
                 $bob->createAllTables($schemas);
                 $bob->updateAllTables($ops);
             });
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             echo "Caught exception: ",  $e->getMessage(), "\n";
-        };
-        
+        };   
     }
 
     public static function wipeDB()
     {
         try {
-            Capsule::transaction(function() {
+            Capsule::transaction(function() { // no effect. fix later
                 Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
                 $tables = Capsule::select('SHOW TABLES');
                 foreach($tables as $table){
@@ -33,7 +32,7 @@ class Transactions
                 }
                 Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");
             });
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             echo "Caught exception: ",  $e->getMessage(), "\n";
         };
         
