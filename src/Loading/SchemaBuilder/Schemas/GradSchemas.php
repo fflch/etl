@@ -260,7 +260,7 @@ class GradSchemas
         ],
 
         "primary" => [
-            "key" => ['id_questao', 'codigo_alternativa']
+            "key" => ["id_questao", "codigo_alternativa"]
         ],
         
         "foreign" => [
@@ -373,42 +373,42 @@ class GradSchemas
         "tableName" => "siicusp_participantes",
 
         "columns" => [
-            'id_trabalho' => [
+            "id_trabalho" => [
                 "type" => "string",
                 "size" => 12
             ],
-            'tipo_participante' => [
+            "tipo_participante" => [
                 "type" => "string",
                 "size" => 32
             ],
-            'numero_usp' => [
+            "numero_usp" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            'nome_participante' => [
+            "nome_participante" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
-            'codigo_unidade' => [
+            "codigo_unidade" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            'sigla_unidade' => [
+            "sigla_unidade" => [
                 "type" => "string",
                 "size" => 24,
                 "nullable" => true
             ],
-            'codigo_departamento' => [
+            "codigo_departamento" => [
                 "type" => "integer",
                 "nullable" => true
             ],
-            'nome_departamento' => [
+            "nome_departamento" => [
                 "type" => "string",
                 "size" => 256,
                 "nullable" => true
             ],
-            'participante_apresentador' => [
+            "participante_apresentador" => [
                 "type" => "boolean"
             ]
         ],
@@ -424,6 +424,306 @@ class GradSchemas
                 "on" => "siicusp_trabalhos",
                 "onDelete" => "cascade"
             ]
+        ]
+    ];
+
+    const disciplinas_graduacao = [
+
+        "tableName" => "disciplinas_graduacao",
+
+        "columns" => [
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "tinyInteger"
+            ],
+            "nome_disciplina" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "credito_aula" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "credito_trabalho" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "data_ativacao_disciplina" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_desativacao_disciplina" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "duracao_disciplina_semanas" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "periodicidade_disciplina" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "carga_horaria_estagio" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_licenciatura" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_aacc" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "situacao_disciplina" => [
+                "type" => "char",
+                "size" => 2,
+                "nullable" => true
+            ]
+        ],
+
+        "primary" => [
+            "key" => ["codigo_disciplina", "versao_disciplina"],
+            "keyName" => "disciplinas_graduacao_primary"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
+    const turmas_graduacao = [
+
+        "tableName" => "turmas_graduacao",
+
+        "columns" => [
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "tinyInteger"
+            ],
+            "codigo_turma" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "tipo_turma" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "data_criacao_turma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_inicio_aulas" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_fim_aulas" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "status_turma" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "carga_horaria_teorica" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_pratica" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "numero_alunos_cursou" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "aprovados_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "tracamentos_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "reprov_nota_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "reprov_freq_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "reprov_ambos_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "numero_alunos_finalizou" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "frequencia_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "nota_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["codigo_disciplina", "versao_disciplina", "codigo_turma"],
+            "keyName" => "turmas_graduacao_primary"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
+    const info_turmas_graduacao = [
+
+        "tableName" => "info_turmas_graduacao",
+
+        "columns" => [
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "tinyInteger"
+            ],
+            "codigo_turma" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "vagas_total" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_total" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_total" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_tipo_obrigatoria" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_tipo_obrigatoria" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_tipo_obrigatoria" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_tipo_opt_eletiva" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_tipo_opt_eletiva" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_tipo_opt_eletiva" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_tipo_opt_livre" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_tipo_opt_livre" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_tipo_opt_livre" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_tipo_extracurricular" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_tipo_extracurricular" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_tipo_extracurricular" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_tipo_especial" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "inscritos_tipo_especial" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "matriculados_tipo_especial" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["codigo_disciplina", "versao_disciplina", "codigo_turma"],
+            "keyName" => "info_turmas_graduacao_primary"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
+    const ministrantes_graduacao = [
+
+        "tableName" => "ministrantes_graduacao",
+
+        "columns" => [
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "tinyInteger"
+            ],
+            "codigo_turma" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "periodicidade_ministrante" => [
+                "type" => "string",
+                "size" => 24,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["numero_usp", "codigo_disciplina", "codigo_turma"],
+            "keyName" => "ministrantes_graduacao_primary"
+        ],
+        
+        "foreign" => [
+            //
         ]
     ];
 }

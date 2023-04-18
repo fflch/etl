@@ -159,7 +159,7 @@ class PosDocSchemas
 
         "primary" => [
             "key" => ["id_projeto", "sequencia_periodo", "sequencia_fomento"],
-            "keyName" => "bolsasposdoc_primary"
+            "keyName" => "bolsas_posdoc_primary"
         ],
         
         "foreign" => [

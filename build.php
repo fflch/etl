@@ -18,12 +18,13 @@ use Src\Loading\Operations\CEUOps;
 use Src\Loading\Operations\ServidoresOps;
 
 $preScripts = [
-    'create_bolsasic_temp',
     'create_geral_temp',
-    'create_posgrad_temp',
+    'create_ultimoBA_temp',
     'create_respostasQuest_temp',
+    'create_bolsasic_temp',
+    'create_consolidacaoTurma_temp',
+    'create_posgrad_temp',
     'create_supervisoesPD_temp',
-    'create_ultimoBA_temp'
 ];
 
 $schemas = [
