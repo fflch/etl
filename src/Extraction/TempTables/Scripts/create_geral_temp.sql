@@ -60,6 +60,7 @@ SELECT
     p.codpes AS 'numero_usp'
     ,p.nompes AS 'nome'
     ,p.dtanas AS 'data_nascimento'
+    ,c.dtaflc AS 'data_falecimento'
     ,e.codema AS 'email'
     ,p2.nacpas AS 'nacionalidade'
     ,CASE WHEN l.codpas = 1 THEN l.cidloc ELSE NULL END AS 'cidade_nascimento'
