@@ -52,6 +52,11 @@ FROM (
     FROM VINCULOPESSOAUSP v
     WHERE v.tipvin IN ('SERVIDOR', 'ESTAGIARIO', 'ESTAGIARIORH', 'ESTAGIARIOPOS') 
         AND v.codfusclgund = 8
+    UNION ALL
+    -- credenciados pos-graduacao
+    SELECT r.codpes
+    FROM R25CRECREDOC r
+    WHERE codare BETWEEN 8000 AND 9000
 ) u;
 
 
