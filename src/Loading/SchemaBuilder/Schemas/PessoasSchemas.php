@@ -19,6 +19,10 @@ class PessoasSchemas
             "data_nascimento" => [
                 "type" => "date"
             ],
+            "data_falecimento" => [
+                "type" => "date",
+                "nullable" => true
+            ],
             "email" => [
                 "type" => "string",
                 "size" => 128,

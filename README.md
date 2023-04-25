@@ -17,7 +17,7 @@ cp .env.example .env
 After your database is set up, you may create (or recreate) the tables and populate them:
 
 ```
-php build.php
+php build.php && php lattes.php
 ```
 
 Finally, if you'd like to drop all tables, you may run:

@@ -2,7 +2,7 @@
 
 namespace Src\Loading\SchemaBuilder\Schemas;
 
-class GradSchemas
+class GraduacaoSchemas
 {
     const graduacoes = [
 

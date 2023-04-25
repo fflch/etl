@@ -39,7 +39,8 @@ class Builder
 
             if(!empty($tableProps['foreign'])){
                 foreach($tableProps['foreign'] as $foreign) {
-                    $table->foreign($foreign['keys'])
+                    $constraintName = $foreign['constraintName'] ?? null;
+                    $table->foreign($foreign['keys'], $constraintName)
                         ->references($foreign['references'])
                         ->on($foreign['on'])
                         ->onDelete($foreign['onDelete']);

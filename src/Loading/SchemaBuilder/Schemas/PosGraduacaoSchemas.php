@@ -2,7 +2,7 @@
 
 namespace Src\Loading\SchemaBuilder\Schemas;
 
-class PosGradSchemas
+class PosGraduacaoSchemas
 {
     const posgraduacoes = [
 
