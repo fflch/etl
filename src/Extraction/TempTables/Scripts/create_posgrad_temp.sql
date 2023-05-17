@@ -64,6 +64,7 @@ SELECT
 		WHEN 'CON' THEN DATEADD(mi, 5, h3.dtaocopgm)
 		WHEN 'TFA' THEN DATEADD(mi, 4, h3.dtaocopgm)
 		WHEN 'DES' THEN DATEADD(mi, 3, h3.dtaocopgm)
+		WHEN 'RTO' THEN DATEADD(mi, 2, h3.dtaocopgm)
 		WHEN 'NMT' THEN DATEADD(mi, 1, h3.dtaocopgm)
 		ELSE h3.dtaocopgm
 		END AS 'data_ocorrencia'
