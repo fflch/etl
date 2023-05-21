@@ -1,11 +1,11 @@
 <?php
 
-namespace Src\Loading\Scripts;
+namespace Src\Loading\DbHandle;
 
 use Src\Loading\SchemaBuilder\Builder;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class TablesMethods
+class TableOperations
 {
     public function __construct()
     {
@@ -37,6 +37,16 @@ class TablesMethods
         foreach($tables as $table)
         {
             $this->builder->dropTable($table);
+        }
+    }
+
+    public function wipeTables($class)
+    {
+        $tables = $this->getTablesNames($class);
+
+        foreach($tables as $tableProps)
+        {
+            Capsule::table($tableProps['tableName'])->delete();
         }
     }
 

@@ -3,7 +3,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Extraction\TempTables\TempManager;
-use Src\Loading\Scripts\Transactions;
+use Src\Loading\DbHandle\DatabaseTasks;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -52,4 +52,7 @@ $ops = [
 ];
 
 TempManager::generateTempTables($preScripts);
-Transactions::recreateAndOrUpdateTables($schemas, $ops);
+
+$tasks = new DatabaseTasks();
+if (in_array("--rebuild", $argv)) $tasks->rebuild($schemas);
+$tasks->wipeAndOrUpdateTables($schemas, $ops);

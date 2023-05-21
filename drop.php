@@ -2,6 +2,6 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-use Src\Loading\Scripts\Transactions;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-Transactions::wipeDB();
+Capsule::schema()->dropAllTables();
