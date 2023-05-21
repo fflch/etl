@@ -117,7 +117,7 @@ class GraduacaoSchemas
         ],
 
         "primary" => [
-            //        
+            //
         ],
         
         "foreign" => [
@@ -481,8 +481,8 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "situacao_disciplina" => [
-                "type" => "char",
-                "size" => 2,
+                "type" => "string",
+                "size" => 32,
                 "nullable" => true
             ]
         ],
@@ -591,9 +591,9 @@ class GraduacaoSchemas
         ]
     ];
 
-    const info_turmas_graduacao = [
+    const demanda_turmas_graduacao = [
 
-        "tableName" => "info_turmas_graduacao",
+        "tableName" => "demanda_turmas_graduacao",
 
         "columns" => [
             "codigo_disciplina" => [
@@ -683,7 +683,7 @@ class GraduacaoSchemas
 
         "primary" => [
             "key" => ["codigo_disciplina", "versao_disciplina", "codigo_turma"],
-            "keyName" => "info_turmas_graduacao_primary"
+            "keyName" => "demanda_turmas_graduacao_primary"
         ],
         
         "foreign" => [

@@ -20,15 +20,15 @@ use Src\Loading\Operations\ServidoresOps;
 use Src\Loading\Operations\CredenciamentosPGOps;
 
 $preScripts = [
-    'create_geral_temp',
-    'create_ultimoBA_temp',
-    'create_respostasQuest_temp',
-    'create_bolsasic_temp',
-    'create_consolidacaoTurma_temp',
-    'create_posgrad_temp',
-    'create_supervisoesPD_temp',
-    'create_vinculosServidores_temp',
-    'create_credenciamentos_temp'
+    'create_geral_temp', // pessoas
+    'create_ultimoBA_temp', // graduacao
+    'create_respostasQuest_temp', // graduacao
+    'create_bolsasic_temp', // graduacao
+    'create_consolidacaoTurma_temp', // graduacao
+    'create_posgrad_temp', // posgraduacao
+    'create_supervisoesPD_temp', // posdoutorado
+    'create_vinculosServidores_temp', // servidores
+    'create_credenciamentos_temp', // servidores
 ];
 
 $schemas = [

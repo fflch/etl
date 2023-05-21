@@ -24,8 +24,8 @@ use Src\Transformation\ModelsReplicado\Graduacao\DisciplinaGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\DisciplinaGraduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\TurmaGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\TurmaGraduacao;
-use Src\Transformation\ModelsReplicado\Graduacao\InfoTurmaGraduacaoReplicado;
-use Src\Loading\Models\Graduacao\InfoTurmaGraduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\DemandaTurmaGraduacaoReplicado;
+use Src\Loading\Models\Graduacao\DemandaTurmaGraduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\MinistranteGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\MinistranteGraduacao;
 
@@ -43,7 +43,7 @@ class GraduacaoOps
         $this->SIICUSPParticipantes = new Transformer(new SIICUSPParticipanteReplicado, 'Graduacao/SIICUSP_participantes');
         $this->disciplinasGraduacao = new Transformer(new DisciplinaGraduacaoReplicado, 'Graduacao/disciplinas_graduacao');
         $this->turmasGraduacao = new Transformer(new TurmaGraduacaoReplicado, 'Graduacao/turmas_graduacao');
-        $this->infoTurmasGraduacao = new Transformer(new InfoTurmaGraduacaoReplicado, 'Graduacao/info_turmas_graduacao');
+        $this->demandaTurmasGraduacao = new Transformer(new DemandaTurmaGraduacaoReplicado, 'Graduacao/demanda_turmas_graduacao');
         $this->ministrantesGraduacao = new Transformer(new MinistranteGraduacaoReplicado, 'Graduacao/ministrantes_graduacao');
     }
 
@@ -172,15 +172,15 @@ class GraduacaoOps
         }
     }
 
-    public function updateInfoTurmasGraduacao()
+    public function updateDemandaTurmasGraduacao()
     {
-        $infoTurmas =  $this->infoTurmasGraduacao->transformData();
+        $demandaTurmas =  $this->demandaTurmasGraduacao->transformData();
 
         // Insert placeholders limit is 65535.
         // We need 19 placeholders for each row at the moment. Let's make room for 21.
-        foreach(array_chunk($infoTurmas, 3100) as $chunk) 
+        foreach(array_chunk($demandaTurmas, 3100) as $chunk) 
         {
-            InfoTurmaGraduacao::insert($chunk);
+            DemandaTurmaGraduacao::insert($chunk);
         }
     }
 

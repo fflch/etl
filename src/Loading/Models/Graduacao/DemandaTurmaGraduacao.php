@@ -4,8 +4,8 @@ namespace Src\Loading\Models\Graduacao;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InfoTurmaGraduacao extends Model
+class DemandaTurmaGraduacao extends Model
 {
-    protected $table = 'info_turmas_graduacao';
+    protected $table = 'demanda_turmas_graduacao';
     protected $guarded = [];
 }

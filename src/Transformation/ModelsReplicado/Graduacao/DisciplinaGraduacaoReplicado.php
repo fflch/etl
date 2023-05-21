@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
 use Src\Transformation\Utils\Utils;
+use Src\Transformation\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class DisciplinaGraduacaoReplicado implements Mapper
@@ -24,7 +25,8 @@ class DisciplinaGraduacaoReplicado implements Mapper
             'carga_horaria_estagio' => $disciplina['carga_horaria_estagio'],
             'carga_horaria_licenciatura' => $disciplina['carga_horaria_licenciatura'],
             'carga_horaria_aacc' => $disciplina['carga_horaria_aacc'],
-            'situacao_disciplina' => $disciplina['situacao_disciplina'],
+            'situacao_disciplina' => Deparas::situacoesDisciplina[$disciplina['situacao_disciplina']]
+                                     ?? $disciplina['situacao_disciplina'],
         ];
 
         return $properties;

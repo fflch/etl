@@ -123,13 +123,22 @@ class Deparas
         'A' => 'Ativa',
         'D' => 'Não ativa',
         'C' => 'Consolidada',
-        // OBS: O status inicial é 'A' e após todas as notas 
+        // "OBS: O status inicial é 'A' e após todas as notas 
         // serem transcritas e validadas pelo professor ou 
-        //Serviço de Graduação o status muda para 'C'.
+        // Serviço de Graduação o status muda para 'C'".
     ];
 
     const periodicidadeProf = [
-        'N' => 'Semanalmente',
-        'A' => 'Quinzenalmente',
+        'N' => 'Semanal',
+        'A' => 'Quinzenal',
+    ];
+
+    const situacoesDisciplina = [
+        'PE' => 'Pendente',  // "Pendente",
+        'AU' => 'Pendente',  // "Aguardando análise da própria UNIDADE",
+        'AO' => 'Pendente',  // "Aguardando análise de OUTRAS unidades",
+        'AT' => 'Ativa',  // "Ativada",
+        'AP' => 'Aprovada',  // "Aprovada",
+        'DT' => 'Desativada',  // "Desativada" 
     ];
 }
