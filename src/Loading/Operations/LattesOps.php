@@ -40,7 +40,8 @@ class LattesOps
         }
         else {
             return [
-                "replacement" => "AND (d.dtapcsetc >= '$lastExtractionDate')",
+                "replacement" => "AND ((d.dtapcsetc >= '$lastExtractionDate') 
+                                  OR (d.dtapcsetc IS NULL))",
                 "subject" => "--AND1"
             ];
         }
@@ -48,7 +49,10 @@ class LattesOps
 
     private function getLastLattesExtractionDate()
     {
-        $data = Capsule::select("SELECT MAX(data_extracao_cv) AS 'data' FROM lattes;");
+        $data = Capsule::select(
+            "SELECT DATE_SUB(MAX(data_extracao_cv), INTERVAL 1 DAY) AS 'data' FROM lattes"
+        );
+
         return $data[0]->data;
     }
 }
