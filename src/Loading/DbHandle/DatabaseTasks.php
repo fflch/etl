@@ -12,11 +12,11 @@ class DatabaseTasks
         $this->dbManager = new DatabaseManager();
     }
 
-    public function wipeAndOrUpdateTables(array $schemas, array $ops)
+    public function wipeAndOrRenewTables(array $wipeSchemas, array $renewOps)
     {
-        Capsule::transaction(function() use ($schemas, $ops) {
-            $this->dbManager->wipeAllTables($schemas);
-            $this->dbManager->updateAllTables($ops);
+        Capsule::transaction(function() use ($wipeSchemas, $renewOps) {
+            $this->dbManager->wipeAllTables($wipeSchemas);
+            $this->dbManager->updateAllTables($renewOps);
         });
     }
 

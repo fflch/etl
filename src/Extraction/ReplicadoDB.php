@@ -23,7 +23,7 @@ class ReplicadoDB
                 self::$instance = new PDO($dsn, $user, $pass);
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (\Throwable $t) {
-                echo "Erro na conexão!\n";
+                echo "Erro na conexão: {$t}!\n";
                 die();
             }
         }

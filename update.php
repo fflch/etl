@@ -55,4 +55,4 @@ TempManager::generateTempTables($preScripts);
 
 $tasks = new DatabaseTasks();
 if (in_array("--rebuild", $argv)) $tasks->rebuild($schemas);
-$tasks->wipeAndOrUpdateTables($schemas, $ops);
+$tasks->wipeAndOrRenewTables($schemas, $ops);

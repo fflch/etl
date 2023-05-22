@@ -10,11 +10,13 @@ use Src\Loading\Operations\LattesOps;
 
 $preScripts = ['create_nuspsLattes_temp'];
 
-$schemas = Capsule::schema()->hasTable('lattes') 
-         ? [] 
-         : [LattesSchemas::class];
-
+$schemas = [LattesSchemas::class];
 $ops = [LattesOps::class];
 
 TempManager::generateTempTables($preScripts);
-DatabaseTasks::wipeAndOrUpdateTables($schemas, $ops);
+
+$tableLattesExists = Capsule::schema()->hasTable('lattes');
+
+$tasks = new DatabaseTasks();
+if (in_array("--rebuild", $argv) || $tableLattesExists === False) $tasks->rebuild($schemas);
+$tasks->wipeAndOrRenewTables([], $ops);
