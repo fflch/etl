@@ -38,7 +38,7 @@ class Transformer
             $query = str_replace($replace['subject'], $replace['replacement'], $query);
         }
         if(!is_null($pagination)) {
-            $query .= "\n ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
+            $query .= PHP_EOL . "ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
         }
 
         return $query;

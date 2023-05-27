@@ -4,6 +4,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Extraction\TempTables\TempManager;
 use Src\Loading\DbHandle\DatabaseTasks;
+use Src\CommonUtils\CommonUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -51,8 +52,12 @@ $ops = [
     CredenciamentosPGOps::class,
 ];
 
-TempManager::generateTempTables($preScripts);
+CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
 
-$tasks = new DatabaseTasks();
-if (in_array("--rebuild", $argv)) $tasks->rebuild($schemas);
-$tasks->wipeAndOrRenewTables($schemas, $ops);
+    TempManager::generateTempTables($preScripts);
+
+    $tasks = new DatabaseTasks();
+    if (in_array("--rebuild", $argv)) $tasks->rebuild($schemas);
+    $tasks->wipeAndOrRenewTables($schemas, $ops);
+
+}, 'final');

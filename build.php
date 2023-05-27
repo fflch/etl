@@ -3,6 +3,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Loading\DbHandle\DatabaseTasks;
+use Src\CommonUtils\CommonUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -21,5 +22,11 @@ $schemas = [
     CredenciamentosPGSchemas::class,
 ];
 
-$tasks = new DatabaseTasks();
-$tasks->rebuild($schemas);
+echo PHP_EOL;
+
+CommonUtils::timer(function () use ($schemas) {
+
+    $tasks = new DatabaseTasks();
+    $tasks->rebuild($schemas);
+
+}, 'final');
