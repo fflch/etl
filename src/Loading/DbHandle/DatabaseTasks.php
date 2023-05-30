@@ -4,7 +4,7 @@ namespace Src\Loading\DbHandle;
 
 use Src\Loading\DbHandle\DatabaseManager;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 
 class DatabaseTasks
 {
@@ -25,7 +25,7 @@ class DatabaseTasks
                 CommonUtils::timer(function () use ($renewOps) {
                     $this->dbManager->updateAllTables($renewOps);
                 });
-                echo PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL;
+                echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
             });
         }
         catch(\Exception $e) {
@@ -36,14 +36,17 @@ class DatabaseTasks
     public function rebuild($classes)
     {
         CommonUtils::timer(function () use ($classes) {
-            echo "(Re)building schemas..." . PHP_EOL . PHP_EOL;
+            echo PHP_EOL . "(Re)building schemas..." . PHP_EOL;
 
             Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
             $this->dbManager->dropAllTables($classes);
+    
+            echo PHP_EOL;
+
             Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");
             $this->dbManager->createAllTables($classes);
         });
 
-        echo PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL;
+        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
     }
 }

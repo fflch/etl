@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class BolsaICReplicado implements Mapper
 {
     public function mapping(Array $bolsaIC)
     {
-        $bolsaIC = Utils::emptiesToNull($bolsaIC);
-
         $properties = [
             'id_projeto' => ($bolsaIC['ano_projeto'] . '-' . $bolsaIC['codigo_projeto']),
             'sequencia_fomento' => $bolsaIC['sequencia_fomento'],

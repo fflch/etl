@@ -2,7 +2,7 @@
 
 namespace Src\Transformation\ModelsReplicado\Lattes;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 use Uspdev\Replicado\Uteis;
 
@@ -10,8 +10,6 @@ class LattesReplicado implements Mapper
 {
     public function mapping(Array $cvlattes)
     {
-        $cvlattes = Utils::emptiesToNull($cvlattes);
-
         $properties = [
             'numero_cnpq' => (int) $cvlattes['numero_cnpq'],
             'numero_usp' => $cvlattes['numero_usp'],
@@ -34,7 +32,7 @@ class LattesReplicado implements Mapper
         $json = json_encode(simplexml_load_string($xml));
         $array = json_decode($json, true);
 
-        $dadosLattes = Utils::extracaoDadosLattes($array);
+        $dadosLattes = TransformationUtils::extracaoDadosLattes($array);
 
         return json_encode($dadosLattes);
     }

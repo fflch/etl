@@ -3,27 +3,30 @@
 namespace Src\Extraction\TempTables;
 
 use Src\Extraction\ReplicadoDB;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 
 class TempManager
 {
     public static function generateTempTables($scripts)
     {
-        echo PHP_EOL;
-
         CommonUtils::timer(function () use ($scripts) {
             self::generator($scripts);
             }
         );
 
-        echo PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL;
+        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
     }
 
     private function generator($scripts)
     {
         $total = count($scripts);
         $progress = 0;
-        echo "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
+
+        echo PHP_EOL . "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
+
+        if (!count($scripts) > 0) {
+            return CommonUtils::renderLoadingBar(1, 1);
+        }
 
         foreach($scripts as $script) {
             CommonUtils::renderLoadingBar($progress, $total);

@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\CredenciamentosPG;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class CredenciamentoPGReplicado implements Mapper
 {
     public function mapping(Array $credenciamento)
     {
-        $credenciamento = Utils::emptiesToNull($credenciamento);
-
         $properties = [
             'id_credenciamento' => strtoupper(
                 md5(

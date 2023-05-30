@@ -4,6 +4,7 @@ namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Graduacao\GraduacaoReplicado;
 use Src\Loading\Models\Graduacao\Graduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\HabilitacaoReplicado;
@@ -49,40 +50,34 @@ class GraduacaoOps
 
     public function updateGraduacoes()
     {
-        $graduacoes =  $this->graduacoes->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 13 placeholders for each row at the moment. Let's make room for 15.
-        foreach(array_chunk($graduacoes, 4300) as $chunk) 
-        {
-            Graduacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->graduacoes, 
+            Graduacao::class, 
+            4300
+        );
     }
 
     public function updateHabilitacoes()
     {
-        $habilitacoes =  $this->habilitacoes->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($habilitacoes, 5900) as $chunk) 
-        {
-            Habilitacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->habilitacoes, 
+            Habilitacao::class, 
+            5900
+        );
     }
 
     public function updateIniciacoes()
     {
-        $iniciacoes = $this->iniciacoes->transformData();
-
         Capsule::schema()->disableForeignKeyConstraints(); //gambi
 
-        // Insert placeholders limit is 65535.
-        // We need 11 placeholders for each row at the moment. Let's make room for 13.
-        foreach(array_chunk($iniciacoes, 5000) as $chunk) 
-        {
-            IniciacaoCientifica::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->iniciacoes, 
+            IniciacaoCientifica::class, 
+            5000
+        );
 
         Capsule::schema()->enableForeignKeyConstraints(); //gambi
 
@@ -93,14 +88,12 @@ class GraduacaoOps
 
     public function updateBolsasIC()
     {
-        $bolsasIC = $this->bolsasIC->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 6 placeholders for each row at the moment. Let's make room for 8.
-        foreach(array_chunk($bolsasIC, 8100) as $chunk) 
-        {
-            BolsaIC::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->bolsasIC, 
+            BolsaIC::class, 
+            8100
+        );
 
         Capsule::delete("DELETE bi
                         FROM iniciacoes i
@@ -115,84 +108,75 @@ class GraduacaoOps
 
     public function updateQuestionarios()
     {
-        $questionarioRespostas = $this->questionarioRespostas->transformData();
-        $questionarioQuestoes = $this->questionarioQuestoes->transformData();
+        ExtractionUtils::updateTable(
+            'full',
+            $this->questionarioQuestoes, 
+            QuestionarioQuestao::class, 
+            10000
+        );
 
-        QuestionarioQuestao::insert($questionarioQuestoes);
-    
-        // Insert placeholders limit is 65535.
-        // We need 3 placeholders for each row at the moment. Let's make room for 4.
-        foreach(array_chunk($questionarioRespostas, 16000) as $chunk) 
-        {
-            QuestionarioResposta::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'paginated',
+            $this->questionarioRespostas, 
+            QuestionarioResposta::class, 
+            15000
+        );
     }
 
     public function updateSIICUSP()
     {
-        $SIICUSPTrabalhos = $this->SIICUSPTrabalhos->transformData();
-        $SIICUSPParticipantes = $this->SIICUSPParticipantes->transformData();
-    
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($SIICUSPTrabalhos, 5900) as $chunk) 
-        {
-            SIICUSPTrabalho::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->SIICUSPTrabalhos, 
+            SIICUSPTrabalho::class, 
+            5900
+        );
 
-        // Insert placeholders limit is 65535.
-        // We need 11 placeholders for each row at the moment. Let's make room for 13.
-        foreach(array_chunk($SIICUSPParticipantes, 5000) as $chunk) 
-        {
-            SIICUSPParticipante::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->SIICUSPParticipantes, 
+            SIICUSPParticipante::class, 
+            5000
+        );
     }
 
     public function updateDisciplinasGraduacao()
     {
-        $disciplinas =  $this->disciplinasGraduacao->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 14 placeholders for each row at the moment. Let's make room for 16.
-        foreach(array_chunk($disciplinas, 4000) as $chunk) 
-        {
-            DisciplinaGraduacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->disciplinasGraduacao, 
+            DisciplinaGraduacao::class, 
+            4000
+        );
     }
 
     public function updateTurmasGraduacao()
     {
-        $turmas =  $this->turmasGraduacao->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 21 placeholders for each row at the moment. Let's make room for 23.
-        foreach(array_chunk($turmas, 2800) as $chunk) 
-        {
-            TurmaGraduacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->turmasGraduacao, 
+            TurmaGraduacao::class, 
+            2500
+        );
     }
 
     public function updateDemandaTurmasGraduacao()
     {
-        $demandaTurmas =  $this->demandaTurmasGraduacao->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 19 placeholders for each row at the moment. Let's make room for 21.
-        foreach(array_chunk($demandaTurmas, 3100) as $chunk) 
-        {
-            DemandaTurmaGraduacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->demandaTurmasGraduacao, 
+            DemandaTurmaGraduacao::class, 
+            3000
+        );
     }
 
     public function updateMinistrantesGraduacao()
     {
-        $ministrantes =  $this->ministrantesGraduacao->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 5 placeholders for each row at the moment. Let's make room for 7.
-        foreach(array_chunk($ministrantes, 9300) as $chunk) 
-        {
-            MinistranteGraduacao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->ministrantesGraduacao, 
+            MinistranteGraduacao::class, 
+            8000
+        );
     }
 }

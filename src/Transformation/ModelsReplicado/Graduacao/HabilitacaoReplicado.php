@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class HabilitacaoReplicado implements Mapper
 {
     public function mapping(Array $habilitacao)
     {
-        $habilitacao = Utils::emptiesToNull($habilitacao);
-
         $properties = [
             'id_graduacao' => strtoupper(md5($habilitacao['numero_usp'] . $habilitacao['sequencia_curso'])),
             'codigo_curso' => $habilitacao['codigo_curso'],

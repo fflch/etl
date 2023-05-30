@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class ProjetoPosDocReplicado implements Mapper
 {
     public function mapping(Array $projetoPosDoc)
     {
-        $projetoPosDoc = Utils::emptiesToNull($projetoPosDoc);
-
         $properties = [
             'id_projeto' => $projetoPosDoc['ano_projeto'] . '-' . $projetoPosDoc['codigo_projeto'],
             'modalidade' => Deparas::modalidadesPD[$projetoPosDoc['codigo_modalidade']] ?? 'XX',

@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class BolsaPosDocReplicado implements Mapper
 {
     public function mapping(Array $bolsaPD)
     {
-        $bolsaPD = Utils::emptiesToNull($bolsaPD);
-
         $properties = [
             'id_projeto' => $bolsaPD['ano_projeto'] . '-' . $bolsaPD['codigo_projeto'],
             'sequencia_periodo' => $bolsaPD['sequencia_periodo'],

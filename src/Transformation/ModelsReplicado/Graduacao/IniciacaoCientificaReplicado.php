@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class IniciacaoCientificaReplicado implements Mapper
 {
     public function mapping(Array $iniciacao)
     {
-        $iniciacao = Utils::emptiesToNull($iniciacao);
-
         $properties = [
             'id_projeto' => ($iniciacao['ano_projeto'] . '-' . $iniciacao['codigo_projeto']),
             'numero_usp' => !is_null($iniciacao['numero_usp'])

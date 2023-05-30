@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class DisciplinaGraduacaoReplicado implements Mapper
 {
     public function mapping(Array $disciplina)
     {
-        $disciplina = Utils::emptiesToNull($disciplina);
-
         $properties = [
             'codigo_disciplina' => $disciplina['codigo_disciplina'],
             'versao_disciplina' => $disciplina['versao_disciplina'],

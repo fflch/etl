@@ -3,6 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Servidores\DesignacaoServidorReplicado;
 use Src\Loading\Models\Servidores\DesignacaoServidor;
 use Src\Transformation\ModelsReplicado\Servidores\VinculoServidorReplicado;
@@ -18,25 +19,21 @@ class ServidoresOps
 
     public function updateVinculosServidores()
     {
-        $vinculosServidores = $this->vinculosServidores->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need x placeholders for each row at the moment. Let's make room for y.
-        foreach(array_chunk($vinculosServidores, 3100) as $chunk) 
-        {
-            VinculoServidor::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->vinculosServidores, 
+            VinculoServidor::class, 
+            3100
+        );
     }
 
     public function updateDesignacoesServidores()
     {
-        $designacoes = $this->designacoes->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need x placeholders for each row at the moment. Let's make room for y.
-        foreach(array_chunk($designacoes, 1) as $chunk) 
-        {
-            DesignacaoServidor::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->designacoes, 
+            DesignacaoServidor::class, 
+            1000
+        );
     }
 }

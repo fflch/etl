@@ -4,7 +4,7 @@ namespace Src\Loading\DbHandle;
 
 use Src\Loading\DbHandle\TableOperations;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 
 class DatabaseManager
 {
@@ -15,15 +15,14 @@ class DatabaseManager
 
     public function processDBOperations(array $classes, callable $operation, string $message)
     {
-        echo $message;
+        echo PHP_EOL . $message . PHP_EOL;
 
-        if (count($classes) > 0) {
-            $total = count($classes);
-            $progress = 0;
+        $total = count($classes);
+        $progress = 0;
+
+        if (!count($classes) > 0) {
+            return CommonUtils::renderLoadingBar(1, 1);
         }
-        else {
-            CommonUtils::renderLoadingBar(1, 1);
-        };
     
         foreach ($classes as $class) {
             CommonUtils::renderLoadingBar($progress, $total);
@@ -40,7 +39,7 @@ class DatabaseManager
             $this->ops->createTables($class);
         };
         
-        $message = PHP_EOL . "Creating schemas:" . PHP_EOL;
+        $message = "Creating schemas:";
 
         $this->processDBOperations($classes, $operation, $message);
     }
@@ -51,7 +50,7 @@ class DatabaseManager
             $this->ops->updateTables($class);
         };
         
-        $message = "Writing new records:" . PHP_EOL;
+        $message = "Writing new records:";
 
         $this->processDBOperations($classes, $operation, $message);
     }
@@ -62,7 +61,7 @@ class DatabaseManager
             $this->ops->wipeTables($class);
         };
         
-        $message = "Cleansing old schemas (if needed):" . PHP_EOL;
+        $message = "Cleansing old schemas (if needed):";
 
         $this->processDBOperations($classes, $operation, $message);
     }
@@ -73,7 +72,7 @@ class DatabaseManager
             $this->ops->dropTables($class);
         };
         
-        $message = "Dropping schemas (if they exist):" . PHP_EOL;
+        $message = "Dropping schemas (if they exist):";
 
         $this->processDBOperations($classes, $operation, $message);
     }

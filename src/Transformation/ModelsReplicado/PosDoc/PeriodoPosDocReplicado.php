@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class PeriodoPosDocReplicado implements Mapper
 {
     public function mapping(Array $periodoPosDoc)
     {
-        $periodoPosDoc = Utils::emptiesToNull($periodoPosDoc);
-
         $properties = [
             'id_projeto' => $periodoPosDoc['ano_projeto'] . '-' . $periodoPosDoc['codigo_projeto'],
             'sequencia_periodo' => $periodoPosDoc['sequencia_periodo'],

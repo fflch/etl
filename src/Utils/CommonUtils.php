@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\CommonUtils;
+namespace Src\Utils;
 
 class CommonUtils
 {
@@ -37,13 +37,15 @@ class CommonUtils
             $text = "Total <{$_SERVER['PHP_SELF']}> runtime: {$isodate}";
             $length = strlen($text) + 4;
 
+            echo PHP_EOL;
             echo "╔" . str_repeat("═", $length) . "╗\n";
             echo "║  {$text}  ║\n";
             echo "╚" . str_repeat("═", $length) . "╝\n";
-            echo PHP_EOL;
+            echo PHP_EOL . PHP_EOL;
+
             return;
         };
 
-        echo str_repeat(" ", 5) . "Runtime: {$isodate}" . PHP_EOL;
+        echo str_repeat(" ", 5) . "Runtime: {$isodate}";
     }
 }

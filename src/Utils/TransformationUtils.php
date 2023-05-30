@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Transformation\Utils;
+namespace Src\Utils;
 
 use Uspdev\Replicado\Lattes;
 
-class Utils
+class TransformationUtils
 {
     public static function emptiesToNull(Array $attrs)
     {

@@ -5,7 +5,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Extraction\TempTables\TempManager;
 use Src\Loading\DbHandle\DatabaseTasks;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 use Src\Loading\Operations\LattesOps;
 

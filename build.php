@@ -3,7 +3,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Loading\DbHandle\DatabaseTasks;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -21,8 +21,6 @@ $schemas = [
     ServidoresSchemas::class,
     CredenciamentosPGSchemas::class,
 ];
-
-echo PHP_EOL;
 
 CommonUtils::timer(function () use ($schemas) {
 

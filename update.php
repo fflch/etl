@@ -4,7 +4,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Extraction\TempTables\TempManager;
 use Src\Loading\DbHandle\DatabaseTasks;
-use Src\CommonUtils\CommonUtils;
+use Src\Utils\CommonUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -19,6 +19,7 @@ use Src\Loading\Operations\PosDocOps;
 use Src\Loading\Operations\CEUOps;
 use Src\Loading\Operations\ServidoresOps;
 use Src\Loading\Operations\CredenciamentosPGOps;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 $preScripts = [
     'create_geral_temp', // pessoas
@@ -29,7 +30,7 @@ $preScripts = [
     'create_posgrad_temp', // posgraduacao
     'create_supervisoesPD_temp', // posdoutorado
     'create_vinculosServidores_temp', // servidores
-    'create_credenciamentos_temp', // servidores
+    'create_credenciamentos_temp', // credenciamentosPG
 ];
 
 $schemas = [
@@ -37,9 +38,9 @@ $schemas = [
     GraduacaoSchemas::class,
     PosGraduacaoSchemas::class,
     PosDocSchemas::class,
-    CEUSchemas::class,
     ServidoresSchemas::class,
     CredenciamentosPGSchemas::class,
+    CEUSchemas::class,
 ];
 
 $ops = [
@@ -47,9 +48,9 @@ $ops = [
     GraduacaoOps::class,
     PosGraduacaoOps::class,
     PosDocOps::class,
-    CEUOps::class,
     ServidoresOps::class,
     CredenciamentosPGOps::class,
+    CEUOps::class,
 ];
 
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {

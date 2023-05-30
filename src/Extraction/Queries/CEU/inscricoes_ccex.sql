@@ -9,3 +9,4 @@ SELECT
 FROM INSCRICAOCEU i
 	INNER JOIN EDICAOCURSOOFECEU e ON (i.codcurceu = e.codcurceu AND i.codedicurceu = e.codedicurceu AND i.numseqofeedi = e.numseqofeedi) 
 WHERE YEAR(e.dtainiofeedi) >= 2007
+ORDER BY i.codcurceu, i.codedicurceu, i.numseqofeedi, i.codpesceu, i.dtainc
