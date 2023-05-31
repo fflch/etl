@@ -11,6 +11,7 @@ use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CredenciamentosPGSchemas;
+use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 
 $schemas = [
     PessoasSchemas::class,
@@ -20,6 +21,7 @@ $schemas = [
     CEUSchemas::class,
     ServidoresSchemas::class,
     CredenciamentosPGSchemas::class,
+    LattesSchemas::class,
 ];
 
 CommonUtils::timer(function () use ($schemas) {
