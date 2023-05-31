@@ -49,10 +49,8 @@ class LattesOps
 
     private function getLastLattesExtractionDate()
     {
-        $data = Capsule::select(
+        return Capsule::select(
             "SELECT DATE_SUB(MAX(data_extracao_cv), INTERVAL 1 DAY) AS 'data' FROM lattes"
-        );
-
-        return $data[0]->data;
+        )[0]->data;
     }
 }

@@ -35,12 +35,15 @@ class CommonUtils
         
         if ($final === 'final') {
             $text = "Total <{$_SERVER['PHP_SELF']}> runtime: {$isodate}";
-            $length = strlen($text) + 4;
+            $length = mb_strlen($text);
+            $paddingLen = 4;
+            $horizontalLine = str_repeat("═", $length + $paddingLen);
+            $padding = str_repeat(" ", $paddingLen / 2);
 
             echo PHP_EOL;
-            echo "╔" . str_repeat("═", $length) . "╗\n";
-            echo "║  {$text}  ║\n";
-            echo "╚" . str_repeat("═", $length) . "╝\n";
+            echo "╔" . $horizontalLine . "╗" . PHP_EOL;
+            echo "║" . $padding . $text . $padding . "║" . PHP_EOL;
+            echo "╚" . $horizontalLine . "╝" . PHP_EOL;
             echo PHP_EOL . PHP_EOL;
 
             return;
