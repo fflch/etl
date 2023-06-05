@@ -70,7 +70,7 @@ class GraduacaoOps
 
     public function updateIniciacoes()
     {
-        Capsule::schema()->disableForeignKeyConstraints(); //gambi
+        Capsule::statement("SET FOREIGN_KEY_CHECKS = 0"); //gambi
 
         ExtractionUtils::updateTable(
             'full',
@@ -79,7 +79,7 @@ class GraduacaoOps
             5000
         );
 
-        Capsule::schema()->enableForeignKeyConstraints(); //gambi
+        Capsule::statement("SET FOREIGN_KEY_CHECKS = 1"); //gambi
 
         Capsule::update("UPDATE iniciacoes i
                         SET data_fim_projeto = NULL, data_inicio_projeto = NULL

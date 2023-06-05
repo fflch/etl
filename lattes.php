@@ -15,6 +15,7 @@ $schemas = [LattesSchemas::class];
 $ops = [LattesOps::class];
 
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
+
     TempManager::generateTempTables($preScripts);
 
     $tableLattesExists = Capsule::schema()->hasTable('lattes');
