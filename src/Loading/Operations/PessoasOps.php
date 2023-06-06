@@ -5,6 +5,7 @@ namespace Src\Loading\Operations;
 use Src\Transformation\ModelsReplicado\Transformer;
 use Src\Transformation\ModelsReplicado\Pessoas\PessoaReplicado;
 use Src\Loading\Models\Pessoas\Pessoa;
+use Src\Utils\ExtractionUtils;
 
 class PessoasOps
 {
@@ -15,13 +16,11 @@ class PessoasOps
 
     public function updatePessoas()
     {
-        $pagination = ['limit' => 5000, 'offset' => 0];
-
-        do {
-            $data = $this->pessoas->transformData($pagination);
-            Pessoa::insert($data);
-
-            $pagination['offset'] += $pagination['limit'];
-        } while (!empty($data));
+        ExtractionUtils::updateTable(
+            'full',
+            $this->pessoas, 
+            Pessoa::class, 
+            5000
+        );
     }
 }

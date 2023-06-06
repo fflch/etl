@@ -25,4 +25,4 @@ FROM (
     SELECT rc.codpes
     FROM R25CRECREDOC rc
     WHERE rc.codare BETWEEN 8000 AND 9000
-    ) u
+) u;

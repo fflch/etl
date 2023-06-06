@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class MinistranteCCExReplicado implements Mapper
 {
     public function mapping(Array $ministranteCCEx)
     {
-        $ministranteCCEx = Utils::emptiesToNull($ministranteCCEx);
-
         $properties = [
             'numero_usp' => $ministranteCCEx['numero_usp'],
             'codigo_oferecimento' => strtoupper(

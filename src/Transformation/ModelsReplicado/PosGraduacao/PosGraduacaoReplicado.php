@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class PosGraduacaoReplicado implements Mapper
 {
     public function mapping(Array $posGraduacao)
     {
-        $posGraduacao = Utils::emptiesToNull($posGraduacao);
-
         $properties = [
             'id_pos_graduacao' => strtoupper(md5($posGraduacao['numero_usp'] . 
                                                $posGraduacao['seq_programa'] .

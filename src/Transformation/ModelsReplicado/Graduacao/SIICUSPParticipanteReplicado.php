@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class SIICUSPParticipanteReplicado implements Mapper
 {
     public function mapping(Array $participante)
     {
-        $participante = Utils::emptiesToNull($participante);
-
         $properties = [
             'id_trabalho' => $participante['edicao_siicusp'] . "-" . $participante['codigo_trabalho'],
             'tipo_participante' => Deparas::tiposParticipantes[$participante['tipo_participante']] ?? $participante['tipo_participante'],

@@ -3,7 +3,7 @@
 namespace Src\Extraction;
 
 use PDO;
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 
 class ReplicadoDB
 {
@@ -23,7 +23,7 @@ class ReplicadoDB
                 self::$instance = new PDO($dsn, $user, $pass);
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (\Throwable $t) {
-                echo "Erro na conexão!\n";
+                echo "Erro na conexão! {$t}";
                 die();
             }
         }
@@ -41,15 +41,15 @@ class ReplicadoDB
             $stmt->execute();
         }
         catch (Throwable $t) {
-            echo "Erro na consulta!\n";
+            echo "Erro na consulta! {$t}";
             die();
         }
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
-            $result = Utils::utf8_converter($result);
-            $result = Utils::trim_recursivo($result);
+            $result = TransformationUtils::utf8_converter($result);
+            $result = TransformationUtils::trim_recursivo($result);
         }
 
         return $result;

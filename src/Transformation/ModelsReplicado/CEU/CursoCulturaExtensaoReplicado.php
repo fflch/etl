@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class CursoCulturaExtensaoReplicado implements Mapper
 {
     public function mapping(Array $cursoCEU)
     {
-        $cursoCEU = Utils::emptiesToNull($cursoCEU);
-
         $properties = [
             'codigo_curso_ceu' => $cursoCEU['codigo_curso_ceu'],
             'sigla_unidade' => $cursoCEU['sigla_unidade'],

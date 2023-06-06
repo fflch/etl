@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class InscricaoCCExReplicado implements Mapper
 {
     public function mapping(Array $inscricaoCCEx)
     {
-        $inscricaoCCEx = Utils::emptiesToNull($inscricaoCCEx);
-
         $properties = [
             'codigo_oferecimento' => strtoupper(md5(
                                         $inscricaoCCEx['codigo_curso_ceu'] . 

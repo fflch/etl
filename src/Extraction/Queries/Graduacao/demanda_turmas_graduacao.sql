@@ -24,3 +24,4 @@ FROM TURMAGR t
 	LEFT JOIN DISCIPGRCODIGO d ON t.coddis = d.coddis
 WHERE d.codclg = 8
 	AND YEAR(t.dtainitur) >= 2007
+ORDER BY t.coddis, t.verdis, t.codtur

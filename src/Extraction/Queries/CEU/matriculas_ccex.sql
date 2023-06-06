@@ -14,3 +14,4 @@ FROM dbo.MATRICULACURSOCEU m
 	INNER JOIN EDICAOCURSOOFECEU e ON (m.codcurceu = e.codcurceu AND m.codedicurceu = e.codedicurceu AND m.numseqofeedi = e.numseqofeedi)
 WHERE m.codund = 8
 	AND YEAR(e.dtainiofeedi) >= 2007
+ORDER BY m.codmtrcurceu

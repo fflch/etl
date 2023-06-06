@@ -2,15 +2,13 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Transformation\Utils\Utils;
+use Src\Utils\TransformationUtils;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class SupervisaoPosDocReplicado implements Mapper
 {
     public function mapping(Array $supervisaoPD)
     {
-        $supervisaoPD = Utils::emptiesToNull($supervisaoPD);
-
         $properties = [
             'id_projeto' => $supervisaoPD['ano_projeto'] . '-' . $supervisaoPD['codigo_projeto'],
             'sequencia_supervisao' => $supervisaoPD['sequencia_supervisao'],

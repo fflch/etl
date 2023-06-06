@@ -4,6 +4,7 @@ namespace Src\Transformation\ModelsReplicado;
 
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 use Src\Extraction\ReplicadoDB;
+use Src\Utils\TransformationUtils;
 
 class Transformer
 {
@@ -27,9 +28,7 @@ class Transformer
             $query = $this->formatQuery($query, $pagination, $replace);
         }
 
-        $data = ReplicadoDB::fetchData($query);
-
-        return $data;
+        return ReplicadoDB::fetchData($query);
     }
 
     private function formatQuery(string $query, ?array $pagination, ?array $replace)
@@ -38,7 +37,7 @@ class Transformer
             $query = str_replace($replace['subject'], $replace['replacement'], $query);
         }
         if(!is_null($pagination)) {
-            $query .= "\n ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
+            $query .= PHP_EOL . "ROWS LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
         }
 
         return $query;
@@ -47,6 +46,7 @@ class Transformer
     private function mapData($data)
     {
         foreach($data as &$n) {
+            $n = TransformationUtils::emptiesToNull($n);
             $n = $this->mapper->mapping($n);
         }
 

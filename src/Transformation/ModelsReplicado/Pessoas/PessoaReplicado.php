@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Pessoas;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class PessoaReplicado implements Mapper
 {
     public function mapping(Array $pessoa)
     {
-        $pessoa = Utils::emptiesToNull($pessoa);
-
         $properties = [
             'numero_usp' => $pessoa['numero_usp'],
             'nome' => $pessoa['nome'],

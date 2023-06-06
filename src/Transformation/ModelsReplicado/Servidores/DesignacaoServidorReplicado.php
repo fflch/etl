@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Servidores;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class DesignacaoServidorReplicado implements Mapper
 {
     public function mapping(Array $designacao)
     {
-        $designacao = Utils::emptiesToNull($designacao);
-
         $properties = [
             'id_vinculo' => strtoupper(
                 md5(

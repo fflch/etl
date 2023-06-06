@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class AfastEmpresaPosDocReplicado implements Mapper
 {
     public function mapping(Array $afastamento)
     {
-        $afastamento = Utils::emptiesToNull($afastamento);
-
         $properties = [
             'id_projeto' => $afastamento['ano_projeto'] . '-' . $afastamento['codigo_projeto'],
             'sequencia_periodo' => $afastamento['sequencia_periodo'],

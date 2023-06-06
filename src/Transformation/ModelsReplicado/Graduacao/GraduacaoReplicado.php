@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class GraduacaoReplicado implements Mapper
 {
     public function mapping(Array $graduacao)
     {
-        $graduacao = Utils::emptiesToNull($graduacao);
-
         $properties = [
             'id_graduacao' => strtoupper(md5($graduacao['numero_usp'] . $graduacao['sequencia_curso'])),
             'numero_usp' => (int)$graduacao['numero_usp'],

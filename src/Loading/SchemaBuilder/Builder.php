@@ -46,6 +46,12 @@ class Builder
                         ->onDelete($foreign['onDelete']);
                 }
             }
+
+            if(!empty($tableProps['index'])){
+                foreach($tableProps['index'] as $column) {
+                    $table->index($column);
+                }
+            }
         });
     }
 

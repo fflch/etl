@@ -3,6 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\CEU\CursoCulturaExtensaoReplicado;
 use Src\Loading\Models\CEU\CursoCulturaExtensao;
 use Src\Transformation\ModelsReplicado\CEU\OferecimentoCCExReplicado;
@@ -30,73 +31,61 @@ class CEUOps
 
     public function updateCursosCEU()
     {
-        $cursosCEU = $this->cursosCEU->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 12 placeholders for each row at the moment. Let's make room for 14.
-        foreach(array_chunk($cursosCEU, 4600) as $chunk) 
-        {
-            CursoCulturaExtensao::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->cursosCEU, 
+            CursoCulturaExtensao::class, 
+            4600
+        );
     }
 
     public function updateOferecimentosCursos()
     {
-        $oferecimentosCursos = $this->oferecimentosCursos->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 18 placeholders for each row at the moment. Let's make room for 20.
-        foreach(array_chunk($oferecimentosCursos, 3200) as $chunk) 
-        {
-            OferecimentoCCEx::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->oferecimentosCursos, 
+            OferecimentoCCEx::class, 
+            3200
+        );
     }
 
     public function updateInscricoesCursos()
     {
-        $inscricoesCursos = $this->inscricoesCursos->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 5 placeholders for each row at the moment. Let's make room for 7.
-        foreach(array_chunk($inscricoesCursos, 9300) as $chunk) 
-        {
-            InscricaoCCEx::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->inscricoesCursos, 
+            InscricaoCCEx::class, 
+            9000
+        );
     }
 
     public function updateMatriculasCursos()
     {
-        $matriculasCursos = $this->matriculasCursos->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($matriculasCursos, 5900) as $chunk) 
-        {
-            MatriculaCCEx::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->matriculasCursos, 
+            MatriculaCCEx::class, 
+            5900
+        );
     }
 
     public function updateMinistrantesCursos()
     {
-        $ministrantesCursos = $this->ministrantesCursos->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($ministrantesCursos, 5900) as $chunk) 
-        {
-            MinistranteCCEx::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->ministrantesCursos, 
+            MinistranteCCEx::class, 
+            5900
+        );
     }
 
     public function updateCoordenadoresCursos()
     {
-        $coordenadoresCursos = $this->coordenadoresCursos->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($coordenadoresCursos, 5900) as $chunk) 
-        {
-            CoordenadorCCEx::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->coordenadoresCursos, 
+            CoordenadorCCEx::class, 
+            5900
+        );
     }
 }

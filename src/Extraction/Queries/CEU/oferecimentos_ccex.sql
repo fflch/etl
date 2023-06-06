@@ -41,4 +41,3 @@ FROM CURSOCEU c
 	LEFT JOIN PROGRAMACURSOCEU p ON (e.codcurceu = p.codcurceu AND e.codpgmceu = p.codpgmceu)
 WHERE c.codund = 8
 	AND YEAR(e.dtainiofeedi) >= 2007
-ORDER BY p.totcgahorpgm DESC

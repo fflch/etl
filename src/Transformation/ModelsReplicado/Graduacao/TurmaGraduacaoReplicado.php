@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class TurmaGraduacaoReplicado implements Mapper
 {
     public function mapping(Array $turma)
     {
-        $turma = Utils::emptiesToNull($turma);
-
         $properties = [
             'codigo_disciplina' => $turma['codigo_disciplina'],
             'versao_disciplina' => $turma['versao_disciplina'],

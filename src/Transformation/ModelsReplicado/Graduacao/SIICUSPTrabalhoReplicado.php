@@ -2,16 +2,14 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Transformation\Utils\Utils;
-use Src\Transformation\Utils\Deparas;
+use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
 
 class SIICUSPTrabalhoReplicado implements Mapper
 {
     public function mapping(Array $trabalho)
     {
-        $trabalho = Utils::emptiesToNull($trabalho);
-
         $properties = [
             'id_trabalho' => $trabalho['edicao_siicusp'] . "-" . $trabalho['codigo_trabalho'],
             'titulo_trabalho' => $trabalho['titulo_trabalho'],

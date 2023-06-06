@@ -4,6 +4,7 @@ namespace Src\Loading\Operations;
 
 use Src\Transformation\ModelsReplicado\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\PosDoc\ProjetoPosDocReplicado;
 use Src\Loading\Models\PosDoc\ProjetoPosDoc;
 use Src\Transformation\ModelsReplicado\PosDoc\PeriodoPosDocReplicado;
@@ -28,14 +29,12 @@ class PosDocOps
 
     public function updateProjetosPosDoc()
     {
-        $projetosPD = $this->projetosPosDoc->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 10 placeholders for each row at the moment. Let's make room for 13.
-        foreach(array_chunk($projetosPD, 5400) as $chunk) 
-        {
-            ProjetoPosDoc::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->projetosPosDoc, 
+            ProjetoPosDoc::class, 
+            5400
+        );
 
         Capsule::update("UPDATE projetos_posdoc pp
                         SET data_fim_projeto = NULL, data_inicio_projeto = NULL
@@ -44,35 +43,29 @@ class PosDocOps
 
     public function updatePeriodosPosDoc()
     {
-        $periodosPD = $this->periodosPosDoc->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 9 placeholders for each row at the moment. Let's make room for 11.
-        foreach(array_chunk($periodosPD, 5900) as $chunk) 
-        {
-            //gambi para períodos idênticos
-            PeriodoPosDoc::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->periodosPosDoc, 
+            PeriodoPosDoc::class, 
+            5900
+        );
     }
 
     public function updateFontesRecursoPosDoc()
     {
-        $bolsasPD = $this->bolsasPosDoc->transformData();
-        $afastEmpresa = $this->afastEmpresasPosDoc->transformData();
+        ExtractionUtils::updateTable(
+            'full',
+            $this->bolsasPosDoc, 
+            BolsaPosDoc::class, 
+            6500
+        );
 
-        // Insert placeholders limit is 65535.
-        // We need 8 placeholders for each row at the moment. Let's make room for 10.
-        foreach(array_chunk($bolsasPD, 6500) as $chunk) 
-        {
-            BolsaPosDoc::insert($chunk);
-        }
-
-        // Insert placeholders limit is 65535.
-        // We need 7 placeholders for each row at the moment. Let's make room for 9.
-        foreach(array_chunk($afastEmpresa, 7200) as $chunk) 
-        {
-            AfastEmpresaPosDoc::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->afastEmpresasPosDoc, 
+            AfastEmpresaPosDoc::class, 
+            7200
+        );
 
         Capsule::delete("DELETE bp, ap
                         FROM projetos_posdoc pp
@@ -93,13 +86,11 @@ class PosDocOps
 
     public function updateSupervisoesPosDoc()
     {
-        $supervisoesPD = $this->supervisoesPosDoc->transformData();
-
-        // Insert placeholders limit is 65535.
-        // We need 8 placeholders for each row at the moment. Let's make room for 10.
-        foreach(array_chunk($supervisoesPD, 6500) as $chunk) 
-        {
-            SupervisaoPosDoc::insert($chunk);
-        }
+        ExtractionUtils::updateTable(
+            'full',
+            $this->supervisoesPosDoc, 
+            SupervisaoPosDoc::class, 
+            6500
+        );
     }
 }

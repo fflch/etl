@@ -26,3 +26,4 @@ FROM TURMAGR t
 			AND t.codtur = c.turma
 WHERE d.codclg = 8
 	AND YEAR(t.dtainitur) >= 2007
+ORDER BY t.coddis, t.verdis, t.codtur
