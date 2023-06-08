@@ -13,14 +13,16 @@ class DatabaseTasks
         $this->dbManager = new DatabaseManager();
     }
 
-    public function wipeAndOrRenewTables(array $wipeSchemas, array $renewOps)
+    public function wipeAndOrRenewTables(?array $wipeSchemas, array $renewOps)
     {
         try {
             Capsule::transaction(function() use ($wipeSchemas, $renewOps) {
-                CommonUtils::timer(function () use ($wipeSchemas) {
-                    $this->dbManager->wipeAllTables($wipeSchemas);
-                });
-                echo PHP_EOL;
+                if (!empty($wipeSchemas)) {
+                    CommonUtils::timer(function () use ($wipeSchemas) {
+                        $this->dbManager->wipeAllTables($wipeSchemas);
+                    });
+                    echo PHP_EOL;
+                }
 
                 CommonUtils::timer(function () use ($renewOps) {
                     $this->dbManager->updateAllTables($renewOps);

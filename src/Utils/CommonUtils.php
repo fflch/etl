@@ -22,7 +22,7 @@ class CommonUtils
         flush();
     }
 
-    public static function timer(callable $callback, string $final = null)
+    public static function timer(callable $callback, bool $isLastTimer = False)
     {
         $start = microtime(true);
         $callback();
@@ -33,7 +33,7 @@ class CommonUtils
         $seconds = $timeDiff % 60;
         $isodate = sprintf("%02dm%02ds", $minutes, $seconds);
         
-        if ($final === 'final') {
+        if ($isLastTimer) {
             $text = "Total <{$_SERVER['PHP_SELF']}> runtime: {$isodate}";
             $length = mb_strlen($text);
             $paddingLen = 4;

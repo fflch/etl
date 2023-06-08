@@ -61,7 +61,7 @@ class DatabaseManager
             $this->ops->wipeTables($class);
         };
         
-        $message = "Cleansing old schemas (if needed):";
+        $message = "Cleansing schemas:";
 
         $this->processDBOperations($classes, $operation, $message);
     }

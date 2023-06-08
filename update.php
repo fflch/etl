@@ -5,6 +5,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 use Src\Extraction\TempTables\TempManager;
 use Src\Loading\DbHandle\DatabaseTasks;
 use Src\Utils\CommonUtils;
+use Src\Utils\LoadingUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -19,7 +20,8 @@ use Src\Loading\Operations\PosDocOps;
 use Src\Loading\Operations\ServidoresOps;
 use Src\Loading\Operations\CredenciamentosPGOps;
 use Src\Loading\Operations\CEUOps;
-use Illuminate\Database\Capsule\Manager as Capsule;
+
+pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
 $preScripts = [
     'create_geral_temp', // pessoas
@@ -56,14 +58,17 @@ $ops = [
     CEUOps::class,
 ];
 
-CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
-    
-    pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
+CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
+
+    // 1. Build tables if needed or rebuild if requested
+    LoadingUtils::conditionalRebuild($argv, 'pessoas', $schemas);
+
+    // 2. Generate necessary temp tables
     TempManager::generateTempTables($preScripts);
 
+    // 3. Wipe old records and write new ones
     $tasks = new DatabaseTasks();
-    if (in_array("--rebuild", $argv)) $tasks->rebuild($schemas);
     $tasks->wipeAndOrRenewTables($schemas, $ops);
 
-}, 'final');
+}, True);
