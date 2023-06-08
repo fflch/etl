@@ -29,7 +29,9 @@ class DatabaseTasks
             });
         }
         catch(\Exception $e) {
-            echo "Caught Exception: " . $e;
+            echo "\n\n" . "Caught Exception: " . $e . "\n\n";
+            echo "Exiting the script...\n\n";
+            exit();
         }
     }
 

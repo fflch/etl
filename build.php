@@ -26,6 +26,8 @@ $schemas = [
 
 CommonUtils::timer(function () use ($schemas) {
 
+    pcntl_alarm(15 * 60); // Kills script if it's taking too long.
+
     $tasks = new DatabaseTasks();
     $tasks->rebuild($schemas);
 

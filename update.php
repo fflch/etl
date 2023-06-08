@@ -57,6 +57,8 @@ $ops = [
 ];
 
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
+    
+    pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
     TempManager::generateTempTables($preScripts);
 

@@ -16,6 +16,8 @@ $ops = [LattesOps::class];
 
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
 
+    pcntl_alarm(30 * 60); // Kills script if it's taking too long.
+
     TempManager::generateTempTables($preScripts);
 
     $tableLattesExists = Capsule::schema()->hasTable('lattes');
