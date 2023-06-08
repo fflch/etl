@@ -153,7 +153,7 @@ class GraduacaoOps
     public function updateTurmasGraduacao()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->turmasGraduacao, 
             TurmaGraduacao::class, 
             2500

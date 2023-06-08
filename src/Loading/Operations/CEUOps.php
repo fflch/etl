@@ -52,7 +52,7 @@ class CEUOps
     public function updateInscricoesCursos()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->inscricoesCursos, 
             InscricaoCCEx::class, 
             9000
@@ -62,7 +62,7 @@ class CEUOps
     public function updateMatriculasCursos()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->matriculasCursos, 
             MatriculaCCEx::class, 
             5900
