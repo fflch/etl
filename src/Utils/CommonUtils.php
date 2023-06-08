@@ -35,20 +35,29 @@ class CommonUtils
         
         if ($isLastTimer) {
             $text = "Total <{$_SERVER['PHP_SELF']}> runtime: {$isodate}";
-            $length = mb_strlen($text);
-            $paddingLen = 4;
-            $horizontalLine = str_repeat("═", $length + $paddingLen);
-            $padding = str_repeat(" ", $paddingLen / 2);
-
-            echo PHP_EOL;
-            echo "╔" . $horizontalLine . "╗" . PHP_EOL;
-            echo "║" . $padding . $text . $padding . "║" . PHP_EOL;
-            echo "╚" . $horizontalLine . "╝" . PHP_EOL;
-            echo PHP_EOL . PHP_EOL;
+            self::prettyPrint([$text]);
 
             return;
         };
 
         echo str_repeat(" ", 5) . "Runtime: {$isodate}";
+    }
+
+    public static function prettyPrint(array $texts)
+    {
+        $mbStrlens = array_map('mb_strlen', $texts);
+        $length = max($mbStrlens);
+
+        $paddingLen = 4;
+        $horizontalLine = str_repeat("═", $length + $paddingLen);
+        $padding = str_repeat(" ", $paddingLen / 2);
+
+        echo PHP_EOL . "╔" . $horizontalLine . "╗" . PHP_EOL;
+
+        foreach($texts as $text) {
+            echo "║" . $padding . str_pad($text, $length) . $padding . "║" . PHP_EOL;
+        }
+
+        echo "╚" . $horizontalLine . "╝" . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 }
