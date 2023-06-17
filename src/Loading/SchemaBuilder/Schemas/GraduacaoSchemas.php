@@ -551,7 +551,7 @@ class GraduacaoSchemas
                 "type" => "float",
                 "nullable" => true
             ],
-            "tracamentos_pct" => [
+            "trancamentos_pct" => [
                 "type" => "float",
                 "nullable" => true
             ],

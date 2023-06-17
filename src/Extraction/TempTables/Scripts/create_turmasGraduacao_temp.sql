@@ -24,7 +24,7 @@ SELECT
 	,f.codtur AS 'turma'
 	,COUNT(*) AS 'numero_alunos_cursou'
 	,(COUNT(CASE WHEN f.rstfim = 'A' THEN 1 END) * 100 / COUNT(*))  AS 'aprovados_pct'
-	,(COUNT(CASE WHEN f.rstfim = 'T' THEN 1 END) * 100 / COUNT(*))  AS 'tracamentos_pct'
+	,(COUNT(CASE WHEN f.rstfim = 'T' THEN 1 END) * 100 / COUNT(*))  AS 'trancamentos_pct'
 	,(COUNT(CASE WHEN f.rstfim = 'RN' THEN 1 END) * 100 / COUNT(*)) AS 'reprov_nota_pct'
 	,(COUNT(CASE WHEN f.rstfim = 'RF' THEN 1 END) * 100 / COUNT(*))  AS 'reprov_freq_pct'
 	,(COUNT(CASE WHEN f.rstfim = 'RA' THEN 1 END) * 100 / COUNT(*))  AS 'reprov_ambos_pct'
@@ -53,7 +53,7 @@ SELECT
 	,m.turma
 	,r.numero_alunos_cursou
 	,r.aprovados_pct
-	,r.tracamentos_pct
+	,r.trancamentos_pct
 	,r.reprov_nota_pct
 	,r.reprov_freq_pct
 	,r.reprov_ambos_pct
@@ -81,7 +81,7 @@ SELECT
 	,t.cgahorpra AS 'carga_horaria_pratica'
 	,c.numero_alunos_cursou
 	,c.aprovados_pct
-	,c.tracamentos_pct
+	,c.trancamentos_pct
 	,c.reprov_nota_pct
 	,c.reprov_freq_pct
 	,c.reprov_ambos_pct

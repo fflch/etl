@@ -23,7 +23,7 @@ class TurmaGraduacaoReplicado implements Mapper
             'carga_horaria_pratica' => $turma['carga_horaria_pratica'],
             'numero_alunos_cursou' => $turma['numero_alunos_cursou'],
             'aprovados_pct' => $turma['aprovados_pct'],
-            'tracamentos_pct' => $turma['tracamentos_pct'],
+            'trancamentos_pct' => $turma['trancamentos_pct'],
             'reprov_nota_pct' => $turma['reprov_nota_pct'],
             'reprov_freq_pct' => $turma['reprov_freq_pct'],
             'reprov_ambos_pct' => $turma['reprov_ambos_pct'],
