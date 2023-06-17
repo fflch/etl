@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Servidores\DesignacaoServidorReplicado;
 use Src\Loading\Models\Servidores\DesignacaoServidor;

@@ -3,7 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
 use Src\Utils\TransformationUtils;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 
 class SupervisaoPosDocReplicado implements Mapper
 {

@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Graduacao\GraduacaoReplicado;

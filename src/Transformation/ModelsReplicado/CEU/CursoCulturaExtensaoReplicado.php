@@ -4,7 +4,7 @@ namespace Src\Transformation\ModelsReplicado\CEU;
 
 use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 
 class CursoCulturaExtensaoReplicado implements Mapper
 {

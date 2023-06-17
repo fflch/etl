@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado;
+namespace Src\Transformation;
 
 use Src\Transformation\Interfaces\Mapper;
 use Src\Extraction\ReplicadoDB;
@@ -22,7 +22,7 @@ class Transformer
 
     private function getData($pagination, $replace)
     {
-        $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
+        $query = file_get_contents(__DIR__ . '/../Extraction/Queries/' . $this->queryPath . '.sql');
 
         if(isset($pagination) || isset($replace)) {
             $query = $this->formatQuery($query, $pagination, $replace);

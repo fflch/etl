@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\CEU\CursoCulturaExtensaoReplicado;
 use Src\Loading\Models\CEU\CursoCulturaExtensao;

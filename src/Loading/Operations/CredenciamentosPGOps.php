@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\CredenciamentosPG\CredenciamentoPGReplicado;
 use Src\Loading\Models\CredenciamentosPG\CredenciamentoPG;
