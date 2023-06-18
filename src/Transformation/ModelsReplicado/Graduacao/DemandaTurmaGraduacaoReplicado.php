@@ -10,9 +10,12 @@ class DemandaTurmaGraduacaoReplicado implements Mapper
     public function mapping(Array $demandaTurma)
     {
         $properties = [
-            'codigo_disciplina' => $demandaTurma['codigo_disciplina'],
-            'versao_disciplina' => $demandaTurma['versao_disciplina'],
-            'codigo_turma' => $demandaTurma['codigo_turma'],
+            'id_turma' => strtoupper(
+                md5(
+                    $demandaTurma['codigo_disciplina'] . 
+                    $demandaTurma['versao_disciplina'] . 
+                    $demandaTurma['codigo_turma']
+                )),
             'vagas_total' => $demandaTurma['vagas_total'],
             'inscritos_total' => $demandaTurma['inscritos_total'],
             'matriculados_total' => $demandaTurma['matriculados_total'],

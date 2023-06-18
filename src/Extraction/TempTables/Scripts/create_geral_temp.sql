@@ -9,6 +9,13 @@ FROM (
     WHERE hp.codcur BETWEEN 8000 AND 9000
         AND YEAR(p.dtaing) >= 2007
     UNION ALL
+    -- ministrantes_graduacao
+    SELECT m.codpes
+    FROM MINISTRANTE m
+			LEFT JOIN DISCIPGRCODIGO d ON m.coddis = d.coddis
+		WHERE d.codclg = 8
+			AND YEAR(m.dtainiaul) >= 2007
+    UNION ALL
     -- alunos_posgraduacao
     SELECT a.codpes
     FROM AGPROGRAMA a
