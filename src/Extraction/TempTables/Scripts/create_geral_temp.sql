@@ -80,6 +80,9 @@ SELECT
     ,p3.nompas AS 'pais_nascimento'
     ,c.codraccor AS 'raca'
     ,p.sexpes AS 'sexo'
+    ,o.dscortsex AS 'orientacao_sexual'
+    ,i.idegen AS 'identidade_genero'
+    ,p4.sitvcipes AS 'situacao_vacinal_covid'
     ,p.numcpf AS 'cpf'
 INTO #geral
 FROM PESSOA p
@@ -88,6 +91,9 @@ FROM PESSOA p
     LEFT JOIN PAIS p3 ON c.codpasnas = p3.codpas
     LEFT JOIN LOCALIDADE l ON c.codlocnas = l.codloc
     LEFT JOIN EMAILPESSOA e ON p.codpes = e.codpes AND e.stamtr = 'S'
+    LEFT JOIN ORIENTACAOSEXUAL o ON c.codortsex = o.codortsex
+    LEFT JOIN IDENTIDADEGENERO i ON c.codidegen = i.codidegen
+    LEFT JOIN PESSOAINFOVACINACOVID p4 ON p4.codpes = p.codpes
 WHERE p.codpes IN (SELECT numero_usp FROM #nusps);
 
 -- Drop all unnecessary temp tables

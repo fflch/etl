@@ -20,7 +20,7 @@ class PessoasOps
             'full',
             $this->pessoas, 
             Pessoa::class, 
-            5000
+            4200
         );
     }
 }

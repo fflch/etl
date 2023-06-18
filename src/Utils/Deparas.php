@@ -203,7 +203,18 @@ class Deparas
         'PCA' => 'PC Aceita',
         'PCR' => 'PC Reprovada',
         'CAN' => 'Cancelamento',
-        'INV' => 'Invalidada', // quando o curso for ministrado sem aprovação da PRCEU, devendo gerar certificado para os alunos mesmo assim; 
+        'INV' => 'Invalidada', // Quando o curso for ministrado sem aprovação da PRCEU, devendo gerar certificado para os alunos mesmo assim; 
         'PCD' => 'PC devolvida para ajustes',
+    ];
+
+    const situacoesVacinaCovid = [
+        // Indica a última situação de vacina COVID da pessoa: 
+        'U' => 'Dose única',
+        '1' => 'Incompleto (1/2)',
+        '2' => 'Completo (2/2)',
+        'R' => 'Reforço',
+        'N' => 'Não Vacinado (Sem justificativa/Convicção pessoal)',
+        'M' => 'Não Vacinado (Restrição médica)',
+        'I' => 'Invalidado', // (A pessoa informou os dados da vacinação, mas houve alguma rejeição por parte do validador)
     ];
 }

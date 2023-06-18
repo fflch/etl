@@ -58,6 +58,21 @@ class PessoasSchemas
                 "size" => 1,
                 "nullable" => true
             ],
+            "orientacao_sexual" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "identidade_genero" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "situacao_vacinal_covid" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
             "cpf" => [
                 "type" => "bigInteger",
                 "nullable" => true
