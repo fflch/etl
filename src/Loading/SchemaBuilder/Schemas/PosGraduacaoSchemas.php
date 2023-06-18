@@ -48,7 +48,7 @@ class PosGraduacaoSchemas
             ],
             "tipo_ultima_ocorrencia" => [
                 "type" => "string",
-                "size" => 32,
+                "size" => 48,
                 "nullable" => true
             ],
             "data_ultima_ocorrencia" => [

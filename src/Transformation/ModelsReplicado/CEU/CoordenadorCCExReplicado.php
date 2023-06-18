@@ -2,7 +2,7 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
 class CoordenadorCCExReplicado implements Mapper
@@ -19,7 +19,8 @@ class CoordenadorCCExReplicado implements Mapper
                                         )
                                     ),
             'funcao' => $coordenadorCCEx['funcao'],
-            'forma_exercicio' => $coordenadorCCEx['forma_exercicio'], //ver
+            'forma_exercicio' => Deparas::formasExercicioCEU[$coordenadorCCEx['forma_exercicio']]
+                                 ?? $coordenadorCCEx['forma_exercicio'],
         ];
 
         return $properties;

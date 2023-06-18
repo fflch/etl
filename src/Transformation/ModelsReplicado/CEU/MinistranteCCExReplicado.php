@@ -2,8 +2,8 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class MinistranteCCExReplicado implements Mapper
 {
@@ -20,8 +20,9 @@ class MinistranteCCExReplicado implements Mapper
                                     ),
             'turma' => $ministranteCCEx['turma'],
             'funcao' => $ministranteCCEx['funcao'],
-            'forma_exercicio' => $ministranteCCEx['forma_exercicio'],
-            'carga_horaria_minutos' => $ministranteCCEx['carga_horaria_minutos'], //ver
+            'forma_exercicio' => Deparas::formasExercicioCEU[$ministranteCCEx['forma_exercicio']]
+                                 ?? $ministranteCCEx['forma_exercicio'],
+            'carga_horaria_horas' => $ministranteCCEx['carga_horaria_horas'],
             'data_inicio_turma' => $ministranteCCEx['data_inicio_turma'],
             'data_fim_turma' => $ministranteCCEx['data_fim_turma'],
         ];

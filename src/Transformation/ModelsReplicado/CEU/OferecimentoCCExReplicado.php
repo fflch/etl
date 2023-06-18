@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
@@ -17,7 +16,8 @@ class OferecimentoCCExReplicado implements Mapper
                                         $oferecimentoCCEx['sequencia_oferecimento']
                                     )),
             'codigo_curso_ceu' => $oferecimentoCCEx['codigo_curso_ceu'],
-            'situacao_oferecimento' => $oferecimentoCCEx['situacao_oferecimento'],
+            'situacao_oferecimento' => Deparas::situacaoEdicaoCCEx[$oferecimentoCCEx['situacao_oferecimento']]
+                                       ?? $oferecimentoCCEx['situacao_oferecimento'],
             'data_inicio_oferecimento' => $oferecimentoCCEx['data_inicio_oferecimento'],
             'data_fim_oferecimento' => $oferecimentoCCEx['data_fim_oferecimento'],
             'total_carga_horaria' => ($oferecimentoCCEx['total_carga_horaria'] / 60),

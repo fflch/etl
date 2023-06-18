@@ -6,7 +6,7 @@ SELECT
 	,m.codofeatvceu AS 'turma'
 	,a.dscatc AS 'funcao'
 	,m.fmtexeatv AS 'forma_exercicio'
-	,m.cgahormis AS 'carga_horaria_minutos'
+	,(m.cgahormis / 60) AS 'carga_horaria_horas'
 	,m.dtainimisatv AS 'data_inicio_turma'
 	,m.dtafimmisatv AS 'data_fim_turma'
 FROM MINISTRANTECEU m

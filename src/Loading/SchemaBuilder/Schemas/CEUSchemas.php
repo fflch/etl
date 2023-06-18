@@ -175,7 +175,7 @@ class CEUSchemas
             ],
             "situacao_inscricao" => [
                 "type" => "string",
-                "size" => 32,
+                "size" => 64,
                 "nullable" => true //corrigir
             ],
             "origem_inscricao" => [
@@ -279,11 +279,11 @@ class CEUSchemas
             ],
             "forma_exercicio" => [
                 "type" => "string",
-                "size" => 16,
+                "size" => 32,
                 "nullable" => true
             ],
-            "carga_horaria_minutos" => [
-                "type" => "integer",
+            "carga_horaria_horas" => [
+                "type" => "float",
                 "nullable" => true
             ],
             "data_inicio_turma" => [
@@ -334,7 +334,7 @@ class CEUSchemas
             ],
             "forma_exercicio" => [
                 "type" => "string",
-                "size" => 16,
+                "size" => 32,
                 "nullable" => true
             ],
         ],

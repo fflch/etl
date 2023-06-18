@@ -64,12 +64,6 @@ class Deparas
         'Transferido' => 'Cancelado'
     ];
 
-    const boolSIICUSP = [
-        'S' => true,
-        'N' => false,
-        null => false
-    ];
-
     const tiposParticipantes = [
         'A' => 'Autor',
         'O' => 'Orientador',
@@ -133,6 +127,13 @@ class Deparas
         'A' => 'Quinzenal',
     ];
 
+    const periodicidadeDisciplina = [
+        // Identifica o tipo de disciplina como: 
+        'A' => 'Anual',
+        'S' => 'Semestral',
+        'Q' => 'Quadrimestral',
+    ];
+
     const situacoesDisciplina = [
         'PE' => 'Pendente',  // "Pendente",
         'AU' => 'Pendente',  // "Aguardando análise da própria UNIDADE",
@@ -140,5 +141,69 @@ class Deparas
         'AT' => 'Ativa',  // "Ativada",
         'AP' => 'Aprovada',  // "Aprovada",
         'DT' => 'Desativada',  // "Desativada" 
+    ];
+
+    const formasExercicioCEU = [
+        /* Indica se o coordenador ou vice-coordenador exerce as funções de 
+           coordenação simultâneo ao regime CERT (recebe remuneração paralela) 
+           ou como atividade de Extensão (não remunerada) (S/E). */
+        'S' => 'Simultâneo ao regime CERT',
+        'E' => 'Atividade de extensão'
+    ];
+
+    const situacoesInscricaoCCEx = [
+        // Situação da inscrição do candidato: 
+        'A' => 'Aceito',
+        'R' => 'Recusado',
+        'I' => 'Invalidado por falta de documento comprobatório',
+        'S' => 'Sorteado',
+        'N' => 'Não manifestou interesse', 
+        'C' => 'Confirmada inscrição pelo candidato',
+        'V' => 'inscrição em vagas remanescentes',
+    ];
+
+    const tiposDesignacaoServidor = [
+        // Indica a hierarquia de subordinação da função de estrutura no setor: 
+        'C' => 'Chefe',
+        'D' => 'Designado', //(assessores, ATDI, ATDII, ATDIV), 
+        'H' => 'Horizontal', // (secretárias..). 
+    ];
+
+    const origensInscricaoCCex = [
+        // Indica a origem da inscrição: 
+        'P' => 'Presencial', // Efetuada na secretaria
+        'C' => 'Carga', // Via planilha
+        'W' => 'Web'
+    ];
+
+    const statusMatriculaCCEx = [
+        // Indica se a matrícula do aluno no curso está em 
+        'AND' => 'Andamento',
+        'ENC' => 'Encerrada', 
+    ];
+
+    const resultadoMatriculaCCEx = [
+        // Conceito obtido como resultado final: 
+        'APR' => 'Aprovado',
+        'REP' => 'Reprovado',
+        'DES' => 'Desistente',
+        'TRF' => 'Transferido',
+        'PEN' => 'Pendente',
+        'CAN' => 'Curso Cancelado',
+        'OUV' => 'Ouvinte',
+    ];
+
+    const situacaoEdicaoCCEx = [
+        // Situação em que a edição do curso CEU se encontra: 
+        'SOL' => 'Solicitada',
+        'APR' => 'Aprovada',
+        'HMG' => 'Homologada',
+        'REP' => 'Reprovada',
+        'PCE' => 'PC Entregue',
+        'PCA' => 'PC Aceita',
+        'PCR' => 'PC Reprovada',
+        'CAN' => 'Cancelamento',
+        'INV' => 'Invalidada', // quando o curso for ministrado sem aprovação da PRCEU, devendo gerar certificado para os alunos mesmo assim; 
+        'PCD' => 'PC devolvida para ajustes',
     ];
 }

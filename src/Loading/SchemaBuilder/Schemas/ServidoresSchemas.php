@@ -134,7 +134,7 @@ class ServidoresSchemas
             ],
             "tipo_designacao" => [
                 "type" => "string",
-                "size" => 128,
+                "size" => 32,
                 "nullable" => true
             ],
         ],

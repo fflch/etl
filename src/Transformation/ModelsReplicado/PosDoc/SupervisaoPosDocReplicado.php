@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\PosDoc;
 
-use Src\Utils\TransformationUtils;
 use Src\Transformation\Interfaces\Mapper;
 
 class SupervisaoPosDocReplicado implements Mapper

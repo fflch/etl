@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\Lattes;
 
-use Src\Utils\TransformationUtils;
 use Src\Transformation\Interfaces\Mapper;
 use Uspdev\Replicado\Uteis;
 

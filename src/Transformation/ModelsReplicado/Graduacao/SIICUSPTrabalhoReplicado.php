@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
@@ -22,9 +21,9 @@ class SIICUSPTrabalhoReplicado implements Mapper
                                                         $trabalho['apresentado_siicusp'], 
                                                         $trabalho['tipo_participante_apresentou']
                                     ),
-            'prox_etapa_recomendado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_recomendado']] ?? false,
-            'prox_etapa_apresentado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_apresentado']] ?? false,
-            'mencao_honrosa' => Deparas::boolSIICUSP[$trabalho['mencao_honrosa']] ?? false,
+            'prox_etapa_recomendado' => $trabalho['prox_etapa_recomendado'],
+            'prox_etapa_apresentado' => $trabalho['prox_etapa_apresentado'],
+            'mencao_honrosa' => $trabalho['mencao_honrosa'],
             'codigo_dpto_orientador' => $trabalho['codigo_dpto_orientador'],
             'nome_dpto_orientador' => $trabalho['nome_dpto_orientador'],
         ];

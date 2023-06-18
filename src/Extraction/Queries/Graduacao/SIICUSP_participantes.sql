@@ -13,7 +13,7 @@ SELECT
 			THEN 'S'
 		WHEN spt.staapttrb = 'S'
 			THEN 'S'
-		ELSE NULL
+		ELSE 'N'
 		END AS 'participante_apresentador'
 FROM dbo.SIIUPARTICIPTRABALHO spt
 	INNER JOIN SIIUTRABALHO st ON (spt.edisii = st.edisii AND spt.codtrbsii = st.codtrbsii)

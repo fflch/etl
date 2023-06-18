@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
 use Src\Transformation\Interfaces\Mapper;
 
 class QuestionarioRespostaReplicado implements Mapper

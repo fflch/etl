@@ -2,7 +2,7 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
+use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
 class MatriculaCCExReplicado implements Mapper
@@ -18,11 +18,13 @@ class MatriculaCCExReplicado implements Mapper
                                         $matriculaCCEx['sequencia_oferecimento']
                                     )),
             'data_matricula' => $matriculaCCEx['data_matricula'],
-            'status_matricula' => $matriculaCCEx['status_matricula'],
+            'status_matricula' => Deparas::statusMatriculaCCEx[$matriculaCCEx['status_matricula']]
+                                  ?? $matriculaCCEx['status_matricula'],
             'data_inicio_curso' => $matriculaCCEx['data_inicio_curso'],
             'data_fim_curso' => $matriculaCCEx['data_fim_curso'],
             'frequencia_aluno' => $matriculaCCEx['frequencia_aluno'],
-            'conceito_final_aluno' => $matriculaCCEx['conceito_final_aluno'],
+            'conceito_final_aluno' => Deparas::resultadoMatriculaCCEx[$matriculaCCEx['conceito_final_aluno']]
+                                      ?? $matriculaCCEx['conceito_final_aluno'],
         ];
 
         return $properties;

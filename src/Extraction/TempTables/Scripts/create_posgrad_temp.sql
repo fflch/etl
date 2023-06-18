@@ -182,7 +182,7 @@ SELECT
 	,p.nome_programa
 	,p.data_selecao
 	,p.primeira_matricula
-	,u.tipo_ultima_ocorrencia
+	,t.dschstpgm AS 'tipo_ultima_ocorrencia'
 	,u.data_ultima_ocorrencia
 	,p.nivel_programa
 	,p.data_deposito_trabalho
@@ -192,7 +192,9 @@ FROM #primeira_matricula p
 	LEFT JOIN #ultima_ocorrencia u
 		ON p.numero_usp = u.numero_usp
 			AND p.seq_programa = u.seq_programa
-			AND p.codigo_area = u.codigo_area;
+			AND p.codigo_area = u.codigo_area
+	LEFT JOIN TABHISTPROG t
+		ON u.tipo_ultima_ocorrencia = t.tiphstpgm;
 
 
 -- Drop all unnecessary temp tables

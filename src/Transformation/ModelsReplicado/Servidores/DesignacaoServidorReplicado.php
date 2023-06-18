@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\Servidores;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
@@ -25,7 +24,8 @@ class DesignacaoServidorReplicado implements Mapper
             'codigo_setor_designacao' => $designacao['codigo_setor_designacao'],
             'nome_setor_designacao' => $designacao['nome_setor_designacao'],
             'nome_funcao' => $designacao['nome_funcao'],
-            'tipo_designacao' => $designacao['tipo_designacao'],
+            'tipo_designacao' => Deparas::tiposDesignacaoServidor[$designacao['tipo_designacao']]
+                                 ?? $designacao['tipo_designacao'],
         ];
 
         return $properties;

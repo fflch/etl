@@ -2,7 +2,6 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
@@ -19,7 +18,7 @@ class SIICUSPParticipanteReplicado implements Mapper
             'sigla_unidade' => $participante['sigla_unidade'],
             'codigo_departamento' => $participante['codigo_departamento'],
             'nome_departamento' => $participante['nome_departamento'],
-            'participante_apresentador' => Deparas::boolSIICUSP[$participante['participante_apresentador']] ?? false
+            'participante_apresentador' => $participante['participante_apresentador']
         ];
 
         return $properties;

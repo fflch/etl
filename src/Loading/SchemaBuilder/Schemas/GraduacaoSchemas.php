@@ -337,16 +337,16 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "prox_etapa_recomendado" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "prox_etapa_apresentado" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "mencao_honrosa" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "codigo_dpto_orientador" => [
                 "type" => "integer",
@@ -409,7 +409,8 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "participante_apresentador" => [
-                "type" => "boolean"
+                "type" => "char",
+                "size" => 1
             ]
         ],
 
@@ -443,12 +444,9 @@ class GraduacaoSchemas
                 "type" => "string",
                 "size" => 256
             ],
-            "credito_aula" => [
-                "type" => "tinyInteger",
-                "nullable" => true
-            ],
-            "credito_trabalho" => [
-                "type" => "tinyInteger",
+            "situacao_disciplina" => [
+                "type" => "string",
+                "size" => 32,
                 "nullable" => true
             ],
             "data_ativacao_disciplina" => [
@@ -459,13 +457,21 @@ class GraduacaoSchemas
                 "type" => "date",
                 "nullable" => true
             ],
+            "credito_aula" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "credito_trabalho" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
             "duracao_disciplina_semanas" => [
                 "type" => "tinyInteger",
                 "nullable" => true
             ],
             "periodicidade_disciplina" => [
-                "type" => "char",
-                "size" => 1,
+                "type" => "string",
+                "size" => 32,
                 "nullable" => true
             ],
             "carga_horaria_estagio" => [
@@ -480,11 +486,6 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "situacao_disciplina" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ]
         ],
 
         "primary" => [
