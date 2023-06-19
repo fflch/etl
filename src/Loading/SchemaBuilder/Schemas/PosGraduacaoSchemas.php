@@ -9,7 +9,7 @@ class PosGraduacaoSchemas
         "tableName" => "posgraduacoes",
 
         "columns" => [
-            "id_pos_graduacao" => [
+            "id_posgraduacao" => [
                 "type" => "char",
                 "size" => 32
             ],
@@ -18,6 +18,10 @@ class PosGraduacaoSchemas
             ],
             "seq_programa" => [
                 "type" => "tinyInteger"
+            ],
+            "tipo_vinculo" => [
+                "type" => "string",
+                "size" => 16
             ],
             "nivel_programa" => [
                 "type" => "char",
@@ -66,7 +70,7 @@ class PosGraduacaoSchemas
         ],
 
         "primary" => [
-            "key" => ["id_pos_graduacao"]
+            "key" => ["id_posgraduacao"]
         ],
         
         "foreign" => [
@@ -76,6 +80,51 @@ class PosGraduacaoSchemas
                 "on" => "pessoas",
                 "onDelete" => "cascade"
             ],
+        ]
+    ];
+
+    const defesas_posgraduacao = [
+
+        "tableName" => "defesas_posgraduacao",
+
+        "columns" => [
+            "id_posgraduacao" => [
+                "type" => "char",
+                "size" => 35
+            ],
+            "data_defesa" => [
+                "type" => "date",
+                "nullable" => true // ver
+            ],
+            "local_defesa" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "mencao_honrosa" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "titulo_trabalho" => [
+                "type" => "string",
+                "size" => 512,
+                "nullable" => true // ver
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_posgraduacao"]
+        ],
+        
+        "foreign" => [
+            // ver
+            // [
+            //     "keys" => "id_posgraduacao",
+            //     "references" => "id_posgraduacao",
+            //     "on" => "posgraduacoes",
+            //     "onDelete" => "cascade"
+            // ],
         ]
     ];
 }

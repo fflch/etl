@@ -4,9 +4,8 @@ FROM (
     -- alunos_posgraduacao
     SELECT a.codpes
     FROM AGPROGRAMA a
-    WHERE a.codare BETWEEN 8000 AND 9000
-        AND YEAR(a.dtaselpgm) >= 2007
-            AND a.vinalupgm = 'REGULAR'
+    WHERE a.codare BETWEEN 8000 and 8999
+        AND a.vinalupgm <> 'ESPECIAL'
     UNION ALL
     -- pesquisadores_posdoc
     SELECT pd.codpes_pd AS 'codpes'
@@ -24,5 +23,5 @@ FROM (
     UNION ALL
     SELECT rc.codpes
     FROM R25CRECREDOC rc
-    WHERE rc.codare BETWEEN 8000 AND 9000
+    WHERE rc.codare BETWEEN 8000 and 8999
 ) u;

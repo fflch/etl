@@ -17,7 +17,7 @@ FROM HABILPROGGR hp
     LEFT JOIN CURSOGR c ON (hp.codcur = c.codcur)
     --Filter:
     INNER JOIN #ultimo_bacharelado ub ON (ub.codpes = hp.codpes AND ub.codpgm = hp.codpgm AND ub.data_ultimo_bacharelado = hp.dtaini)
-WHERE hp.codcur BETWEEN 8000 AND 9000
+WHERE hp.codcur BETWEEN 8000 and 8999
     AND hg.tiphab <> 'L'
     AND YEAR(p.dtaing) >= 2007
 ORDER BY p.codpes

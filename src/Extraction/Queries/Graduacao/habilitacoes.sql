@@ -13,6 +13,6 @@ FROM HABILPROGGR hp
 	INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
 	LEFT JOIN CURSOGR c ON (hp.codcur = c.codcur)
 	LEFT JOIN HABILITACAOGR hg ON (hp.codcur = hg.codcur AND hp.codhab = hg.codhab)
-WHERE hp.codcur BETWEEN 8000 AND 9000
+WHERE hp.codcur BETWEEN 8000 and 8999
 	 AND YEAR(p.dtaing) >= 2007
 ORDER BY hp.codpes

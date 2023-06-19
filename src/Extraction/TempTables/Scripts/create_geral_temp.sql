@@ -6,7 +6,7 @@ FROM (
     SELECT p.codpes
     FROM HABILPROGGR hp
         INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
-    WHERE hp.codcur BETWEEN 8000 AND 9000
+    WHERE hp.codcur BETWEEN 8000 and 8999
         AND YEAR(p.dtaing) >= 2007
     UNION ALL
     -- ministrantes_graduacao
@@ -19,9 +19,8 @@ FROM (
     -- alunos_posgraduacao
     SELECT a.codpes
     FROM AGPROGRAMA a
-    WHERE a.codare BETWEEN 8000 AND 9000
-        AND YEAR(a.dtaselpgm) >= 2007
-            AND a.vinalupgm = 'REGULAR'
+    WHERE a.codare BETWEEN 8000 and 8999
+        AND a.vinalupgm <> 'ESPECIAL'
     UNION ALL
     -- pesquisadores_posdoc
     SELECT pd.codpes_pd AS 'codpes'
@@ -63,7 +62,7 @@ FROM (
     -- credenciados pos-graduacao
     SELECT r.codpes
     FROM R25CRECREDOC r
-    WHERE codare BETWEEN 8000 AND 9000
+    WHERE codare BETWEEN 8000 and 8999
 ) u;
 
 

@@ -3,15 +3,15 @@ SELECT
 	ap.codpes AS 'numero_usp'
 	,ap.numseqpgm AS 'seq_programa'
 	,ap.codare AS 'codigo_area'
+	,ap.vinalupgm AS 'tipo_vinculo'
 	,ap.dtaselpgm AS 'data_selecao'
 	,ap.nivpgm AS 'nivel_programa'
 	,ap.dtadpopgm AS 'data_deposito_trabalho'
 	,ap.dtaaprbantrb AS 'data_aprovacao_trabalho'
 INTO #filtered
 FROM AGPROGRAMA ap
-WHERE YEAR(ap.dtaselpgm) >= 2007
-	AND ap.codare BETWEEN 8000 AND 8999
-	AND ap.vinalupgm = 'REGULAR';
+WHERE ap.codare BETWEEN 8000 AND 8999
+	AND ap.vinalupgm <> 'ESPECIAL';
 
 
 -- Get transfers
@@ -20,7 +20,7 @@ SELECT
 	,t.codare AS 'codigo_area'
 	,t.numseqpgm AS 'seq_programa'
 	,h.dtaocopgm AS 'data_transferencia'
-INTO #transferencias
+INTO #transfers
 FROM HISTPROGRAMA h
 	INNER JOIN TRANSFERAREA t
 		ON h.codpes = t.codpes
@@ -29,6 +29,8 @@ FROM HISTPROGRAMA h
 			AND h.codaretrf = t.codare
 WHERE t.codare BETWEEN 8000 AND 8999;
 
+
+-- Get admission date (selection or transfer)
 SELECT 
 	f.*
 	,CASE WHEN t.data_transferencia IS NOT NULL
@@ -41,7 +43,7 @@ SELECT
 		END AS 'data_admissao'
 INTO #admission
 FROM #filtered f
-	LEFT JOIN #transferencias t
+	LEFT JOIN #transfers t
 		ON f.numero_usp = t.numero_usp
 			AND f.codigo_area = t.codigo_area
 			AND f.seq_programa = t.seq_programa;
@@ -181,6 +183,7 @@ SELECT
 	,p.codigo_programa
 	,p.nome_programa
 	,p.data_selecao
+	,p.tipo_vinculo
 	,p.primeira_matricula
 	,t.dschstpgm AS 'tipo_ultima_ocorrencia'
 	,u.data_ultima_ocorrencia
@@ -199,7 +202,7 @@ FROM #primeira_matricula p
 
 -- Drop all unnecessary temp tables
 DROP TABLE #filtered;
-DROP TABLE #transferencias;
+DROP TABLE #transfers;
 DROP TABLE #admission;
 DROP TABLE #areas;
 DROP TABLE #programas;

@@ -7,7 +7,7 @@ SELECT
 	,r.dtavalfim AS 'data_fim_validade'
 INTO #fflch_creds
 FROM R25CRECREDOC r
-WHERE r.codare BETWEEN 8000 AND 9000;
+WHERE r.codare BETWEEN 8000 and 8999;
 
 
 /*
@@ -63,7 +63,7 @@ FROM #fflch_creds f
 SELECT * 
 INTO #areas
 FROM NOMEAREA n
-WHERE codare BETWEEN 8000 AND 9000;
+WHERE codare BETWEEN 8000 and 8999;
 
 UPDATE #areas
 SET dtafimare = DATEADD(year, 10, GETDATE())
@@ -81,7 +81,7 @@ WHERE codare = 8133 AND dtainiare = '1971-06-28 00:00:00.000';
 SELECT * 
 INTO #programas
 FROM NOMECURSO n
-WHERE codcur BETWEEN 8000 AND 9000;
+WHERE codcur BETWEEN 8000 and 8999;
 
 UPDATE #programas
 SET dtafimcur = DATEADD(year, 10, GETDATE())
