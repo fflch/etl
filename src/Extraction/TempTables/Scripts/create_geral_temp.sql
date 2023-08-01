@@ -30,7 +30,7 @@ FROM (
     UNION ALL
     -- alunos_ceu
     SELECT m.codpes
-    FROM dbo.MATRICULACURSOCEU m
+    FROM MATRICULACURSOCEU m
         INNER JOIN EDICAOCURSOOFECEU e ON (m.codcurceu = e.codcurceu AND m.codedicurceu = e.codedicurceu AND m.numseqofeedi = e.numseqofeedi)
     WHERE m.codund = 8
         AND YEAR(e.dtainiofeedi) >= 2007
@@ -49,7 +49,7 @@ FROM (
             ON m.codatc = a.codatc
         LEFT JOIN OFERECIMENTOATIVIDADECEU o
             ON m.codofeatvceu = o.codofeatvceu
-        LEFT JOIN dbo.EDICAOCURSOOFECEU e
+        LEFT JOIN EDICAOCURSOOFECEU e
             ON o.codcurceu = e.codcurceu AND o.codedicurceu = e.codedicurceu AND o.numseqofeedi = e.numseqofeedi
     WHERE YEAR(e.dtainiofeedi) >= 2007
     UNION ALL
@@ -74,8 +74,8 @@ SELECT
     ,c.dtaflc AS 'data_falecimento'
     ,e.codema AS 'email'
     ,p2.nacpas AS 'nacionalidade'
-    ,CASE WHEN l.codpas = 1 THEN l.cidloc ELSE NULL END AS 'cidade_nascimento'
-    ,CASE WHEN l.codpas = 1 THEN l.sglest ELSE NULL END AS 'estado_nascimento'
+    ,l.cidloc AS 'cidade_nascimento'
+    ,l.sglest AS 'estado_nascimento'
     ,p3.nompas AS 'pais_nascimento'
     ,c.codraccor AS 'raca'
     ,p.sexpes AS 'sexo'

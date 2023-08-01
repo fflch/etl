@@ -14,6 +14,6 @@ FROM MINISTRANTECEU m
 		ON m.codatc = a.codatc
 	LEFT JOIN OFERECIMENTOATIVIDADECEU o
 		ON m.codofeatvceu = o.codofeatvceu
-	LEFT JOIN dbo.EDICAOCURSOOFECEU e
+	LEFT JOIN EDICAOCURSOOFECEU e
 		ON o.codcurceu = e.codcurceu AND o.codedicurceu = e.codedicurceu AND o.numseqofeedi = e.numseqofeedi
 WHERE YEAR(e.dtainiofeedi) >= 2007

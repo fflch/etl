@@ -7,9 +7,9 @@ use Src\Loading\DbHandle\DatabaseTasks;
 
 class LoadingUtils
 {
-    public static function conditionalRebuild(array $argv, string $tableName, array $schemasToCreate)
+    public static function conditionalRebuild(array $argv, string $primaryTable, array $schemasToCreate)
     {
-        $tableExists = Capsule::schema()->hasTable($tableName);
+        $tableExists = Capsule::schema()->hasTable($primaryTable);
 
         if ($tableExists === False || in_array("--rebuild", $argv)) {
             $tasks = new DatabaseTasks();

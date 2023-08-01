@@ -24,7 +24,7 @@ SELECT
 		END AS 'mencao_honrosa'
 	,sp.codsetpcp AS 'codigo_dpto_orientador'
 	,s.nomset AS 'nome_dpto_orientador'
-FROM dbo.SIIUTRABALHO st
+FROM SIIUTRABALHO st
 	LEFT JOIN SIIUPARTICIPTRABALHO spt ON st.edisii = spt.edisii AND st.codtrbsii = spt.codtrbsii AND spt.tipptptrb = 'O'
 	LEFT JOIN SIIUPARTICIPANTE sp ON spt.codpcpsii = sp.codpcpsii
 	LEFT JOIN SETOR s ON sp.codsetpcp = s.codset

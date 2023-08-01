@@ -15,7 +15,7 @@ SELECT
 			THEN 'S'
 		ELSE 'N'
 		END AS 'participante_apresentador'
-FROM dbo.SIIUPARTICIPTRABALHO spt
+FROM SIIUPARTICIPTRABALHO spt
 	INNER JOIN SIIUTRABALHO st ON (spt.edisii = st.edisii AND spt.codtrbsii = st.codtrbsii)
 	LEFT JOIN SIIUPARTICIPANTE spe ON spt.codpcpsii = spe.codpcpsii
 	LEFT JOIN UNIDADE u ON spe.codundpcp = u.codund
