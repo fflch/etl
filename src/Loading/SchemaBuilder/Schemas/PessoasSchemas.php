@@ -74,7 +74,8 @@ class PessoasSchemas
                 "nullable" => true
             ],
             "cpf" => [
-                "type" => "bigInteger",
+                "type" => "char",
+                "size" => 11,
                 "nullable" => true
             ],
         ],
