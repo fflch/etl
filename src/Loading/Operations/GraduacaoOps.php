@@ -53,8 +53,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->graduacoes, 
-            Graduacao::class, 
-            4300
+            Graduacao::class
         );
     }
 
@@ -63,8 +62,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->habilitacoes, 
-            Habilitacao::class, 
-            5900
+            Habilitacao::class
         );
     }
 
@@ -75,8 +73,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->iniciacoes, 
-            IniciacaoCientifica::class, 
-            5000
+            IniciacaoCientifica::class
         );
 
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 1"); //gambi
@@ -91,8 +88,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->bolsasIC, 
-            BolsaIC::class, 
-            8100
+            BolsaIC::class
         );
 
         Capsule::delete("DELETE bi
@@ -111,15 +107,13 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->questionarioQuestoes, 
-            QuestionarioQuestao::class, 
-            10000
+            QuestionarioQuestao::class
         );
 
         ExtractionUtils::updateTable(
             'paginated',
             $this->questionarioRespostas, 
-            QuestionarioResposta::class, 
-            15000
+            QuestionarioResposta::class
         );
     }
 
@@ -128,15 +122,13 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->SIICUSPTrabalhos, 
-            SIICUSPTrabalho::class, 
-            5900
+            SIICUSPTrabalho::class
         );
 
         ExtractionUtils::updateTable(
             'full',
             $this->SIICUSPParticipantes, 
-            SIICUSPParticipante::class, 
-            5000
+            SIICUSPParticipante::class
         );
     }
 
@@ -145,8 +137,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->disciplinasGraduacao, 
-            DisciplinaGraduacao::class, 
-            4000
+            DisciplinaGraduacao::class
         );
     }
 
@@ -155,8 +146,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'paginated',
             $this->turmasGraduacao, 
-            TurmaGraduacao::class, 
-            2500
+            TurmaGraduacao::class
         );
     }
 
@@ -165,8 +155,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->demandaTurmasGraduacao, 
-            DemandaTurmaGraduacao::class, 
-            3000
+            DemandaTurmaGraduacao::class
         );
     }
 
@@ -175,8 +164,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->ministrantesGraduacao, 
-            MinistranteGraduacao::class, 
-            8000
+            MinistranteGraduacao::class
         );
     }
 }

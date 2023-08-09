@@ -28,8 +28,7 @@ class PosGraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->posGraduacoes, 
-            PosGraduacao::class, 
-            3600
+            PosGraduacao::class
         );
     }
 
@@ -38,8 +37,7 @@ class PosGraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->defesas, 
-            DefesaPosGraduacao::class, 
-            10000
+            DefesaPosGraduacao::class
         );
     }
 
@@ -48,8 +46,7 @@ class PosGraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->bancas, 
-            BancaPosGraduacao::class, 
-            5800
+            BancaPosGraduacao::class
         );
     }
 
@@ -58,8 +55,7 @@ class PosGraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->orientacoes, 
-            OrientacaoPosGraduacao::class, 
-            6000
+            OrientacaoPosGraduacao::class
         );
     }
 }

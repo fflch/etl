@@ -19,8 +19,7 @@ class CredenciamentosPGOps
         ExtractionUtils::updateTable(
             'full',
             $this->credenciamentos, 
-            CredenciamentoPG::class, 
-            7200
+            CredenciamentoPG::class
         );
     }
 }

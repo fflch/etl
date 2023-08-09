@@ -19,8 +19,7 @@ class PessoasOps
         ExtractionUtils::updateTable(
             'full',
             $this->pessoas, 
-            Pessoa::class, 
-            4200
+            Pessoa::class
         );
     }
 }

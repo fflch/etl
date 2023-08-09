@@ -22,8 +22,7 @@ class ServidoresOps
         ExtractionUtils::updateTable(
             'full',
             $this->vinculosServidores, 
-            VinculoServidor::class, 
-            3100
+            VinculoServidor::class
         );
     }
 
@@ -32,8 +31,7 @@ class ServidoresOps
         ExtractionUtils::updateTable(
             'full',
             $this->designacoes, 
-            DesignacaoServidor::class, 
-            1000
+            DesignacaoServidor::class
         );
     }
 }

@@ -34,8 +34,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->cursosCEU, 
-            CursoCulturaExtensao::class, 
-            4600
+            CursoCulturaExtensao::class
         );
     }
 
@@ -44,8 +43,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->oferecimentosCursos, 
-            OferecimentoCCEx::class, 
-            3200
+            OferecimentoCCEx::class
         );
     }
 
@@ -54,8 +52,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'paginated',
             $this->inscricoesCursos, 
-            InscricaoCCEx::class, 
-            9000
+            InscricaoCCEx::class
         );
     }
 
@@ -64,8 +61,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'paginated',
             $this->matriculasCursos, 
-            MatriculaCCEx::class, 
-            5900
+            MatriculaCCEx::class
         );
     }
 
@@ -74,8 +70,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->ministrantesCursos, 
-            MinistranteCCEx::class, 
-            5900
+            MinistranteCCEx::class
         );
     }
 
@@ -84,8 +79,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->coordenadoresCursos, 
-            CoordenadorCCEx::class, 
-            5900
+            CoordenadorCCEx::class
         );
     }
 }

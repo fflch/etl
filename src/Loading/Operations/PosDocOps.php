@@ -32,8 +32,7 @@ class PosDocOps
         ExtractionUtils::updateTable(
             'full',
             $this->projetosPosDoc, 
-            ProjetoPosDoc::class, 
-            5400
+            ProjetoPosDoc::class
         );
 
         Capsule::update("UPDATE projetos_posdoc pp
@@ -46,8 +45,7 @@ class PosDocOps
         ExtractionUtils::updateTable(
             'full',
             $this->periodosPosDoc, 
-            PeriodoPosDoc::class, 
-            5900
+            PeriodoPosDoc::class
         );
     }
 
@@ -56,15 +54,13 @@ class PosDocOps
         ExtractionUtils::updateTable(
             'full',
             $this->bolsasPosDoc, 
-            BolsaPosDoc::class, 
-            6500
+            BolsaPosDoc::class
         );
 
         ExtractionUtils::updateTable(
             'full',
             $this->afastEmpresasPosDoc, 
-            AfastEmpresaPosDoc::class, 
-            7200
+            AfastEmpresaPosDoc::class
         );
 
         Capsule::delete("DELETE bp, ap
@@ -89,8 +85,7 @@ class PosDocOps
         ExtractionUtils::updateTable(
             'full',
             $this->supervisoesPosDoc, 
-            SupervisaoPosDoc::class, 
-            6500
+            SupervisaoPosDoc::class
         );
     }
 }
