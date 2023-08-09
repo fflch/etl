@@ -9,6 +9,13 @@ class DefesaPosGraduacaoReplicado implements Mapper
     public function mapping(Array $defesa)
     {
         $properties = [
+            'id_defesa' => strtoupper(
+                md5(
+                    'BANCA' .
+                    $defesa['numero_usp'] . 
+                    $defesa['seq_programa'] .
+                    $defesa['codigo_area']
+                )),
             'id_posgraduacao' => strtoupper(
                 md5(
                     $defesa['numero_usp'] . 

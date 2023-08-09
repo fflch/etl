@@ -63,6 +63,16 @@ FROM (
     SELECT r.codpes
     FROM R25CRECREDOC r
     WHERE codare BETWEEN 8000 and 8999
+    UNION ALL
+    -- orientadores pos-graduacao
+    SELECT r.codpes
+    FROM R39PGMORIDOC r
+    WHERE codare BETWEEN 8000 and 8999
+    UNION ALL
+    -- membros das bancas de pos-graduacao
+    SELECT r.codpesdct
+    FROM R48PGMTRBDOC r
+    WHERE codare BETWEEN 8000 and 8999
 ) u;
 
 

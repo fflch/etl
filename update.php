@@ -31,6 +31,7 @@ $preScripts = [
     'create_turmasGraduacao_temp', // graduacao
     'create_demandaTurmas_temp', // graduacao
     'create_posgrad_temp', // posgraduacao
+    'create_orientacoesPG_temp', // posgraduacao
     'create_supervisoesPD_temp', // posdoutorado
     'create_matriculasCCEX_temp', // ccex
     'create_inscricoesCCEX_temp', // ccex

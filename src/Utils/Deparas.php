@@ -217,4 +217,18 @@ class Deparas
         'M' => 'Não Vacinado (Restrição médica)',
         'I' => 'Invalidado', // (A pessoa informou os dados da vacinação, mas houve alguma rejeição por parte do validador)
     ];
+
+    const funcoesBanca = [
+        'PRE' => 'Presidente',
+        'TIT' => 'Titular',
+        'SUP' => 'Suplente',
+        'SUB' => 'Substituído'
+    ];
+
+    const tiposOrientacaoPG = [
+        'PGM' => 'Provisório',
+        'ORI' => 'Orientador',
+        'COO' => 'Coorientador',
+        'EXC' => 'Em caráter exepcional',
+    ];
 }
