@@ -28,15 +28,17 @@ class PosGraduacaoSchemas
                 "size" => 2
             ],
             "codigo_area" => [
-                "type" => "integer"
+                "type" => "integer",
+                "nullable" => true
             ],
             "nome_area" => [
                 "type" => "string",
-                "size" => 64,
+                "size" => 128,
                 "nullable" => true
             ],
             "codigo_programa" => [
-                "type" => "integer"
+                "type" => "integer",
+                "nullable" => true
             ],
             "nome_programa" => [
                 "type" => "string",
@@ -269,6 +271,200 @@ class PosGraduacaoSchemas
                 "on" => "pessoas",
                 "onDelete" => "cascade"
             ],
+        ]
+    ];
+
+    const disciplinas_posgraduacao = [
+
+        "tableName" => "disciplinas_posgraduacao",
+
+        "columns" => [
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "smallInteger"
+            ],
+            "departamento" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "nome_disciplina" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "tipo_curso" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "status_disciplina" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "data_proposicao_disciplina" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_ativacao_disciplina" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_desativacao_disciplina" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "codigo_area" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_area" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "codigo_programa" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_programa" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "duracao_disciplina_semanas" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_teorica" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_pratica" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_estudo" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "carga_horaria_total" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "total_creditos" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "formato_disciplina" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["codigo_disciplina", "versao_disciplina"],
+            "keyName" => "disciplinas_posgraduacao_primary"
+        ],
+        
+        "foreign" => [
+            //
+        ]
+    ];
+
+    const turmas_posgraduacao = [
+
+        "tableName" => "turmas_posgraduacao",
+
+        "columns" => [
+            "id_turma" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "codigo_disciplina" => [
+                "type" => "char",
+                "size" => 7
+            ],
+            "versao_disciplina" => [
+                "type" => "smallInteger"
+            ],
+            "vagas_regulares" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_especiais" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "vagas_total" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "data_inicio_turma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_fim_turma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "consolidacao_turma" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "consolidacao_resultados" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "codigo_area" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "codigo_convenio" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nivel_convenio" => [
+                "type" => "char",
+                "size" => 2,
+                "nullable" => true
+            ],
+            "data_cancelamento" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "motivo_cancelamento" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "lingua_turma" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "formato_oferecimento" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_turma"]
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => ["codigo_disciplina", "versao_disciplina"],
+                "references" => ["codigo_disciplina", "versao_disciplina"],
+                "on" => "disciplinas_posgraduacao",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 }

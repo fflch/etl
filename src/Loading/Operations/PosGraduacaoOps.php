@@ -12,15 +12,22 @@ use Src\Transformation\ModelsReplicado\PosGraduacao\BancaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\BancaPosGraduacao;
 use Src\Transformation\ModelsReplicado\PosGraduacao\OrientacaoPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\OrientacaoPosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\DisciplinaPosGraduacaoReplicado;
+use Src\Loading\Models\PosGraduacao\DisciplinaPosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\TurmaPosGraduacaoReplicado;
+use Src\Loading\Models\PosGraduacao\TurmaPosGraduacao;
 
 class PosGraduacaoOps
 {
     public function __construct()
     {
         $this->posGraduacoes = new Transformer(new PosGraduacaoReplicado, 'PosGraduacao/posgraduacoes');
-        $this->defesas = new Transformer(new DefesaPosGraduacaoReplicado, 'PosGraduacao/defesas_posgraduacao');
-        $this->bancas = new Transformer(new BancaPosGraduacaoReplicado, 'PosGraduacao/bancas_posgraduacao');
-        $this->orientacoes = new Transformer(new OrientacaoPosGraduacaoReplicado, 'PosGraduacao/orientacoes_posgraduacao');
+        $this->defesasPG = new Transformer(new DefesaPosGraduacaoReplicado, 'PosGraduacao/defesas_posgraduacao');
+        $this->bancasPG = new Transformer(new BancaPosGraduacaoReplicado, 'PosGraduacao/bancas_posgraduacao');
+        $this->orientacoesPG = new Transformer(new OrientacaoPosGraduacaoReplicado, 'PosGraduacao/orientacoes_posgraduacao');
+        $this->disciplinasPG = new Transformer(new DisciplinaPosGraduacaoReplicado, 'PosGraduacao/disciplinas_posgraduacao');
+        $this->turmasPG = new Transformer(new TurmaPosGraduacaoReplicado, 'PosGraduacao/turmas_posgraduacao');
+
     }
 
     public function updatePosGraduacoes()
@@ -32,30 +39,48 @@ class PosGraduacaoOps
         );
     }
 
-    public function updateDefesas()
+    public function updateDefesasPG()
     {
         ExtractionUtils::updateTable(
             'full',
-            $this->defesas, 
+            $this->defesasPG, 
             DefesaPosGraduacao::class
         );
     }
 
-    public function updateBancas()
+    public function updateBancasPG()
     {
         ExtractionUtils::updateTable(
             'full',
-            $this->bancas, 
+            $this->bancasPG, 
             BancaPosGraduacao::class
         );
     }
 
-    public function updateOrientacoes()
+    public function updateOrientacoesPG()
     {
         ExtractionUtils::updateTable(
             'full',
-            $this->orientacoes, 
+            $this->orientacoesPG, 
             OrientacaoPosGraduacao::class
+        );
+    }
+
+    public function updateDisciplinaPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->disciplinasPG, 
+            DisciplinaPosGraduacao::class
+        );
+    }
+
+    public function updateTurmasPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->turmasPG, 
+            TurmaPosGraduacao::class
         );
     }
 }

@@ -17,7 +17,8 @@ class CredenciamentosPGSchemas
                 "type" => "integer"
             ],
             "codigo_area" => [
-                "type" => "smallInteger"
+                "type" => "integer",
+                "nullable" => true
             ],
             "nome_area" => [
                 "type" => "string",
@@ -25,7 +26,7 @@ class CredenciamentosPGSchemas
                 "nullable" => true
             ],
             "codigo_programa" => [
-                "type" => "smallInteger",
+                "type" => "integer",
                 "nullable" => true
             ],
             "nome_programa" => [

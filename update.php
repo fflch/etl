@@ -24,6 +24,7 @@ use Src\Loading\Operations\CEUOps;
 pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
 $preScripts = [
+    'create_programas_areas_hotfix', // base
     'create_geral_temp', // pessoas
     'create_ultimoBA_temp', // graduacao
     'create_respostasQuest_temp', // graduacao
@@ -32,11 +33,13 @@ $preScripts = [
     'create_demandaTurmas_temp', // graduacao
     'create_posgrad_temp', // posgraduacao
     'create_orientacoesPG_temp', // posgraduacao
+    'create_disciplinasPG_temp', // posgraduacao
     'create_supervisoesPD_temp', // posdoutorado
     'create_matriculasCCEX_temp', // ccex
     'create_inscricoesCCEX_temp', // ccex
     'create_vinculosServidores_temp', // servidores
     'create_credenciamentos_temp', // credenciamentosPG
+    'drop_programas_areas_hotfix',  // base
 ];
 
 $schemas = [
@@ -62,7 +65,7 @@ $ops = [
 
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
 
-    // 1. Build tables if needed or rebuild if requested
+    // 1. Build tables if needed or rebuild them if requested
     LoadingUtils::conditionalRebuild($argv, 'pessoas', $schemas);
 
     // 2. Generate necessary temp tables

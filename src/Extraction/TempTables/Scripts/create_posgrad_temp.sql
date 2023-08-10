@@ -49,53 +49,6 @@ FROM #filtered f
 			AND f.seq_programa = t.seq_programa;
 
 
--- Get AREA names
-SELECT *
-INTO #areas
-FROM NOMEAREA na
-WHERE na.codare BETWEEN 8000 AND 8999;
-
-
--- Get CURSO names
-SELECT *
-INTO #programas
-FROM NOMECURSO nc
-WHERE nc.codcur BETWEEN 8000 AND 8999;
-
-
--- Alter AREA e CURSO names validity
-UPDATE #areas
-SET dtainiare = '1900-01-01'
-WHERE dtainiare = (
-    SELECT MIN(a2.dtainiare)
-    FROM #areas a2
-    WHERE a2.codare = #areas.codare
-);
-
-UPDATE #areas
-SET dtafimare = DATEADD(day, 1, GETDATE())
-WHERE dtainiare = (
-    SELECT MAX(a2.dtainiare)
-    FROM #areas a2
-    WHERE a2.codare = #areas.codare
-);
-
-UPDATE #programas
-SET dtainicur = '1900-01-01'
-WHERE dtainicur = (
-    SELECT MIN(p2.dtainicur)
-    FROM #programas p2
-    WHERE p2.codcur = #programas.codcur
-);
-
-UPDATE #programas
-SET dtafimcur = DATEADD(day, 1, GETDATE())
-WHERE dtainicur = (
-    SELECT MAX(p2.dtainicur)
-    FROM #programas p2
-    WHERE p2.codcur = #programas.codcur
-);
-
 -- Join specifications
 SELECT
 	adm.*
@@ -204,8 +157,6 @@ FROM #primeira_matricula p
 DROP TABLE #filtered;
 DROP TABLE #transfers;
 DROP TABLE #admission;
-DROP TABLE #areas;
-DROP TABLE #programas;
 DROP TABLE #specs;
 DROP TABLE #primeira_matricula;
 DROP TABLE #ocorrencias;

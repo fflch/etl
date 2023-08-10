@@ -60,40 +60,6 @@ FROM #fflch_creds f
 
 
 --
-SELECT * 
-INTO #areas
-FROM NOMEAREA n
-WHERE codare BETWEEN 8000 and 8999;
-
-UPDATE #areas
-SET dtafimare = DATEADD(year, 10, GETDATE())
-WHERE dtafimare IS NULL;
-
-UPDATE #areas
-SET dtainiare = '1900-01-01 00:00:00.000'
-WHERE DATEDIFF(day, dtainiare, dtafimare) <= 1;
-
-UPDATE #areas
-SET dtainiare = '1900-01-01 00:00:00.000'
-WHERE codare = 8133 AND dtainiare = '1971-06-28 00:00:00.000';
-
---
-SELECT * 
-INTO #programas
-FROM NOMECURSO n
-WHERE codcur BETWEEN 8000 and 8999;
-
-UPDATE #programas
-SET dtafimcur = DATEADD(year, 10, GETDATE())
-WHERE dtafimcur IS NULL;
-
-UPDATE #programas
-SET dtainicur = '1900-01-01 00:00:00.000'
-WHERE codcur = 8003 AND dtainicur = '1971-06-28 00:00:00.000'
-    OR codcur = 8005 AND dtainicur = '1970-11-16 00:00:00.000'
-    OR codcur = 8008 AND dtainicur = '1970-12-28 00:00:00.000';
-
---
 SELECT
     l.*
     ,a.nomare AS 'nome_area'
@@ -108,6 +74,4 @@ FROM #last_credenciamento_added l
 -- Drop all unnecessary temp tables
 DROP TABLE #deletar_creds;
 DROP TABLE #fflch_creds;
-DROP TABLE #areas;
-DROP TABLE #programas;
 
