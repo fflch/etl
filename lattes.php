@@ -21,13 +21,13 @@ $ops = [LattesOps::class];
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
 
     // 1. Build table if needed or rebuild if requested
-    LoadingUtils::conditionalRebuild($argv, 'lattes', $schemas);
+    $rebuild = LoadingUtils::conditionalBuild($argv, $schemas);
 
     // 2. Generate necessary temp table
     TempManager::generateTempTables($preScripts);
 
     // 3. Write new records
     $tasks = new DatabaseTasks();
-    $tasks->wipeAndOrRenewTables(NULL, $ops);
+    $tasks->wipeAndOrRenewTables($rebuild, NULL, $ops);
 
 }, True);

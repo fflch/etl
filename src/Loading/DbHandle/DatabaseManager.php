@@ -15,7 +15,7 @@ class DatabaseManager
 
     public function processDBOperations(array $classes, callable $operation, string $message)
     {
-        echo PHP_EOL . $message . PHP_EOL;
+        echo $message . PHP_EOL;
 
         $total = count($classes);
         $progress = 0;
@@ -72,7 +72,7 @@ class DatabaseManager
             $this->ops->dropTables($class);
         };
         
-        $message = "Dropping schemas (if they exist):";
+        $message = "Dropping schemas:";
 
         $this->processDBOperations($classes, $operation, $message);
     }

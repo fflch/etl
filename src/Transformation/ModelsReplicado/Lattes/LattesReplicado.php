@@ -4,6 +4,7 @@ namespace Src\Transformation\ModelsReplicado\Lattes;
 
 use Src\Transformation\Interfaces\Mapper;
 use Uspdev\Replicado\Uteis;
+use Src\Utils\TransformationUtils;
 
 class LattesReplicado implements Mapper
 {

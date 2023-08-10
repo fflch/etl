@@ -4,6 +4,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Loading\DbHandle\DatabaseTasks;
 use Src\Utils\CommonUtils;
+use Src\Utils\LoadingUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -26,9 +27,8 @@ $schemas = [
     LattesSchemas::class,
 ];
 
-CommonUtils::timer(function () use ($schemas) {
-
-    $tasks = new DatabaseTasks();
-    $tasks->rebuild($schemas);
+CommonUtils::timer(function () use ($argv, $schemas) {
+    
+    LoadingUtils::conditionalBuild($argv, $schemas);
 
 }, True);

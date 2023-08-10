@@ -192,7 +192,7 @@ class GraduacaoSchemas
         ]
     ];
 
-    const bolsasIC = [
+    const bolsas_ic = [
 
         "tableName" => "bolsas_ic",
 

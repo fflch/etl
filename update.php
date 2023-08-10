@@ -66,13 +66,13 @@ $ops = [
 CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
 
     // 1. Build tables if needed or rebuild them if requested
-    LoadingUtils::conditionalRebuild($argv, 'pessoas', $schemas);
+    $rebuild = LoadingUtils::conditionalBuild($argv, $schemas);
 
     // 2. Generate necessary temp tables
     TempManager::generateTempTables($preScripts);
 
     // 3. Wipe old records and write new ones
     $tasks = new DatabaseTasks();
-    $tasks->wipeAndOrRenewTables($schemas, $ops);
+    $tasks->wipeAndOrRenewTables($rebuild, $schemas, $ops);
 
 }, True);

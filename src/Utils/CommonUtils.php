@@ -40,7 +40,7 @@ class CommonUtils
             return;
         };
 
-        echo str_repeat(" ", 5) . "Runtime: {$isodate}";
+        echo str_repeat(" ", 5) . "Runtime: {$isodate}" . PHP_EOL;
     }
 
     public static function prettyPrint(array $texts)
@@ -52,7 +52,7 @@ class CommonUtils
         $horizontalLine = str_repeat("═", $length + $paddingLen);
         $padding = str_repeat(" ", $paddingLen / 2);
 
-        echo PHP_EOL . "╔" . $horizontalLine . "╗" . PHP_EOL;
+        echo "╔" . $horizontalLine . "╗" . PHP_EOL;
 
         foreach($texts as $text) {
             echo "║" . $padding . str_pad($text, $length) . $padding . "║" . PHP_EOL;

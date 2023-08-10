@@ -21,7 +21,7 @@ $updateTimeLattes = Capsule::select(
         AND table_name = 'lattes'"
 )[0]->last_update ?? 'No available data';
 
-
+echo PHP_EOL . PHP_EOL;
 $text1 = "Last <update.php> loading: {$updateTimeNotLattes}";
 $text2 = "Last <lattes.php> loading: {$updateTimeLattes}";
 
