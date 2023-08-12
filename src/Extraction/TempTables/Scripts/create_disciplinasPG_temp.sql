@@ -45,7 +45,15 @@ FROM #disciplinaspg_temp d
 		ON s.nomabvset = LEFT(d.codigo_disciplina, 3)
 			AND s.codund = 8 
 			AND s.tipset = 'Departamento de Ensino'
-WHERE (s.nomabvset IS NOT NULL OR LEFT(d.codigo_disciplina, 3) = 'HDL');
+	LEFT JOIN (
+		SELECT o.sgldis, o.numseqdis, MAX(o.dtainiofe) AS 'data_ultimo_oferecimento'
+		FROM OFERECIMENTO o
+		GROUP BY o.sgldis, o.numseqdis
+	) o
+		ON o.sgldis = d.codigo_disciplina
+		AND o.numseqdis = d.versao_disciplina
+WHERE YEAR(o.data_ultimo_oferecimento) >= 2007
+	AND (s.nomabvset IS NOT NULL OR LEFT(d.codigo_disciplina, 3) = 'HDL');
 
 
 -- Add area and program names

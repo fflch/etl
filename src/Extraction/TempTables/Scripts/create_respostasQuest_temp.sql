@@ -8,7 +8,7 @@ INTO #respostasQuest
 FROM PROGRAMAGR p
 	LEFT JOIN RESPOSTASQUESTAO r ON p.codpes = r.codpes
 	INNER JOIN QUESTIONARIO q ON (r.codqtn = q.codqtn AND p.dtaing BETWEEN q.dtainiqtn AND q.dtafimqtn)
-	--Filter:
+	-- Filter:
 	INNER JOIN (
 				SELECT hp.codpes, hp.codpgm
 				FROM HABILPROGGR hp

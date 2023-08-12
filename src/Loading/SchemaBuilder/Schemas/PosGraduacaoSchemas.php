@@ -390,6 +390,19 @@ class PosGraduacaoSchemas
             "versao_disciplina" => [
                 "type" => "smallInteger"
             ],
+            "codigo_turma" => [
+                "type" => "smallInteger"
+            ],
+            "status_turma" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "data_inicio_turma" => [
+                "type" => "date"
+            ],
+            "data_fim_turma" => [
+                "type" => "date"
+            ],
             "vagas_regulares" => [
                 "type" => "smallInteger",
                 "nullable" => true
@@ -402,12 +415,20 @@ class PosGraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "data_inicio_turma" => [
-                "type" => "date",
+            "num_inscritos" => [
+                "type" => "smallInteger",
                 "nullable" => true
             ],
-            "data_fim_turma" => [
-                "type" => "date",
+            "num_matriculas_deferidas" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "num_matriculas_indeferidas" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "num_matriculas_canceladas" => [
+                "type" => "smallInteger",
                 "nullable" => true
             ],
             "consolidacao_turma" => [
@@ -418,6 +439,39 @@ class PosGraduacaoSchemas
             "consolidacao_resultados" => [
                 "type" => "char",
                 "size" => 1,
+                "nullable" => true
+            ],
+            "data_cancelamento" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "motivo_cancelamento" => [
+                "type" => "string",
+                "size" => 96,
+                "nullable" => true
+            ],
+            "frequencia_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "aprovacao_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "reprovacao_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "pendencia_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "alunos_fflch_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "alunos_externos_pct" => [
+                "type" => "float",
                 "nullable" => true
             ],
             "codigo_area" => [
@@ -433,18 +487,9 @@ class PosGraduacaoSchemas
                 "size" => 2,
                 "nullable" => true
             ],
-            "data_cancelamento" => [
-                "type" => "date",
-                "nullable" => true
-            ],
-            "motivo_cancelamento" => [
-                "type" => "string",
-                "size" => 64,
-                "nullable" => true
-            ],
             "lingua_turma" => [
                 "type" => "string",
-                "size" => 32,
+                "size" => 16,
                 "nullable" => true
             ],
             "formato_oferecimento" => [
@@ -463,6 +508,34 @@ class PosGraduacaoSchemas
                 "keys" => ["codigo_disciplina", "versao_disciplina"],
                 "references" => ["codigo_disciplina", "versao_disciplina"],
                 "on" => "disciplinas_posgraduacao",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const ministrantes_posgraduacao = [
+
+        "tableName" => "ministrantes_posgraduacao",
+
+        "columns" => [
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "id_turma" => [
+                "type" => "char",
+                "size" => 32
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => ["id_turma"],
+                "references" => ["id_turma"],
+                "on" => "turmas_posgraduacao",
                 "onDelete" => "cascade"
             ]
         ]

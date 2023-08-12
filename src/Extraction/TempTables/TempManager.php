@@ -17,7 +17,7 @@ class TempManager
         echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 
-    private function generator($scripts)
+    private static function generator($scripts)
     {
         $total = count($scripts);
         $progress = 0;

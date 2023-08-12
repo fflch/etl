@@ -15,7 +15,7 @@ FROM HABILPROGGR hp
     INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
     LEFT JOIN HABILITACAOGR hg ON (hp.codcur = hg.codcur AND hp.codhab = hg.codhab)
     LEFT JOIN CURSOGR c ON (hp.codcur = c.codcur)
-    --Filter:
+    -- Filter:
     INNER JOIN #ultimo_bacharelado ub ON (ub.codpes = hp.codpes AND ub.codpgm = hp.codpgm AND ub.data_ultimo_bacharelado = hp.dtaini)
 WHERE hp.codcur BETWEEN 8000 and 8999
     AND hg.tiphab <> 'L'

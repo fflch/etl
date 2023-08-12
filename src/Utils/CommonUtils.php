@@ -60,4 +60,17 @@ class CommonUtils
 
         echo "╚" . $horizontalLine . "╝" . PHP_EOL . PHP_EOL . PHP_EOL;
     }
+
+    public static function printTruncatedError(string $errorMessage)
+    {
+        $maxCharacters = 500;
+
+        if (strlen($errorMessage) > 2 * $maxCharacters) {
+            $trimmedMessage = substr($errorMessage, 0, $maxCharacters) . "...\n..." . substr($errorMessage, - $maxCharacters);
+        } else {
+            $trimmedMessage = $errorMessage;
+        }
+
+        echo $trimmedMessage;
+    }
 }

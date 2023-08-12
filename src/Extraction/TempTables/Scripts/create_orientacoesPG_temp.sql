@@ -56,7 +56,7 @@ FROM #orientadores o
             AND o.codare = u.codare
             AND o.numseqpgm = u.numseqpgm
             AND o.dtainiort = u.ultimo_inicio_orientacao
-    -- filter
+    -- Filter
     INNER JOIN AGPROGRAMA ap
         ON (
             o.codpespgm = ap.codpes 
