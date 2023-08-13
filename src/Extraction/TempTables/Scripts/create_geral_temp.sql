@@ -73,6 +73,20 @@ FROM (
     SELECT r.codpesdct
     FROM R48PGMTRBDOC r
     WHERE codare BETWEEN 8000 and 8999
+    UNION ALL
+    -- ministrantes pos-graduacao
+    SELECT rt.codpes
+    FROM R32TURMINDOC rt
+	    LEFT JOIN SETOR s
+		    ON s.nomabvset = LEFT(rt.sgldis, 3)
+			    AND s.codund = 8 
+			    AND s.tipset = 'Departamento de Ensino'
+	LEFT JOIN OFERECIMENTO o
+		    ON rt.sgldis = o.sgldis
+			    AND rt.numseqdis = o.numseqdis
+			    AND rt.numofe = o.numofe 
+    WHERE YEAR(o.dtainiofe) >= 2007
+	    AND (s.nomabvset IS NOT NULL OR LEFT(rt.sgldis, 3) = 'HDL')
 ) u;
 
 

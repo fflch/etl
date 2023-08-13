@@ -533,11 +533,128 @@ class PosGraduacaoSchemas
         
         "foreign" => [
             [
+                "keys" => ["numero_usp"],
+                "references" => ["numero_usp"],
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+            [
                 "keys" => ["id_turma"],
                 "references" => ["id_turma"],
                 "on" => "turmas_posgraduacao",
                 "onDelete" => "cascade"
             ]
+        ]
+    ];
+
+    const coordenadores_posgraduacao = [
+
+        "tableName" => "coordenadores_posgraduacao",
+
+        "columns" => [
+            "numero_usp" => [
+                "type" => "integer",
+            ],
+            "funcao" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "codigo_programa" => [
+                "type" => "integer"
+            ],
+            "nome_programa" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "data_inicio_funcao" => [
+                "type" => "date"
+            ],
+            "data_fim_funcao" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => ["numero_usp"],
+                "references" => ["numero_usp"],
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const ocorrencias_posgraduacao = [
+
+        "tableName" => "ocorrencias_posgraduacao",
+
+        "columns" => [
+            "id_posgraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "data_ocorrencia" => [
+                "type" => "date"
+            ],
+            "tipo_ocorrencia" => [
+                "type" => "string",
+                "size" => 96
+            ],
+            "motivo_desligamento" => [
+                "type" => "string",
+                "size" => 96,
+                "nullable" => true
+            ],
+            "prazo_afastamento" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "motivo_trancamento" => [
+                "type" => "string",
+                "size" => 96,
+                "nullable" => true
+            ],
+            "codigo_area_destino" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_area_destino" => [
+                "type" => "string",
+                "size" => 96,
+                "nullable" => true
+            ],
+            "nivel_programa_destino" => [
+                "type" => "string",
+                "size" => 2,
+                "nullable" => true
+            ],
+            "prorrogacao_solicitada_dias" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "prorrogacao_obtida_dias" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "id_posgraduacao",
+                "references" => "id_posgraduacao",
+                "on" => "posgraduacoes",
+                "onDelete" => "cascade"
+            ],
         ]
     ];
 }

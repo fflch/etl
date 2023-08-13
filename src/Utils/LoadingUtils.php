@@ -20,7 +20,7 @@ class LoadingUtils
         $missingSchemas = !empty(array_diff($expectedUserSchemas, $userSchemas));
 
         $decision = self::buildDecision($wantsBuild, $wantsRebuild, $userSchemas, $missingSchemas);
-        self::buildMessage($userSchemas, $missingSchemas);
+        self::buildMessage($userSchemas, $missingSchemas, $wantsRebuild);
 
         return self::buildAction($decision, $schemasClasses);
     }
@@ -38,7 +38,7 @@ class LoadingUtils
         }
     }
 
-    private static function buildMessage($userSchemas, $missingSchemas)
+    private static function buildMessage($userSchemas, $missingSchemas, $wantsRebuild)
     {
         echo PHP_EOL . PHP_EOL;
 
@@ -46,7 +46,7 @@ class LoadingUtils
             echo "It seems there are no tables in your database." . PHP_EOL;
             echo "Let's construct the ones you need." . PHP_EOL . PHP_EOL . PHP_EOL;
         }
-        elseif($missingSchemas) {
+        elseif($missingSchemas && !$wantsRebuild) {
             echo "It seems you are missing some table(s)." . PHP_EOL;
             echo "Database needs rebuilding." . PHP_EOL . PHP_EOL . PHP_EOL;
         }

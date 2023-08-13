@@ -18,6 +18,10 @@ use Src\Transformation\ModelsReplicado\PosGraduacao\TurmaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\TurmaPosGraduacao;
 use Src\Transformation\ModelsReplicado\PosGraduacao\MinistrantePosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\MinistrantePosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\CoordenadorPosGraduacaoReplicado;
+use Src\Loading\Models\PosGraduacao\CoordenadorPosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\OcorrenciaPosGraduacaoReplicado;
+use Src\Loading\Models\PosGraduacao\OcorrenciaPosGraduacao;
 
 class PosGraduacaoOps
 {
@@ -30,6 +34,8 @@ class PosGraduacaoOps
         $this->disciplinasPG = new Transformer(new DisciplinaPosGraduacaoReplicado, 'PosGraduacao/disciplinas_posgraduacao');
         $this->turmasPG = new Transformer(new TurmaPosGraduacaoReplicado, 'PosGraduacao/turmas_posgraduacao');
         $this->ministrantesPG = new Transformer(new MinistrantePosGraduacaoReplicado, 'PosGraduacao/ministrantes_posgraduacao');
+        $this->coordenadoresPG = new Transformer(new CoordenadorPosGraduacaoReplicado, 'PosGraduacao/coordenadores_posgraduacao');
+        $this->ocorrenciasPG = new Transformer(new OcorrenciaPosGraduacaoReplicado, 'PosGraduacao/ocorrencias_posgraduacao');
     }
 
     public function updatePosGraduacoes()
@@ -92,6 +98,24 @@ class PosGraduacaoOps
             'full',
             $this->ministrantesPG, 
             MinistrantePosGraduacao::class
+        );
+    }
+
+    public function updateCoordenadoresPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->coordenadoresPG, 
+            CoordenadorPosGraduacao::class
+        );
+    }
+
+    public function updateOcorrenciasPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->ocorrenciasPG, 
+            OcorrenciaPosGraduacao::class
         );
     }
 }

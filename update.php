@@ -35,12 +35,12 @@ $preScripts = [
     'create_orientacoesPG_temp', // posgraduacao
     'create_disciplinasPG_temp', // posgraduacao
     'create_turmasPG_temp', // posgraduacao
+    'create_ocorrenciasPG_temp', // posgraduacao
     'create_supervisoesPD_temp', // posdoutorado
     'create_matriculasCCEX_temp', // ccex
     'create_inscricoesCCEX_temp', // ccex
     'create_vinculosServidores_temp', // servidores
     'create_credenciamentos_temp', // credenciamentosPG
-    'drop_programas_areas_hotfix',  // base
 ];
 
 $schemas = [
