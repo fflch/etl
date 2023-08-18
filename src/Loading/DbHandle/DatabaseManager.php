@@ -62,8 +62,9 @@ class DatabaseManager
         };
         
         $message = "Cleansing schemas:";
-
-        $this->processDBOperations($classes, $operation, $message);
+        
+        // in reverse for performance reasons
+        $this->processDBOperations(array_reverse($classes), $operation, $message);
     }
 
     public function dropAllTables(array $classes)
