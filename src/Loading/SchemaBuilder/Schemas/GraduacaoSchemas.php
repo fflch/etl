@@ -170,11 +170,13 @@ class GraduacaoSchemas
             ],
             "titulo_projeto" => [
                 "type" => "string",
-                "size" => 256
+                "size" => 256,
+                "nullable" => true
             ],
             "palavras_chave" => [
                 "type" => "string",
-                "size" => 128
+                "size" => 128,
+                "nullable" => true
             ]
         ],
 
