@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\PosDoc;
+namespace Src\Transformation\ModelsReplicado\PesquisasAvancadas;
 
 use Src\Transformation\Interfaces\Mapper;
 
-class BolsaPosDocReplicado implements Mapper
+class BolsaPesquisaAvancadaReplicado implements Mapper
 {
     public function mapping(Array $bolsaPD)
     {

@@ -9,14 +9,14 @@ use Src\Utils\LoadingUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
-use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
+use Src\Loading\SchemaBuilder\Schemas\PesquisasAvancadasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CredenciamentosPGSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\Operations\PessoasOps;
 use Src\Loading\Operations\GraduacaoOps;
 use Src\Loading\Operations\PosGraduacaoOps;
-use Src\Loading\Operations\PosDocOps;
+use Src\Loading\Operations\PesquisasAvancadasOps;
 use Src\Loading\Operations\ServidoresOps;
 use Src\Loading\Operations\CredenciamentosPGOps;
 use Src\Loading\Operations\CEUOps;
@@ -36,7 +36,7 @@ $preScripts = [
     'create_disciplinasPG_temp', // posgraduacao
     'create_turmasPG_temp', // posgraduacao
     'create_ocorrenciasPG_temp', // posgraduacao
-    'create_supervisoesPD_temp', // posdoutorado
+    'create_supervisoesPD_temp', // pesquisasAvancadas
     'create_matriculasCCEX_temp', // ccex
     'create_inscricoesCCEX_temp', // ccex
     'create_vinculosServidores_temp', // servidores
@@ -47,7 +47,7 @@ $schemas = [
     PessoasSchemas::class,
     GraduacaoSchemas::class,
     PosGraduacaoSchemas::class,
-    PosDocSchemas::class,
+    PesquisasAvancadasSchemas::class,
     ServidoresSchemas::class,
     CredenciamentosPGSchemas::class,
     CEUSchemas::class,
@@ -57,7 +57,7 @@ $ops = [
     PessoasOps::class,
     GraduacaoOps::class,
     PosGraduacaoOps::class,
-    PosDocOps::class,
+    PesquisasAvancadasOps::class,
     ServidoresOps::class,
     CredenciamentosPGOps::class,
     CEUOps::class,

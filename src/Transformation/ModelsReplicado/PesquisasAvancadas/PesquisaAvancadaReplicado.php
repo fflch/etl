@@ -1,0 +1,40 @@
+<?php
+
+namespace Src\Transformation\ModelsReplicado\PesquisasAvancadas;
+
+use Src\Utils\Deparas;
+use Src\Transformation\Interfaces\Mapper;
+
+class PesquisaAvancadaReplicado implements Mapper
+{
+    public function mapping(Array $pesquisa_avancada)
+    {
+        $properties = [
+            'id_projeto' => $pesquisa_avancada['ano_projeto'] . '-' . $pesquisa_avancada['codigo_projeto'],
+            'modalidade' => Deparas::modalidadesPD[$pesquisa_avancada['codigo_modalidade']] ?? 'XX',
+            'numero_usp' => $pesquisa_avancada['numero_usp'],
+            'data_inicio_projeto' => $pesquisa_avancada['data_inicio_projeto'],
+            'data_fim_projeto' => $pesquisa_avancada['data_fim_projeto'],
+            'situacao_projeto' => $pesquisa_avancada['situacao_projeto'],
+            'codigo_departamento' => $pesquisa_avancada['codigo_departamento'],
+            'nome_departamento' => $pesquisa_avancada['nome_departamento'],
+            'titulo_projeto' => $pesquisa_avancada['titulo_projeto'],
+            'area_cnpq' => $pesquisa_avancada['area_cnpq'],
+            'palavras_chave' => $this->palavrasChave(
+                                                    array(
+                                                        $pesquisa_avancada['palcha_1'],
+                                                        $pesquisa_avancada['palcha_2'],
+                                                        $pesquisa_avancada['palcha_3']
+                                                    )),
+        ];
+
+        return $properties;
+    }
+
+    private function palavrasChave(array $palavras)
+    {
+        $palavrasChave = array_filter($palavras, function ($palavra) { return !empty($palavra); });
+
+        return mb_strtoupper(implode("; ", $palavrasChave), 'UTF-8');
+    }
+}

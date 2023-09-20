@@ -44,7 +44,7 @@ class LoadingUtils
 
         if (count($userSchemas) == 0) {
             echo "It seems there are no tables in your database." . PHP_EOL;
-            echo "Let's construct the ones you need." . PHP_EOL . PHP_EOL . PHP_EOL;
+            echo "Let's construct the ones you'll need." . PHP_EOL . PHP_EOL . PHP_EOL;
         }
         elseif($missingSchemas && !$wantsRebuild) {
             echo "It seems you are missing some table(s)." . PHP_EOL;

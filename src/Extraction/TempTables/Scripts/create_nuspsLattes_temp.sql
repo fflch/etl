@@ -7,7 +7,7 @@ FROM (
     WHERE a.codare BETWEEN 8000 and 8999
         AND a.vinalupgm <> 'ESPECIAL'
     UNION ALL
-    -- pesquisadores_posdoc
+    -- pesquisadores_avancados (posdoc/pesquisadores colaboradores)
     SELECT pd.codpes_pd AS 'codpes'
     FROM PDPROJETO pd
     WHERE pd.codund = 8

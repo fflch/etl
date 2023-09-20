@@ -2,11 +2,11 @@
 
 namespace Src\Loading\SchemaBuilder\Schemas;
 
-class PosDocSchemas
+class PesquisasAvancadasSchemas
 {
-    const projetos_posdoc = [
+    const pesquisas_avancadas = [
 
-        "tableName" => "projetos_posdoc",
+        "tableName" => "pesquisas_avancadas",
 
         "columns" => [
             "id_projeto" => [
@@ -71,9 +71,9 @@ class PosDocSchemas
         ]
     ];
 
-    const periodos_posdoc = [
+    const periodos_pesq_avancada = [
 
-        "tableName" => "periodos_posdoc",
+        "tableName" => "periodos_pesq_avancada",
 
         "columns" => [
             "id_projeto" => [
@@ -112,15 +112,15 @@ class PosDocSchemas
             [
                 "keys" => "id_projeto",
                 "references" => "id_projeto",
-                "on" => "projetos_posdoc",
+                "on" => "pesquisas_avancadas",
                 "onDelete" => "cascade"
             ],
         ]
     ];
 
-    const bolsas_posdoc = [
+    const bolsas_pesq_avancada = [
 
-        "tableName" => "bolsas_posdoc",
+        "tableName" => "bolsas_pesq_avancada",
 
         "columns" => [
             "id_projeto" => [
@@ -159,22 +159,22 @@ class PosDocSchemas
 
         "primary" => [
             "key" => ["id_projeto", "sequencia_periodo", "sequencia_fomento"],
-            "keyName" => "bolsas_posdoc_primary"
+            "keyName" => "bolsas_pesq_avancada_primary"
         ],
         
         "foreign" => [
             [
                 "keys" => ["id_projeto", "sequencia_periodo"],
                 "references" => ["id_projeto", "sequencia_periodo"],
-                "on" => "periodos_posdoc",
+                "on" => "periodos_pesq_avancada",
                 "onDelete" => "cascade"
             ],
         ]
     ];
 
-    const afastempresas_posdoc = [
+    const afastempresas_pesq_avancada = [
 
-        "tableName" => "afastempresas_posdoc",
+        "tableName" => "afastempresas_pesq_avancada",
 
         "columns" => [
             "id_projeto" => [
@@ -215,15 +215,15 @@ class PosDocSchemas
             [
                 "keys" => ["id_projeto", "sequencia_periodo"],
                 "references" => ["id_projeto", "sequencia_periodo"],
-                "on" => "periodos_posdoc",
+                "on" => "periodos_pesq_avancada",
                 "onDelete" => "cascade"
             ],
         ]
     ];
 
-    const supervisoes_posdoc = [
+    const supervisoes_pesq_avancada = [
 
-        "tableName" => "supervisoes_posdoc",
+        "tableName" => "supervisoes_pesq_avancada",
 
         "columns" => [
             "id_projeto" => [
@@ -258,14 +258,14 @@ class PosDocSchemas
 
         "primary" => [
             "key" => ["id_projeto", "sequencia_supervisao", "tipo_supervisao"],
-            "keyName" => "supervisoes_posdoc_primary"
+            "keyName" => "supervisoes_pesq_avancada_primary"
         ],
         
         "foreign" => [
             [
                 "keys" => "id_projeto",
                 "references" => "id_projeto",
-                "on" => "projetos_posdoc",
+                "on" => "pesquisas_avancadas",
                 "onDelete" => "cascade"
             ],
         ]

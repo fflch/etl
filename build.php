@@ -8,7 +8,7 @@ use Src\Utils\LoadingUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
-use Src\Loading\SchemaBuilder\Schemas\PosDocSchemas;
+use Src\Loading\SchemaBuilder\Schemas\PesquisasAvancadasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CredenciamentosPGSchemas;
@@ -20,7 +20,7 @@ $schemas = [
     PessoasSchemas::class,
     GraduacaoSchemas::class,
     PosGraduacaoSchemas::class,
-    PosDocSchemas::class,
+    PesquisasAvancadasSchemas::class,
     CEUSchemas::class,
     ServidoresSchemas::class,
     CredenciamentosPGSchemas::class,

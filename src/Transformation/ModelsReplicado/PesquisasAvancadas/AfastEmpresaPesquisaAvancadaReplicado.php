@@ -1,11 +1,11 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\PosDoc;
+namespace Src\Transformation\ModelsReplicado\PesquisasAvancadas;
 
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
 
-class AfastEmpresaPosDocReplicado implements Mapper
+class AfastEmpresaPesquisaAvancadaReplicado implements Mapper
 {
     public function mapping(Array $afastamento)
     {

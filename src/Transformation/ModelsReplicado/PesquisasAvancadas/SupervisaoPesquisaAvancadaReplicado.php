@@ -1,10 +1,10 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\PosDoc;
+namespace Src\Transformation\ModelsReplicado\PesquisasAvancadas;
 
 use Src\Transformation\Interfaces\Mapper;
 
-class SupervisaoPosDocReplicado implements Mapper
+class SupervisaoPesquisaAvancadaReplicado implements Mapper
 {
     public function mapping(Array $supervisaoPD)
     {
