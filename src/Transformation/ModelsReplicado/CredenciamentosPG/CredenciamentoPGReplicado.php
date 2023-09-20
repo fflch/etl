@@ -10,12 +10,14 @@ class CredenciamentoPGReplicado implements Mapper
     public function mapping(Array $credenciamento)
     {
         $properties = [
-            'id_credenciamento' => strtoupper(
-                md5(
+            'id_credenciamento' => strtoupper(substr(
+                hash('sha256',
                     $credenciamento['numero_usp'] . 
                     $credenciamento['codigo_area'] . 
-                    $credenciamento['data_inicio_validade']
-                )),
+                    $credenciamento['data_inicio_validade'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'numero_usp' => $credenciamento['numero_usp'],
             'codigo_area' => $credenciamento['codigo_area'],
             'nome_area' => $credenciamento['nome_area'],

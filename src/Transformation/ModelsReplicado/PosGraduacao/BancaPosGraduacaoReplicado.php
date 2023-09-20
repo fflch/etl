@@ -10,21 +10,25 @@ class BancaPosGraduacaoReplicado implements Mapper
     public function mapping(Array $banca)
     {
         $properties = [
-            'id_participacao_banca' => strtoupper(
-                md5(
+            'id_participacao_banca' => strtoupper(substr(
+                hash('sha256',
                     $banca['numero_usp_membro'] . 
                     $banca['numero_usp_aluno'] . 
                     $banca['seq_programa'] .
                     $banca['codigo_area'] .
-                    $banca['sequencia_participacao']
-                )),
-            'id_defesa' => strtoupper(
-                md5(
+                    $banca['sequencia_participacao'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
+            'id_defesa' => strtoupper(substr(
+                hash('sha256',
                     'BANCA' .
                     $banca['numero_usp_aluno'] . 
                     $banca['seq_programa'] .
-                    $banca['codigo_area']
-                )),
+                    $banca['codigo_area'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'numero_usp_membro' => $banca['numero_usp_membro'],
             'vinculo_participacao' => Deparas::funcoesBanca[$banca['vinculo_participacao']] 
                                       ?? $banca['vinculo_participacao'],

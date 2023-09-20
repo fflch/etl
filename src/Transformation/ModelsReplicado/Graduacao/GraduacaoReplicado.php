@@ -10,7 +10,13 @@ class GraduacaoReplicado implements Mapper
     public function mapping(Array $graduacao)
     {
         $properties = [
-            'id_graduacao' => strtoupper(md5($graduacao['numero_usp'] . $graduacao['sequencia_curso'])),
+            'id_graduacao' => strtoupper(substr(
+                hash('sha256',
+                    $graduacao['numero_usp'] . 
+                    $graduacao['sequencia_curso'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'numero_usp' => (int)$graduacao['numero_usp'],
             'sequencia_curso' => (int)$graduacao['sequencia_curso'],
             'situacao_curso' => Deparas::situacoesGR[$graduacao['situacao_curso']] ?? $graduacao['situacao_curso'],

@@ -9,10 +9,14 @@ class PosGraduacaoReplicado implements Mapper
     public function mapping(Array $posGraduacao)
     {
         $properties = [
-            'id_posgraduacao' => strtoupper(md5($posGraduacao['numero_usp'] . 
-                                               $posGraduacao['seq_programa'] .
-                                               $posGraduacao['codigo_area']
-                                          )),
+            'id_posgraduacao' => strtoupper(substr(
+                hash('sha256',
+                    $posGraduacao['numero_usp'] . 
+                    $posGraduacao['seq_programa'] .
+                    $posGraduacao['codigo_area'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'numero_usp' => $posGraduacao['numero_usp'],
             'seq_programa' => $posGraduacao['seq_programa'],
             'tipo_vinculo' => $posGraduacao['tipo_vinculo'], // ver

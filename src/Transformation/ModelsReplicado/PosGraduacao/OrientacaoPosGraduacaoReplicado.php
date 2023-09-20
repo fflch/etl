@@ -10,10 +10,14 @@ class OrientacaoPosGraduacaoReplicado implements Mapper
     public function mapping(Array $orientacaoPG)
     {
         $properties = [
-            'id_posgraduacao' => strtoupper(md5($orientacaoPG['numero_usp_aluno'] . 
-                                                $orientacaoPG['seq_programa'] .
-                                                $orientacaoPG['codigo_area']
-                                        )),
+            'id_posgraduacao' => strtoupper(substr(
+                hash('sha256',
+                    $orientacaoPG['numero_usp_aluno'] . 
+                    $orientacaoPG['seq_programa'] .
+                    $orientacaoPG['codigo_area'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'numero_usp_orientador' => $orientacaoPG['numero_usp_orientador'],
             'sequencia_orientacao' => $orientacaoPG['sequencia_orientacao'],
             'tipo_orientacao' => Deparas::tiposOrientacaoPG[$orientacaoPG['tipo_orientacao']]

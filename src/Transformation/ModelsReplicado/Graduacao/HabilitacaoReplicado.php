@@ -9,7 +9,13 @@ class HabilitacaoReplicado implements Mapper
     public function mapping(Array $habilitacao)
     {
         $properties = [
-            'id_graduacao' => strtoupper(md5($habilitacao['numero_usp'] . $habilitacao['sequencia_curso'])),
+            'id_graduacao' => strtoupper(substr(
+                hash('sha256',
+                    $habilitacao['numero_usp'] . 
+                    $habilitacao['sequencia_curso'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'codigo_curso' => $habilitacao['codigo_curso'],
             'codigo_habilitacao' => (int)$habilitacao['codigo_habilitacao'],
             'nome_habilitacao' => $habilitacao['nome_habilitacao'],

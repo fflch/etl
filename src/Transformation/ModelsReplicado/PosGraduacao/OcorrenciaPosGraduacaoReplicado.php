@@ -9,12 +9,14 @@ class OcorrenciaPosGraduacaoReplicado implements Mapper
     public function mapping(Array $ocorrenciaPG)
     {
         $properties = [
-            'id_posgraduacao' => strtoupper(
-                md5(
+            'id_posgraduacao' => strtoupper(substr(
+                hash('sha256',
                     $ocorrenciaPG['numero_usp'] . 
                     $ocorrenciaPG['seq_programa'] .
-                    $ocorrenciaPG['codigo_area']
-                )),
+                    $ocorrenciaPG['codigo_area'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
+            ),
             'data_ocorrencia' => $ocorrenciaPG['data_ocorrencia'],
             'tipo_ocorrencia' => $ocorrenciaPG['tipo_ocorrencia'],
             'motivo_desligamento' => $ocorrenciaPG['motivo_desligamento'],

@@ -10,12 +10,13 @@ class DesignacaoServidorReplicado implements Mapper
     public function mapping(Array $designacao)
     {
         $properties = [
-            'id_vinculo' => strtoupper(
-                md5(
+            'id_vinculo' => strtoupper(substr(
+                hash('sha256',
                     $designacao['numero_usp'] . 
                     $designacao['sequencia_vinculo'] . 
-                    $designacao['vinculo']
-                )
+                    $designacao['vinculo'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
             ),
             'numero_usp' => $designacao['numero_usp'],
             'vinculo' => Deparas::tiposVinculoServidores[$designacao['vinculo']] ?? $designacao['vinculo'],
