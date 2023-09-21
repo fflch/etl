@@ -11,7 +11,7 @@ class DefesaPosGraduacaoReplicado implements Mapper
         $properties = [
             'id_defesa' => strtoupper(substr(
                 hash('sha256',
-                    'BANCA' .
+                    'DEFESA' .
                     $defesa['numero_usp'] . 
                     $defesa['seq_programa'] .
                     $defesa['codigo_area'] .

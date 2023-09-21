@@ -22,7 +22,7 @@ class BancaPosGraduacaoReplicado implements Mapper
             ),
             'id_defesa' => strtoupper(substr(
                 hash('sha256',
-                    'BANCA' .
+                    'DEFESA' .
                     $banca['numero_usp_aluno'] . 
                     $banca['seq_programa'] .
                     $banca['codigo_area'] .

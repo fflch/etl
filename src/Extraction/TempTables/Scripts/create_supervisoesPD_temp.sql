@@ -16,7 +16,6 @@ SELECT
 	,pps.codprj AS 'codigo_projeto'
 	,pps.tipspv AS 'tipo_supervisao'
 	,pps.codpesspv AS 'numero_usp_supervisor'
-	,p.nompes AS 'nome_supervisor'
 	,pps.dtainispv AS 'data_inicio_supervisao'
 	,pps.dtafimspv AS 'data_fim_supervisao'
 	,CASE
@@ -27,7 +26,6 @@ SELECT
 INTO #all_supervisoespd
 FROM PDPROJETOSUPERVISOR pps
 	LEFT JOIN PDPROJETO prj ON pps.anoprj = prj.anoprj AND pps.codprj = prj.codprj
-	LEFT JOIN PESSOA p ON pps.codpesspv = p.codpes
 	LEFT JOIN #ultimosupervisor u
         ON pps.anoprj = u.anoprj 
             AND pps.codprj = u.codprj

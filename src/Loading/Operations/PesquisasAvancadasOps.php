@@ -38,6 +38,10 @@ class PesquisasAvancadasOps
         Capsule::update("UPDATE pesquisas_avancadas pa
                         SET data_fim_projeto = NULL, data_inicio_projeto = NULL
                         WHERE pa.situacao_projeto IN ('Incompleto', 'Recusado')");
+
+        Capsule::update("UPDATE pesquisas_avancadas pa
+                        SET palavras_chave = NULL
+                        WHERE pa.palavras_chave = ''");
     }
 
     public function updatePeriodosPesquisaAvancada()

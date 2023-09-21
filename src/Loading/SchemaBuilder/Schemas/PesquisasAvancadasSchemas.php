@@ -236,10 +236,6 @@ class PesquisasAvancadasSchemas
             "numero_usp_supervisor" => [
                 "type" => "integer"
             ],
-            "nome_supervisor" => [
-                "type" => "string",
-                "size" => 256
-            ],
             "tipo_supervisao" => [
                 "type" => "string",
                 "size" => 40

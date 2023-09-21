@@ -4,7 +4,7 @@ SELECT
 	,ag.numseqpgm AS 'seq_programa'
 	,ag.nivpgm AS 'nivel'
 	,ag.dtadfapgm AS 'data_defesa'
-	,ag.nomlocdfatrb AS 'local_defesa'
+	,UPPER(ag.nomlocdfatrb) AS 'local_defesa'
 	,ag.menccdpgm AS 'mencao_honrosa'
 	,tp.tittrb AS 'titulo_trabalho'
 FROM AGPROGRAMA ag
