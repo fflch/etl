@@ -657,4 +657,136 @@ class PosGraduacaoSchemas
             ],
         ]
     ];
+
+    const bolsas_posgraduacao = [
+
+        "tableName" => "bolsas_posgraduacao",
+
+        "columns" => [
+            "id_bolsa" => [
+                "type" => "char",
+                "size" => 12
+            ],
+            "id_posgraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "situacao_bolsa" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "data_inicio_bolsa" => [
+                "type" => "date"
+            ],
+            "data_fim_bolsa" => [
+                "type" => "date"
+            ],
+            "codigo_instituicao_fomento" => [
+                "type" => "integer"
+            ],
+            "sigla_instituicao_fomento" => [
+                "type" => "string",
+                "size" => 64,
+                "nullable" => true
+            ],
+            "nome_instituicao_fomento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "codigo_programa_fomento" => [
+                "type" => "integer"
+            ],
+            "nome_programa_fomento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_bolsa"]
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "id_posgraduacao",
+                "references" => "id_posgraduacao",
+                "on" => "posgraduacoes",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const credenciamentos_pg = [
+
+        "tableName" => "credenciamentos_pg",
+
+        "columns" => [
+            "id_credenciamento" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "codigo_area" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_area" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "codigo_programa" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_programa" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "nivel" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "tipo_credenciamento" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "situacao_credenciamento" => [
+                "type" => "string",
+                "size" => 12,
+                "nullable" => true
+            ],
+            "data_inicio_validade" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_fim_validade" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "ultimo_credenciamento_area" => [
+                "type" => "char",
+                "size" => 1
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_credenciamento"]
+        ],
+
+        "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
 }

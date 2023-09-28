@@ -8,6 +8,8 @@ use Src\Utils\CommonUtils;
 
 class DatabaseManager
 {
+    private $ops;
+
     public function __construct()
     {
         $this->ops = new TableOperations();

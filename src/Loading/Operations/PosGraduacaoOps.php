@@ -22,9 +22,20 @@ use Src\Transformation\ModelsReplicado\PosGraduacao\CoordenadorPosGraduacaoRepli
 use Src\Loading\Models\PosGraduacao\CoordenadorPosGraduacao;
 use Src\Transformation\ModelsReplicado\PosGraduacao\OcorrenciaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\OcorrenciaPosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\BolsaPosGraduacaoReplicado;
+use Src\Loading\Models\PosGraduacao\BolsaPosGraduacao;
+use Src\Transformation\ModelsReplicado\PosGraduacao\CredenciamentoPGReplicado;
+use Src\Loading\Models\PosGraduacao\CredenciamentoPG;
 
 class PosGraduacaoOps
 {
+    private $posGraduacoes, $defesasPG,
+            $bancasPG, $orientacoesPG,
+            $disciplinasPG, $turmasPG,
+            $ministrantesPG, $coordenadoresPG,
+            $ocorrenciasPG, $bolsasPG,
+            $credenciamentosPG;
+
     public function __construct()
     {
         $this->posGraduacoes = new Transformer(new PosGraduacaoReplicado, 'PosGraduacao/posgraduacoes');
@@ -36,6 +47,8 @@ class PosGraduacaoOps
         $this->ministrantesPG = new Transformer(new MinistrantePosGraduacaoReplicado, 'PosGraduacao/ministrantes_posgraduacao');
         $this->coordenadoresPG = new Transformer(new CoordenadorPosGraduacaoReplicado, 'PosGraduacao/coordenadores_posgraduacao');
         $this->ocorrenciasPG = new Transformer(new OcorrenciaPosGraduacaoReplicado, 'PosGraduacao/ocorrencias_posgraduacao');
+        $this->bolsasPG = new Transformer(new BolsaPosGraduacaoReplicado, 'PosGraduacao/bolsas_posgraduacao');
+        $this->credenciamentosPG = new Transformer(new CredenciamentoPGReplicado, 'PosGraduacao/credenciamentos_pg');
     }
 
     public function updatePosGraduacoes()
@@ -116,6 +129,24 @@ class PosGraduacaoOps
             'full',
             $this->ocorrenciasPG, 
             OcorrenciaPosGraduacao::class
+        );
+    }
+
+    public function updateBolsasPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->bolsasPG, 
+            BolsaPosGraduacao::class
+        );
+    }
+
+    public function updateCredenciamentosPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->credenciamentosPG, 
+            CredenciamentoPG::class
         );
     }
 }

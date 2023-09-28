@@ -11,7 +11,6 @@ use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PesquisasAvancadasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
-use Src\Loading\SchemaBuilder\Schemas\CredenciamentosPGSchemas;
 use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 
 pcntl_alarm(10 * 60); // Kills script if it's taking too long.
@@ -23,7 +22,6 @@ $schemas = [
     PesquisasAvancadasSchemas::class,
     CEUSchemas::class,
     ServidoresSchemas::class,
-    CredenciamentosPGSchemas::class,
     LattesSchemas::class,
 ];
 

@@ -19,6 +19,10 @@ use Src\Loading\Models\CEU\CoordenadorCCEx;
 
 class CEUOps
 {
+    private $cursosCEU, $oferecimentosCursos,
+            $inscricoesCursos, $matriculasCursos,
+            $ministrantesCursos, $coordenadoresCursos;
+
     public function __construct()
     {
         $this->cursosCEU = new Transformer(new CursoCulturaExtensaoReplicado, 'CEU/cursos_culturaextensao');

@@ -9,6 +9,8 @@ use Src\Loading\Models\Lattes\Lattes;
 
 class LattesOps
 {
+    private $lattes;
+
     public function __construct()
     {
         $this->lattes = new Transformer(new LattesReplicado, 'Lattes/lattes');

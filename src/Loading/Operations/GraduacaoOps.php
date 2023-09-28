@@ -32,6 +32,13 @@ use Src\Loading\Models\Graduacao\MinistranteGraduacao;
 
 class GraduacaoOps
 {
+    private $graduacoes, $habilitacoes,
+            $iniciacoes, $bolsasIC,
+            $questionarioRespostas, $questionarioQuestoes,
+            $SIICUSPTrabalhos, $SIICUSPParticipantes,
+            $disciplinasGraduacao, $turmasGraduacao,
+            $demandaTurmasGraduacao, $ministrantesGraduacao;
+
     public function __construct()
     {
         $this->graduacoes = new Transformer(new GraduacaoReplicado, 'Graduacao/graduacoes');

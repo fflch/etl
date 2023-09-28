@@ -18,6 +18,10 @@ use Src\Loading\Models\PesquisasAvancadas\SupervisaoPesquisaAvancada;
 
 class PesquisasAvancadasOps
 {
+    private $pesquisasAvancadas, $periodosPesquisaAvancada,
+            $bolsasPesquisaAvancada, $afastEmpresasPesquisaAvancada,
+            $supervisoesPesquisaAvancada;
+    
     public function __construct()
     {
         $this->pesquisasAvancadas = new Transformer(new PesquisaAvancadaReplicado, 'PesquisasAvancadas/pesquisas_avancadas');

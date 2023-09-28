@@ -8,6 +8,8 @@ use Src\Utils\TransformationUtils;
 
 class Transformer
 {
+    private $mapper, $queryPath;
+
     public function __construct(Mapper $mapper, string $queryPath) {
         $this->mapper = $mapper;
         $this->queryPath = $queryPath;

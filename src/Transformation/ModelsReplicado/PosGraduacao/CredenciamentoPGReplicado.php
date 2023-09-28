@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\CredenciamentosPG;
+namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;

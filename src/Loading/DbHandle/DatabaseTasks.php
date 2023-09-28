@@ -8,6 +8,8 @@ use Src\Utils\CommonUtils;
 
 class DatabaseTasks
 {
+    private $dbManager;
+
     public function __construct()
     {
         $this->dbManager = new DatabaseManager();

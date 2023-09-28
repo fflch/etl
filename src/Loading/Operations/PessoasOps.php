@@ -9,6 +9,8 @@ use Src\Utils\ExtractionUtils;
 
 class PessoasOps
 {
+    private $pessoas;
+
     public function __construct()
     {
         $this->pessoas = new Transformer(new PessoaReplicado, 'Pessoas/pessoas');

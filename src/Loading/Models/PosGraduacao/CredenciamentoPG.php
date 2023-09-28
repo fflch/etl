@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Loading\Models\CredenciamentosPG;
+namespace Src\Loading\Models\PosGraduacao;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -11,6 +11,8 @@ use Src\Loading\Models\Servidores\VinculoServidor;
 
 class ServidoresOps
 {
+    private $vinculosServidores, $designacoes;
+
     public function __construct()
     {
         $this->vinculosServidores = new Transformer(new VinculoServidorReplicado, 'Servidores/vinculos_servidores');
