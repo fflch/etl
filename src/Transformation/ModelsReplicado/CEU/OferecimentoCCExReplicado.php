@@ -4,6 +4,7 @@ namespace Src\Transformation\ModelsReplicado\CEU;
 
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class OferecimentoCCExReplicado implements Mapper
 {
@@ -28,8 +29,11 @@ class OferecimentoCCExReplicado implements Mapper
             'valor_previsto_arrecadacao' => $oferecimentoCCEx['valor_previsto_arrecadacao'],
             'valor_previsto_custos' => $oferecimentoCCEx['valor_previsto_custos'],
             'valor_previsto_prce' => $oferecimentoCCEx['valor_previsto_prce'],
-            'curso_para_empresas' => $oferecimentoCCEx['curso_para_empresas'],
-            'local_curso' => $oferecimentoCCEx['local_curso'],
+            'curso_para_empresas' => $oferecimentoCCEx['curso_para_empresas'], 
+            'local_curso' => CommonUtils::cleanInput(
+                $oferecimentoCCEx['local_curso'],
+                ['remove_trailing_periods']
+            ),
             'data_inicio_inscricoes' => $oferecimentoCCEx['data_inicio_inscricoes'],
             'data_fim_inscricoes' => $oferecimentoCCEx['data_fim_inscricoes'],
             'permite_inscricao_online' => $oferecimentoCCEx['permite_inscricao_online'],

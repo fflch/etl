@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class BolsaPosGraduacaoReplicado implements Mapper
 {
@@ -29,9 +30,15 @@ class BolsaPosGraduacaoReplicado implements Mapper
             'data_fim_bolsa' => $bolsaPG['data_fim_bolsa'],
             'codigo_instituicao_fomento' => $bolsaPG['codigo_instituicao_fomento'],
             'sigla_instituicao_fomento' => $bolsaPG['sigla_instituicao_fomento'],
-            'nome_instituicao_fomento' => $bolsaPG['nome_instituicao_fomento'],
+            'nome_instituicao_fomento' => CommonUtils::cleanInput(
+                $bolsaPG['nome_instituicao_fomento'],
+                ['decode_html']
+            ),
             'codigo_programa_fomento' => $bolsaPG['codigo_programa_fomento'],
-            'nome_programa_fomento' => $bolsaPG['nome_programa_fomento'],
+            'nome_programa_fomento' => CommonUtils::cleanInput(
+                $bolsaPG['nome_programa_fomento'],
+                ['remove_trailing_periods', 'trim_quotes']
+            ),
         ];
 
         return $properties;

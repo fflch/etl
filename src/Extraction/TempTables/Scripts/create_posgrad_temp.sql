@@ -3,7 +3,7 @@ SELECT
 	ap.codpes AS 'numero_usp'
 	,ap.numseqpgm AS 'seq_programa'
 	,ap.codare AS 'codigo_area'
-	,ap.vinalupgm AS 'tipo_vinculo'
+	,ap.vinalupgm AS 'tipo_matricula'
 	,ap.dtaselpgm AS 'data_selecao'
 	,ap.nivpgm AS 'nivel_programa'
 	,ap.dtadpopgm AS 'data_deposito_trabalho'
@@ -136,7 +136,7 @@ SELECT
 	,p.codigo_programa
 	,p.nome_programa
 	,p.data_selecao
-	,p.tipo_vinculo
+	,p.tipo_matricula
 	,p.primeira_matricula
 	,t.dschstpgm AS 'tipo_ultima_ocorrencia'
 	,u.data_ultima_ocorrencia

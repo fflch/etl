@@ -1,7 +1,7 @@
 SELECT
 	r.codpes AS 'numero_usp'
 	,r.codare AS 'codigo_area'
-	,r.nivare AS 'nivel'
+	,r.nivare AS 'nivel_credenciamento'
 	,r.tiport AS 'tipo_credenciamento'
 	,r.dtavalini AS 'data_inicio_validade'
 	,r.dtavalfim AS 'data_fim_validade'
@@ -22,7 +22,7 @@ FROM #fflch_creds f
 		ON f.numero_usp = f2.numero_usp 
 			AND f.codigo_area = f2.codigo_area 
 			AND f.data_inicio_validade = f2.data_inicio_validade 
-WHERE f.nivel = 'DO' AND f2.nivel = 'ME' ;
+WHERE f.nivel_credenciamento = 'DO' AND f2.nivel_credenciamento = 'ME' ;
 
 
 -- Delete those old ME supervisor certifications.
@@ -33,7 +33,7 @@ WHERE EXISTS (
 	WHERE #fflch_creds.numero_usp = d.numero_usp 
 		AND #fflch_creds.codigo_area = d.codigo_area 
 		AND #fflch_creds.data_inicio_validade = d.data_inicio_validade
-		AND #fflch_creds.nivel = d.nivel
+		AND #fflch_creds.nivel_credenciamento = d.nivel_credenciamento
 );
 
 

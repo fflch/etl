@@ -4,6 +4,7 @@ namespace Src\Transformation\ModelsReplicado\Graduacao;
 
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class SIICUSPTrabalhoReplicado implements Mapper
 {
@@ -11,7 +12,15 @@ class SIICUSPTrabalhoReplicado implements Mapper
     {
         $properties = [
             'id_trabalho' => $trabalho['edicao_siicusp'] . "-" . $trabalho['codigo_trabalho'],
-            'titulo_trabalho' => $trabalho['titulo_trabalho'],
+            'titulo_trabalho' => CommonUtils::cleanInput(
+                $trabalho['titulo_trabalho'],
+                [
+                    'decode_html',
+                    'remove_trailing_periods',
+                    'trim_quotes',
+                    'to_uppercase'
+                ]
+            ),
             'id_projeto_ic' => isset($trabalho['codigo_projeto'])
                            ? $trabalho['ano_projeto'] . "-" . $trabalho['codigo_projeto']
                            : null,

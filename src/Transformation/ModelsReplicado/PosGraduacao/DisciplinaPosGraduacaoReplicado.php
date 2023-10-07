@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class DisciplinaPosGraduacaoReplicado implements Mapper
 {
@@ -12,7 +13,10 @@ class DisciplinaPosGraduacaoReplicado implements Mapper
             'codigo_disciplina' => $disciplinaPG['codigo_disciplina'],
             'versao_disciplina' => $disciplinaPG['versao_disciplina'],
             'departamento' => $disciplinaPG['departamento'],
-            'nome_disciplina' => $disciplinaPG['nome_disciplina'],
+            'nome_disciplina' => CommonUtils::cleanInput(
+                $disciplinaPG['nome_disciplina'],
+                ['trim_quotes']
+            ),
             'tipo_curso' => $disciplinaPG['tipo_curso'],
             'status_disciplina' => $disciplinaPG['status_disciplina'],
             'data_proposicao_disciplina' => $disciplinaPG['data_proposicao_disciplina'],

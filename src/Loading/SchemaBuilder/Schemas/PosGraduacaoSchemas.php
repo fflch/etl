@@ -19,13 +19,13 @@ class PosGraduacaoSchemas
             "seq_programa" => [
                 "type" => "tinyInteger"
             ],
-            "tipo_vinculo" => [
+            "tipo_matricula" => [
                 "type" => "string",
-                "size" => 16
+                "size" => 24
             ],
             "nivel_programa" => [
-                "type" => "char",
-                "size" => 2
+                "type" => "string",
+                "size" => 16,
             ],
             "codigo_area" => [
                 "type" => "integer",
@@ -99,14 +99,17 @@ class PosGraduacaoSchemas
                 "size" => 32
             ],
             "data_defesa" => [
-                "type" => "date",
-                "nullable" => true // ver
+                "type" => "date"
             ],
             "local_defesa" => [
                 "type" => "string",
                 "size" => 64,
                 "nullable" => true
             ],
+            // "resultado_defesa" => [
+            //     "type" => "string",
+            //     "size" => 32
+            // ], // ver como extrair info
             "mencao_honrosa" => [
                 "type" => "string",
                 "size" => 32,
@@ -115,7 +118,7 @@ class PosGraduacaoSchemas
             "titulo_trabalho" => [
                 "type" => "string",
                 "size" => 512,
-                "nullable" => true // ver
+                "nullable" => true // ver trabalho com titulo = null
             ],
         ],
 
@@ -153,7 +156,7 @@ class PosGraduacaoSchemas
                 "type" => "string",
                 "size" => 16
             ],
-            "participacao_assinalada" => [ // ver
+            "participacao_assinalada" => [ // ver utilidade
                 "type" => "char",
                 "size" => 1,
                 "nullable" => true
@@ -483,8 +486,8 @@ class PosGraduacaoSchemas
                 "nullable" => true
             ],
             "nivel_convenio" => [
-                "type" => "char",
-                "size" => 2,
+                "type" => "string",
+                "size" => 16,
                 "nullable" => true
             ],
             "lingua_turma" => [
@@ -631,7 +634,7 @@ class PosGraduacaoSchemas
             ],
             "nivel_programa_destino" => [
                 "type" => "string",
-                "size" => 2,
+                "size" => 16,
                 "nullable" => true
             ],
             "prorrogacao_solicitada_dias" => [
@@ -748,9 +751,9 @@ class PosGraduacaoSchemas
                 "size" => 128,
                 "nullable" => true
             ],
-            "nivel" => [
+            "nivel_credenciamento" => [
                 "type" => "string",
-                "size" => 12
+                "size" => 16
             ],
             "tipo_credenciamento" => [
                 "type" => "string",

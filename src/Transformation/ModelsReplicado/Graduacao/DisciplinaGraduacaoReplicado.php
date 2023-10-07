@@ -4,6 +4,7 @@ namespace Src\Transformation\ModelsReplicado\Graduacao;
 
 use Src\Utils\Deparas;
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class DisciplinaGraduacaoReplicado implements Mapper
 {
@@ -12,7 +13,10 @@ class DisciplinaGraduacaoReplicado implements Mapper
         $properties = [
             'codigo_disciplina' => $disciplina['codigo_disciplina'],
             'versao_disciplina' => $disciplina['versao_disciplina'],
-            'nome_disciplina' => $disciplina['nome_disciplina'],
+            'nome_disciplina' => CommonUtils::cleanInput(
+                $disciplina['nome_disciplina'],
+                ['trim_quotes']
+            ),
             'situacao_disciplina' => Deparas::situacoesDisciplina[$disciplina['situacao_disciplina']]
                                   ?? $disciplina['situacao_disciplina'],
             'data_ativacao_disciplina' => $disciplina['data_ativacao_disciplina'],

@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class OcorrenciaPosGraduacaoReplicado implements Mapper
 {
@@ -24,7 +25,8 @@ class OcorrenciaPosGraduacaoReplicado implements Mapper
             'motivo_trancamento' => $ocorrenciaPG['motivo_trancamento'],
             'codigo_area_destino' => $ocorrenciaPG['codigo_area_destino'],
             'nome_area_destino' => $ocorrenciaPG['nome_area_destino'],
-            'nivel_programa_destino' => $ocorrenciaPG['nivel_programa_destino'],
+            'nivel_programa_destino' => Deparas::niveisPG[$ocorrenciaPG['nivel_programa_destino']]
+                                        ?? $ocorrenciaPG['nivel_programa_destino'],
             'prorrogacao_solicitada_dias' => $ocorrenciaPG['prorrogacao_solicitada_dias'],
             'prorrogacao_obtida_dias' => $ocorrenciaPG['prorrogacao_obtida_dias'],
         ];

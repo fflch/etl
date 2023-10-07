@@ -22,6 +22,7 @@ class TransformationUtils
                 $item = utf8_encode($item);
             }
         });
+
         return $array;
     }
 
@@ -30,6 +31,7 @@ class TransformationUtils
         array_walk_recursive($array, function (&$item, $key) {
             $item = trim($item);
         });
+
         return $array;
     }
 
@@ -67,5 +69,12 @@ class TransformationUtils
         }
 
         return $dadosLattes;
+    }
+
+    public static function initialDataCleanup($input)
+    {
+        $input = preg_replace('/\s+/', ' ', $input);
+        $input = rtrim($input, ","); 
+        return trim($input);
     }
 }

@@ -19,7 +19,7 @@ class HabilitacaoReplicado implements Mapper
             'codigo_curso' => $habilitacao['codigo_curso'],
             'codigo_habilitacao' => (int)$habilitacao['codigo_habilitacao'],
             'nome_habilitacao' => $habilitacao['nome_habilitacao'],
-            'tipo_habilitacao' => $habilitacao['tipo_habilitacao'], // ver
+            'tipo_habilitacao' => $habilitacao['tipo_habilitacao'], // ver significados
             'periodo_habilitacao' => $habilitacao['periodo_habilitacao'],
             'data_inicio_habilitacao' => $habilitacao['data_inicio_habilitacao'],
             'data_fim_habilitacao' => $habilitacao['data_fim_habilitacao'],

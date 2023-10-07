@@ -231,4 +231,15 @@ class Deparas
         'COO' => 'Coorientador',
         'EXC' => 'Em caráter exepcional',
     ];
+
+    const tiposMatriculaPG = [
+        'REGULAR' => 'Regular',
+        'ARTIG103' => 'Artigo 103 (RG-USP)'
+    ];
+
+    const niveisPG = [
+        'ME' => 'Mestrado',
+        'DO' => 'Doutorado',
+        'DD' => 'Doutorado Direto'
+    ];
 }

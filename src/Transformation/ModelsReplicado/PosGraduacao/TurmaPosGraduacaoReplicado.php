@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\PosGraduacao;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class TurmaPosGraduacaoReplicado implements Mapper
 {
@@ -40,7 +41,8 @@ class TurmaPosGraduacaoReplicado implements Mapper
             'alunos_externos_pct' => $turmaPG['alunos_externos_pct'],
             'codigo_area' => $turmaPG['codigo_area'],
             'codigo_convenio' => $turmaPG['codigo_convenio'],
-            'nivel_convenio' => $turmaPG['nivel_convenio'],
+            'nivel_convenio' => Deparas::niveisPG[$turmaPG['nivel_convenio']]
+                                ?? $turmaPG['nivel_convenio'],
             'lingua_turma' => $turmaPG['lingua_turma'],
             'formato_oferecimento' => $turmaPG['formato_oferecimento'],
         ];

@@ -49,7 +49,9 @@ class ReplicadoDB
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
             $result = TransformationUtils::utf8_converter($result);
-            $result = TransformationUtils::trim_recursivo($result);
+            $result = array_map(function($arr) {
+                return array_map([TransformationUtils::class, 'initialDataCleanup'], $arr);
+            }, $result);
         }
 
         return $result;

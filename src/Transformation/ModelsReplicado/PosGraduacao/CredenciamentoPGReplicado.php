@@ -23,7 +23,8 @@ class CredenciamentoPGReplicado implements Mapper
             'nome_area' => $credenciamento['nome_area'],
             'codigo_programa' => $credenciamento['codigo_programa'],
             'nome_programa' => $credenciamento['nome_programa'],
-            'nivel' => $credenciamento['nivel'],
+            'nivel_credenciamento' => Deparas::niveisPG[$credenciamento['nivel_credenciamento']]
+                        ?? $credenciamento['nivel_credenciamento'],
             'tipo_credenciamento' => Deparas::tipoCredenciamento[$credenciamento['tipo_credenciamento']] 
                                      ?? $credenciamento['tipo_credenciamento'],
             'situacao_credenciamento' => $this->checkCredenciamento($credenciamento['data_fim_validade']),
