@@ -242,4 +242,18 @@ class Deparas
         'DO' => 'Doutorado',
         'DD' => 'Doutorado Direto'
     ];
+
+    const tiposIngressoIntercambio = [
+        'A' => 'Acordo USP',
+        'C' => 'Convênio USP',
+        'N' => 'Outro',
+        'P' => 'Rede, programa ou consórcio',
+    ];
+
+    const modalidadesIntercambio = [
+        'I' => 'Regular', // "Intercâmbio de Graduação no modelo Convênio de Intercâmbio de Graduação"
+        'D' => 'Duplo Diploma',
+        'C' => 'Curta Duração',
+        'N' => 'Não Informado'
+    ];
 }
