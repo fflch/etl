@@ -24,7 +24,7 @@ WHERE
   SELECT DISTINCT(tipo_ocorrencia) FROM #ocorrencias_pg
 
 
--- Differentiate occurrences where requests were not accepted and therefore did not occur
+-- Differentiate occurrences whose requests were not accepted and therefore did not occur
 UPDATE
     #ocorrencias_pg
 SET 
@@ -72,17 +72,22 @@ SELECT
 	,f.numseqpgm AS 'seq_programa'
 	,f.dtaocopgm AS 'data_ocorrencia'
 	,f.tipo_ocorrencia
-    ,f.dscmotdlg AS 'motivo_desligamento'
+    ,CASE
+        WHEN f.dscmotdlg IS NOT NULL 
+            THEN f.dscmotdlg
+        WHEN f.dscmottmt IS NOT NULL
+            THEN f.dscmottmt
+        ELSE NULL
+        END AS 'motivo_ocorrencia'
     ,f.przpgm AS 'prazo_afastamento'
-	,f.dscmottmt AS 'motivo_trancamento'
     ,f.codaretrf AS 'codigo_area_destino'
     ,a.nomare AS 'nome_area_destino'
     ,CASE f.tiphstpgm
         WHEN 'TFA' THEN f.nivpgmtrf
         ELSE NULL END
         AS 'nivel_programa_destino'
-    ,CAST(NULL AS SMALLINT) AS 'prorrogacao_solicitada_dias'
-    ,CAST(NULL AS SMALLINT) AS 'prorrogacao_obtida_dias'
+    ,CAST(NULL AS SMALLINT) AS 'prorrogacao_def_solicitada_dias'
+    ,CAST(NULL AS SMALLINT) AS 'prorrogacao_def_obtida_dias'
 INTO
     #ocorrencias_regulares_pg
 FROM 
@@ -105,14 +110,13 @@ SELECT
         THEN 'Prorrogação do Prazo de Defesa'
         ELSE 'Solicitação indeferida de Prorrogação do Prazo de Defesa'
         END AS 'tipo_ocorrencia'
-    ,CAST(NULL AS VARCHAR) AS 'motivo_desligamento'
+    ,CAST(NULL AS VARCHAR) AS 'motivo_ocorrencia'
     ,CAST(NULL AS SMALLINT) AS 'prazo_afastamento'
-	,CAST(NULL AS VARCHAR) AS 'motivo_trancamento'
     ,NULL AS 'codigo_area_destino'
     ,CAST(NULL AS VARCHAR) AS 'nome_area_destino'
     ,CAST(NULL AS VARCHAR) AS 'nivel_programa_destino'
-    ,p.qtddiapgcsol AS 'prorrogacao_solicitada_dias'
-    ,p.qtddiapgc AS 'prorrogacao_obtida_dias'
+    ,p.qtddiapgcsol AS 'prorrogacao_def_solicitada_dias'
+    ,p.qtddiapgc AS 'prorrogacao_def_obtida_dias'
 INTO
     #ocorrencias_defesas_pg
 FROM

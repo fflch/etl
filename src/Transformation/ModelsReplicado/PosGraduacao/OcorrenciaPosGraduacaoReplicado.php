@@ -20,15 +20,14 @@ class OcorrenciaPosGraduacaoReplicado implements Mapper
             ),
             'data_ocorrencia' => $ocorrenciaPG['data_ocorrencia'],
             'tipo_ocorrencia' => $ocorrenciaPG['tipo_ocorrencia'],
-            'motivo_desligamento' => $ocorrenciaPG['motivo_desligamento'],
+            'motivo_ocorrencia' => $ocorrenciaPG['motivo_ocorrencia'],
             'prazo_afastamento' => $ocorrenciaPG['prazo_afastamento'],
-            'motivo_trancamento' => $ocorrenciaPG['motivo_trancamento'],
             'codigo_area_destino' => $ocorrenciaPG['codigo_area_destino'],
             'nome_area_destino' => $ocorrenciaPG['nome_area_destino'],
             'nivel_programa_destino' => Deparas::niveisPG[$ocorrenciaPG['nivel_programa_destino']]
                                         ?? $ocorrenciaPG['nivel_programa_destino'],
-            'prorrogacao_solicitada_dias' => $ocorrenciaPG['prorrogacao_solicitada_dias'],
-            'prorrogacao_obtida_dias' => $ocorrenciaPG['prorrogacao_obtida_dias'],
+            'prorrogacao_def_solicitada_dias' => $ocorrenciaPG['prorrogacao_def_solicitada_dias'],
+            'prorrogacao_def_obtida_dias' => $ocorrenciaPG['prorrogacao_def_obtida_dias'],
         ];
 
         return $properties;

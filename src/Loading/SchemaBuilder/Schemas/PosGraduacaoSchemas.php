@@ -609,18 +609,13 @@ class PosGraduacaoSchemas
                 "type" => "string",
                 "size" => 96
             ],
-            "motivo_desligamento" => [
+            "motivo_ocorrencia" => [
                 "type" => "string",
                 "size" => 96,
                 "nullable" => true
             ],
             "prazo_afastamento" => [
                 "type" => "smallInteger",
-                "nullable" => true
-            ],
-            "motivo_trancamento" => [
-                "type" => "string",
-                "size" => 96,
                 "nullable" => true
             ],
             "codigo_area_destino" => [
@@ -637,11 +632,11 @@ class PosGraduacaoSchemas
                 "size" => 16,
                 "nullable" => true
             ],
-            "prorrogacao_solicitada_dias" => [
+            "prorrogacao_def_solicitada_dias" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "prorrogacao_obtida_dias" => [
+            "prorrogacao_def_obtida_dias" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
