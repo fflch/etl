@@ -1,6 +1,6 @@
 SELECT
 	i.codpes AS 'numero_usp'
-	,i.codpgm AS 'sequencia_curso'
+	,i.codpgm AS 'sequencia_grad'
 	,i.mdlitbusp AS 'modalidade_intercambio'
 	,CASE WHEN i.dtainiitbori IS NOT NULL
 		THEN i.dtainiitbori

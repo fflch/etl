@@ -12,7 +12,7 @@ class HabilitacaoReplicado implements Mapper
             'id_graduacao' => strtoupper(substr(
                 hash('sha256',
                     $habilitacao['numero_usp'] . 
-                    $habilitacao['sequencia_curso'] .
+                    $habilitacao['sequencia_grad'] .
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),

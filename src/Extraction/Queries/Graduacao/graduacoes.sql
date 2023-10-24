@@ -1,6 +1,6 @@
 SELECT
     p.codpes AS 'numero_usp'
-    ,p.codpgm AS 'sequencia_curso'
+    ,p.codpgm AS 'sequencia_grad'
     ,p.stapgm AS 'situacao_curso'
     ,p.dtaing AS 'data_inicio_vinculo'
     ,CASE WHEN p.tipencpgm IS NOT NULL THEN p.dtaini ELSE NULL END AS 'data_fim_vinculo'

@@ -13,7 +13,7 @@ class IntercambioGraduacaoReplicado implements Mapper
             'id_graduacao' => strtoupper(substr(
                 hash('sha256',
                     $intercambioGrad['numero_usp'] . 
-                    $intercambioGrad['sequencia_curso'] .
+                    $intercambioGrad['sequencia_grad'] .
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),

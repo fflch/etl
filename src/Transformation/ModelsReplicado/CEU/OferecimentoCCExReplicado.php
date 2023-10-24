@@ -12,10 +12,10 @@ class OferecimentoCCExReplicado implements Mapper
     {
         $properties = [
             'codigo_oferecimento' => strtoupper(md5(
-                                        $oferecimentoCCEx['codigo_curso_ceu'] . 
-                                        $oferecimentoCCEx['codigo_edicao_curso'] . 
-                                        $oferecimentoCCEx['sequencia_oferecimento']
-                                    )),
+                $oferecimentoCCEx['codigo_curso_ceu'] . 
+                $oferecimentoCCEx['codigo_edicao_curso'] . 
+                $oferecimentoCCEx['sequencia_oferecimento']
+            )),
             'codigo_curso_ceu' => $oferecimentoCCEx['codigo_curso_ceu'],
             'situacao_oferecimento' => Deparas::situacaoEdicaoCCEx[$oferecimentoCCEx['situacao_oferecimento']]
                                        ?? $oferecimentoCCEx['situacao_oferecimento'],

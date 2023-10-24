@@ -13,12 +13,12 @@ class GraduacaoReplicado implements Mapper
             'id_graduacao' => strtoupper(substr(
                 hash('sha256',
                     $graduacao['numero_usp'] . 
-                    $graduacao['sequencia_curso'] .
+                    $graduacao['sequencia_grad'] .
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => (int)$graduacao['numero_usp'],
-            'sequencia_curso' => (int)$graduacao['sequencia_curso'],
+            'sequencia_grad' => (int)$graduacao['sequencia_grad'],
             'situacao_curso' => Deparas::situacoesGR[$graduacao['situacao_curso']] 
                             ?? $graduacao['situacao_curso'],
             'data_inicio_vinculo' => $graduacao['data_inicio_vinculo'],

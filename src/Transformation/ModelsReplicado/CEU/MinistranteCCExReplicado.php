@@ -11,13 +11,11 @@ class MinistranteCCExReplicado implements Mapper
     {
         $properties = [
             'numero_usp' => $ministranteCCEx['numero_usp'],
-            'codigo_oferecimento' => strtoupper(
-                                        md5(
-                                            $ministranteCCEx['codigo_curso_ceu'] . 
-                                            $ministranteCCEx['codigo_edicao_curso'] . 
-                                            $ministranteCCEx['sequencia_oferecimento']
-                                        )
-                                    ),
+            'codigo_oferecimento' => strtoupper(md5(
+                $ministranteCCEx['codigo_curso_ceu'] . 
+                $ministranteCCEx['codigo_edicao_curso'] . 
+                $ministranteCCEx['sequencia_oferecimento']
+            )),
             'turma' => $ministranteCCEx['turma'],
             'funcao' => $ministranteCCEx['funcao'],
             'forma_exercicio' => Deparas::formasExercicioCEU[$ministranteCCEx['forma_exercicio']]

@@ -12,7 +12,7 @@ class TrancamentoGraduacaoReplicado implements Mapper
             'id_graduacao' => strtoupper(substr(
                 hash('sha256',
                     $trancamento['numero_usp'] . 
-                    $trancamento['sequencia_curso'] .
+                    $trancamento['sequencia_grad'] .
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),

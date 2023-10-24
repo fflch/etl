@@ -13,10 +13,10 @@ class MatriculaCCExReplicado implements Mapper
             'codigo_matricula_ceu' => $matriculaCCEx['codigo_matricula_ceu'],
             'numero_usp' => $matriculaCCEx['numero_usp'],
             'codigo_oferecimento' => strtoupper(md5(
-                                        $matriculaCCEx['codigo_curso_ceu'] . 
-                                        $matriculaCCEx['codigo_edicao_curso'] . 
-                                        $matriculaCCEx['sequencia_oferecimento']
-                                    )),
+                $matriculaCCEx['codigo_curso_ceu'] . 
+                $matriculaCCEx['codigo_edicao_curso'] . 
+                $matriculaCCEx['sequencia_oferecimento']
+            )),
             'data_matricula' => $matriculaCCEx['data_matricula'],
             'status_matricula' => Deparas::statusMatriculaCCEx[$matriculaCCEx['status_matricula']]
                                   ?? $matriculaCCEx['status_matricula'],

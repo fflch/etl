@@ -1,6 +1,6 @@
 SELECT
 	p.codpes AS 'numero_usp'
-	,p.codpgm AS 'sequencia_curso'
+	,p.codpgm AS 'sequencia_grad'
 	,r.codqtn AS 'codigo_questionario'
 	,r.codqst AS 'codigo_questao'
 	,r.numatnqst AS 'alternativa_escolhida'

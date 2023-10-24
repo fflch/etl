@@ -16,7 +16,7 @@ class GraduacaoSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
-            "sequencia_curso" => [
+            "sequencia_grad" => [
                 "type" => "tinyInteger"
             ],
             "situacao_curso" => [

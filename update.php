@@ -12,12 +12,14 @@ use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PesquisasAvancadasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
+use Src\Loading\SchemaBuilder\Schemas\BeneficiosSchemas;
 use Src\Loading\Operations\PessoasOps;
 use Src\Loading\Operations\GraduacaoOps;
 use Src\Loading\Operations\PosGraduacaoOps;
 use Src\Loading\Operations\PesquisasAvancadasOps;
 use Src\Loading\Operations\ServidoresOps;
 use Src\Loading\Operations\CEUOps;
+use Src\Loading\Operations\BeneficiosOps;
 
 pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
@@ -49,6 +51,7 @@ $schemas = [
     PesquisasAvancadasSchemas::class,
     ServidoresSchemas::class,
     CEUSchemas::class,
+    BeneficiosSchemas::class,
 ];
 
 $ops = [
@@ -58,6 +61,7 @@ $ops = [
     PesquisasAvancadasOps::class,
     ServidoresOps::class,
     CEUOps::class,
+    BeneficiosOps::class,
 ];
 
 

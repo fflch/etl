@@ -12,7 +12,7 @@ class QuestionarioRespostaReplicado implements Mapper
             'id_graduacao' => strtoupper(substr(
                 hash('sha256',
                     $resposta['numero_usp'] . 
-                    $resposta['sequencia_curso'] .
+                    $resposta['sequencia_grad'] .
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),

@@ -103,7 +103,7 @@ WHERE p.stapgm = 'T';
 -- Establish reference semester and date of occurrence of both start and end of the student's license of absence.
 SELECT
 	d.codpes AS 'numero_usp'
-	,d.codpgm AS 'sequencia_curso'
+	,d.codpgm AS 'sequencia_grad'
 	,d.dtaoco AS 'data_registro_inicio_tranc'
 	,SUBSTRING(d.periodo, 1, 5) AS 'periodo_inicio_trancamento'
 	,CASE d.sequencia_trancamento
