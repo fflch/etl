@@ -26,7 +26,7 @@ pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 $preScripts = [
     'create_areas_programas_hotfix', // base
     'create_titulos_temp', // pessoas
-    'create_ultimoBA_temp', // graduacao
+    'create_graduacoes_temp', // graduacao
     'create_respostasQuest_temp', // graduacao
     'create_bolsasic_temp', // graduacao
     'create_turmasGR_temp', // graduacao

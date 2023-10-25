@@ -61,7 +61,7 @@ SELECT
    				+ CONVERT(VARCHAR(100), dtaoco, 140) 
    					> f.periodo
    			AND h.stapgm = 'E'
-	), '777') AS prox_e
+	), '777') AS prox_ep
 	,ISNULL((
 		SELECT 
 			MIN(CONVERT(VARCHAR, anoref)
@@ -76,11 +76,47 @@ SELECT
    					> f.periodo
    			AND h.stapgm = 'A'
 	), '777') AS prox_a
+INTO #prep_pos_trancamentos
+FROM #fflch_hpg f
+WHERE f.stapgm = 'T';
+
+
+/* Get some exceptions: cases in which the undergraduation
+ * has been closed but the end of the leave of absence has
+ * not been registered. */
+SELECT
+	p.codpes
+	,p.codpgm
+	,p.dtaoco
+	,CONVERT(VARCHAR, YEAR(dtaini))
+		+ CASE WHEN MONTH(dtaini) > 6 THEN '2' ELSE '1' END
+			+ CONVERT(VARCHAR(32), dtaini, 140) AS 'prox_eh'
+INTO #excecoes
+FROM #prep_pos_trancamentos p
+LEFT JOIN PROGRAMAGR p2
+	ON p.codpes = p2.codpes
+	AND p.codpgm = p2.codpgm
+WHERE p2.stapgm = 'E'
+	AND p.prox_t = '777'
+	AND p.prox_ep = '777'
+	AND p.prox_a = '777';
+
+
+-- Tries to cover these exceptions
+SELECT p.*
+	,CASE WHEN e.codpes IS NOT NULL THEN e.prox_eh
+	ELSE p.prox_ep
+	END AS 'prox_e'
 INTO #pos_trancamentos
-FROM #fflch_hpg f;
+FROM #prep_pos_trancamentos p
+LEFT JOIN #excecoes e
+ON p.codpes = e.codpes
+	AND p.codpgm = e.codpgm
+	AND p.dtaoco = e.dtaoco;
 
 
--- Get what happened directly after student's leave of absence by analysing both `perref` and `dtaoco` of student's next occurrences.
+-- Get what happened directly after student's leave of absence 
+-- by analysing both `perref` and `dtaoco` of student's next occurrences.
 SELECT
 	*
 	,CASE
@@ -96,11 +132,11 @@ SELECT
 			THEN 'Desligamento'
 		ELSE 'X' END AS 'sequencia_trancamento'
 INTO #definicao_pos_trancamentos
-FROM #pos_trancamentos p
-WHERE p.stapgm = 'T';
+FROM #pos_trancamentos p;
 
 
--- Establish reference semester and date of occurrence of both start and end of the student's license of absence.
+-- Establish reference semester and date of occurrence of 
+-- both start and end of the student's license of absence.
 SELECT
 	d.codpes AS 'numero_usp'
 	,d.codpgm AS 'sequencia_grad'
@@ -145,9 +181,11 @@ INTO #trancamentos_graduacao
 FROM #fim_trancamentos;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #gr;
 DROP TABLE #fflch_hpg;
+DROP TABLE #prep_pos_trancamentos;
+DROP TABLE #excecoes;
 DROP TABLE #pos_trancamentos;
 DROP TABLE #definicao_pos_trancamentos;
 DROP TABLE #fim_trancamentos;

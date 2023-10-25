@@ -50,12 +50,29 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
+            "bacharelado" => [
+                "type" => "char",
+                "size" => 1
+            ],
             "tipo_encerramento_bacharel" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
             "data_encerramento_bacharel" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "licenciatura" => [
+                "type" => "char",
+                "size" => 1
+            ],
+            "tipo_encerramento_licenciatura" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "data_encerramento_licenciatura" => [
                 "type" => "date",
                 "nullable" => true
             ]
@@ -113,7 +130,15 @@ class GraduacaoSchemas
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
-            ]
+            ],
+            "data_colacao_grau" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_expedicao_diploma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
         ],
 
         "primary" => [
@@ -289,7 +314,7 @@ class GraduacaoSchemas
         ],
 
         "primary" => [
-            //
+            "key" => ["id_graduacao", "id_questao"]
         ],
         
         "foreign" => [

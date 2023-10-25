@@ -116,7 +116,7 @@ WHERE d.codclg = 8
 ORDER BY t.coddis, t.verdis, t.codtur
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #enrolled;
 DROP TABLE #filtered_results;
 DROP TABLE #consolidated_results;

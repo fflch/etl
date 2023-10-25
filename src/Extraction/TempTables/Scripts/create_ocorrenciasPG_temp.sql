@@ -137,7 +137,7 @@ FROM (
 ) o;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #ocorrencias_pg;
 DROP TABLE #filtered_ocorrencias_pg;
 DROP TABLE #ocorrencias_regulares_pg;

@@ -98,6 +98,6 @@ FROM #all_titulos a
 		ON a.codorg = o.codorg;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #all_titulos;
 DROP TABLE #maior_titulo;

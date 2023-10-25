@@ -71,7 +71,7 @@ FROM #last_credenciamento_added l
     LEFT JOIN #programas p ON a.codcur = p.codcur AND l.data_inicio_validade BETWEEN p.dtainicur AND p.dtafimcur;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #deletar_creds;
 DROP TABLE #fflch_creds;
 

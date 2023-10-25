@@ -153,7 +153,7 @@ FROM #primeira_matricula p
 		ON u.tipo_ultima_ocorrencia = t.tiphstpgm;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #filtered;
 DROP TABLE #transfers;
 DROP TABLE #admission;

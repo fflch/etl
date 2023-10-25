@@ -74,7 +74,7 @@ WHERE ip.codpesalu IS NOT NULL
     AND ip.staprj NOT IN ('Incompleto', 'Denegado', 'Inscrito PIBI', 'Inscrito')
     AND s.codund = 8;
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #bolsas_pibic;
 DROP TABLE #outras_bolsas;
 DROP TABLE #all_bolsas;

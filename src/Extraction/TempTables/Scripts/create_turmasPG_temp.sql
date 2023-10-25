@@ -245,7 +245,7 @@ SET consolidacao_turma = NULL, consolidacao_resultados = NULL
 WHERE status_turma = 'Cancelada';
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #all_preenrollments;
 DROP TABLE #filtered_preenrollments;
 DROP TABLE #unique_preenrollments;

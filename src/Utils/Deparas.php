@@ -18,7 +18,7 @@ class Deparas
         'A' => 'Ativo',
         'E' => 'Encerrado',
         'T' => 'Trancado',
-        'R' => 'Reativado',
+        'R' => 'Ativo', // Reativado
         'S' => 'Suspenso',
         'P' => 'Pendente'
     ];

@@ -71,7 +71,7 @@ FROM (
 ) un;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #filtered_servidores;
 DROP TABLE #vinculos_funcionarios;
 DROP TABLE #vinculos_docentes;

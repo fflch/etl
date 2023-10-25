@@ -23,7 +23,9 @@ class HabilitacaoReplicado implements Mapper
             'periodo_habilitacao' => $habilitacao['periodo_habilitacao'],
             'data_inicio_habilitacao' => $habilitacao['data_inicio_habilitacao'],
             'data_fim_habilitacao' => $habilitacao['data_fim_habilitacao'],
-            'tipo_encerramento' => $habilitacao['tipo_encerramento']
+            'tipo_encerramento' => $habilitacao['tipo_encerramento'],
+            'data_colacao_grau' => $habilitacao['data_colacao_grau'],
+            'data_expedicao_diploma' => $habilitacao['data_expedicao_diploma'],
         ];
 
         return $properties;

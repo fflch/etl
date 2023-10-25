@@ -60,6 +60,6 @@ GROUP BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_supervisao
 ORDER BY a1.ano_projeto, a1.codigo_projeto, a1.data_inicio_supervisao;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #ultimosupervisor;
 DROP TABLE #all_supervisoespd;

@@ -78,7 +78,12 @@ class BeneficiosSchemas
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => "id_graduacao",
+                "references" => "id_graduacao",
+                "on" => "graduacoes",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 }

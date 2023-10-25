@@ -81,7 +81,7 @@ GROUP BY a1.numero_usp_aluno, a1.codigo_area, a1.seq_programa, a1.data_inicio_or
 ORDER BY a1.numero_usp_aluno, a1.codigo_area, a1.seq_programa, a1.data_inicio_orientacao;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #ultimoorientadorpg;
 DROP TABLE #orientadores;
 DROP TABLE #all_orientacoespg;

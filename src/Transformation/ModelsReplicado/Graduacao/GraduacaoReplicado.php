@@ -29,8 +29,12 @@ class GraduacaoReplicado implements Mapper
                             ?? $graduacao['tipo_ingresso'],
             'categoria_ingresso' => $graduacao['categoria_ingresso'],
             'rank_ingresso' => $graduacao['rank_ingresso'],
+            'bacharelado' => $graduacao['bacharelado'],
             'tipo_encerramento_bacharel' => $graduacao['tipo_encerramento_bacharel'],
             'data_encerramento_bacharel' => $graduacao['data_encerramento_bacharel'],
+            'licenciatura' => $graduacao['licenciatura'],
+            'tipo_encerramento_licenciatura' => $graduacao['tipo_encerramento_licenciatura'],
+            'data_encerramento_licenciatura' => $graduacao['data_encerramento_licenciatura'],
         ];
 
         return $properties;

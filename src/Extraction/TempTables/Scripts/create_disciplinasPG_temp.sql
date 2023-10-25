@@ -78,6 +78,6 @@ SET codigo_area = NULL
 WHERE data_proposicao_disciplina IS NULL;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #disciplinaspg_temp;
 DROP TABLE #filtered_disciplinas;
