@@ -2,19 +2,25 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Servidores\DesignacaoServidorReplicado;
 use Src\Loading\Models\Servidores\DesignacaoServidor;
 use Src\Transformation\ModelsReplicado\Servidores\VinculoServidorReplicado;
 use Src\Loading\Models\Servidores\VinculoServidor;
+use Src\Transformation\ModelsReplicado\Servidores\ProfessorVisitanteReplicado;
+use Src\Loading\Models\Servidores\ProfessorVisitante;
 
 class ServidoresOps
 {
+    private $vinculosServidores, $designacoes,
+            $professoresVisitantes;
+
     public function __construct()
     {
         $this->vinculosServidores = new Transformer(new VinculoServidorReplicado, 'Servidores/vinculos_servidores');
         $this->designacoes = new Transformer(new DesignacaoServidorReplicado, 'Servidores/designacoes_servidores');
+        $this->professoresVisitantes = new Transformer(new ProfessorVisitanteReplicado, 'Servidores/professores_visitantes');
     }
 
     public function updateVinculosServidores()
@@ -22,8 +28,7 @@ class ServidoresOps
         ExtractionUtils::updateTable(
             'full',
             $this->vinculosServidores, 
-            VinculoServidor::class, 
-            3100
+            VinculoServidor::class
         );
     }
 
@@ -32,8 +37,16 @@ class ServidoresOps
         ExtractionUtils::updateTable(
             'full',
             $this->designacoes, 
-            DesignacaoServidor::class, 
-            1000
+            DesignacaoServidor::class
+        );
+    }
+
+    public function updateProfessoresVisitantes()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->professoresVisitantes, 
+            ProfessorVisitante::class
         );
     }
 }

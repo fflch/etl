@@ -6,7 +6,7 @@ SELECT
 		WHEN ec.staediiva IS NOT NULL
 			THEN 'INV'
 		WHEN ec.staedicvl IS NOT NULL
-			THEN 'APR' --HMG?
+			THEN 'APR' --HMG? // ver significado
 		ELSE ec.staedi 
 		END AS 'situacao_oferecimento'
 	,e.dtainiofeedi AS 'data_inicio_oferecimento'

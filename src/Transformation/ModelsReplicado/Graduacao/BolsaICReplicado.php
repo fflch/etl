@@ -2,8 +2,7 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 
 class BolsaICReplicado implements Mapper
 {

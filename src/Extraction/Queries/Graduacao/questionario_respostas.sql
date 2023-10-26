@@ -1,2 +1,2 @@
 SELECT *
-FROM #respostasQuest
+FROM #respostasQuestionario

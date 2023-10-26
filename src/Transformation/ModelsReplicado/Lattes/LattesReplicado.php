@@ -2,9 +2,9 @@
 
 namespace Src\Transformation\ModelsReplicado\Lattes;
 
-use Src\Utils\TransformationUtils;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 use Uspdev\Replicado\Uteis;
+use Src\Utils\TransformationUtils;
 
 class LattesReplicado implements Mapper
 {

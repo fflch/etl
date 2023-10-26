@@ -2,9 +2,9 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class IniciacaoCientificaReplicado implements Mapper
 {
@@ -22,8 +22,24 @@ class IniciacaoCientificaReplicado implements Mapper
             'nome_departamento' => $iniciacao['nome_departamento'],
             'ano_projeto' => $iniciacao['ano_projeto'],
             'numero_usp_orientador' => (int)$iniciacao['numero_usp_orientador'],
-            'titulo_projeto' => $iniciacao['titulo_projeto'],
-            'palavras_chave' => $iniciacao['palavras_chave']
+            'titulo_projeto' => CommonUtils::cleanInput(
+                $iniciacao['titulo_projeto'],
+                [
+                    'decode_html',
+                    'remove_trailing_periods',
+                    'trim_quotes',
+                    'to_uppercase'
+                ]
+            ),
+            'palavras_chave' => CommonUtils::cleanInput(
+                $iniciacao['palavras_chave'],
+                [
+                    'decode_html',
+                    'remove_trailing_periods',
+                    'trim_quotes',
+                    'to_uppercase'
+                ]
+            ),
         ];
 
         return $properties;

@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\Graduacao\GraduacaoReplicado;
@@ -29,9 +29,21 @@ use Src\Transformation\ModelsReplicado\Graduacao\DemandaTurmaGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\DemandaTurmaGraduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\MinistranteGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\MinistranteGraduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\IntercambioGraduacaoReplicado;
+use Src\Loading\Models\Graduacao\IntercambioGraduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\TrancamentoGraduacaoReplicado;
+use Src\Loading\Models\Graduacao\TrancamentoGraduacao;
 
 class GraduacaoOps
 {
+    private $graduacoes, $habilitacoes,
+            $iniciacoes, $bolsasIC,
+            $questionarioRespostas, $questionarioQuestoes,
+            $SIICUSPTrabalhos, $SIICUSPParticipantes,
+            $disciplinasGraduacao, $turmasGraduacao,
+            $demandaTurmasGraduacao, $ministrantesGraduacao,
+            $intercambiosGraduacao, $trancamentosGraduacao;
+
     public function __construct()
     {
         $this->graduacoes = new Transformer(new GraduacaoReplicado, 'Graduacao/graduacoes');
@@ -46,6 +58,8 @@ class GraduacaoOps
         $this->turmasGraduacao = new Transformer(new TurmaGraduacaoReplicado, 'Graduacao/turmas_graduacao');
         $this->demandaTurmasGraduacao = new Transformer(new DemandaTurmaGraduacaoReplicado, 'Graduacao/demanda_turmas_graduacao');
         $this->ministrantesGraduacao = new Transformer(new MinistranteGraduacaoReplicado, 'Graduacao/ministrantes_graduacao');
+        $this->intercambiosGraduacao = new Transformer(new IntercambioGraduacaoReplicado, 'Graduacao/intercambios_graduacao');
+        $this->trancamentosGraduacao = new Transformer(new TrancamentoGraduacaoReplicado, 'Graduacao/trancamentos_graduacao');
     }
 
     public function updateGraduacoes()
@@ -53,8 +67,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->graduacoes, 
-            Graduacao::class, 
-            4300
+            Graduacao::class
         );
     }
 
@@ -63,8 +76,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->habilitacoes, 
-            Habilitacao::class, 
-            5900
+            Habilitacao::class
         );
     }
 
@@ -75,8 +87,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->iniciacoes, 
-            IniciacaoCientifica::class, 
-            5000
+            IniciacaoCientifica::class
         );
 
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 1"); //gambi
@@ -91,8 +102,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->bolsasIC, 
-            BolsaIC::class, 
-            8100
+            BolsaIC::class
         );
 
         Capsule::delete("DELETE bi
@@ -111,15 +121,13 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->questionarioQuestoes, 
-            QuestionarioQuestao::class, 
-            10000
+            QuestionarioQuestao::class
         );
 
         ExtractionUtils::updateTable(
             'paginated',
             $this->questionarioRespostas, 
-            QuestionarioResposta::class, 
-            15000
+            QuestionarioResposta::class
         );
     }
 
@@ -128,15 +136,13 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->SIICUSPTrabalhos, 
-            SIICUSPTrabalho::class, 
-            5900
+            SIICUSPTrabalho::class
         );
 
         ExtractionUtils::updateTable(
             'full',
             $this->SIICUSPParticipantes, 
-            SIICUSPParticipante::class, 
-            5000
+            SIICUSPParticipante::class
         );
     }
 
@@ -145,18 +151,16 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->disciplinasGraduacao, 
-            DisciplinaGraduacao::class, 
-            4000
+            DisciplinaGraduacao::class
         );
     }
 
     public function updateTurmasGraduacao()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->turmasGraduacao, 
-            TurmaGraduacao::class, 
-            2500
+            TurmaGraduacao::class
         );
     }
 
@@ -165,8 +169,7 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->demandaTurmasGraduacao, 
-            DemandaTurmaGraduacao::class, 
-            3000
+            DemandaTurmaGraduacao::class
         );
     }
 
@@ -175,8 +178,25 @@ class GraduacaoOps
         ExtractionUtils::updateTable(
             'full',
             $this->ministrantesGraduacao, 
-            MinistranteGraduacao::class, 
-            8000
+            MinistranteGraduacao::class
+        );
+    }
+
+    public function updateIntercambiosGraduacao()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->intercambiosGraduacao, 
+            IntercambioGraduacao::class
+        );
+    }
+
+    public function updatetrancamentosGraduacao()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->trancamentosGraduacao, 
+            TrancamentoGraduacao::class
         );
     }
 }

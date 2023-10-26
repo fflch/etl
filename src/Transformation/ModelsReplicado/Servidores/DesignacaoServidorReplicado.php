@@ -2,21 +2,21 @@
 
 namespace Src\Transformation\ModelsReplicado\Servidores;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 
 class DesignacaoServidorReplicado implements Mapper
 {
     public function mapping(Array $designacao)
     {
         $properties = [
-            'id_vinculo' => strtoupper(
-                md5(
+            'id_vinculo' => strtoupper(substr(
+                hash('sha256',
                     $designacao['numero_usp'] . 
                     $designacao['sequencia_vinculo'] . 
-                    $designacao['vinculo']
-                )
+                    $designacao['vinculo'] .
+                    $_ENV['HASH_PEPPER']
+                ), 0, 32)
             ),
             'numero_usp' => $designacao['numero_usp'],
             'vinculo' => Deparas::tiposVinculoServidores[$designacao['vinculo']] ?? $designacao['vinculo'],
@@ -25,7 +25,8 @@ class DesignacaoServidorReplicado implements Mapper
             'codigo_setor_designacao' => $designacao['codigo_setor_designacao'],
             'nome_setor_designacao' => $designacao['nome_setor_designacao'],
             'nome_funcao' => $designacao['nome_funcao'],
-            'tipo_designacao' => $designacao['tipo_designacao'],
+            'tipo_designacao' => Deparas::tiposDesignacaoServidor[$designacao['tipo_designacao']]
+                                 ?? $designacao['tipo_designacao'],
         ];
 
         return $properties;

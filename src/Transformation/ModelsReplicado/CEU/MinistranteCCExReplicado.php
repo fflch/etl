@@ -2,8 +2,8 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class MinistranteCCExReplicado implements Mapper
 {
@@ -11,17 +11,16 @@ class MinistranteCCExReplicado implements Mapper
     {
         $properties = [
             'numero_usp' => $ministranteCCEx['numero_usp'],
-            'codigo_oferecimento' => strtoupper(
-                                        md5(
-                                            $ministranteCCEx['codigo_curso_ceu'] . 
-                                            $ministranteCCEx['codigo_edicao_curso'] . 
-                                            $ministranteCCEx['sequencia_oferecimento']
-                                        )
-                                    ),
+            'codigo_oferecimento' => strtoupper(md5(
+                $ministranteCCEx['codigo_curso_ceu'] . 
+                $ministranteCCEx['codigo_edicao_curso'] . 
+                $ministranteCCEx['sequencia_oferecimento']
+            )),
             'turma' => $ministranteCCEx['turma'],
             'funcao' => $ministranteCCEx['funcao'],
-            'forma_exercicio' => $ministranteCCEx['forma_exercicio'],
-            'carga_horaria_minutos' => $ministranteCCEx['carga_horaria_minutos'], //ver
+            'forma_exercicio' => Deparas::formasExercicioCEU[$ministranteCCEx['forma_exercicio']]
+                                 ?? $ministranteCCEx['forma_exercicio'],
+            'carga_horaria_horas' => $ministranteCCEx['carga_horaria_horas'],
             'data_inicio_turma' => $ministranteCCEx['data_inicio_turma'],
             'data_fim_turma' => $ministranteCCEx['data_fim_turma'],
         ];

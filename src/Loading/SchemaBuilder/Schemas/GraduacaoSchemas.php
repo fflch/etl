@@ -16,7 +16,7 @@ class GraduacaoSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
-            "sequencia_curso" => [
+            "sequencia_grad" => [
                 "type" => "tinyInteger"
             ],
             "situacao_curso" => [
@@ -50,13 +50,30 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
+            "bacharelado" => [
+                "type" => "char",
+                "size" => 1
+            ],
             "tipo_encerramento_bacharel" => [
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
             ],
             "data_encerramento_bacharel" => [
-                "type" => "datetime",
+                "type" => "date",
+                "nullable" => true
+            ],
+            "licenciatura" => [
+                "type" => "char",
+                "size" => 1
+            ],
+            "tipo_encerramento_licenciatura" => [
+                "type" => "string",
+                "size" => 128,
+                "nullable" => true
+            ],
+            "data_encerramento_licenciatura" => [
+                "type" => "date",
                 "nullable" => true
             ]
         ],
@@ -113,7 +130,15 @@ class GraduacaoSchemas
                 "type" => "string",
                 "size" => 128,
                 "nullable" => true
-            ]
+            ],
+            "data_colacao_grau" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "data_expedicao_diploma" => [
+                "type" => "date",
+                "nullable" => true
+            ],
         ],
 
         "primary" => [
@@ -170,11 +195,13 @@ class GraduacaoSchemas
             ],
             "titulo_projeto" => [
                 "type" => "string",
-                "size" => 256
+                "size" => 256,
+                "nullable" => true
             ],
             "palavras_chave" => [
                 "type" => "string",
-                "size" => 128
+                "size" => 128,
+                "nullable" => true
             ]
         ],
 
@@ -192,7 +219,7 @@ class GraduacaoSchemas
         ]
     ];
 
-    const bolsasIC = [
+    const bolsas_ic = [
 
         "tableName" => "bolsas_ic",
 
@@ -287,7 +314,7 @@ class GraduacaoSchemas
         ],
 
         "primary" => [
-            //
+            "key" => ["id_graduacao", "id_questao"]
         ],
         
         "foreign" => [
@@ -337,16 +364,16 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "prox_etapa_recomendado" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "prox_etapa_apresentado" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "mencao_honrosa" => [
-                "type" => "boolean",
-                "nullable" => true
+                "type" => "char",
+                "size" => 1
             ],
             "codigo_dpto_orientador" => [
                 "type" => "integer",
@@ -409,7 +436,8 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "participante_apresentador" => [
-                "type" => "boolean"
+                "type" => "char",
+                "size" => 1
             ]
         ],
 
@@ -443,12 +471,9 @@ class GraduacaoSchemas
                 "type" => "string",
                 "size" => 256
             ],
-            "credito_aula" => [
-                "type" => "tinyInteger",
-                "nullable" => true
-            ],
-            "credito_trabalho" => [
-                "type" => "tinyInteger",
+            "situacao_disciplina" => [
+                "type" => "string",
+                "size" => 32,
                 "nullable" => true
             ],
             "data_ativacao_disciplina" => [
@@ -459,13 +484,21 @@ class GraduacaoSchemas
                 "type" => "date",
                 "nullable" => true
             ],
+            "credito_aula" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "credito_trabalho" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
             "duracao_disciplina_semanas" => [
                 "type" => "tinyInteger",
                 "nullable" => true
             ],
             "periodicidade_disciplina" => [
-                "type" => "char",
-                "size" => 1,
+                "type" => "string",
+                "size" => 32,
                 "nullable" => true
             ],
             "carga_horaria_estagio" => [
@@ -480,11 +513,6 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "situacao_disciplina" => [
-                "type" => "string",
-                "size" => 32,
-                "nullable" => true
-            ]
         ],
 
         "primary" => [
@@ -502,6 +530,10 @@ class GraduacaoSchemas
         "tableName" => "turmas_graduacao",
 
         "columns" => [
+            "id_turma" => [
+                "type" => "char",
+                "size" => 32
+            ],
             "codigo_disciplina" => [
                 "type" => "char",
                 "size" => 7
@@ -543,15 +575,31 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "numero_alunos_cursou" => [
+            "numero_alunos_matriculados" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "aprovados_pct" => [
+            "trancamentos_pct" => [
                 "type" => "float",
                 "nullable" => true
             ],
-            "tracamentos_pct" => [
+            "result_pendente_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "frequencia_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "nota_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "recuperacao_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "aprovados_pct" => [
                 "type" => "float",
                 "nullable" => true
             ],
@@ -567,27 +615,19 @@ class GraduacaoSchemas
                 "type" => "float",
                 "nullable" => true
             ],
-            "numero_alunos_finalizou" => [
-                "type" => "smallInteger",
-                "nullable" => true
-            ],
-            "frequencia_media" => [
-                "type" => "float",
-                "nullable" => true
-            ],
-            "nota_media" => [
-                "type" => "float",
-                "nullable" => true
-            ],
         ],
 
         "primary" => [
-            "key" => ["codigo_disciplina", "versao_disciplina", "codigo_turma"],
-            "keyName" => "turmas_graduacao_primary"
+            "key" => ["id_turma"]
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => ["codigo_disciplina", "versao_disciplina"],
+                "references" => ["codigo_disciplina", "versao_disciplina"],
+                "on" => "disciplinas_graduacao",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 
@@ -596,16 +636,9 @@ class GraduacaoSchemas
         "tableName" => "demanda_turmas_graduacao",
 
         "columns" => [
-            "codigo_disciplina" => [
+            "id_turma" => [
                 "type" => "char",
-                "size" => 7
-            ],
-            "versao_disciplina" => [
-                "type" => "tinyInteger"
-            ],
-            "codigo_turma" => [
-                "type" => "char",
-                "size" => 7
+                "size" => 32
             ],
             "vagas_total" => [
                 "type" => "smallInteger",
@@ -682,12 +715,16 @@ class GraduacaoSchemas
         ],
 
         "primary" => [
-            "key" => ["codigo_disciplina", "versao_disciplina", "codigo_turma"],
-            "keyName" => "demanda_turmas_graduacao_primary"
+            "key" => ["id_turma"]
         ],
         
         "foreign" => [
-            //
+            [
+                "keys" => "id_turma",
+                "references" => "id_turma",
+                "on" => "turmas_graduacao",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 
@@ -699,16 +736,9 @@ class GraduacaoSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
-            "codigo_disciplina" => [
+            "id_turma" => [
                 "type" => "char",
-                "size" => 7
-            ],
-            "versao_disciplina" => [
-                "type" => "tinyInteger"
-            ],
-            "codigo_turma" => [
-                "type" => "char",
-                "size" => 7
+                "size" => 32
             ],
             "periodicidade_ministrante" => [
                 "type" => "string",
@@ -718,12 +748,153 @@ class GraduacaoSchemas
         ],
 
         "primary" => [
-            "key" => ["numero_usp", "codigo_disciplina", "codigo_turma"],
-            "keyName" => "ministrantes_graduacao_primary"
+            "key" => ["numero_usp", "id_turma"]
         ],
         
         "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+            [
+                "keys" => "id_turma",
+                "references" => "id_turma",
+                "on" => "turmas_graduacao",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const intercambios_graduacao = [
+
+        "tableName" => "intercambios_graduacao",
+
+        "columns" => [
+            "id_graduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "numero_usp" => [
+                "type" => "integer",
+            ],
+            "modalidade_intercambio" => [
+                "type" => "string",
+                "size" => 24
+            ],
+            "data_inicio_intercambio" => [
+                "type" => "date"
+            ],
+            "data_fim_intercambio" => [
+                "type" => "date"
+            ],
+            "situacao_intercambio" => [
+                "type" => "string",
+                "size" => 32
+            ],
+            "data_desistencia" => [
+                "type" => "date",
+                "nullable" => true
+            ],
+            "houve_prorrogacao" => [
+                "type" => "char",
+                "size" => 1
+            ],
+            "codigo_instituicao" => [
+                "type" => "integer"
+            ],
+            "sigla_instituicao" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "nome_instituicao" => [
+                "type" => "string",
+                "size" => 128
+            ],
+            "tipo_ingresso_intercambio" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "codigo_edital_intercambio" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "nome_programa_intercambio" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "nome_rede_intercambio" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
             //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const trancamentos_graduacao = [
+
+        "tableName" => "trancamentos_graduacao",
+
+        "columns" => [
+            "id_graduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "data_registro_inicio_tranc" => [
+                "type" => "datetime"
+            ],
+            "periodo_inicio_trancamento" => [
+                "type" => "char",
+                "size" => 5
+            ],
+            "data_registro_fim_tranc" => [
+                "type" => "datetime",
+                "nullable" => true
+            ],
+            "periodo_fim_trancamento" => [
+                "type" => "char",
+                "size" => 5,
+                "nullable" => true
+            ],
+            "semestres_trancados" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "sequencia_trancamento" => [
+                "type" => "string",
+                "size" => 48,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "id_graduacao",
+                "references" => "id_graduacao",
+                "on" => "graduacoes",
+                "onDelete" => "cascade"
+            ]
         ]
     ];
 }

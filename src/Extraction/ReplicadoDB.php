@@ -49,7 +49,9 @@ class ReplicadoDB
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
             $result = TransformationUtils::utf8_converter($result);
-            $result = TransformationUtils::trim_recursivo($result);
+            $result = array_map(function($arr) {
+                return array_map([TransformationUtils::class, 'initialDataCleanup'], $arr);
+            }, $result);
         }
 
         return $result;
@@ -63,9 +65,22 @@ class ReplicadoDB
         
         $statements = array_filter($statements);
         
-        foreach ($statements as $statement) {
-            $stmt = $db->prepare($statement);
-            $stmt->execute();
+        try {
+            foreach ($statements as $statement) {
+                $stmt = $db->prepare($statement);
+                $stmt->execute();
+            } 
+        } catch (\Exception $e) {
+            $wasTimedOut = strpos($e->getMessage(), "Changed database context");
+
+            if ($wasTimedOut !== False) {
+                echo "\n\n\n" . "An error occurred: Connection timed out." . "\n";
+            } else {
+                echo "\n\n\n" . "Caught Exception: {$e}" . "\n\n";
+            }
+
+            echo "Exiting the script...\n\n";
+            die();
         }
     }
 }

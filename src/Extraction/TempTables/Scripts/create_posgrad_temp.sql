@@ -3,38 +3,69 @@ SELECT
 	ap.codpes AS 'numero_usp'
 	,ap.numseqpgm AS 'seq_programa'
 	,ap.codare AS 'codigo_area'
+	,ap.vinalupgm AS 'tipo_matricula'
 	,ap.dtaselpgm AS 'data_selecao'
 	,ap.nivpgm AS 'nivel_programa'
 	,ap.dtadpopgm AS 'data_deposito_trabalho'
 	,ap.dtaaprbantrb AS 'data_aprovacao_trabalho'
 INTO #filtered
 FROM AGPROGRAMA ap
-WHERE YEAR(ap.dtaselpgm) >= 2007
-	AND ap.codare BETWEEN 8000 AND 9000
-	AND ap.vinalupgm = 'REGULAR';
+WHERE ap.codare BETWEEN 8000 AND 8999
+	AND ap.vinalupgm <> 'ESPECIAL';
 
 
--- Join NOMEAREA, AREA, NOMECURSO to get specifications
-SELECT
+-- Get transfers
+SELECT 
+	t.codpes AS 'numero_usp'
+	,t.codare AS 'codigo_area'
+	,t.numseqpgm AS 'seq_programa'
+	,h.dtaocopgm AS 'data_transferencia'
+INTO #transfers
+FROM HISTPROGRAMA h
+	INNER JOIN TRANSFERAREA t
+		ON h.codpes = t.codpes
+			AND h.codare = t.codareori
+			AND h.numseqpgm = t.numseqpgmori
+			AND h.codaretrf = t.codare
+WHERE t.codare BETWEEN 8000 AND 8999;
+
+
+-- Get admission date (selection or transfer)
+SELECT 
 	f.*
-    ,n.nomare AS 'nome_area'
-	,a.codcur AS 'codigo_programa'
-	,n2.nomcur AS 'nome_programa'
-INTO #specs
+	,CASE WHEN t.data_transferencia IS NOT NULL
+		THEN 'Transferência'
+		ELSE 'Selecionado'
+		END AS 'tipo_admissao'
+	,CASE WHEN t.data_transferencia IS NOT NULL
+		THEN t.data_transferencia
+		ELSE f.data_selecao
+		END AS 'data_admissao'
+INTO #admission
 FROM #filtered f
-    LEFT JOIN NOMEAREA n
-        ON f.codigo_area = n.codare
-            AND f.data_selecao >= n.dtainiare 
-            AND (n.dtafimare >= f.data_selecao OR n.dtafimare IS NULL)
-    LEFT JOIN AREA a
-        ON f.codigo_area = a.codare
-    LEFT JOIN NOMECURSO n2
-        ON a.codcur = n2.codcur
-            AND f.data_selecao >= n2.dtainicur
-            AND (n2.dtafimcur >= f.data_selecao OR n2.dtafimcur IS NULL);
+	LEFT JOIN #transfers t
+		ON f.numero_usp = t.numero_usp
+			AND f.codigo_area = t.codigo_area
+			AND f.seq_programa = t.seq_programa;
 
 
--- Join HISTPROGRAMA to get first enrollment
+-- Join specifications
+SELECT
+	adm.*
+    ,a.nomare AS 'nome_area'
+	,p.codcur AS 'codigo_programa'
+	,p.nomcur AS 'nome_programa'
+INTO #specs
+FROM #admission adm
+    LEFT JOIN #areas a
+        ON adm.codigo_area = a.codare
+            AND adm.data_admissao BETWEEN a.dtainiare AND a.dtafimare
+    LEFT JOIN #programas p
+        ON a.codcur = p.codcur
+            AND adm.data_admissao BETWEEN p.dtainicur AND p.dtafimcur;
+
+
+-- Join HISTPROGRAMA to get student's first enrollment
 SELECT
     s.*
     ,jn.dtaocopgm AS 'primeira_matricula'
@@ -70,7 +101,7 @@ SELECT
 		END AS 'data_ocorrencia'
 INTO #ocorrencias
 FROM HISTPROGRAMA h3
-WHERE h3.codare BETWEEN 8000 AND 9000;
+WHERE h3.codare BETWEEN 8000 AND 8999;
 
 
 -- Get last occurrence from occurrences table
@@ -105,8 +136,9 @@ SELECT
 	,p.codigo_programa
 	,p.nome_programa
 	,p.data_selecao
+	,p.tipo_matricula
 	,p.primeira_matricula
-	,u.tipo_ultima_ocorrencia
+	,t.dschstpgm AS 'tipo_ultima_ocorrencia'
 	,u.data_ultima_ocorrencia
 	,p.nivel_programa
 	,p.data_deposito_trabalho
@@ -116,11 +148,15 @@ FROM #primeira_matricula p
 	LEFT JOIN #ultima_ocorrencia u
 		ON p.numero_usp = u.numero_usp
 			AND p.seq_programa = u.seq_programa
-			AND p.codigo_area = u.codigo_area;
+			AND p.codigo_area = u.codigo_area
+	LEFT JOIN TABHISTPROG t
+		ON u.tipo_ultima_ocorrencia = t.tiphstpgm;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #filtered;
+DROP TABLE #transfers;
+DROP TABLE #admission;
 DROP TABLE #specs;
 DROP TABLE #primeira_matricula;
 DROP TABLE #ocorrencias;

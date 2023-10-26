@@ -7,6 +7,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class TableOperations
 {
+    private $builder;
+
     public function __construct()
     {
         $this->builder = new Builder();

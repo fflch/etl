@@ -1,27 +1,59 @@
+--
 SELECT
-	p.codpes AS 'numero_usp'
-	,p.codpgm AS 'sequencia_curso'
-	,r.codqtn AS 'codigo_questionario'
-	,r.codqst AS 'codigo_questao'
-	,r.numatnqst AS 'alternativa_escolhida'
-INTO #respostasQuest
-FROM PROGRAMAGR p
-	LEFT JOIN RESPOSTASQUESTAO r ON p.codpes = r.codpes
-	INNER JOIN QUESTIONARIO q ON (r.codqtn = q.codqtn AND p.dtaing BETWEEN q.dtainiqtn AND q.dtafimqtn)
-	--Filter:
-	INNER JOIN (
-				SELECT hp.codpes, hp.codpgm
-				FROM HABILPROGGR hp
-					INNER JOIN (
-						SELECT hp2.codpes AS 'codpes', hp2.codpgm as 'codpgm', MAX(hp2.dtaini) AS 'ultimoBA'
-						FROM HABILPROGGR hp2
-							LEFT JOIN HABILITACAOGR hg ON (hp2.codcur = hg.codcur AND hp2.codhab = hg.codhab)
-						WHERE hg.tiphab <> 'L'
-						GROUP BY hp2.codpes, hp2.codpgm) jn
-							ON (jn.codpes = hp.codpes AND jn.ultimoBA = hp.dtaini)
-					INNER JOIN PROGRAMAGR p ON (hp.codpes = p.codpes AND hp.codpgm = p.codpgm)
-					LEFT JOIN HABILITACAOGR hg ON (hp.codcur = hg.codcur AND hp.codhab = hg.codhab)
-				WHERE hp.codcur BETWEEN 8000 AND 9000
-					AND hg.tiphab <> 'L'
-					AND YEAR(p.dtaing) >= 2007
-			   ) ij ON p.codpes = ij.codpes AND p.codpgm = ij.codpgm;
+	h.codpes
+	,h.codpgm
+	,MAX(p.dtaing) AS dtaing
+INTO #fflch_undergrads
+FROM HABILPROGGR h
+LEFT JOIN PROGRAMAGR p
+	ON h.codpes = p.codpes 
+		AND h.codpgm = p.codpgm
+WHERE h.codcur BETWEEN 8000 AND 9000
+GROUP BY h.codpes, h.codpgm;
+
+
+--
+SELECT
+	r.codpes
+	,r.codqtn
+	,r.codqst
+	,r.numatnqst
+	,ISNULL(CONVERT(DATETIME, r.dtarpa), '1900-01-01') AS dtarpa
+	,f.codpgm
+	,f.dtaing
+	,q.dtainiqtn
+	,q.dtafimqtn
+INTO #fflch_answers
+FROM RESPOSTASQUESTAO r
+	INNER JOIN #fflch_undergrads f ON r.codpes = f.codpes
+	LEFT JOIN QUESTIONARIO q ON (r.codqtn = q.codqtn);
+
+
+--
+UPDATE #fflch_answers
+SET dtarpa = DATEADD(ss, numatnqst, dtarpa)
+WHERE 1=1;
+
+
+--
+SELECT
+	f.codpes AS 'numero_usp'
+	,f.codpgm AS 'sequencia_grad'
+	,f.codqtn AS 'codigo_questionario'
+	,f.codqst AS 'codigo_questao'
+	,f.numatnqst AS 'alternativa_escolhida'
+INTO #respostasQuestionario
+FROM #fflch_answers f
+	LEFT JOIN #fflch_answers f2
+		ON f.codpes = f2.codpes
+			AND f.codpgm = f2.codpgm
+			AND f.codqtn = f2.codqtn
+			AND f.codqst = f2.codqst
+			AND f.dtarpa < f2.dtarpa
+WHERE f2.codpes IS NULL
+	AND (f.dtaing BETWEEN f.dtainiqtn AND f.dtafimqtn);
+
+
+-- Drop all tables that won't be needed
+DROP TABLE #fflch_undergrads;
+DROP TABLE #fflch_answers;

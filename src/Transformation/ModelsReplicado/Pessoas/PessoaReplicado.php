@@ -2,9 +2,8 @@
 
 namespace Src\Transformation\ModelsReplicado\Pessoas;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
 
 class PessoaReplicado implements Mapper
 {
@@ -22,6 +21,10 @@ class PessoaReplicado implements Mapper
             'pais_nascimento' => $pessoa['pais_nascimento'],
             'raca' => Deparas::racas[$pessoa['raca']] ?? $pessoa['raca'],
             'sexo' => $pessoa['sexo'],
+            'orientacao_sexual' => $pessoa['orientacao_sexual'],
+            'identidade_genero' => $pessoa['identidade_genero'],
+            'situacao_vacinal_covid' => Deparas::situacoesVacinaCovid[$pessoa['situacao_vacinal_covid']]
+                                        ?? $pessoa['situacao_vacinal_covid'],
             'cpf' => $pessoa['cpf'],
         ];
 

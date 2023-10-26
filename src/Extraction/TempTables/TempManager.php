@@ -14,15 +14,15 @@ class TempManager
             }
         );
 
-        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
+        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 
-    private function generator($scripts)
+    private static function generator($scripts)
     {
         $total = count($scripts);
         $progress = 0;
 
-        echo PHP_EOL . "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
+        echo "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
 
         if (!count($scripts) > 0) {
             return CommonUtils::renderLoadingBar(1, 1);

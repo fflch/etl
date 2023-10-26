@@ -18,7 +18,7 @@ class Deparas
         'A' => 'Ativo',
         'E' => 'Encerrado',
         'T' => 'Trancado',
-        'R' => 'Reativado',
+        'R' => 'Ativo', // Reativado
         'S' => 'Suspenso',
         'P' => 'Pendente'
     ];
@@ -62,12 +62,6 @@ class Deparas
         'Inscrito PIBI' => 'Inscrito PIBIC',
         'Não aprovado' => 'Denegado',
         'Transferido' => 'Cancelado'
-    ];
-
-    const boolSIICUSP = [
-        'S' => true,
-        'N' => false,
-        null => false
     ];
 
     const tiposParticipantes = [
@@ -133,6 +127,13 @@ class Deparas
         'A' => 'Quinzenal',
     ];
 
+    const periodicidadeDisciplina = [
+        // Identifica o tipo de disciplina como: 
+        'A' => 'Anual',
+        'S' => 'Semestral',
+        'Q' => 'Quadrimestral',
+    ];
+
     const situacoesDisciplina = [
         'PE' => 'Pendente',  // "Pendente",
         'AU' => 'Pendente',  // "Aguardando análise da própria UNIDADE",
@@ -140,5 +141,119 @@ class Deparas
         'AT' => 'Ativa',  // "Ativada",
         'AP' => 'Aprovada',  // "Aprovada",
         'DT' => 'Desativada',  // "Desativada" 
+    ];
+
+    const formasExercicioCEU = [
+        /* Indica se o coordenador ou vice-coordenador exerce as funções de 
+           coordenação simultâneo ao regime CERT (recebe remuneração paralela) 
+           ou como atividade de Extensão (não remunerada) (S/E). */
+        'S' => 'Simultâneo ao regime CERT',
+        'E' => 'Atividade de extensão'
+    ];
+
+    const situacoesInscricaoCCEx = [
+        // Situação da inscrição do candidato: 
+        'A' => 'Aceito',
+        'R' => 'Recusado',
+        'I' => 'Invalidado por falta de documento comprobatório',
+        'S' => 'Sorteado',
+        'N' => 'Não manifestou interesse', 
+        'C' => 'Confirmada inscrição pelo candidato',
+        'V' => 'inscrição em vagas remanescentes',
+    ];
+
+    const tiposDesignacaoServidor = [
+        // Indica a hierarquia de subordinação da função de estrutura no setor: 
+        'C' => 'Chefe',
+        'D' => 'Designado', //(assessores, ATDI, ATDII, ATDIV), 
+        'H' => 'Horizontal', // (secretárias..). 
+    ];
+
+    const origensInscricaoCCex = [
+        // Indica a origem da inscrição: 
+        'P' => 'Presencial', // Efetuada na secretaria
+        'C' => 'Carga', // Via planilha
+        'W' => 'Web'
+    ];
+
+    const statusMatriculaCCEx = [
+        // Indica se a matrícula do aluno no curso está em 
+        'AND' => 'Andamento',
+        'ENC' => 'Encerrada', 
+    ];
+
+    const resultadoMatriculaCCEx = [
+        // Conceito obtido como resultado final: 
+        'APR' => 'Aprovado',
+        'REP' => 'Reprovado',
+        'DES' => 'Desistente',
+        'TRF' => 'Transferido',
+        'PEN' => 'Pendente',
+        'CAN' => 'Curso Cancelado',
+        'OUV' => 'Ouvinte',
+    ];
+
+    const situacaoEdicaoCCEx = [
+        // Situação em que a edição do curso CEU se encontra: 
+        'SOL' => 'Solicitada',
+        'APR' => 'Aprovada',
+        'HMG' => 'Homologada',
+        'REP' => 'Reprovada',
+        'PCE' => 'PC Entregue',
+        'PCA' => 'PC Aceita',
+        'PCR' => 'PC Reprovada',
+        'CAN' => 'Cancelamento',
+        'INV' => 'Invalidada', // Quando o curso for ministrado sem aprovação da PRCEU, devendo gerar certificado para os alunos mesmo assim; 
+        'PCD' => 'PC devolvida para ajustes',
+    ];
+
+    const situacoesVacinaCovid = [
+        // Indica a última situação de vacina COVID da pessoa: 
+        'U' => 'Dose única',
+        '1' => 'Incompleto (1/2)',
+        '2' => 'Completo (2/2)',
+        'R' => 'Reforço',
+        'N' => 'Não Vacinado (Sem justificativa/Convicção pessoal)',
+        'M' => 'Não Vacinado (Restrição médica)',
+        'I' => 'Invalidado', // (A pessoa informou os dados da vacinação, mas houve alguma rejeição por parte do validador)
+    ];
+
+    const funcoesBanca = [
+        'PRE' => 'Presidente',
+        'TIT' => 'Titular',
+        'SUP' => 'Suplente',
+        'SUB' => 'Substituído'
+    ];
+
+    const tiposOrientacaoPG = [
+        'PGM' => 'Provisório',
+        'ORI' => 'Orientador',
+        'COO' => 'Coorientador',
+        'EXC' => 'Em caráter exepcional',
+    ];
+
+    const tiposMatriculaPG = [
+        'REGULAR' => 'Regular',
+        'ARTIG103' => 'Artigo 103 (RG-USP)'
+    ];
+
+    const niveisPG = [
+        'ME' => 'Mestrado',
+        'DO' => 'Doutorado',
+        'DD' => 'Doutorado Direto'
+    ];
+
+    const tiposIngressoIntercambio = [
+        'A' => 'Acordo USP',
+        'C' => 'Convênio USP',
+        'N' => 'Outro',
+        'P' => 'Rede, programa ou consórcio',
+    ];
+
+    const modalidadesIntercambio = [
+        'I' => 'Regular', // "Intercâmbio de Graduação no modelo Convênio de Intercâmbio de Graduação"
+        'D' => 'Duplo Diploma',
+        'C' => 'Curta Duração',
+        'N' => 'Não Informado'
     ];
 }

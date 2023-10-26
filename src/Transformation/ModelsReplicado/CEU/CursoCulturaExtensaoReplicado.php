@@ -2,9 +2,9 @@
 
 namespace Src\Transformation\ModelsReplicado\CEU;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class CursoCulturaExtensaoReplicado implements Mapper
 {
@@ -16,7 +16,10 @@ class CursoCulturaExtensaoReplicado implements Mapper
             'codigo_departamento' => $cursoCEU['codigo_departamento'],
             'nome_departamento' => $cursoCEU['nome_departamento'],
             'modalidade_curso' => $cursoCEU['modalidade_curso'],
-            'nome_curso' => $cursoCEU['nome_curso'],
+            'nome_curso' => CommonUtils::cleanInput(
+                $cursoCEU['nome_curso'],
+                ['remove_trailing_periods', 'trim_quotes']
+            ),
             'tipo' => $cursoCEU['tipo'],
             'codigo_colegiado' => $cursoCEU['codigo_colegiado'],
             'sigla_colegiado' => $cursoCEU['sigla_colegiado'],

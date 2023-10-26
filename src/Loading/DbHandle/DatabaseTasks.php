@@ -8,45 +8,61 @@ use Src\Utils\CommonUtils;
 
 class DatabaseTasks
 {
+    private $dbManager;
+
     public function __construct()
     {
         $this->dbManager = new DatabaseManager();
     }
 
-    public function wipeAndOrRenewTables(array $wipeSchemas, array $renewOps)
+    public function wipeAndOrRenewTables(bool $rebuild, ?array $wipeSchemas, array $renewOps)
     {
         try {
-            Capsule::transaction(function() use ($wipeSchemas, $renewOps) {
-                CommonUtils::timer(function () use ($wipeSchemas) {
-                    $this->dbManager->wipeAllTables($wipeSchemas);
-                });
-                echo PHP_EOL;
+            Capsule::transaction(function() use ($rebuild, $wipeSchemas, $renewOps) {
+                if (!empty($wipeSchemas) && $rebuild === False) {
+                    CommonUtils::timer(function () use ($wipeSchemas) {
+                        $this->dbManager->wipeAllTables($wipeSchemas);
+                    });
+                    echo PHP_EOL;
+                }
 
                 CommonUtils::timer(function () use ($renewOps) {
                     $this->dbManager->updateAllTables($renewOps);
                 });
-                echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
+                echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
             });
         }
         catch(\Exception $e) {
-            echo "Caught Exception: " . $e;
+            echo "\n\n" . "Caught Exception: " . $e . "\n\n";
+            echo "Exiting the script...\n\n";
+            exit();
         }
     }
 
     public function rebuild($classes)
     {
+        $this->destroy($classes);
+        $this->build($classes);
+    }
+
+    public function build($classes)
+    {
         CommonUtils::timer(function () use ($classes) {
-            echo PHP_EOL . "(Re)building schemas..." . PHP_EOL;
-
-            Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
-            $this->dbManager->dropAllTables($classes);
-    
-            echo PHP_EOL;
-
-            Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");
             $this->dbManager->createAllTables($classes);
         });
 
-        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL;
+        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
+    }
+
+    public function destroy($classes)
+    {
+        Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
+
+        CommonUtils::timer(function () use ($classes) {
+            $this->dbManager->dropAllTables($classes);
+        });
+
+        Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");
+        echo PHP_EOL;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
-use Src\Utils\TransformationUtils;
 use Src\Utils\Deparas;
-use Src\Transformation\ModelsReplicado\Interfaces\Mapper;
+use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\CommonUtils;
 
 class SIICUSPTrabalhoReplicado implements Mapper
 {
@@ -12,7 +12,15 @@ class SIICUSPTrabalhoReplicado implements Mapper
     {
         $properties = [
             'id_trabalho' => $trabalho['edicao_siicusp'] . "-" . $trabalho['codigo_trabalho'],
-            'titulo_trabalho' => $trabalho['titulo_trabalho'],
+            'titulo_trabalho' => CommonUtils::cleanInput(
+                $trabalho['titulo_trabalho'],
+                [
+                    'decode_html',
+                    'remove_trailing_periods',
+                    'trim_quotes',
+                    'to_uppercase'
+                ]
+            ),
             'id_projeto_ic' => isset($trabalho['codigo_projeto'])
                            ? $trabalho['ano_projeto'] . "-" . $trabalho['codigo_projeto']
                            : null,
@@ -22,9 +30,9 @@ class SIICUSPTrabalhoReplicado implements Mapper
                                                         $trabalho['apresentado_siicusp'], 
                                                         $trabalho['tipo_participante_apresentou']
                                     ),
-            'prox_etapa_recomendado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_recomendado']] ?? false,
-            'prox_etapa_apresentado' => Deparas::boolSIICUSP[$trabalho['prox_etapa_apresentado']] ?? false,
-            'mencao_honrosa' => Deparas::boolSIICUSP[$trabalho['mencao_honrosa']] ?? false,
+            'prox_etapa_recomendado' => $trabalho['prox_etapa_recomendado'],
+            'prox_etapa_apresentado' => $trabalho['prox_etapa_apresentado'],
+            'mencao_honrosa' => $trabalho['mencao_honrosa'],
             'codigo_dpto_orientador' => $trabalho['codigo_dpto_orientador'],
             'nome_dpto_orientador' => $trabalho['nome_dpto_orientador'],
         ];

@@ -2,13 +2,15 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Transformation\ModelsReplicado\Lattes\LattesReplicado;
 use Src\Loading\Models\Lattes\Lattes;
 
 class LattesOps
 {
+    private $lattes;
+
     public function __construct()
     {
         $this->lattes = new Transformer(new LattesReplicado, 'Lattes/lattes');

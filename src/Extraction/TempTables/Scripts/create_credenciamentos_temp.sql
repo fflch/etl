@@ -1,13 +1,13 @@
 SELECT
 	r.codpes AS 'numero_usp'
 	,r.codare AS 'codigo_area'
-	,r.nivare AS 'nivel'
+	,r.nivare AS 'nivel_credenciamento'
 	,r.tiport AS 'tipo_credenciamento'
 	,r.dtavalini AS 'data_inicio_validade'
 	,r.dtavalfim AS 'data_fim_validade'
 INTO #fflch_creds
 FROM R25CRECREDOC r
-WHERE r.codare BETWEEN 8000 AND 9000;
+WHERE r.codare BETWEEN 8000 and 8999;
 
 
 /*
@@ -22,7 +22,7 @@ FROM #fflch_creds f
 		ON f.numero_usp = f2.numero_usp 
 			AND f.codigo_area = f2.codigo_area 
 			AND f.data_inicio_validade = f2.data_inicio_validade 
-WHERE f.nivel = 'DO' AND f2.nivel = 'ME' ;
+WHERE f.nivel_credenciamento = 'DO' AND f2.nivel_credenciamento = 'ME' ;
 
 
 -- Delete those old ME supervisor certifications.
@@ -33,7 +33,7 @@ WHERE EXISTS (
 	WHERE #fflch_creds.numero_usp = d.numero_usp 
 		AND #fflch_creds.codigo_area = d.codigo_area 
 		AND #fflch_creds.data_inicio_validade = d.data_inicio_validade
-		AND #fflch_creds.nivel = d.nivel
+		AND #fflch_creds.nivel_credenciamento = d.nivel_credenciamento
 );
 
 
@@ -60,40 +60,6 @@ FROM #fflch_creds f
 
 
 --
-SELECT * 
-INTO #areas
-FROM NOMEAREA n
-WHERE codare BETWEEN 8000 AND 9000;
-
-UPDATE #areas
-SET dtafimare = DATEADD(year, 10, GETDATE())
-WHERE dtafimare IS NULL;
-
-UPDATE #areas
-SET dtainiare = '1900-01-01 00:00:00.000'
-WHERE DATEDIFF(day, dtainiare, dtafimare) <= 1;
-
-UPDATE #areas
-SET dtainiare = '1900-01-01 00:00:00.000'
-WHERE codare = 8133 AND dtainiare = '1971-06-28 00:00:00.000';
-
---
-SELECT * 
-INTO #programas
-FROM NOMECURSO n
-WHERE codcur BETWEEN 8000 AND 9000;
-
-UPDATE #programas
-SET dtafimcur = DATEADD(year, 10, GETDATE())
-WHERE dtafimcur IS NULL;
-
-UPDATE #programas
-SET dtainicur = '1900-01-01 00:00:00.000'
-WHERE codcur = 8003 AND dtainicur = '1971-06-28 00:00:00.000'
-    OR codcur = 8005 AND dtainicur = '1970-11-16 00:00:00.000'
-    OR codcur = 8008 AND dtainicur = '1970-12-28 00:00:00.000';
-
---
 SELECT
     l.*
     ,a.nomare AS 'nome_area'
@@ -105,9 +71,7 @@ FROM #last_credenciamento_added l
     LEFT JOIN #programas p ON a.codcur = p.codcur AND l.data_inicio_validade BETWEEN p.dtainicur AND p.dtafimcur;
 
 
--- Drop all unnecessary temp tables
+-- Drop all tables that won't be needed
 DROP TABLE #deletar_creds;
 DROP TABLE #fflch_creds;
-DROP TABLE #areas;
-DROP TABLE #programas;
 

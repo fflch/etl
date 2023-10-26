@@ -2,7 +2,7 @@
 
 namespace Src\Loading\Operations;
 
-use Src\Transformation\ModelsReplicado\Transformer;
+use Src\Transformation\Transformer;
 use Src\Utils\ExtractionUtils;
 use Src\Transformation\ModelsReplicado\CEU\CursoCulturaExtensaoReplicado;
 use Src\Loading\Models\CEU\CursoCulturaExtensao;
@@ -19,6 +19,10 @@ use Src\Loading\Models\CEU\CoordenadorCCEx;
 
 class CEUOps
 {
+    private $cursosCEU, $oferecimentosCursos,
+            $inscricoesCursos, $matriculasCursos,
+            $ministrantesCursos, $coordenadoresCursos;
+
     public function __construct()
     {
         $this->cursosCEU = new Transformer(new CursoCulturaExtensaoReplicado, 'CEU/cursos_culturaextensao');
@@ -34,8 +38,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->cursosCEU, 
-            CursoCulturaExtensao::class, 
-            4600
+            CursoCulturaExtensao::class
         );
     }
 
@@ -44,28 +47,25 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->oferecimentosCursos, 
-            OferecimentoCCEx::class, 
-            3200
+            OferecimentoCCEx::class
         );
     }
 
     public function updateInscricoesCursos()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->inscricoesCursos, 
-            InscricaoCCEx::class, 
-            9000
+            InscricaoCCEx::class
         );
     }
 
     public function updateMatriculasCursos()
     {
         ExtractionUtils::updateTable(
-            'full',
+            'paginated',
             $this->matriculasCursos, 
-            MatriculaCCEx::class, 
-            5900
+            MatriculaCCEx::class
         );
     }
 
@@ -74,8 +74,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->ministrantesCursos, 
-            MinistranteCCEx::class, 
-            5900
+            MinistranteCCEx::class
         );
     }
 
@@ -84,8 +83,7 @@ class CEUOps
         ExtractionUtils::updateTable(
             'full',
             $this->coordenadoresCursos, 
-            CoordenadorCCEx::class, 
-            5900
+            CoordenadorCCEx::class
         );
     }
 }
