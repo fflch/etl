@@ -16,7 +16,9 @@ class QuestionarioRespostaReplicado implements Mapper
                     $_ENV['HASH_PEPPER']
                 ), 0, 32)
             ),
-            'id_questao' => ($resposta['codigo_questionario'] . "-" . $resposta['codigo_questao']),
+            'id_questao' => ($resposta['codigo_questionario'] .
+                            "-" . 
+                            str_pad($resposta['codigo_questao'], 2, 0, STR_PAD_LEFT)),
             'alternativa_escolhida' => $resposta['alternativa_escolhida'],
 
         ];
