@@ -202,7 +202,7 @@ class Deparas
         'PCE' => 'PC Entregue',
         'PCA' => 'PC Aceita',
         'PCR' => 'PC Reprovada',
-        'CAN' => 'Cancelamento',
+        'CAN' => 'Cancelada',
         'INV' => 'Invalidada', // Quando o curso for ministrado sem aprovação da PRCEU, devendo gerar certificado para os alunos mesmo assim; 
         'PCD' => 'PC devolvida para ajustes',
     ];

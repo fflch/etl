@@ -217,7 +217,7 @@ class CEUSchemas
             "data_matricula" => [
                 "type" => "dateTime"
             ],
-            "status_matricula" => [
+            "situacao_matricula" => [
                 "type" => "string",
                 "size" => 16
             ],

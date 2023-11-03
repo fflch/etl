@@ -94,7 +94,7 @@ FROM #all_titulos a
 		ON a.codpes = m.codpes
 			AND a.dtatitpes = m.max_date
 			AND a.grufor = m.max_grau
-	LEFT JOIN dbo.ORGANIZACAO o
+	LEFT JOIN ORGANIZACAO o
 		ON a.codorg = o.codorg;
 
 

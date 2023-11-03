@@ -5,7 +5,7 @@ SELECT
 	,m.numseqofeedi AS 'sequencia_oferecimento'
 	,m.codpes AS 'numero_usp'
 	,m.dtainc AS 'data_matricula'
-	,m.stamtrcurceu AS 'status_matricula'
+	,m.stamtrcurceu AS 'situacao_matricula'
 	,m.dtainiprj AS 'data_inicio_curso'
 	,m.dtafimprj AS 'data_fim_curso'
 	,m.frqmtrcur AS 'frequencia_aluno'

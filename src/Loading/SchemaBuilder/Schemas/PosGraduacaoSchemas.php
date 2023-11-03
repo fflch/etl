@@ -302,7 +302,7 @@ class PosGraduacaoSchemas
                 "type" => "string",
                 "size" => 32
             ],
-            "status_disciplina" => [
+            "situacao_disciplina" => [
                 "type" => "string",
                 "size" => 16
             ],
@@ -396,7 +396,7 @@ class PosGraduacaoSchemas
             "codigo_turma" => [
                 "type" => "smallInteger"
             ],
-            "status_turma" => [
+            "situacao_turma" => [
                 "type" => "string",
                 "size" => 16
             ],

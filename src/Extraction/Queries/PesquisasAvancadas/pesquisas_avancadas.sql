@@ -5,7 +5,11 @@ SELECT
 	,pd.codpes_pd AS 'numero_usp'
 	,pd.dtainiprj AS 'data_inicio_projeto'
 	,pd.dtafimprj AS 'data_fim_projeto'
-	,pd.staatlprj AS 'situacao_projeto'
+	,CASE
+		WHEN pd.dtainiprj > GETDATE()
+			THEN 'Programado'
+		ELSE pd.staatlprj 
+		END AS 'situacao_projeto'
 	,pd.codsetprj AS 'codigo_departamento'
     ,s.nomset AS 'nome_departamento'
 	,pd.titprj AS 'titulo_projeto'

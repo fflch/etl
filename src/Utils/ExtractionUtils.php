@@ -15,12 +15,15 @@ class ExtractionUtils
             self::transformAndInsert($queryType, $object, $model, $insertLimit);
         }
         catch (\Exception $e) {
-            echo str_repeat(PHP_EOL, 5);
+            echo str_repeat(PHP_EOL, 3);
+
+            CommonUtils::printTruncatedError($e->getMessage());
 
             if (str_contains($e->getMessage(), "too many placeholders")) {
-                echo("An error ocurred: it seems your database is outdated.\nTry rebuilding it using the `--rebuild` option.");
-            } else {
-                CommonUtils::printTruncatedError($e->getMessage());
+                echo str_repeat(PHP_EOL, 3);
+                echo("Your database may be outdated. " .
+                    "Please, try again using the `--rebuild` option."
+                );
             }
 
             echo str_repeat(PHP_EOL, 3);
