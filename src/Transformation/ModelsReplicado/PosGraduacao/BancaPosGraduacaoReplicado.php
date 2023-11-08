@@ -17,7 +17,7 @@ class BancaPosGraduacaoReplicado implements Mapper
                     $banca['seq_programa'] .
                     $banca['codigo_area'] .
                     $banca['sequencia_participacao'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'id_defesa' => strtoupper(substr(
@@ -26,7 +26,7 @@ class BancaPosGraduacaoReplicado implements Mapper
                     $banca['numero_usp_aluno'] . 
                     $banca['seq_programa'] .
                     $banca['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp_membro' => $banca['numero_usp_membro'],

@@ -13,7 +13,7 @@ class TrancamentoGraduacaoReplicado implements Mapper
                 hash('sha256',
                     $trancamento['numero_usp'] . 
                     $trancamento['sequencia_grad'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'data_registro_inicio_tranc' => $trancamento['data_registro_inicio_tranc'],

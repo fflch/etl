@@ -15,7 +15,7 @@ class PosGraduacaoReplicado implements Mapper
                     $posGraduacao['numero_usp'] . 
                     $posGraduacao['seq_programa'] .
                     $posGraduacao['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => $posGraduacao['numero_usp'],

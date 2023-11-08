@@ -22,7 +22,7 @@ class BolsaPosGraduacaoReplicado implements Mapper
                     $bolsaPG['numero_usp'] . 
                     $bolsaPG['seq_programa'] .
                     $bolsaPG['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'situacao_bolsa' => $bolsaPG['situacao_bolsa'],

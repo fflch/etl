@@ -13,7 +13,7 @@ class HabilitacaoReplicado implements Mapper
                 hash('sha256',
                     $habilitacao['numero_usp'] . 
                     $habilitacao['sequencia_grad'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'codigo_curso' => $habilitacao['codigo_curso'],

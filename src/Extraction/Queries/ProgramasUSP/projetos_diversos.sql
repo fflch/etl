@@ -1,0 +1,23 @@
+SELECT
+	b.codbnfalu AS 'codigo_programa_usp'
+	,b2.nombnfloc AS 'nome_programa_usp'
+	,b.numseqgesbnf AS 'sequencia_programa_usp'
+	,b.anoofebnf AS 'periodo_referencial'
+	,b.codprjbnf AS 'codigo_projeto_diverso'
+	,b.codclg AS 'codigo_colegiado'
+	,b.sglclg AS 'sigla_colegiado'
+	,b.pfxdisval AS 'prefixo_disciplina'
+	,b.titprjbnf AS 'titulo_projeto'
+	,b.codpescdn AS 'numero_usp_coordenador'
+	,b.dtainipvs AS 'data_inicio_previsto'
+	,b.dtafimpvs AS 'data_fim_previsto'
+	,b.staprj AS 'situacao_projeto'
+	,b.numbolsol AS 'numero_bolsas_solicitadas'
+	,b.numbolapr AS 'numero_bolsas_aprovadas'
+	,b.coddis AS 'codigo_disciplina'
+	,b.numpcpnaobls AS 'numero_participantes_nao_bolsistas'
+	,b.vlrtotprj AS 'valor_total_projeto'
+	,b.stavteprj AS 'vertente_pub'
+	,b.stacarprj AS 'caracteristica_projeto'
+FROM BENEFICIOPROJETO b
+	LEFT JOIN BENEFICIOALUNO b2 ON b.codbnfalu = b2.codbnfalu

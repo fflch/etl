@@ -13,7 +13,7 @@ class QuestionarioRespostaReplicado implements Mapper
                 hash('sha256',
                     $resposta['numero_usp'] . 
                     $resposta['sequencia_grad'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'id_questao' => ($resposta['codigo_questionario'] .

@@ -32,6 +32,16 @@ class PesquisasAvancadasSchemas
                 "type" => "date",
                 "nullable" => true
             ],
+            "motivo_cancelamento" => [
+                "type" => "string",
+                "size" => 100,
+                "nullable" => true
+            ],
+            "descricao_cancelamento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
             "codigo_departamento" => [
                 "type" => "integer",
                 "nullable" => true

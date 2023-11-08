@@ -15,7 +15,7 @@ class CredenciamentoPGReplicado implements Mapper
                     $credenciamento['numero_usp'] . 
                     $credenciamento['codigo_area'] . 
                     $credenciamento['data_inicio_validade'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => $credenciamento['numero_usp'],

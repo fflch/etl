@@ -15,7 +15,7 @@ class DesignacaoServidorReplicado implements Mapper
                     $designacao['numero_usp'] . 
                     $designacao['sequencia_vinculo'] . 
                     $designacao['vinculo'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => $designacao['numero_usp'],
