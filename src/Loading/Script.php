@@ -9,9 +9,11 @@ use Src\Loading\Models\AlunoGraduacao;
 use Src\Transformation\Models\GraduacaoReplicado;
 use Src\Loading\Models\Graduacao;
 use Src\Transformation\Models\HabilitacaoReplicado;
+use Src\Loading\Models\Habilitacao;
 use Src\Transformation\Models\IniciacaoCientificaReplicado;
 use Src\Loading\Models\IniciacaoCientifica;
-use Src\Loading\Models\Habilitacao;
+use Src\Transformation\Models\BolsaICReplicado;
+use Src\Loading\Models\BolsaIC;
 
 class Script
 {
@@ -20,6 +22,7 @@ class Script
         $this->graduacoes = new Transformer(new GraduacaoReplicado, 'graduacoes');
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'iniciacoes_cientificas');
+        $this->bolsasIC = new Transformer(new BolsaICReplicado, 'bolsas_ic');
     }
 
     public function updateAlunosGraduacao()
@@ -72,5 +75,17 @@ class Script
         }
 
         Capsule::schema()->enableForeignKeyConstraints(); //gambi
+    }
+
+    public function updateBolsasIC()
+    {
+        $bolsasIC = $this->bolsasIC->transform($orderBy = ['anoProjeto', 'codigoProjeto']);
+
+        // Insert placeholders limit is 65535.
+        // We need X placeholders for each row at the moment. Let's make room for Y.
+        foreach(array_chunk($bolsasIC, 5000) as $chunk) 
+        {
+            BolsaIC::upsert($chunk, ['idProjeto', 'sequenciaBolsa']);
+        }
     }
 }

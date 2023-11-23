@@ -12,10 +12,14 @@ class Transformer
         $this->queryPath = $queryPath;
     }
 
-    public function transform()
+    public function transform(array $orderBy = NULL)
     {
         $query = file_get_contents(__DIR__ . '/../../Extraction/Queries/' . $this->queryPath . '.sql');
         $data = Replicado::getData($query);
+
+        if(!empty($orderBy)){
+            $data = Transformer::order($data, $orderBy);
+        }
 
         $mappedData = array_map(
             function($n) {
@@ -24,5 +28,24 @@ class Transformer
         );
 
         return $mappedData;
+    }
+
+    public function order(array $data, array $orderBy)
+    {
+        $aux = [];
+
+        foreach ($data as &$row) {
+            $combined = "";
+            foreach($orderBy as $attr){
+                $combined .= $row[$attr];
+            }
+            $aux[$combined] = isset($aux[$combined])
+                              ? $aux[$combined] + 1
+                              : 1;
+
+            $row['order'] = $aux[$combined];
+        }
+
+        return($data);
     }
 }

@@ -200,7 +200,7 @@ class GradSchemas
         ]
     ];
 
-    const iniciacao = [
+    const iniciacoes = [
 
         "tableName" => "iniciacoes",
 
@@ -264,6 +264,56 @@ class GradSchemas
                 "keys" => "numeroUSP",
                 "references" => "numeroUSP",
                 "on" => "alunos_graduacao",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const bolsasIC = [
+
+        "tableName" => "bolsas_ic",
+
+        "columns" => [
+            "idProjeto" => [
+                "type" => "string",
+                "size" => 12
+            ],
+            "sequenciaBolsa" => [
+                "type" => "integer"
+            ],
+            "nomePrograma" => [
+                "type" => "string",
+                "size" => 128
+            ],
+            "bolsaEdital" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "dataInicioBolsa" => [
+                "type" => "DateTime",
+                "nullable" => true
+            ],
+            "dataFimBolsa" => [
+                "type" => "DateTime",
+                "nullable" => true
+            ],
+            "created_at" => [
+                "type" => "timestamp"
+            ],
+            "updated_at" => [
+                "type" => "timestamp"
+            ],
+        ],
+
+        "primary" => [
+
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "idProjeto",
+                "references" => "idProjeto",
+                "on" => "iniciacoes",
                 "onDelete" => "cascade"
             ]
         ]

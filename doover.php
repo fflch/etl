@@ -26,3 +26,4 @@ $script->updateAlunosGraduacao();
 $script->updateGraduacoes();
 $script->updateHabilitacoes();
 $script->updateIniciacoes();
+$script->updateBolsasIC();
