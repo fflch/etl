@@ -23,7 +23,7 @@ class TurmaGraduacaoReplicado implements Mapper
             'data_criacao_turma' => $turma['data_criacao_turma'],
             'data_inicio_aulas' => $turma['data_inicio_aulas'],
             'data_fim_aulas' => $turma['data_fim_aulas'],
-            'status_turma' => Deparas::statusTurma[$turma['status_turma']] ?? $turma['status_turma'],
+            'situacao_turma' => Deparas::statusTurma[$turma['situacao_turma']] ?? $turma['situacao_turma'],
             'carga_horaria_teorica' => $turma['carga_horaria_teorica'],
             'carga_horaria_pratica' => $turma['carga_horaria_pratica'],
             'numero_alunos_matriculados' => $turma['numero_alunos_matriculados'],

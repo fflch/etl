@@ -15,7 +15,7 @@ class VinculoServidorReplicado implements Mapper
                     $vinculo['numero_usp'] . 
                     $vinculo['sequencia_vinculo'] . 
                     $vinculo['vinculo'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => $vinculo['numero_usp'],

@@ -5,7 +5,11 @@ SELECT
 	,s.nomset AS 'nome_departamento'
 	,i.dtainiprj AS 'data_inicio_projeto'
 	,i.dtafimprj AS 'data_fim_projeto'
-	,i.staprj AS 'situacao_projeto'
+	,CASE
+		WHEN i.dtainiprj > GETDATE()
+			THEN 'Programado'
+		ELSE i.staprj
+		END AS 'situacao_projeto'
 	,i.codpesalu AS 'numero_usp'
 	,i.codpesrsp AS 'numero_usp_orientador'
 	,i.titprj AS 'titulo_projeto'

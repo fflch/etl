@@ -15,7 +15,7 @@ class OcorrenciaPosGraduacaoReplicado implements Mapper
                     $ocorrenciaPG['numero_usp'] . 
                     $ocorrenciaPG['seq_programa'] .
                     $ocorrenciaPG['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'data_ocorrencia' => $ocorrenciaPG['data_ocorrencia'],

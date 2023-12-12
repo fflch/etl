@@ -37,7 +37,7 @@ SELECT
  	,f.numseqdis AS 'versao_disciplina'
  	,f.numofe AS 'codigo_turma'
 	,f.codpes AS 'numero_usp'
-	,MAX(f.stamtrpgmofe) AS 'status_matricula'
+	,MAX(f.stamtrpgmofe) AS 'situacao_matricula'
 	,MIN(f.cctpgmofe) AS 'conceito_final'
 	,MAX(f.frqpgmofe) AS 'frequencia_final'
 	-- gambi ¯\_(ツ)_/¯
@@ -90,9 +90,9 @@ SELECT
  	,u.versao_disciplina
  	,u.codigo_turma
 	,COUNT(*) AS 'num_inscritos'
- 	,COUNT(CASE WHEN u.status_matricula = 'D' THEN 1 END) AS 'num_matriculas_deferidas'
- 	,COUNT(CASE WHEN u.status_matricula = 'I' THEN 1 END) AS 'num_matriculas_indeferidas'
-	,COUNT(CASE WHEN u.status_matricula = 'C' THEN 1 END) AS 'num_matriculas_canceladas'
+ 	,COUNT(CASE WHEN u.situacao_matricula = 'D' THEN 1 END) AS 'num_matriculas_deferidas'
+ 	,COUNT(CASE WHEN u.situacao_matricula = 'I' THEN 1 END) AS 'num_matriculas_indeferidas'
+	,COUNT(CASE WHEN u.situacao_matricula = 'C' THEN 1 END) AS 'num_matriculas_canceladas'
 INTO
 	#preenrolled_stats
 FROM
@@ -123,7 +123,7 @@ INNER JOIN
 		AND p.versao_disciplina = u.versao_disciplina
 		AND p.codigo_turma = u.codigo_turma
 WHERE
-	u.status_matricula = 'D'
+	u.situacao_matricula = 'D'
 GROUP BY 
 	u.codigo_disciplina
 	,u.versao_disciplina
@@ -229,10 +229,10 @@ SELECT
 	,CASE
 		WHEN e.data_cancelamento IS NOT NULL THEN 'Cancelada'
 		WHEN e.consolidacao_resultados = 'S' THEN 'Encerrada'
-		WHEN e.consolidacao_turma = 'S' THEN 'Ativa'
-		WHEN e.consolidacao_turma IS NULL THEN 'Aberta'
-		ELSE 'Outro'
-		END AS 'status_turma'
+		WHEN e.data_inicio_turma > GETDATE() THEN 'Programada'
+		WHEN e.data_fim_turma >= GETDATE() THEN 'Ativa'
+		ELSE 'Aberta'
+		END AS 'situacao_turma'
 INTO
 	#turmas_posgraduacao
 FROM 
@@ -242,7 +242,7 @@ FROM
 -- Cleaning table
 UPDATE #turmas_posgraduacao
 SET consolidacao_turma = NULL, consolidacao_resultados = NULL
-WHERE status_turma = 'Cancelada';
+WHERE situacao_turma = 'Cancelada';
 
 
 -- Drop all tables that won't be needed

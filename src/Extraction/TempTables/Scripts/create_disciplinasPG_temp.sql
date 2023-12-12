@@ -13,11 +13,11 @@ SELECT
 		WHEN d.dtaatvdis IS NULL
 			THEN 'Não ativada'
 		WHEN d.dtaatvdis > GETDATE()
-			THEN 'Futura'
+			THEN 'Programada'
 		WHEN d.dtadtvdis < GETDATE()
 			THEN 'Desativada'
 		ELSE 'Ativa'
-		END AS 'status_disciplina'
+		END AS 'situacao_disciplina'
 	,d.dtaprpdis AS 'data_proposicao_disciplina'
 	,d.dtaatvdis AS 'data_ativacao_disciplina'
 	,d.dtadtvdis AS 'data_desativacao_disciplina'

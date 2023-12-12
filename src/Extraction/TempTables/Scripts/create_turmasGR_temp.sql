@@ -91,7 +91,7 @@ SELECT
 	,t.dtacritur AS 'data_criacao_turma'
 	,t.dtainitur AS 'data_inicio_aulas'
 	,t.dtafimtur AS 'data_fim_aulas'
-	,t.statur AS 'status_turma'
+	,t.statur AS 'situacao_turma' -- // ver
 	,t.cgahorteo AS 'carga_horaria_teorica'
 	,t.cgahorpra AS 'carga_horaria_pratica'
 	,c.numero_alunos_matriculados
@@ -117,7 +117,6 @@ ORDER BY t.coddis, t.verdis, t.codtur
 
 
 -- Drop all tables that won't be needed
-DROP TABLE #enrolled;
 DROP TABLE #filtered_results;
 DROP TABLE #consolidated_results;
 DROP TABLE #averages;

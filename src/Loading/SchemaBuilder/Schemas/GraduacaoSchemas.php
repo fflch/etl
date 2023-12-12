@@ -167,6 +167,10 @@ class GraduacaoSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
+            "situacao_projeto" => [
+                "type" => "string",
+                "size" => 32
+            ],
             "data_inicio_projeto" => [
                 "type" => "date",
                 "nullable" => true
@@ -174,10 +178,6 @@ class GraduacaoSchemas
             "data_fim_projeto" => [
                 "type" => "date",
                 "nullable" => true
-            ],
-            "situacao_projeto" => [
-                "type" => "string",
-                "size" => 32
             ],
             "ano_projeto" => [
                 "type" => "smallInteger"
@@ -554,17 +554,17 @@ class GraduacaoSchemas
                 "type" => "date",
                 "nullable" => true
             ],
+            "situacao_turma" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
             "data_inicio_aulas" => [
                 "type" => "date",
                 "nullable" => true
             ],
             "data_fim_aulas" => [
                 "type" => "date",
-                "nullable" => true
-            ],
-            "status_turma" => [
-                "type" => "string",
-                "size" => 16,
                 "nullable" => true
             ],
             "carga_horaria_teorica" => [
@@ -783,15 +783,15 @@ class GraduacaoSchemas
                 "type" => "string",
                 "size" => 24
             ],
+            "situacao_intercambio" => [
+                "type" => "string",
+                "size" => 32
+            ],
             "data_inicio_intercambio" => [
                 "type" => "date"
             ],
             "data_fim_intercambio" => [
                 "type" => "date"
-            ],
-            "situacao_intercambio" => [
-                "type" => "string",
-                "size" => 32
             ],
             "data_desistencia" => [
                 "type" => "date",

@@ -16,7 +16,7 @@ class DefesaPosGraduacaoReplicado implements Mapper
                     $defesa['numero_usp'] . 
                     $defesa['seq_programa'] .
                     $defesa['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'id_posgraduacao' => strtoupper(substr(
@@ -24,7 +24,7 @@ class DefesaPosGraduacaoReplicado implements Mapper
                     $defesa['numero_usp'] . 
                     $defesa['seq_programa'] .
                     $defesa['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'data_defesa' => $defesa['data_defesa'],

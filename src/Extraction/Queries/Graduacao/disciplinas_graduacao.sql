@@ -13,12 +13,14 @@ SELECT
 	,d.cgaacdciecul AS 'carga_horaria_aacc'
     ,CASE
 		WHEN GETDATE() > d.dtadtvdis
-			THEN 'DT'
-		WHEN d.dtadtvdis > GETDATE()
-			THEN 'AT'
-		WHEN d.dtaatvdis IS NOT NULL AND d.dtadtvdis IS NULL 
-			THEN 'AT'
-		ELSE d.sitdis
+			THEN 'Desativado'
+		WHEN d.dtaatvdis > GETDATE()
+			THEN 'Programado'
+		WHEN d.dtaatvdis IS NOT NULL
+			THEN 'Ativo'
+		WHEN d.sitdis IS NOT NULL
+			THEN d.sitdis
+		ELSE 'Pendente'
 	    END AS 'situacao_disciplina'
 FROM DISCIPLINAGR d
 	LEFT JOIN DISCIPGRCODIGO d2 ON d.coddis = d2.coddis

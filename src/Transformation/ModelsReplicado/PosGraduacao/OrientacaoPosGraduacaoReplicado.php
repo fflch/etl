@@ -15,7 +15,7 @@ class OrientacaoPosGraduacaoReplicado implements Mapper
                     $orientacaoPG['numero_usp_aluno'] . 
                     $orientacaoPG['seq_programa'] .
                     $orientacaoPG['codigo_area'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp_orientador' => $orientacaoPG['numero_usp_orientador'],

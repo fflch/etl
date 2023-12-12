@@ -14,9 +14,11 @@ class PesquisaAvancadaReplicado implements Mapper
             'id_projeto' => $pesquisa_avancada['ano_projeto'] . '-' . $pesquisa_avancada['codigo_projeto'],
             'modalidade' => Deparas::modalidadesPD[$pesquisa_avancada['codigo_modalidade']] ?? 'XX',
             'numero_usp' => $pesquisa_avancada['numero_usp'],
+            'situacao_projeto' => $pesquisa_avancada['situacao_projeto'],
             'data_inicio_projeto' => $pesquisa_avancada['data_inicio_projeto'],
             'data_fim_projeto' => $pesquisa_avancada['data_fim_projeto'],
-            'situacao_projeto' => $pesquisa_avancada['situacao_projeto'],
+            'motivo_cancelamento' => $pesquisa_avancada['motivo_cancelamento'],
+            'descricao_cancelamento' => $pesquisa_avancada['descricao_cancelamento'],
             'codigo_departamento' => $pesquisa_avancada['codigo_departamento'],
             'nome_departamento' => $pesquisa_avancada['nome_departamento'],
             'titulo_projeto' => CommonUtils::cleanInput(

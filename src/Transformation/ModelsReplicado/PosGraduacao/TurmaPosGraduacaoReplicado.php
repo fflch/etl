@@ -19,7 +19,7 @@ class TurmaPosGraduacaoReplicado implements Mapper
             'codigo_disciplina' => $turmaPG['codigo_disciplina'],
             'versao_disciplina' => $turmaPG['versao_disciplina'],
             'codigo_turma' => $turmaPG['codigo_turma'],
-            'status_turma' => $turmaPG['status_turma'],
+            'situacao_turma' => $turmaPG['situacao_turma'],
             'data_inicio_turma' => $turmaPG['data_inicio_turma'],
             'data_fim_turma' => $turmaPG['data_fim_turma'],
             'vagas_regulares' => $turmaPG['vagas_regulares'],

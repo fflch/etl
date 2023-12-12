@@ -4,10 +4,12 @@ SELECT
 	,e.numseqofeedi AS 'sequencia_oferecimento'
 	,CASE 
 		WHEN ec.staediiva IS NOT NULL
-			THEN 'INV'
+			THEN 'Invalidada'
 		WHEN ec.staedicvl IS NOT NULL
-			THEN 'APR' --HMG? // ver significado
-		ELSE ec.staedi 
+			THEN 'Convalidada'
+		WHEN ec.staedi IS NOT NULL
+			THEN ec.staedi
+		ELSE 'Pendente' -- // ver
 		END AS 'situacao_oferecimento'
 	,e.dtainiofeedi AS 'data_inicio_oferecimento'
 	,e.dtafimofeedi AS 'data_fim_oferecimento'

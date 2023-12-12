@@ -7,7 +7,11 @@ SELECT
 		ELSE i.dtainiitb
 		END AS 'data_inicio_intercambio'
 	,i.dtafimitb AS 'data_fim_intercambio'
-	,i2.dsctipsititb AS 'situacao_intercambio'
+	,CASE
+		WHEN i.dtainiitbori > GETDATE() OR i.dtainiitb > GETDATE()
+			THEN 'Programado'
+		ELSE i2.dsctipsititb
+		END AS 'situacao_intercambio'
 	,i.dtadsialu AS 'data_desistencia'
 	,CASE WHEN i.dtainiitbori IS NOT NULL
 		THEN 'S'

@@ -18,7 +18,7 @@ class DisciplinaPosGraduacaoReplicado implements Mapper
                 ['trim_quotes']
             ),
             'tipo_curso' => $disciplinaPG['tipo_curso'],
-            'status_disciplina' => $disciplinaPG['status_disciplina'],
+            'situacao_disciplina' => $disciplinaPG['situacao_disciplina'],
             'data_proposicao_disciplina' => $disciplinaPG['data_proposicao_disciplina'],
             'data_ativacao_disciplina' => $disciplinaPG['data_ativacao_disciplina'],
             'data_desativacao_disciplina' => $disciplinaPG['data_desativacao_disciplina'],

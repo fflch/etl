@@ -14,7 +14,7 @@ class GraduacaoReplicado implements Mapper
                 hash('sha256',
                     $graduacao['numero_usp'] . 
                     $graduacao['sequencia_grad'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => (int)$graduacao['numero_usp'],

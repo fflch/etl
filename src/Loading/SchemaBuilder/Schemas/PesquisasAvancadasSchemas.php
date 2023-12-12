@@ -20,6 +20,10 @@ class PesquisasAvancadasSchemas
             "numero_usp" => [
                 "type" => "integer"
             ],
+            "situacao_projeto" => [
+                "type" => "string",
+                "size" => 16
+            ],
             "data_inicio_projeto" => [
                 "type" => "date",
                 "nullable" => true
@@ -28,9 +32,15 @@ class PesquisasAvancadasSchemas
                 "type" => "date",
                 "nullable" => true
             ],
-            "situacao_projeto" => [
+            "motivo_cancelamento" => [
                 "type" => "string",
-                "size" => 16
+                "size" => 100,
+                "nullable" => true
+            ],
+            "descricao_cancelamento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
             ],
             "codigo_departamento" => [
                 "type" => "integer",
@@ -83,16 +93,16 @@ class PesquisasAvancadasSchemas
             "sequencia_periodo" => [
                 "type" => "smallInteger",
             ],
+            "situacao_periodo" => [
+                "type" => "string",
+                "size" => 32
+            ],
             "data_inicio_periodo" => [
                 "type" => "date"
             ],
             "data_fim_periodo" => [
                 "type" => "date",
                 "nullable" => true
-            ],
-            "situacao_periodo" => [
-                "type" => "string",
-                "size" => 32
             ],
             "fonte_recurso" => [
                 "type" => "string",

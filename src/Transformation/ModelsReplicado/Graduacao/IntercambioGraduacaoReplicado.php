@@ -14,7 +14,7 @@ class IntercambioGraduacaoReplicado implements Mapper
                 hash('sha256',
                     $intercambioGrad['numero_usp'] . 
                     $intercambioGrad['sequencia_grad'] .
-                    $_ENV['HASH_PEPPER']
+                    $_ENV['ETL_HASH_PEPPER']
                 ), 0, 32)
             ),
             'numero_usp' => $intercambioGrad['numero_usp'],
