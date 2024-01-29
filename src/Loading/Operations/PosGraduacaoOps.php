@@ -26,15 +26,22 @@ use Src\Transformation\ModelsReplicado\PosGraduacao\BolsaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\BolsaPosGraduacao;
 use Src\Transformation\ModelsReplicado\PosGraduacao\CredenciamentoPGReplicado;
 use Src\Loading\Models\PosGraduacao\CredenciamentoPG;
+use Src\Transformation\ModelsReplicado\PosGraduacao\EstagioPaeReplicado;
+use Src\Loading\Models\PosGraduacao\EstagioPae;
+use Src\Transformation\ModelsReplicado\PosGraduacao\PosGraduacaoConveniadaReplicado;
+use Src\Loading\Models\PosGraduacao\PosGraduacaoConveniada;
+use Src\Transformation\ModelsReplicado\PosGraduacao\ProficienciaIdiomaPGReplicado;
+use Src\Loading\Models\PosGraduacao\ProficienciaIdiomaPG;
 
 class PosGraduacaoOps
 {
     private $posGraduacoes, $defesasPG,
-            $bancasPG, $orientacoesPG,
-            $disciplinasPG, $turmasPG,
-            $ministrantesPG, $coordenadoresPG,
-            $ocorrenciasPG, $bolsasPG,
-            $credenciamentosPG;
+        $bancasPG, $orientacoesPG,
+        $disciplinasPG, $turmasPG,
+        $ministrantesPG, $coordenadoresPG,
+        $ocorrenciasPG, $bolsasPG,
+        $credenciamentosPG, $estagiosPae,
+        $pgConveniadas, $proficienciaIdiomas;
 
     public function __construct()
     {
@@ -49,13 +56,16 @@ class PosGraduacaoOps
         $this->ocorrenciasPG = new Transformer(new OcorrenciaPosGraduacaoReplicado, 'PosGraduacao/ocorrencias_posgraduacao');
         $this->bolsasPG = new Transformer(new BolsaPosGraduacaoReplicado, 'PosGraduacao/bolsas_posgraduacao');
         $this->credenciamentosPG = new Transformer(new CredenciamentoPGReplicado, 'PosGraduacao/credenciamentos_pg');
+        $this->estagiosPae = new Transformer(new EstagioPaeReplicado, 'PosGraduacao/estagios_pae');
+        $this->pgConveniadas = new Transformer(new PosGraduacaoConveniadaReplicado, 'PosGraduacao/posgraduacoes_conveniadas');
+        $this->proficienciaIdiomas = new Transformer(new ProficienciaIdiomaPGReplicado, 'PosGraduacao/proficiencia_idiomas_pg');
     }
 
     public function updatePosGraduacoes()
     {
         ExtractionUtils::updateTable(
             'full',
-            $this->posGraduacoes, 
+            $this->posGraduacoes,
             PosGraduacao::class
         );
     }
@@ -147,6 +157,33 @@ class PosGraduacaoOps
             'full',
             $this->credenciamentosPG, 
             CredenciamentoPG::class
+        );
+    }
+
+    public function updateEstagiosPae()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->estagiosPae,
+            EstagioPae::class
+        );
+    }
+
+    public function updatePGConveniadas()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->pgConveniadas,
+            PosGraduacaoConveniada::class
+        );
+    }
+
+    public function updateProficienciaIdiomasPG()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->proficienciaIdiomas,
+            ProficienciaIdiomaPG::class
         );
     }
 }

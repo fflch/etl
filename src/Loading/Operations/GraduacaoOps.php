@@ -33,6 +33,8 @@ use Src\Transformation\ModelsReplicado\Graduacao\IntercambioGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\IntercambioGraduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\TrancamentoGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\TrancamentoGraduacao;
+use Src\Transformation\ModelsReplicado\Graduacao\NotasIngressoGraduacaoReplicado;
+use Src\Loading\Models\Graduacao\NotasIngressoGraduacao;
 
 class GraduacaoOps
 {
@@ -42,7 +44,8 @@ class GraduacaoOps
             $SIICUSPTrabalhos, $SIICUSPParticipantes,
             $disciplinasGraduacao, $turmasGraduacao,
             $demandaTurmasGraduacao, $ministrantesGraduacao,
-            $intercambiosGraduacao, $trancamentosGraduacao;
+            $intercambiosGraduacao, $trancamentosGraduacao,
+            $notasIngresso;
 
     public function __construct()
     {
@@ -60,6 +63,7 @@ class GraduacaoOps
         $this->ministrantesGraduacao = new Transformer(new MinistranteGraduacaoReplicado, 'Graduacao/ministrantes_graduacao');
         $this->intercambiosGraduacao = new Transformer(new IntercambioGraduacaoReplicado, 'Graduacao/intercambios_graduacao');
         $this->trancamentosGraduacao = new Transformer(new TrancamentoGraduacaoReplicado, 'Graduacao/trancamentos_graduacao');
+        $this->notasIngresso = new Transformer(new NotasIngressoGraduacaoReplicado, 'Graduacao/notas_ingresso_graduacao');
     }
 
     public function updateGraduacoes()
@@ -197,6 +201,15 @@ class GraduacaoOps
             'full',
             $this->trancamentosGraduacao, 
             TrancamentoGraduacao::class
+        );
+    }
+
+    public function updateNotasIngresso()
+    {
+        ExtractionUtils::updateTable(
+            'full',
+            $this->notasIngresso, 
+            NotasIngressoGraduacao::class
         );
     }
 }

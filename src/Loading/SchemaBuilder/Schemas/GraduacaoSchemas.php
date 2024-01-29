@@ -559,11 +559,11 @@ class GraduacaoSchemas
                 "size" => 16,
                 "nullable" => true
             ],
-            "data_inicio_aulas" => [
+            "data_inicio_turma" => [
                 "type" => "date",
                 "nullable" => true
             ],
-            "data_fim_aulas" => [
+            "data_fim_turma" => [
                 "type" => "date",
                 "nullable" => true
             ],
@@ -575,7 +575,7 @@ class GraduacaoSchemas
                 "type" => "smallInteger",
                 "nullable" => true
             ],
-            "numero_alunos_matriculados" => [
+            "numero_alunos_inicial" => [
                 "type" => "smallInteger",
                 "nullable" => true
             ],
@@ -583,15 +583,11 @@ class GraduacaoSchemas
                 "type" => "float",
                 "nullable" => true
             ],
-            "result_pendente_pct" => [
-                "type" => "float",
+            "numero_alunos_final" => [
+                "type" => "smallInteger",
                 "nullable" => true
             ],
-            "frequencia_media" => [
-                "type" => "float",
-                "nullable" => true
-            ],
-            "nota_media" => [
+            "pendencia_pct" => [
                 "type" => "float",
                 "nullable" => true
             ],
@@ -599,7 +595,7 @@ class GraduacaoSchemas
                 "type" => "float",
                 "nullable" => true
             ],
-            "aprovados_pct" => [
+            "aprovacao_pct" => [
                 "type" => "float",
                 "nullable" => true
             ],
@@ -612,6 +608,14 @@ class GraduacaoSchemas
                 "nullable" => true
             ],
             "reprov_ambos_pct" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "frequencia_media" => [
+                "type" => "float",
+                "nullable" => true
+            ],
+            "nota_media" => [
                 "type" => "float",
                 "nullable" => true
             ],
@@ -880,6 +884,46 @@ class GraduacaoSchemas
             "sequencia_trancamento" => [
                 "type" => "string",
                 "size" => 48,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+        
+        "foreign" => [
+            [
+                "keys" => "id_graduacao",
+                "references" => "id_graduacao",
+                "on" => "graduacoes",
+                "onDelete" => "cascade"
+            ]
+        ]
+    ];
+
+    const notas_ingresso_graduacao = [
+
+        "tableName" => "notas_ingresso_graduacao",
+
+        "columns" => [
+            "id_graduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "codigo_prova" => [
+                "type" => "smallInteger"
+            ],
+            "descricao_prova" => [
+                "type" => "string",
+                "size" => 256
+            ],
+            "pontos_obtidos" => [
+                "type" => "decimal",
+                "nullable" => true
+            ],
+            "pontos_maximo" => [
+                "type" => "integer",
                 "nullable" => true
             ],
         ],

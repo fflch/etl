@@ -74,7 +74,7 @@ class PosGraduacaoSchemas
         "primary" => [
             "key" => ["id_posgraduacao"]
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "numero_usp",
@@ -125,7 +125,7 @@ class PosGraduacaoSchemas
         "primary" => [
             "key" => ["id_defesa"]
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "id_posgraduacao",
@@ -195,7 +195,7 @@ class PosGraduacaoSchemas
         "primary" => [
             "key" => ["id_participacao_banca"]
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "id_defesa",
@@ -260,7 +260,7 @@ class PosGraduacaoSchemas
         "primary" => [
             //
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "id_posgraduacao",
@@ -371,7 +371,7 @@ class PosGraduacaoSchemas
             "key" => ["codigo_disciplina", "versao_disciplina"],
             "keyName" => "disciplinas_posgraduacao_primary"
         ],
-        
+
         "foreign" => [
             //
         ]
@@ -505,7 +505,7 @@ class PosGraduacaoSchemas
         "primary" => [
             "key" => ["id_turma"]
         ],
-        
+
         "foreign" => [
             [
                 "keys" => ["codigo_disciplina", "versao_disciplina"],
@@ -533,7 +533,7 @@ class PosGraduacaoSchemas
         "primary" => [
             //
         ],
-        
+
         "foreign" => [
             [
                 "keys" => ["numero_usp"],
@@ -582,7 +582,7 @@ class PosGraduacaoSchemas
         "primary" => [
             //
         ],
-        
+
         "foreign" => [
             [
                 "keys" => ["numero_usp"],
@@ -645,7 +645,7 @@ class PosGraduacaoSchemas
         "primary" => [
             //
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "id_posgraduacao",
@@ -705,7 +705,7 @@ class PosGraduacaoSchemas
         "primary" => [
             "key" => ["id_bolsa"]
         ],
-        
+
         "foreign" => [
             [
                 "keys" => "id_posgraduacao",
@@ -783,6 +783,239 @@ class PosGraduacaoSchemas
                 "keys" => "numero_usp",
                 "references" => "numero_usp",
                 "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const estagios_pae = [
+
+        "tableName" => "estagios_pae",
+
+        "columns" => [
+            "id_pae" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "numero_usp" => [
+                "type" => "integer"
+            ],
+            "nivel_programa" => [
+                "type" => "string",
+                "size" => 16,
+            ],
+            "modalidade_pae" => [
+                "type" => "string",
+                "size" => 16
+            ],
+            "data_inicio_pae" => [
+                "type" => "date"
+            ],
+            "data_fim_pae" => [
+                "type" => "date"
+            ],
+            "observacao" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "justificativa_cancelamento" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+            "inscrito" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "codigo_disciplina_estagio" => [
+                "type" => "char",
+                "size" => 7,
+                "nullable" => true
+            ],
+            "versao_disciplina_estagio" => [
+                "type" => "tinyInteger",
+                "nullable" => true
+            ],
+            "situacao_estagio" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "unidade_estagio" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "numero_usp_supervisor" => [
+                "type" => "integer",
+                "nullable" => true
+            ],
+            "periodo_epp" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "situacao_epp" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "modalidade_epp" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "sigla_disciplina_epp" => [
+                "type" => "char",
+                "size" => 7,
+                "nullable" => true
+            ],
+            "unidade_epp" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "situacao_inscricao" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "classificacao_bolsa" => [
+                "type" => "smallInteger",
+                "nullable" => true
+            ],
+            "bolsista_ou_voluntario" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "unidade_inscricao" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "observacao2" => [
+                "type" => "string",
+                "size" => 100,
+                "nullable" => true
+            ],
+            "organizacao_disciplina_externa" => [
+                "type" => "string",
+                "size" => 100,
+                "nullable" => true
+            ],
+            "unidade_cota_interunidades" => [
+                "type" => "string",
+                "size" => 16,
+                "nullable" => true
+            ],
+            "validacao_inscricao_orientador" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "validacao_inscricao_supervisor" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "validacao_inscricao_unidade" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "validacao_inscricao_pro_reitoria" => [
+                "type" => "char",
+                "size" => 1,
+                "nullable" => true
+            ],
+            "vinculo_empregaticio" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_pae"]
+        ],
+
+        "foreign" => [
+            [
+                "keys" => "numero_usp",
+                "references" => "numero_usp",
+                "on" => "pessoas",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const posgraduacoes_conveniadas = [
+
+        "tableName" => "posgraduacoes_conveniadas",
+
+        "columns" => [
+            "id_posgraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "codigo_convenio" => [
+                "type" => "integer"
+            ],
+            "sigla_convenio" => [
+                "type" => "string",
+                "size" => 32,
+                "nullable" => true
+            ],
+            "nome_convenio" => [
+                "type" => "string",
+                "size" => 256,
+                "nullable" => true
+            ],
+        ],
+
+        "primary" => [
+            "key" => ["id_posgraduacao"]
+        ],
+
+        "foreign" => [
+            [
+                "keys" => "id_posgraduacao",
+                "references" => "id_posgraduacao",
+                "on" => "posgraduacoes",
+                "onDelete" => "cascade"
+            ],
+        ]
+    ];
+
+    const proficiencia_idiomas_pg = [
+
+        "tableName" => "proficiencia_idiomas_pg",
+
+        "columns" => [
+            "id_posgraduacao" => [
+                "type" => "char",
+                "size" => 32
+            ],
+            "idioma" => [
+                "type" => "string",
+                "size" => 40
+            ],
+            "data_exame" => [
+                "type" => "date",
+            ],
+        ],
+
+        "primary" => [
+            //
+        ],
+
+        "foreign" => [
+            [
+                "keys" => "id_posgraduacao",
+                "references" => "id_posgraduacao",
+                "on" => "posgraduacoes",
                 "onDelete" => "cascade"
             ],
         ]
