@@ -17,19 +17,14 @@ cp .env.example .env
 **3.** After your database is set up, you may create (or recreate) the tables with
 
 ```sh
-php build.php
+php builder.php
 ```
 
 **4.** Once you have created them, data can be inserted (or updated) whenever needed by:
 
 ```sh
-php update.php && php lattes.php
+php main.php && php extra.php
 ```
-
-If you want to recreate necessary tables before updating, you can use parameter `--rebuild`
-
-&emsp;• `php update.php --rebuild` <br>
-&emsp;• `php lattes.php --rebuild`
 
 **5.** To check the last time the ETL scripts were executed, use the `check.php` script:
 
