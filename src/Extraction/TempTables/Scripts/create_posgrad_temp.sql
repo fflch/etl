@@ -92,11 +92,20 @@ SELECT
 	,h3.codare AS 'codigo_area'
 	,h3.tiphstpgm AS 'tipo_ocorrencia'
 	,CASE h3.tiphstpgm
-		WHEN 'CON' THEN DATEADD(mi, 5, h3.dtaocopgm)
-		WHEN 'TFA' THEN DATEADD(mi, 4, h3.dtaocopgm)
-		WHEN 'DES' THEN DATEADD(mi, 3, h3.dtaocopgm)
-		WHEN 'RTO' THEN DATEADD(mi, 2, h3.dtaocopgm)
-		WHEN 'NMT' THEN DATEADD(mi, 1, h3.dtaocopgm)
+		WHEN 'CON' THEN DATEADD(mi, 14, h3.dtaocopgm)
+		WHEN 'TFA' THEN DATEADD(mi, 13, h3.dtaocopgm)
+		WHEN 'DES' THEN DATEADD(mi, 12, h3.dtaocopgm)
+		WHEN 'TRA' THEN DATEADD(mi, 11, h3.dtaocopgm)
+		WHEN 'PRO' THEN DATEADD(mi, 10, h3.dtaocopgm)
+		WHEN 'ACO' THEN DATEADD(mi, 09, h3.dtaocopgm)
+		WHEN 'MAR' THEN DATEADD(mi, 08, h3.dtaocopgm)
+		WHEN 'NMT' THEN DATEADD(mi, 07, h3.dtaocopgm)
+		WHEN 'RTO' THEN DATEADD(mi, 06, h3.dtaocopgm)
+		WHEN 'MDN' THEN DATEADD(mi, 05, h3.dtaocopgm)
+		WHEN 'MDV' THEN DATEADD(mi, 04, h3.dtaocopgm)
+		WHEN 'MNO' THEN DATEADD(mi, 03, h3.dtaocopgm)
+		WHEN 'APA' THEN DATEADD(mi, 02, h3.dtaocopgm)
+		WHEN 'PAC' THEN DATEADD(mi, 01, h3.dtaocopgm)
 		ELSE h3.dtaocopgm
 		END AS 'data_ocorrencia'
 INTO #ocorrencias
