@@ -2,81 +2,67 @@
 
 namespace Src\Loading\DbHandle;
 
-use Src\Loading\DbHandle\TableOperations;
+use Src\Loading\DbHandle\DatabaseWorker;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\CommonUtils;
 
 class DatabaseManager
 {
-    private $ops;
+    private $dbWorker;
 
     public function __construct()
     {
-        $this->ops = new TableOperations();
+        $this->dbWorker = new DatabaseWorker();
     }
 
-    public function processDBOperations(array $classes, callable $operation, string $message)
+    public function wipeAndOrRenewTables(?array $wipeSchemas, array $renewOps)
     {
-        echo $message . PHP_EOL;
+        try {
+            Capsule::transaction(function() use ($wipeSchemas, $renewOps) {
+                if (!empty($wipeSchemas)) {
+                    CommonUtils::timer(function () use ($wipeSchemas) {
+                        $this->dbWorker->wipeAllTables($wipeSchemas);
+                    });
+                    echo PHP_EOL;
+                }
 
-        $total = count($classes);
-        $progress = 0;
-
-        if (!count($classes) > 0) {
-            return CommonUtils::renderLoadingBar(1, 1);
+                CommonUtils::timer(function () use ($renewOps) {
+                    $this->dbWorker->updateAllTables($renewOps);
+                });
+                echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
+            });
         }
-    
-        foreach ($classes as $class) {
-            CommonUtils::renderLoadingBar($progress, $total);
-            $operation($class);
-    
-            $progress++;
-            CommonUtils::renderLoadingBar($progress, $total);
+        catch(\Exception $e) {
+            echo "\n\n" . "Caught Exception: " . $e . "\n\n";
+            echo "Exiting the script...\n\n";
+            exit();
         }
     }
 
-    public function createAllTables(array $classes)
+    public function rebuildDB()
     {
-        $operation = function ($class) {
-            $this->ops->createTables($class);
-        };
-        
-        $message = "Creating schemas:";
-
-        $this->processDBOperations($classes, $operation, $message);
+        $this->nukeDB();
+        $this->buildDB();
     }
 
-    public function updateAllTables(array $classes)
+    public function buildDB()
     {
-        $operation = function ($class) {
-            $this->ops->updateTables($class);
-        };
-        
-        $message = "Writing new records:";
+        CommonUtils::timer(function () {
+            $this->dbWorker->createAllTables();
+        });
 
-        $this->processDBOperations($classes, $operation, $message);
+        $lines = str_repeat(PHP_EOL, 2);
+        $lines .= str_repeat("-", 57);
+        $lines .= str_repeat(PHP_EOL, 3);
+        echo $lines;
     }
 
-    public function wipeAllTables(array $classes)
+    public function nukeDB()
     {
-        $operation = function ($class) {
-            $this->ops->wipeTables($class);
-        };
-        
-        $message = "Cleansing schemas:";
-        
-        // in reverse for performance reasons
-        $this->processDBOperations(array_reverse($classes), $operation, $message);
-    }
+        CommonUtils::timer(function () {
+            $this->dbWorker->dropAllTables();
+        });
 
-    public function dropAllTables(array $classes)
-    {
-        $operation = function ($class) {
-            $this->ops->dropTables($class);
-        };
-        
-        $message = "Dropping schemas:";
-
-        $this->processDBOperations($classes, $operation, $message);
+        echo PHP_EOL;
     }
 }

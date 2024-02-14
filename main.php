@@ -3,9 +3,9 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 use Src\Extraction\TempTables\TempManager;
-use Src\Loading\DbHandle\DatabaseTasks;
+use Src\Loading\DbHandle\DatabaseManager;
 use Src\Utils\CommonUtils;
-use Src\Utils\LoadingUtils;
+use Src\Utils\BuilderUtils;
 use Src\Loading\SchemaBuilder\Schemas\PessoasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\GraduacaoSchemas;
 use Src\Loading\SchemaBuilder\Schemas\PosGraduacaoSchemas;
@@ -23,12 +23,12 @@ use Src\Loading\Operations\ProgramasUSPOps;
 
 pcntl_alarm(40 * 60); // Kills script if it's taking too long.
 
-$preScripts = [
+$tempTables = [
     'create_areas_programas_hotfix', // base
     'create_titulos_temp', // pessoas
     'create_graduacoes_temp', // graduacao
-    'create_respostasQuest_temp', // graduacao
     'create_bolsasic_temp', // graduacao
+    'create_respostasQuest_temp', // graduacao
     'create_turmasGR_temp', // graduacao
     'create_demandaTurmasGR_temp', // graduacao
     'create_trancamentosGR_temp', // graduacao
@@ -65,16 +65,16 @@ $ops = [
 ];
 
 
-CommonUtils::timer(function () use ($preScripts, $argv, $schemas, $ops) {
+CommonUtils::timer(function () use ($tempTables, $schemas, $ops) {
 
-    // 1. Build tables if needed or rebuild them if requested
-    $rebuild = LoadingUtils::conditionalBuild($argv, $schemas);
+    // 1. Check current database structure
+    BuilderUtils::validateCurrentDatabaseStructure(true);
 
     // 2. Generate necessary temp tables
-    TempManager::generateTempTables($preScripts);
+    TempManager::generateTempTables($tempTables);
 
     // 3. Wipe old records and write new ones
-    $tasks = new DatabaseTasks();
-    $tasks->wipeAndOrRenewTables($rebuild, $schemas, $ops);
+    $dbManager = new DatabaseManager();
+    $dbManager->wipeAndOrRenewTables($schemas, $ops);
 
-}, True);
+}, true);

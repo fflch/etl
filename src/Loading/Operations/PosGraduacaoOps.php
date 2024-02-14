@@ -3,7 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\PosGraduacao\PosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\PosGraduacao;
 use Src\Transformation\ModelsReplicado\PosGraduacao\DefesaPosGraduacaoReplicado;
@@ -63,7 +63,7 @@ class PosGraduacaoOps
 
     public function updatePosGraduacoes()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->posGraduacoes,
             PosGraduacao::class
@@ -72,7 +72,7 @@ class PosGraduacaoOps
 
     public function updateDefesasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->defesasPG, 
             DefesaPosGraduacao::class
@@ -81,7 +81,7 @@ class PosGraduacaoOps
 
     public function updateBancasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->bancasPG, 
             BancaPosGraduacao::class
@@ -90,7 +90,7 @@ class PosGraduacaoOps
 
     public function updateOrientacoesPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->orientacoesPG, 
             OrientacaoPosGraduacao::class
@@ -99,7 +99,7 @@ class PosGraduacaoOps
 
     public function updateDisciplinaPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->disciplinasPG, 
             DisciplinaPosGraduacao::class
@@ -108,7 +108,7 @@ class PosGraduacaoOps
 
     public function updateTurmasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->turmasPG, 
             TurmaPosGraduacao::class
@@ -117,7 +117,7 @@ class PosGraduacaoOps
 
     public function updateMinistrantesPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->ministrantesPG, 
             MinistrantePosGraduacao::class
@@ -126,7 +126,7 @@ class PosGraduacaoOps
 
     public function updateCoordenadoresPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->coordenadoresPG, 
             CoordenadorPosGraduacao::class
@@ -135,7 +135,7 @@ class PosGraduacaoOps
 
     public function updateOcorrenciasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->ocorrenciasPG, 
             OcorrenciaPosGraduacao::class
@@ -144,7 +144,7 @@ class PosGraduacaoOps
 
     public function updateBolsasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->bolsasPG, 
             BolsaPosGraduacao::class
@@ -153,7 +153,7 @@ class PosGraduacaoOps
 
     public function updateCredenciamentosPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->credenciamentosPG, 
             CredenciamentoPG::class
@@ -162,7 +162,7 @@ class PosGraduacaoOps
 
     public function updateEstagiosPae()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->estagiosPae,
             EstagioPae::class
@@ -171,7 +171,7 @@ class PosGraduacaoOps
 
     public function updatePGConveniadas()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->pgConveniadas,
             PosGraduacaoConveniada::class
@@ -180,7 +180,7 @@ class PosGraduacaoOps
 
     public function updateProficienciaIdiomasPG()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->proficienciaIdiomas,
             ProficienciaIdiomaPG::class

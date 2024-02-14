@@ -3,7 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Illuminate\Database\Capsule\Manager as Capsule;
 // use Src\Transformation\ModelsReplicado\ProgramasUSP\BeneficioConcedidoReplicado;
 // use Src\Loading\Models\ProgramasUSP\BeneficioConcedido;
@@ -31,7 +31,7 @@ class ProgramasUSPOps
 
     public function updateAuxiliosConcedidos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->auxilios, 
             AuxilioConcedido::class
@@ -40,7 +40,7 @@ class ProgramasUSPOps
 
     public function updateBolsasDiversas()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->bolsas, 
             BolsaDiversa::class
@@ -49,7 +49,7 @@ class ProgramasUSPOps
 
     public function updateInscricoesProjetosDiversos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->inscricoes, 
             InscricaoProjetoDiverso::class
@@ -58,7 +58,7 @@ class ProgramasUSPOps
 
     public function updateProjetosDiversos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->projetos, 
             ProjetoDiverso::class

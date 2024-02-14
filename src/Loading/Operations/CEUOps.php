@@ -3,7 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\CEU\CursoCulturaExtensaoReplicado;
 use Src\Loading\Models\CEU\CursoCulturaExtensao;
 use Src\Transformation\ModelsReplicado\CEU\OferecimentoCCExReplicado;
@@ -35,7 +35,7 @@ class CEUOps
 
     public function updateCursosCEU()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->cursosCEU, 
             CursoCulturaExtensao::class
@@ -44,7 +44,7 @@ class CEUOps
 
     public function updateOferecimentosCursos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->oferecimentosCursos, 
             OferecimentoCCEx::class
@@ -53,7 +53,7 @@ class CEUOps
 
     public function updateInscricoesCursos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'paginated',
             $this->inscricoesCursos, 
             InscricaoCCEx::class
@@ -62,7 +62,7 @@ class CEUOps
 
     public function updateMatriculasCursos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'paginated',
             $this->matriculasCursos, 
             MatriculaCCEx::class
@@ -71,7 +71,7 @@ class CEUOps
 
     public function updateMinistrantesCursos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->ministrantesCursos, 
             MinistranteCCEx::class
@@ -80,7 +80,7 @@ class CEUOps
 
     public function updateCoordenadoresCursos()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->coordenadoresCursos, 
             CoordenadorCCEx::class

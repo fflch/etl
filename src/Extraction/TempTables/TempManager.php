@@ -22,7 +22,7 @@ class TempManager
         $total = count($scripts);
         $progress = 0;
 
-        echo "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
+        echo PHP_EOL . "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
 
         if (!count($scripts) > 0) {
             return CommonUtils::renderLoadingBar(1, 1);

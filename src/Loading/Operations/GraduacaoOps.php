@@ -4,7 +4,7 @@ namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\Graduacao\GraduacaoReplicado;
 use Src\Loading\Models\Graduacao\Graduacao;
 use Src\Transformation\ModelsReplicado\Graduacao\HabilitacaoReplicado;
@@ -68,7 +68,7 @@ class GraduacaoOps
 
     public function updateGraduacoes()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->graduacoes, 
             Graduacao::class
@@ -77,7 +77,7 @@ class GraduacaoOps
 
     public function updateHabilitacoes()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->habilitacoes, 
             Habilitacao::class
@@ -88,7 +88,7 @@ class GraduacaoOps
     {
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 0"); //gambi
 
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->iniciacoes, 
             IniciacaoCientifica::class
@@ -103,7 +103,7 @@ class GraduacaoOps
 
     public function updateBolsasIC()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->bolsasIC, 
             BolsaIC::class
@@ -122,13 +122,13 @@ class GraduacaoOps
 
     public function updateQuestionarios()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->questionarioQuestoes, 
             QuestionarioQuestao::class
         );
 
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'paginated',
             $this->questionarioRespostas, 
             QuestionarioResposta::class
@@ -137,13 +137,13 @@ class GraduacaoOps
 
     public function updateSIICUSP()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->SIICUSPTrabalhos, 
             SIICUSPTrabalho::class
         );
 
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->SIICUSPParticipantes, 
             SIICUSPParticipante::class
@@ -152,7 +152,7 @@ class GraduacaoOps
 
     public function updateDisciplinasGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->disciplinasGraduacao, 
             DisciplinaGraduacao::class
@@ -161,7 +161,7 @@ class GraduacaoOps
 
     public function updateTurmasGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'paginated',
             $this->turmasGraduacao, 
             TurmaGraduacao::class
@@ -170,7 +170,7 @@ class GraduacaoOps
 
     public function updateDemandaTurmasGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->demandaTurmasGraduacao, 
             DemandaTurmaGraduacao::class
@@ -179,7 +179,7 @@ class GraduacaoOps
 
     public function updateMinistrantesGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->ministrantesGraduacao, 
             MinistranteGraduacao::class
@@ -188,7 +188,7 @@ class GraduacaoOps
 
     public function updateIntercambiosGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->intercambiosGraduacao, 
             IntercambioGraduacao::class
@@ -197,7 +197,7 @@ class GraduacaoOps
 
     public function updatetrancamentosGraduacao()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->trancamentosGraduacao, 
             TrancamentoGraduacao::class
@@ -206,7 +206,7 @@ class GraduacaoOps
 
     public function updateNotasIngresso()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->notasIngresso, 
             NotasIngressoGraduacao::class

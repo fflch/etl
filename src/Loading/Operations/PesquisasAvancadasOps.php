@@ -4,7 +4,7 @@ namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\PesquisasAvancadas\PesquisaAvancadaReplicado;
 use Src\Loading\Models\PesquisasAvancadas\PesquisaAvancada;
 use Src\Transformation\ModelsReplicado\PesquisasAvancadas\PeriodoPesquisaAvancadaReplicado;
@@ -33,7 +33,7 @@ class PesquisasAvancadasOps
 
     public function updateProjetosPesquisaAvancada()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->pesquisasAvancadas, 
             PesquisaAvancada::class
@@ -50,7 +50,7 @@ class PesquisasAvancadasOps
 
     public function updatePeriodosPesquisaAvancada()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->periodosPesquisaAvancada, 
             PeriodoPesquisaAvancada::class
@@ -59,13 +59,13 @@ class PesquisasAvancadasOps
 
     public function updateFontesRecursoPesquisaAvancada()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->bolsasPesquisaAvancada, 
             BolsaPesquisaAvancada::class
         );
 
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->afastEmpresasPesquisaAvancada, 
             AfastEmpresaPesquisaAvancada::class
@@ -90,7 +90,7 @@ class PesquisasAvancadasOps
 
     public function updateSupervisoesPesquisaAvancada()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->supervisoesPesquisaAvancada, 
             SupervisaoPesquisaAvancada::class

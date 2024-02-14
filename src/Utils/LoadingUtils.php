@@ -5,97 +5,86 @@ namespace Src\Utils;
 require_once __DIR__ . "/../../vendor/autoload.php";
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\Loading\DbHandle\TableOperations;
-use Src\Loading\DbHandle\DatabaseTasks;
 
 class LoadingUtils
 {
-    public static function conditionalBuild(array $argv, array $schemasClasses)
+    public static function insertIntoTable(string $queryType, object $object, string $model)
     {
-        $wantsBuild = in_array("build.php", $argv);
-        $wantsRebuild = in_array("--rebuild", $argv);
+        $insertLimit = self::getInsertLimit($model);
 
-        $expectedUserSchemas = self::getScriptSchemas($schemasClasses);
-        $userSchemas = self::getUserSchemas();
-        $missingSchemas = !empty(array_diff($expectedUserSchemas, $userSchemas));
-
-        $decision = self::buildDecision($wantsBuild, $wantsRebuild, $userSchemas, $missingSchemas);
-        self::buildMessage($userSchemas, $missingSchemas, $wantsRebuild);
-
-        return self::buildAction($decision, $schemasClasses);
-    }
-
-    private static function buildDecision($wantsBuild, $wantsRebuild, $userSchemas, $missingSchemas)
-    {
-        if ($wantsBuild || count($userSchemas) == 0) {
-            return 'build';
+        try {
+            self::transformAndInsert($queryType, $object, $model, $insertLimit);
         }
-        elseif ($wantsRebuild || $missingSchemas) {
-            return 'rebuild';
-        }
-        else {
-            return null;
-        }
-    }
+        catch (\Exception $e) {
+            echo str_repeat(PHP_EOL, 3);
 
-    private static function buildMessage($userSchemas, $missingSchemas, $wantsRebuild)
-    {
-        echo PHP_EOL . PHP_EOL;
+            CommonUtils::printTruncatedError($e->getMessage());
 
-        if (count($userSchemas) == 0) {
-            echo "It seems there are no tables in your database." . PHP_EOL;
-            echo "Let's construct the ones you'll need." . PHP_EOL . PHP_EOL . PHP_EOL;
-        }
-        elseif($missingSchemas && !$wantsRebuild) {
-            echo "It seems you are missing some table(s)." . PHP_EOL;
-            echo "Database needs rebuilding." . PHP_EOL . PHP_EOL . PHP_EOL;
-        }
-
-        return;
-    }
-
-    private static function buildAction($decision, $schemasClasses)
-    {
-        $tasks = new DatabaseTasks();
-
-        if ($decision == 'build') {
-            $tasks->build($schemasClasses);
-            return True;
-        }
-        if ($decision == 'rebuild') {
-            $tasks->rebuild($schemasClasses);
-            return True;
-        }
-        else {
-            return False;
-        }
-    }
-
-    private static function getScriptSchemas($schemasClasses)
-    {
-        $expectedSchemas = [];
-
-        $ops = new TableOperations;
-
-        foreach($schemasClasses as $schemasClass) {
-            $tables = $ops->getTablesNames($schemasClass);
-            foreach($tables as $table) {
-                $expectedSchemas[] = $table['tableName'];
+            if (str_contains($e->getMessage(), "too many placeholders")) {
+                echo str_repeat(PHP_EOL, 3);
+                echo("Your database may be outdated. " .
+                    "Please, try rebuilding it using the `builder.php` script."
+                );
             }
-        }
 
-        return $expectedSchemas;
+            echo str_repeat(PHP_EOL, 3);
+            die();
+        }
     }
 
-    private static function getUserSchemas()
+    private static function transformAndInsert($queryType, $object, $model, $insertLimit)
     {
-        $tables = Capsule::schema()->getAllTables();
-
-        $tableNames = [];
-        foreach ($tables as $table) {
-            $tableNames[] = $table->{"Tables_in_" . $_ENV['DB_DATABASE']};
+        if ($queryType == "full") {
+            $data = $object->transformData();
+            self::chunkInsert($data, $insertLimit, $model);
         }
+        elseif ($queryType == "paginated") {
+            $pagination = ['limit' => ($insertLimit * 5), 'offset' => 0];
+            do {
+                $data = $object->transformData($pagination);
+                self::chunkInsert($data, $insertLimit, $model);
+                $pagination['offset'] += $pagination['limit'];
+            } while (!empty($data));
+        }
+        else {
+            throw new \Exception(
+                "Invalid value for \$queryType argument. Expected 'full' or 'paginated'."
+            );
+            die();
+        }
+    }
 
-        return $tableNames;
+    private static function chunkInsert($data, $insertLimit, $model)
+    {
+        foreach(array_chunk($data, $insertLimit) as $chunk) {
+            $model::insert($chunk);
+        }
+    }
+
+    private static function getInsertLimit(string $model)
+    {
+        $tableName = (new $model)->getTable();
+        $columns = Capsule::schema()->getColumnListing($tableName);
+        $numColumns = count($columns);
+
+        return floor(65000 / $numColumns);
+    }
+
+    private static function getAllUpdateMethodsFromClass(string $class)
+    {
+        return array_filter(get_class_methods($class), function($method) {
+            return $method !== '__construct';
+        });
+    }
+
+    public static function callAllUpdateMethodsFromClass(string $class)
+    {
+        $classMethods = self::getAllUpdateMethodsFromClass($class);
+
+        $class = new $class;
+
+        foreach($classMethods as $method) {
+            $class->{$method}();
+        }
     }
 }

@@ -3,7 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\Servidores\DesignacaoServidorReplicado;
 use Src\Loading\Models\Servidores\DesignacaoServidor;
 use Src\Transformation\ModelsReplicado\Servidores\VinculoServidorReplicado;
@@ -25,7 +25,7 @@ class ServidoresOps
 
     public function updateVinculosServidores()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->vinculosServidores, 
             VinculoServidor::class
@@ -34,7 +34,7 @@ class ServidoresOps
 
     public function updateDesignacoesServidores()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->designacoes, 
             DesignacaoServidor::class
@@ -43,7 +43,7 @@ class ServidoresOps
 
     public function updateProfessoresVisitantes()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->professoresVisitantes, 
             ProfessorVisitante::class

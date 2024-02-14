@@ -3,7 +3,7 @@
 namespace Src\Loading\Operations;
 
 use Src\Transformation\Transformer;
-use Src\Utils\ExtractionUtils;
+use Src\Utils\LoadingUtils;
 use Src\Transformation\ModelsReplicado\Pessoas\PessoaReplicado;
 use Src\Loading\Models\Pessoas\Pessoa;
 use Src\Transformation\ModelsReplicado\Pessoas\TituloPessoaReplicado;
@@ -21,7 +21,7 @@ class PessoasOps
 
     public function updatePessoas()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->pessoas, 
             Pessoa::class
@@ -30,7 +30,7 @@ class PessoasOps
 
     public function updateTitulosPessoas()
     {
-        ExtractionUtils::updateTable(
+        LoadingUtils::insertIntoTable(
             'full',
             $this->titulosPessoas, 
             TituloPessoa::class
