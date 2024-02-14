@@ -13,10 +13,6 @@ use Src\Transformation\ModelsReplicado\Graduacao\IniciacaoCientificaReplicado;
 use Src\Loading\Models\Graduacao\IniciacaoCientifica;
 use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
 use Src\Loading\Models\Graduacao\BolsaIC;
-use Src\Transformation\ModelsReplicado\Graduacao\QuestionarioRespostaReplicado;
-use Src\Loading\Models\Graduacao\QuestionarioResposta;
-use Src\Transformation\ModelsReplicado\Graduacao\QuestionarioQuestaoReplicado;
-use Src\Loading\Models\Graduacao\QuestionarioQuestao;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPTrabalhoReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPParticipanteReplicado;
@@ -40,7 +36,6 @@ class GraduacaoOps
 {
     private $graduacoes, $habilitacoes,
             $iniciacoes, $bolsasIC,
-            $questionarioRespostas, $questionarioQuestoes,
             $SIICUSPTrabalhos, $SIICUSPParticipantes,
             $disciplinasGraduacao, $turmasGraduacao,
             $demandaTurmasGraduacao, $ministrantesGraduacao,
@@ -53,8 +48,6 @@ class GraduacaoOps
         $this->habilitacoes = new Transformer(new HabilitacaoReplicado, 'Graduacao/habilitacoes');
         $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
         $this->bolsasIC = new Transformer(new BolsaICReplicado, 'Graduacao/bolsas_ic');
-        $this->questionarioRespostas = new Transformer(new QuestionarioRespostaReplicado, 'Graduacao/questionario_respostas');
-        $this->questionarioQuestoes = new Transformer(new QuestionarioQuestaoReplicado, 'Graduacao/questionario_questoes');
         $this->SIICUSPTrabalhos = new Transformer(new SIICUSPTrabalhoReplicado, 'Graduacao/SIICUSP_trabalhos');
         $this->SIICUSPParticipantes = new Transformer(new SIICUSPParticipanteReplicado, 'Graduacao/SIICUSP_participantes');
         $this->disciplinasGraduacao = new Transformer(new DisciplinaGraduacaoReplicado, 'Graduacao/disciplinas_graduacao');
@@ -118,21 +111,6 @@ class GraduacaoOps
                             INNER JOIN iniciacoes i ON bi.id_projeto = i.id_projeto
                         SET bi.data_fim_fomento = i.data_fim_projeto
                         WHERE i.situacao_projeto = 'Cancelado'");
-    }
-
-    public function updateQuestionarios()
-    {
-        LoadingUtils::insertIntoTable(
-            'full',
-            $this->questionarioQuestoes, 
-            QuestionarioQuestao::class
-        );
-
-        LoadingUtils::insertIntoTable(
-            'paginated',
-            $this->questionarioRespostas, 
-            QuestionarioResposta::class
-        );
     }
 
     public function updateSIICUSP()

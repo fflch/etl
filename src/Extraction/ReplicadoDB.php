@@ -40,7 +40,7 @@ class ReplicadoDB
         try {
             $stmt->execute();
         }
-        catch (Throwable $t) {
+        catch (\Throwable $t) {
             echo "Erro na consulta! {$t}";
             die();
         }
@@ -73,7 +73,7 @@ class ReplicadoDB
         } catch (\Exception $e) {
             $wasTimedOut = strpos($e->getMessage(), "Changed database context");
 
-            if ($wasTimedOut !== False) {
+            if ($wasTimedOut !== false) {
                 echo "\n\n\n" . "An error occurred: Connection timed out." . "\n";
             } else {
                 echo "\n\n\n" . "Caught Exception: {$e}" . "\n\n";

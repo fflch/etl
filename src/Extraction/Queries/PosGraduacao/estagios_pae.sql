@@ -13,7 +13,7 @@ SELECT
 	,b2.anosemmdlepp AS 'periodo_epp'
 	,b2.staepp AS 'situacao_epp'
 	,b2.mdlepp AS 'modalidade_epp'
-	,b2.sgldisepp AS 'sigla_disciplina_epp'
+	,b2.sgldisepp AS 'codigo_disciplina_epp'
     ,u2.sglund AS 'unidade_epp'
 	,b2.stainspae AS 'situacao_inscricao'
 	,b2.clsalubnf AS 'classificacao_bolsa'

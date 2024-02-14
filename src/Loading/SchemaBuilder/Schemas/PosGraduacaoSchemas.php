@@ -866,7 +866,7 @@ class PosGraduacaoSchemas
                 "size" => 32,
                 "nullable" => true
             ],
-            "sigla_disciplina_epp" => [
+            "codigo_disciplina_epp" => [
                 "type" => "char",
                 "size" => 7,
                 "nullable" => true

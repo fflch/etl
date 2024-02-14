@@ -28,7 +28,6 @@ $tempTables = [
     'create_titulos_temp', // pessoas
     'create_graduacoes_temp', // graduacao
     'create_bolsasic_temp', // graduacao
-    'create_respostasQuest_temp', // graduacao
     'create_turmasGR_temp', // graduacao
     'create_demandaTurmasGR_temp', // graduacao
     'create_trancamentosGR_temp', // graduacao

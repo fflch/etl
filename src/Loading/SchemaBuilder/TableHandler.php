@@ -8,7 +8,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class TableHandler
 {
-    public function createTable(array $tableProps)
+    public static function createTable(array $tableProps)
     {
         Capsule::schema()->create($tableProps['tableName'], function ($table) use ($tableProps) {
             foreach($tableProps['columns'] as $name => $attr) {
@@ -53,10 +53,5 @@ class TableHandler
                 }
             }
         });
-    }
-
-    public function dropTable(array $tableProps)
-    {
-        Capsule::schema()->dropIfExists($tableProps['tableName']);
     }
 }

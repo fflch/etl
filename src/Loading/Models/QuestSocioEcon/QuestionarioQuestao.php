@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Loading\Models\Graduacao;
+namespace Src\Loading\Models\QuestSocioEcon;
 
 use Illuminate\Database\Eloquent\Model;
 

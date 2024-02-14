@@ -14,6 +14,7 @@ use Src\Loading\SchemaBuilder\Schemas\PesquisasAvancadasSchemas;
 use Src\Loading\SchemaBuilder\Schemas\CEUSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ServidoresSchemas;
 use Src\Loading\SchemaBuilder\Schemas\ProgramasUSPSchemas;
+use Src\Loading\SchemaBuilder\Schemas\QuestSocioEconSchemas;
 use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 
 class BuilderUtils
@@ -28,6 +29,7 @@ class BuilderUtils
             CEUSchemas::class,
             ServidoresSchemas::class,
             ProgramasUSPSchemas::class,
+            QuestSocioEconSchemas::class,
             LattesSchemas::class,
         ];
     }

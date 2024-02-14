@@ -22,7 +22,7 @@ class CommonUtils
         flush();
     }
 
-    public static function timer(callable $callback, bool $isLastTimer = False)
+    public static function timer(callable $callback, bool $isLastTimer = false)
     {
         $start = microtime(true);
         $callback();
@@ -40,7 +40,7 @@ class CommonUtils
             return;
         };
 
-        echo str_repeat(" ", 5) . "Runtime: {$isodate}" . PHP_EOL;
+        echo str_repeat(" ", 4) . "Runtime: {$isodate}" . PHP_EOL;
     }
 
     public static function prettyPrint(array $texts)

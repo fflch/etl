@@ -42,7 +42,7 @@ SELECT
 	,f.codqtn AS 'codigo_questionario'
 	,f.codqst AS 'codigo_questao'
 	,f.numatnqst AS 'alternativa_escolhida'
-INTO #respostasQuestionario
+INTO #respostas_questionario
 FROM #fflch_answers f
 	LEFT JOIN #fflch_answers f2
 		ON f.codpes = f2.codpes

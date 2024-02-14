@@ -37,7 +37,7 @@ class EstagioPaeReplicado implements Mapper
             'periodo_epp' => $pae['periodo_epp'],
             'situacao_epp' => Deparas::situacoesEPP[$pae['situacao_epp']] ?? $pae['situacao_epp'],
             'modalidade_epp' => Deparas::modalidadesEPP[$pae['modalidade_epp']] ?? $pae['modalidade_epp'],
-            'sigla_disciplina_epp' => $pae['sigla_disciplina_epp'],
+            'codigo_disciplina_epp' => $pae['codigo_disciplina_epp'],
             'unidade_epp' => $pae['unidade_epp'],
             'situacao_inscricao' => Deparas::situacoesInscricaoPAE[$pae['situacao_inscricao']]
                 ?? $pae['situacao_inscricao'],

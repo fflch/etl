@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\Graduacao;
+namespace Src\Transformation\ModelsReplicado\QuestSocioEcon;
 
 use Src\Transformation\Interfaces\Mapper;
 
@@ -20,7 +20,6 @@ class QuestionarioRespostaReplicado implements Mapper
                             "-" . 
                             str_pad($resposta['codigo_questao'], 2, 0, STR_PAD_LEFT)),
             'alternativa_escolhida' => $resposta['alternativa_escolhida'],
-
         ];
 
         return $properties;

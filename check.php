@@ -7,22 +7,22 @@ use Src\Utils\CommonUtils;
 
 $db = getenv('DB_DATABASE');
 
-$updateTimeNotLattes = Capsule::select(
+$mainLastUpdate = Capsule::select(
     "SELECT MAX(last_update) AS 'last_update'
     FROM mysql.innodb_table_stats
     WHERE database_name = '{$db}'
-        AND table_name <> 'lattes'"
+        AND table_name NOT IN ('lattes', 'questionario_questoes', 'questionario_respostas')"
 )[0]->last_update ?? 'No available data';
 
-$updateTimeLattes = Capsule::select(
+$extraLastUpdate = Capsule::select(
     "SELECT MAX(last_update) AS 'last_update'
     FROM mysql.innodb_table_stats 
     WHERE database_name = '{$db}'
-        AND table_name = 'lattes'"
+        AND table_name IN ('lattes', 'questionario_questoes', 'questionario_respostas')"
 )[0]->last_update ?? 'No available data';
 
 echo PHP_EOL . PHP_EOL;
-$text1 = "Last <update.php> loading: {$updateTimeNotLattes}";
-$text2 = "Last <lattes.php> loading: {$updateTimeLattes}";
+$text1 = "Last <main.php> loading: {$mainLastUpdate}";
+$text2 = "Last <extra.php> loading: {$extraLastUpdate}";
 
 CommonUtils::prettyPrint([$text1, $text2]);

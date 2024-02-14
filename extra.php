@@ -8,16 +8,25 @@ use Src\Utils\CommonUtils;
 use Src\Utils\BuilderUtils;
 use Src\Loading\SchemaBuilder\Schemas\LattesSchemas;
 use Src\Loading\Operations\LattesOps;
+use Src\Loading\SchemaBuilder\Schemas\QuestSocioEconSchemas;
+use Src\Loading\Operations\QuestSocioEconOps;
 
 pcntl_alarm(30 * 60); // Kills script if it's taking too long.
 
 $tempTables = [
     'create_nuspsLattes_temp', // lattes
+    'create_respostasQuest_temp', // questSocioEcon
 ];
 
-$schemas = [LattesSchemas::class];
+$schemas = [
+    LattesSchemas::class,
+    QuestSocioEconSchemas::class
+];
 
-$ops = [LattesOps::class];
+$ops = [
+    LattesOps::class,
+    QuestSocioEconOps::class
+];
 
 
 CommonUtils::timer(function () use ($tempTables, $ops) {
@@ -30,6 +39,6 @@ CommonUtils::timer(function () use ($tempTables, $ops) {
 
     // 3. Write new records
     $dbManager = new DatabaseManager();
-    $dbManager->wipeAndOrRenewTables([], $ops);
+    $dbManager->wipeAndOrRenewTables([QuestSocioEconSchemas::class], $ops);
 
 }, true);

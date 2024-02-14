@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Transformation\ModelsReplicado\Graduacao;
+namespace Src\Transformation\ModelsReplicado\QuestSocioEcon;
 
 use Src\Transformation\Interfaces\Mapper;
 
