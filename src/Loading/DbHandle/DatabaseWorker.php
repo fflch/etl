@@ -7,6 +7,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\BuilderUtils;
 use Src\Utils\CommonUtils;
 use Src\Utils\LoadingUtils;
+use Src\Utils\MessageUtils;
 
 class DatabaseWorker
 {
@@ -16,11 +17,12 @@ class DatabaseWorker
         ?array $arg = null
     )
     {
-        echo $message . PHP_EOL;
+        echo $message;
+        echo MessageUtils::eol(1);
 
         if (empty($arg)) {
             CommonUtils::renderLoadingBar(0, 1);
-            $operation($arg);
+            $operation();
             return CommonUtils::renderLoadingBar(1, 1);
         }
 
@@ -30,17 +32,16 @@ class DatabaseWorker
         foreach ($arg as $argElement) {
             CommonUtils::renderLoadingBar($progress, $total);
             $operation($argElement);
-
             $progress++;
             CommonUtils::renderLoadingBar($progress, $total);
         }
     }
 
-    public function createAllTables()
+    public function createTables()
     {
-        $message = "Creating schemas:";
+        $message = "Creating tables:";
 
-        $allTables = BuilderUtils::getAllETLTablesInfo();
+        $allTables = BuilderUtils::getAllETLTablesInfo(true);
 
         $operation = function ($table) {
             TableHandler::createTable($table);
@@ -49,9 +50,9 @@ class DatabaseWorker
         $this->processDBOperations($operation, $message, $allTables);
     }
 
-    public function dropAllTables()
+    public function dropTables()
     {
-        $message = "Dropping schemas:";
+        $message = "Dropping tables:";
 
         $operation = function () {
             Capsule::schema()->dropAllTables();
@@ -60,22 +61,30 @@ class DatabaseWorker
         $this->processDBOperations($operation, $message);
     }
 
-    public function updateAllTables(array $classes)
+    public function updateTables(array $groups)
     {
         $message = "Writing new records:";
 
-        $operation = function ($class) {
-            LoadingUtils::callAllUpdateMethodsFromClass($class);
+        $tables = BuilderUtils::getTablesInfoFromTableGroups($groups, true);
+
+        $updateClasses = array_filter(array_column($tables, 'updateFunction'));
+
+        $operation = function ($updateClass) {
+            LoadingUtils::callUpdateFunction($updateClass);
         };
 
-        $this->processDBOperations($operation, $message, $classes);
+        $this->processDBOperations($operation, $message, $updateClasses);
     }
 
-    public function wipeAllTables(array $classes)
+    public function WipeTables(array $groups)
     {
-        $message = "Cleansing schemas (if necessary):";
+        if (empty($groups)) {
+            return;
+        }
 
-        $tables = BuilderUtils::getTablesNamesFromSchemasClasses($classes);
+        $message = "Wiping tables (if necessary):";
+
+        $tables = BuilderUtils::getTablesNamesFromTableGroups($groups, true);
 
         $operation = function ($table) {
             Capsule::table($table)->delete();
@@ -83,7 +92,7 @@ class DatabaseWorker
         
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
 
-        // in reverse for performance reasons
+        // in reverse for performance reasons // ver
         $this->processDBOperations($operation, $message, array_reverse($tables));
 
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");

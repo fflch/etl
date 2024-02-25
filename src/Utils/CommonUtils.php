@@ -2,6 +2,8 @@
 
 namespace Src\Utils;
 
+use DateTime;
+
 class CommonUtils
 {
     public static function renderLoadingBar($progress, $total)
@@ -22,7 +24,7 @@ class CommonUtils
         flush();
     }
 
-    public static function timer(callable $callback, bool $isLastTimer = false)
+    public static function timer(callable $callback, ?string $callerName = null)
     {
         $start = microtime(true);
         $callback();
@@ -33,14 +35,15 @@ class CommonUtils
         $seconds = $timeDiff % 60;
         $isodate = sprintf("%02dm%02ds", $minutes, $seconds);
         
-        if ($isLastTimer) {
-            $text = "Total <{$_SERVER['PHP_SELF']}> runtime: {$isodate}";
+        if ($callerName) {
+            $text = "Total <$callerName> runtime: {$isodate}";
             self::prettyPrint([$text]);
 
             return;
         };
 
-        echo str_repeat(" ", 4) . "Runtime: {$isodate}" . PHP_EOL;
+        echo str_repeat(" ", 4);
+        echo "Runtime: {$isodate}\n";
     }
 
     public static function prettyPrint(array $texts)
@@ -58,7 +61,7 @@ class CommonUtils
             echo "║" . $padding . str_pad($text, $length) . $padding . "║" . PHP_EOL;
         }
 
-        echo "╚" . $horizontalLine . "╝" . PHP_EOL . PHP_EOL . PHP_EOL;
+        echo "╚" . $horizontalLine . "╝" . str_repeat(PHP_EOL, 3);
     }
 
     public static function printTruncatedError(string $errorMessage)
@@ -109,5 +112,28 @@ class CommonUtils
         }
 
         return !empty($input) ? trim($input) : null;
+    }
+
+    public static function getTimeDiffSinceLastUpdate(?string $lastUpdate)
+    {
+        $currentDate = new DateTime();
+
+        if($lastUpdate) {
+            $lastUpdateDate = new \DateTime($lastUpdate);
+            $diff = $lastUpdateDate->diff($currentDate);
+
+            if ($diff->days > 0) {
+                return $diff->days . " day(s) ago";
+            }
+            elseif ($diff->h > 0) {
+                return $diff->h . " hour(s) ago";
+            }
+            else {
+                return $diff->i . " minute(s) ago";
+            }
+        } 
+        else {
+            return 'No available data';
+        }
     }
 }

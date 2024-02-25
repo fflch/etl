@@ -23,7 +23,7 @@ php builder.php
 **4.** Once you have created them, data can be inserted (or updated) whenever needed by:
 
 ```sh
-php main.php && php extra.php
+php main.php
 ```
 
 **5.** To check the last time the ETL scripts were executed, use the `check.php` script:

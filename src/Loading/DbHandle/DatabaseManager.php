@@ -5,6 +5,7 @@ namespace Src\Loading\DbHandle;
 use Src\Loading\DbHandle\DatabaseWorker;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\CommonUtils;
+use Src\Utils\MessageUtils;
 
 class DatabaseManager
 {
@@ -15,26 +16,29 @@ class DatabaseManager
         $this->dbWorker = new DatabaseWorker();
     }
 
-    public function wipeAndOrRenewTables(?array $wipeSchemas, array $renewOps)
+    public function loadOrReloadTables(array $tableGroups, array $notToWipe = [])
     {
         try {
-            Capsule::transaction(function() use ($wipeSchemas, $renewOps) {
-                if (!empty($wipeSchemas)) {
-                    CommonUtils::timer(function () use ($wipeSchemas) {
-                        $this->dbWorker->wipeAllTables($wipeSchemas);
+            Capsule::transaction(function () use ($tableGroups, $notToWipe) {
+
+                $tablesGroupsToWipe = array_diff($tableGroups, $notToWipe);
+
+                if (!empty($tablesGroupsToWipe)) {
+                    CommonUtils::timer(function () use ($tablesGroupsToWipe) {
+                        $this->dbWorker->WipeTables($tablesGroupsToWipe);
                     });
-                    echo PHP_EOL;
+                    echo MessageUtils::eol(1);
                 }
 
-                CommonUtils::timer(function () use ($renewOps) {
-                    $this->dbWorker->updateAllTables($renewOps);
+                CommonUtils::timer(function () use ($tableGroups) {
+                    $this->dbWorker->updateTables($tableGroups);
                 });
-                echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
+
+                echo MessageUtils::eol(2);
             });
-        }
-        catch(\Exception $e) {
-            echo "\n\n" . "Caught Exception: " . $e . "\n\n";
-            echo "Exiting the script...\n\n";
+        } catch (\Exception $e) {
+            echo MessageUtils::exceptionCaught($e, 2);
+            echo MessageUtils::EXITING_SCRIPT;
             exit();
         }
     }
@@ -48,21 +52,18 @@ class DatabaseManager
     public function buildDB()
     {
         CommonUtils::timer(function () {
-            $this->dbWorker->createAllTables();
+            $this->dbWorker->createTables();
         });
 
-        $lines = str_repeat(PHP_EOL, 2);
-        $lines .= str_repeat("-", 57);
-        $lines .= str_repeat(PHP_EOL, 3);
-        echo $lines;
+        echo MessageUtils::SPACING_LINES;
     }
 
     public function nukeDB()
     {
         CommonUtils::timer(function () {
-            $this->dbWorker->dropAllTables();
+            $this->dbWorker->dropTables();
         });
 
-        echo PHP_EOL;
+        echo MessageUtils::eol(1);
     }
 }

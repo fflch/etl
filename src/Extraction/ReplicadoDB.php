@@ -3,6 +3,7 @@
 namespace Src\Extraction;
 
 use PDO;
+use Src\Utils\MessageUtils;
 use Src\Utils\TransformationUtils;
 
 class ReplicadoDB
@@ -29,6 +30,10 @@ class ReplicadoDB
         }
 
         return self::$instance;
+    }
+
+    public static function closeConnection() {
+        self::$instance = null;
     }
 
     public static function fetchData(string $query, array $param = [])
@@ -62,7 +67,6 @@ class ReplicadoDB
         $db = self::getInstance();
 
         $statements = explode(';', $query);
-        
         $statements = array_filter($statements);
         
         try {
@@ -74,12 +78,12 @@ class ReplicadoDB
             $wasTimedOut = strpos($e->getMessage(), "Changed database context");
 
             if ($wasTimedOut !== false) {
-                echo "\n\n\n" . "An error occurred: Connection timed out." . "\n";
+                echo MessageUtils::DB_CONNECTION_TIMEOUT;
             } else {
-                echo "\n\n\n" . "Caught Exception: {$e}" . "\n\n";
+                MessageUtils::exceptionCaught($e, 3);
             }
 
-            echo "Exiting the script...\n\n";
+            echo MessageUtils::EXITING_SCRIPT;
             die();
         }
     }

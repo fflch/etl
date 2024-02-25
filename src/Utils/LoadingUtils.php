@@ -16,18 +16,16 @@ class LoadingUtils
             self::transformAndInsert($queryType, $object, $model, $insertLimit);
         }
         catch (\Exception $e) {
-            echo str_repeat(PHP_EOL, 3);
+            echo MessageUtils::eol(3);
 
             CommonUtils::printTruncatedError($e->getMessage());
 
             if (str_contains($e->getMessage(), "too many placeholders")) {
-                echo str_repeat(PHP_EOL, 3);
-                echo("Your database may be outdated. " .
-                    "Please, try rebuilding it using the `builder.php` script."
-                );
+                echo MessageUtils::eol(2);
+                echo MessageUtils::ERROR_TABLE_ISSUE;
             }
 
-            echo str_repeat(PHP_EOL, 3);
+            echo MessageUtils::eol(3);
             die();
         }
     }
@@ -48,7 +46,8 @@ class LoadingUtils
         }
         else {
             throw new \Exception(
-                "Invalid value for \$queryType argument. Expected 'full' or 'paginated'."
+                "Invalid value for \$queryType argument. " .
+                "Expected 'full' or 'paginated'."
             );
             die();
         }
@@ -70,21 +69,12 @@ class LoadingUtils
         return floor(65000 / $numColumns);
     }
 
-    private static function getAllUpdateMethodsFromClass(string $class)
+    public static function callUpdateFunction(string $updateClass)
     {
-        return array_filter(get_class_methods($class), function($method) {
-            return $method !== '__construct';
-        });
-    }
+        [$classDir, $className] = explode('/', $updateClass);
+        $classNamespace = "\\Src\\Loading\\Operations\\$classDir\\$className";
 
-    public static function callAllUpdateMethodsFromClass(string $class)
-    {
-        $classMethods = self::getAllUpdateMethodsFromClass($class);
-
-        $class = new $class;
-
-        foreach($classMethods as $method) {
-            $class->{$method}();
-        }
+        $newClass = new $classNamespace;
+        $newClass->update();
     }
 }
