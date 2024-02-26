@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\Graduacao;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class HabilitacaoReplicado implements Mapper
 {
@@ -19,7 +20,8 @@ class HabilitacaoReplicado implements Mapper
             'codigo_curso' => $habilitacao['codigo_curso'],
             'codigo_habilitacao' => (int)$habilitacao['codigo_habilitacao'],
             'nome_habilitacao' => $habilitacao['nome_habilitacao'],
-            'tipo_habilitacao' => $habilitacao['tipo_habilitacao'], // ver significados
+            'tipo_habilitacao' => Deparas::tiposHabilitacao[$habilitacao['tipo_habilitacao']]
+                ?? $habilitacao['tipo_habilitacao'],
             'periodo_habilitacao' => $habilitacao['periodo_habilitacao'],
             'data_inicio_habilitacao' => $habilitacao['data_inicio_habilitacao'],
             'data_fim_habilitacao' => $habilitacao['data_fim_habilitacao'],

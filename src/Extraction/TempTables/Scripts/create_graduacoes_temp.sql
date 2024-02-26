@@ -140,8 +140,8 @@ SELECT
     	WHEN g.codpes IS NOT NULL THEN 'S'
     	ELSE 'N'
     	END AS 'bacharelado'
-    ,g.tipenchab AS 'tipo_encerramento_bacharel'
-    ,g.dtafim AS 'data_encerramento_bacharel'
+    ,g.tipenchab AS 'tipo_encerramento_bacharelado'
+    ,g.dtafim AS 'data_encerramento_bacharelado'
     ,CASE
     	WHEN l.codpes IS NOT NULL THEN 'S'
     	ELSE 'N'

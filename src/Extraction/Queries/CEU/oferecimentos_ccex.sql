@@ -9,7 +9,7 @@ SELECT
 			THEN 'Convalidada'
 		WHEN ec.staedi IS NOT NULL
 			THEN ec.staedi
-		ELSE 'Pendente' -- // ver
+		ELSE 'Pendente' -- // ver na ccex
 		END AS 'situacao_oferecimento'
 	,e.dtainiofeedi AS 'data_inicio_oferecimento'
 	,e.dtafimofeedi AS 'data_fim_oferecimento'

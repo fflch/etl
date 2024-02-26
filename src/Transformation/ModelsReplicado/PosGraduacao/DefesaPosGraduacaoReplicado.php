@@ -28,7 +28,6 @@ class DefesaPosGraduacaoReplicado implements Mapper
                 ), 0, 32)
             ),
             'data_defesa' => $defesa['data_defesa'],
-            // ver (adicionar prorrogações de defesa e cf datas de prorrogação do programa)
             'local_defesa' => CommonUtils::cleanInput(
                 $defesa['local_defesa'],
                 ['decode_html']

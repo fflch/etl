@@ -37,6 +37,6 @@ FROM INTERCAMBIOUSPORGAO i
 	LEFT JOIN PROGRAMAINTERCAMBIO p2 ON i.codpgmitb = p2.codpgmitb
 	LEFT JOIN REDEINTERCAMBIO r ON r.codreditb = i.codreditb
 	LEFT JOIN INTERCAMTIPOSITUACAO i2 ON i2.codtipsititb = i.codtipsititb
-	-- LEFT JOIN CONVENIO c2 ON c2.codcvn = i.codcvn // ver
+	-- LEFT JOIN CONVENIO c2 ON c2.codcvn = i.codcvn // ver quais infos importam
 	LEFT JOIN ORGAOPRETENDENTE o ON o.codorgpnt = i.codorgpnt
 	LEFT JOIN ORGANIZACAO o2 ON o2.codorg = o.codorg

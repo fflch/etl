@@ -119,7 +119,7 @@ return [
     ],
     
     "foreign" => [
-        // ver
+        // ver (replicac)
         // [
         //     "keys" => "id_projeto_diverso",
         //     "references" => "id_projeto_diverso",

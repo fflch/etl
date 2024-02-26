@@ -313,4 +313,29 @@ class Deparas
         'VE' => 'Vinculo Externo à USP',
         'VU' => 'Vínculo de Servidor USP,'
     ];
+
+    const tiposHabilitacao = [
+        'B' => 'Grau Principal Exclusivo',
+        'E' => 'Licenciatura Exclusiva',
+        'G' => 'Grau Principal com Sequência Opcional',
+        'H' => 'Habilitação, modalidade, ênfase, área',
+        'I' => 'Grau Principal após Núcleo Geral',
+        'J' => 'Habilitação Exclusiva',
+        'L' => 'Licenciatura Sequencial a Bacharelado Obrigatório',
+        'M' => 'Licenciatura de Primeiro Grau',
+        'N' => 'Licenciatura sem Bacharelado Anterior',
+        'O' => 'Núcleo Específico Sequencial',
+        'P' => 'Habilitação em Português',
+        'S' => 'Núcleo Específico',
+        'U' => 'Núcleo Básico ou Geral',
+    ];
+
+    public static function nToNull($v)
+    {
+        if(strtoupper($v) == 'N') {
+            return null;
+        }
+
+        return $v;
+    }
 }

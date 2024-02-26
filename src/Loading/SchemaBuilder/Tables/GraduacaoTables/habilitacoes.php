@@ -23,7 +23,7 @@ return [
         ],
         "tipo_habilitacao" => [
             "type" => "string",
-            "size" => 32
+            "size" => 64
         ],
         "periodo_habilitacao" => [
             "type" => "string",

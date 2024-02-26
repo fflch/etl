@@ -52,12 +52,12 @@ return [
             "type" => "char",
             "size" => 1
         ],
-        "tipo_encerramento_bacharel" => [
+        "tipo_encerramento_bacharelado" => [
             "type" => "string",
             "size" => 128,
             "nullable" => true
         ],
-        "data_encerramento_bacharel" => [
+        "data_encerramento_bacharelado" => [
             "type" => "date",
             "nullable" => true
         ],

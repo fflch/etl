@@ -3,6 +3,7 @@
 namespace Src\Transformation\ModelsReplicado\ProgramasUSP;
 
 use Src\Transformation\Interfaces\Mapper;
+use Src\Utils\Deparas;
 
 class BolsaDiversaReplicado implements Mapper
 {
@@ -40,6 +41,9 @@ class BolsaDiversaReplicado implements Mapper
                 $bolsa['numero_usp']
             ),
             'valor_bolsa_especifico' => $bolsa['valor_bolsa_especifico'],
+            'fonte_pagadora_usp' => Deparas::nToNull($bolsa['fonte_pagadora_usp']),
+            'parte_papfe' => Deparas::nToNull($bolsa['parte_papfe']),
+            'exige_avaliacao_socioeconomica' => Deparas::nToNull($bolsa['exige_avaliacao_socioeconomica']),
         ];
 
         return $properties;

@@ -92,7 +92,6 @@ class DatabaseWorker
         
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
 
-        // in reverse for performance reasons // ver
         $this->processDBOperations($operation, $message, array_reverse($tables));
 
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 1");

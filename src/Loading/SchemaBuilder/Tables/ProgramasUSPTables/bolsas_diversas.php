@@ -61,6 +61,21 @@ return [
             "type" => "decimal",
             "nullable" => true
         ],
+        "fonte_pagadora_usp" => [
+            "type" => "char",
+            "size" => 1,
+            "nullable" => true
+        ],
+        "parte_papfe" => [
+            "type" => "char",
+            "size" => 1,
+            "nullable" => true
+        ],
+        "exige_avaliacao_socioeconomica" => [
+            "type" => "char",
+            "size" => 1,
+            "nullable" => true
+        ],
     ],
 
     "primary" => [
@@ -68,7 +83,7 @@ return [
     ],
     
     "foreign" => [
-        // ver
+        // ver (replicac)
         // [
         //     "keys" => "id_inscricao_projeto",
         //     "references" => "id_inscricao_projeto",
