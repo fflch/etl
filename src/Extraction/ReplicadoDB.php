@@ -3,6 +3,7 @@
 namespace Src\Extraction;
 
 use PDO;
+use Src\Utils\MessageUtils;
 use Src\Utils\TransformationUtils;
 
 class ReplicadoDB
@@ -31,6 +32,10 @@ class ReplicadoDB
         return self::$instance;
     }
 
+    public static function closeConnection() {
+        self::$instance = null;
+    }
+
     public static function fetchData(string $query, array $param = [])
     {
         $db = self::getInstance();
@@ -40,7 +45,7 @@ class ReplicadoDB
         try {
             $stmt->execute();
         }
-        catch (Throwable $t) {
+        catch (\Throwable $t) {
             echo "Erro na consulta! {$t}";
             die();
         }
@@ -62,7 +67,6 @@ class ReplicadoDB
         $db = self::getInstance();
 
         $statements = explode(';', $query);
-        
         $statements = array_filter($statements);
         
         try {
@@ -73,13 +77,13 @@ class ReplicadoDB
         } catch (\Exception $e) {
             $wasTimedOut = strpos($e->getMessage(), "Changed database context");
 
-            if ($wasTimedOut !== False) {
-                echo "\n\n\n" . "An error occurred: Connection timed out." . "\n";
+            if ($wasTimedOut !== false) {
+                echo MessageUtils::DB_CONNECTION_TIMEOUT;
             } else {
-                echo "\n\n\n" . "Caught Exception: {$e}" . "\n\n";
+                MessageUtils::exceptionCaught($e, 3);
             }
 
-            echo "Exiting the script...\n\n";
+            echo MessageUtils::EXITING_SCRIPT;
             die();
         }
     }

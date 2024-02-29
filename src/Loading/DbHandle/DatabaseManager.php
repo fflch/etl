@@ -2,81 +2,68 @@
 
 namespace Src\Loading\DbHandle;
 
-use Src\Loading\DbHandle\TableOperations;
+use Src\Loading\DbHandle\DatabaseWorker;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\CommonUtils;
+use Src\Utils\MessageUtils;
 
 class DatabaseManager
 {
-    private $ops;
+    private $dbWorker;
 
     public function __construct()
     {
-        $this->ops = new TableOperations();
+        $this->dbWorker = new DatabaseWorker();
     }
 
-    public function processDBOperations(array $classes, callable $operation, string $message)
+    public function loadOrReloadTables(array $tableGroups, array $notToWipe = [])
     {
-        echo $message . PHP_EOL;
+        try {
+            Capsule::transaction(function () use ($tableGroups, $notToWipe) {
 
-        $total = count($classes);
-        $progress = 0;
+                $tablesGroupsToWipe = array_diff($tableGroups, $notToWipe);
 
-        if (!count($classes) > 0) {
-            return CommonUtils::renderLoadingBar(1, 1);
+                if (!empty($tablesGroupsToWipe)) {
+                    CommonUtils::timer(function () use ($tablesGroupsToWipe) {
+                        $this->dbWorker->WipeTables($tablesGroupsToWipe);
+                    });
+                    echo MessageUtils::eol(1);
+                }
+
+                CommonUtils::timer(function () use ($tableGroups) {
+                    $this->dbWorker->updateTables($tableGroups);
+                });
+
+                echo MessageUtils::eol(2);
+            });
+        } catch (\Exception $e) {
+            echo MessageUtils::exceptionCaught($e, 2);
+            echo MessageUtils::EXITING_SCRIPT;
+            exit();
         }
-    
-        foreach ($classes as $class) {
-            CommonUtils::renderLoadingBar($progress, $total);
-            $operation($class);
-    
-            $progress++;
-            CommonUtils::renderLoadingBar($progress, $total);
-        }
     }
 
-    public function createAllTables(array $classes)
+    public function rebuildDB()
     {
-        $operation = function ($class) {
-            $this->ops->createTables($class);
-        };
-        
-        $message = "Creating schemas:";
-
-        $this->processDBOperations($classes, $operation, $message);
+        $this->nukeDB();
+        $this->buildDB();
     }
 
-    public function updateAllTables(array $classes)
+    public function buildDB()
     {
-        $operation = function ($class) {
-            $this->ops->updateTables($class);
-        };
-        
-        $message = "Writing new records:";
+        CommonUtils::timer(function () {
+            $this->dbWorker->createTables();
+        });
 
-        $this->processDBOperations($classes, $operation, $message);
+        echo MessageUtils::SPACING_LINES;
     }
 
-    public function wipeAllTables(array $classes)
+    public function nukeDB()
     {
-        $operation = function ($class) {
-            $this->ops->wipeTables($class);
-        };
-        
-        $message = "Cleansing schemas:";
-        
-        // in reverse for performance reasons
-        $this->processDBOperations(array_reverse($classes), $operation, $message);
-    }
+        CommonUtils::timer(function () {
+            $this->dbWorker->dropTables();
+        });
 
-    public function dropAllTables(array $classes)
-    {
-        $operation = function ($class) {
-            $this->ops->dropTables($class);
-        };
-        
-        $message = "Dropping schemas:";
-
-        $this->processDBOperations($classes, $operation, $message);
+        echo MessageUtils::eol(1);
     }
 }

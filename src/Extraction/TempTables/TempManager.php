@@ -4,6 +4,7 @@ namespace Src\Extraction\TempTables;
 
 use Src\Extraction\ReplicadoDB;
 use Src\Utils\CommonUtils;
+use Src\Utils\MessageUtils;
 
 class TempManager
 {
@@ -14,7 +15,7 @@ class TempManager
             }
         );
 
-        echo PHP_EOL . PHP_EOL . str_repeat("-", 57) . PHP_EOL . PHP_EOL . PHP_EOL;
+        echo MessageUtils::eol(1);
     }
 
     private static function generator($scripts)
@@ -22,7 +23,7 @@ class TempManager
         $total = count($scripts);
         $progress = 0;
 
-        echo "Generating {$total} temp tables. This may take a few minutes..." . PHP_EOL;
+        echo MessageUtils::generatingTempTable($total);
 
         if (!count($scripts) > 0) {
             return CommonUtils::renderLoadingBar(1, 1);

@@ -157,7 +157,7 @@ class Deparas
         'R' => 'Recusado',
         'I' => 'Invalidado por falta de documento comprobatório',
         'S' => 'Sorteado',
-        'N' => 'Não manifestou interesse', 
+        'N' => 'Não manifestou interesse',
         'C' => 'Confirmada inscrição pelo candidato',
         'V' => 'inscrição em vagas remanescentes',
     ];
@@ -179,7 +179,7 @@ class Deparas
     const statusMatriculaCCEx = [
         // Indica se a matrícula do aluno no curso está em 
         'AND' => 'Andamento',
-        'ENC' => 'Encerrada', 
+        'ENC' => 'Encerrada',
     ];
 
     const resultadoMatriculaCCEx = [
@@ -256,4 +256,86 @@ class Deparas
         'C' => 'Curta Duração',
         'N' => 'Não Informado'
     ];
+
+    const situacoesEstagioPAE = [
+        'O' => 'Obrigatório',
+        'P' => 'Optativo'
+    ];
+
+    const situacoesEPP = [
+        'C' => 'Cursando',
+        'F' => 'Finalizada', // (concluída)
+        'P' => 'Paralela', // (concomitante)
+    ];
+
+    const modalidadesEPP = [
+        'D' => 'Disciplina',
+        // D = disciplina de Pós-Graduação oferecendo créditos, cujo conteúdo estará 
+        // voltado para as questões da Universidade e do Ensino Superior;
+        'C' => 'Conjunto Conferência',
+        // C = conjunto de conferências, com especialistas da área de Educação, 
+        // condensadas num tempo menor, tendo como tema as questões do Ensino Superior;
+        'N' => 'Núcleo de Atividade',
+        // N = núcleo de atividades, envolvendo preparo de material didático, discussões de 
+        // curriculum, de ementas de disciplinas e planejamento de cursos, coordenadas por professores. 
+        'E' => 'Disciplina Externa à USP',
+    ];
+
+    const situacoesInscricaoPAE = [
+        'I' => 'Inscrito',
+        'S' => 'Selecionado',
+        'E' => 'Lista de Espera',
+        'M' => 'Selecionado Manualmente',
+        'C' => 'Cancelado',
+    ];
+
+    const validacaoPAE = [
+        'A' => 'Avalizada',
+        // inscrição foi avalizada pelo docente, 
+        // efetivando a inscrição do aluno no estágio PAE;
+        'S' => 'Avalizada automaticamente',
+        'AS' => 'Avalizada pelo secretário',
+        // no lugar do orientador;
+        'D' => 'Desautorizada',
+        // inscrição foi desautorizada pelo docente, 
+        // de modo que o aluno não poderá iniciar o estágio PAE, 
+        // ao menos até fazer as devidas correções e encaminhar a inscrição para reanálise; 
+        'DS' => 'Desautorizada pelo secretário',
+        // no lugar do orientador. 
+        null => 'Esperando manifestação'
+        // ainda não houve manifestação por parte do docente,
+
+        // Obs.: o status S (avalização automática) foi desativado em jul/2016.
+    ];
+
+    const vinculoEmpregaticioPAE = [
+        'NA' => 'Sem vínculo',
+        'VE' => 'Vinculo Externo à USP',
+        'VU' => 'Vínculo de Servidor USP,'
+    ];
+
+    const tiposHabilitacao = [
+        'B' => 'Grau Principal Exclusivo',
+        'E' => 'Licenciatura Exclusiva',
+        'G' => 'Grau Principal com Sequência Opcional',
+        'H' => 'Habilitação, modalidade, ênfase, área',
+        'I' => 'Grau Principal após Núcleo Geral',
+        'J' => 'Habilitação Exclusiva',
+        'L' => 'Licenciatura Sequencial a Bacharelado Obrigatório',
+        'M' => 'Licenciatura de Primeiro Grau',
+        'N' => 'Licenciatura sem Bacharelado Anterior',
+        'O' => 'Núcleo Específico Sequencial',
+        'P' => 'Habilitação em Português',
+        'S' => 'Núcleo Específico',
+        'U' => 'Núcleo Básico ou Geral',
+    ];
+
+    public static function nToNull($v)
+    {
+        if(strtoupper($v) == 'N') {
+            return null;
+        }
+
+        return $v;
+    }
 }

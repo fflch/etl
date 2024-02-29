@@ -6,7 +6,7 @@ use Uspdev\Replicado\Lattes;
 
 class TransformationUtils
 {
-    public static function emptiesToNull(Array $attrs)
+    public static function emptiesToNull(array $attrs)
     {
         foreach($attrs as $key => $value){
             $newAttrs[$key] = (!empty($value) || $value === "0") ? $value : NULL;
@@ -15,7 +15,7 @@ class TransformationUtils
         return $newAttrs;
     }
 
-    public static function utf8_converter($array)
+    public static function utf8_converter(array $array)
     {
         array_walk_recursive($array, function (&$item, $key) {
             if (!mb_detect_encoding($item, 'utf-8', true)) {
@@ -26,7 +26,7 @@ class TransformationUtils
         return $array;
     }
 
-    public static function trim_recursivo($array)
+    public static function trim_recursivo(array $array)
     {
         array_walk_recursive($array, function (&$item, $key) {
             $item = trim($item);
@@ -71,7 +71,7 @@ class TransformationUtils
         return $dadosLattes;
     }
 
-    public static function initialDataCleanup($input)
+    public static function initialDataCleanup(?string $input)
     {
         $input = preg_replace('/\s+/', ' ', $input);
         $input = rtrim($input, ","); 

@@ -99,7 +99,7 @@ LEFT JOIN
 ORDER BY f.tipo_ocorrencia;
 
 
--- Consolidate thesis defense occurrences
+-- Consolidate thesis defenses occurrences (deadline extensions)
 SELECT
     p.codare AS 'codigo_area'
 	,p.codpes AS 'numero_usp'
@@ -117,6 +117,7 @@ SELECT
     ,CAST(NULL AS VARCHAR) AS 'nivel_programa_destino'
     ,p.qtddiapgcsol AS 'prorrogacao_def_solicitada_dias'
     ,p.qtddiapgc AS 'prorrogacao_def_obtida_dias'
+    -- // ver quando prorrogacao é de fato obtida
 INTO
     #ocorrencias_defesas_pg
 FROM

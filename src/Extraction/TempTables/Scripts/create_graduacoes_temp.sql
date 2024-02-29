@@ -119,7 +119,18 @@ SELECT
     ,p.codpgm AS 'sequencia_grad'
     ,p.stapgm AS 'situacao_curso'
     ,p.dtaing AS 'data_inicio_vinculo'
-    ,CASE WHEN p.tipencpgm IS NOT NULL THEN p.dtaini ELSE NULL END AS 'data_fim_vinculo'
+    ,CASE
+	    WHEN (g.codpes IS NOT NULL) AND (l.codpes IS NOT NULL)
+	    	THEN CASE
+	    		WHEN g.dtafim >= l.dtafim THEN g.dtafim
+	    		ELSE l.dtafim
+	    	END
+	   	WHEN g.codpes IS NOT NULL
+	   		THEN g.dtafim
+	   	WHEN l.dtafim IS NOT NULL
+	   		THEN l.dtafim
+	   	ELSE NULL
+    	END AS 'data_fim_vinculo'
     ,CASE WHEN g.codcur IS NOT NULL THEN g.codcur ELSE l.codcur END AS 'codigo_curso'
     ,CASE WHEN c.nomcur IS NOT NULL THEN c.nomcur ELSE c2.nomcur END AS 'nome_curso'
     ,p.tiping AS 'tipo_ingresso'
@@ -129,8 +140,8 @@ SELECT
     	WHEN g.codpes IS NOT NULL THEN 'S'
     	ELSE 'N'
     	END AS 'bacharelado'
-    ,g.tipenchab AS 'tipo_encerramento_bacharel'
-    ,g.dtafim AS 'data_encerramento_bacharel'
+    ,g.tipenchab AS 'tipo_encerramento_bacharelado'
+    ,g.dtafim AS 'data_encerramento_bacharelado'
     ,CASE
     	WHEN l.codpes IS NOT NULL THEN 'S'
     	ELSE 'N'

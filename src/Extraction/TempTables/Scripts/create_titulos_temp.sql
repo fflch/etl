@@ -1,4 +1,4 @@
--- // ver
+-- Fetch titles that matter to us
 SELECT
 	codpes
 	,numseqtitpes
@@ -12,12 +12,16 @@ SELECT
 	,codare
 INTO #all_titulos
 FROM TITULOPES
-WHERE codesc = 14
-	AND nivesc = 9 
+WHERE codesc = 14 -- >(Superior completo / Graduação)
+	AND nivesc = 9 -- >(Superior completo / Graduação)
 	AND (grufor IN (3, 4, 5, 9) OR grufor IS NULL);
+	-- 2 = Especialização/MBA, 3 = Mestrado, 
+	-- 4 = Doutorado, 5 = Livre Docente,
+	-- 6 = Prof. Emérito, 7 = Dr. 'Honoris Causa',
+	-- 8 = Notório Saber, 9 = Pós-doc
 
 
---
+-- Order `grufor` from 1 to 5 to make it simpler
 UPDATE #all_titulos
 SET grufor = (CASE grufor
 				WHEN NULL THEN 1
@@ -28,24 +32,22 @@ SET grufor = (CASE grufor
 			END);
 
 
---
+-- Update null `codorg` to 0 to make it clearer;
 UPDATE #all_titulos
 SET codorg = 0
 WHERE codorg IS NULL;
 
-
---
+-- Update null `dtatitpes` so we can order titles;
+-- We'll turn them back to null later;
 UPDATE #all_titulos
 SET dtatitpes = '1800-01-01 00:00:00'
 WHERE dtatitpes IS NULL;
 
-
---
 UPDATE #all_titulos
 SET dtatitpes = DATEADD(ss, numseqtitpes, dtatitpes);
 
 
---
+-- Tries to point out person's last highest title
 SELECT a.codpes, j.max_grau, MAX(dtatitpes) AS max_date
 INTO #maior_titulo -- o último em caso de dois títulos com o mesmo grau
 FROM #all_titulos a
@@ -58,13 +60,13 @@ INNER JOIN (
 GROUP BY a.codpes, j.max_grau;
 
 
---
+-- `dtatitpes` values that were null back to null
 UPDATE #all_titulos
 SET dtatitpes = NULL
 WHERE YEAR(dtatitpes) = 1800;
 
 
---
+-- Fetch final titles table;
 SELECT
 	a.codpes AS 'numero_usp'
     ,CASE a.grufor

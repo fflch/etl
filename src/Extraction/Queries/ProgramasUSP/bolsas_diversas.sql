@@ -1,9 +1,6 @@
 SELECT
 	b.codbnfalu AS 'codigo_programa_usp'
 	,b2.nombnfloc AS 'nome_programa_usp'
---	,b2.staavlsoceco AS 'exige_avaliacao_socioeconomica'
---	,b2.staftepgdusp AS 'fonte_pagadora_usp'
---	,b2.stapaf AS 'parte_papfe'
 	,b.numseqgesbnf AS 'sequencia_programa_usp'
 	,b.anoofebnf AS 'periodo_referencial' 
 	,b.codprjbnf AS 'codigo_projeto_diverso'
@@ -13,7 +10,7 @@ SELECT
 	,b.nivcurpgr AS 'nivel_pg_bolsista'
 	,b.dtainiccd AS 'data_inicio_bolsa'
 	,CASE
-		WHEN b.dtacanccd IS NOT NULL -- // ver casos dtacanccd > dtafimccd
+		WHEN b.dtacanccd IS NOT NULL -- // ver eaip (casos dtacanccd > dtafimccd)
 			THEN b.dtacanccd
 		ELSE b.dtafimccd
 		END AS 'data_fim_bolsa'
@@ -30,9 +27,11 @@ SELECT
 		END AS 'situacao_bolsa'
 	,b.juscanccd AS 'justificativa_cancelamento_bolsa'
 	,b.vlrbnfepfbls AS 'valor_bolsa_especifico'
---	,b.codrgiitb // ver
---	,b.codslamon // ver
---	,b.codorgpiaudv // ver
+--	,b.codrgiitb // ver eaip-replicac
+--	,b.codorgpiaudv // ver eaip-replicac
+	,b2.staftepgdusp AS 'fonte_pagadora_usp'
+	,b2.stapaf AS 'parte_papfe'
+	,b2.staavlsoceco AS 'exige_avaliacao_socioeconomica'
 FROM BENEFICIOALUCONCEDIDO b
 	LEFT JOIN BENEFICIOALUNO b2 ON b.codbnfalu = b2.codbnfalu
 	LEFT JOIN TIPOBENEFICIOALUNO t ON b2.tipbnfalu = t.tipbnfalu

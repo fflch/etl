@@ -30,7 +30,7 @@ class PosGraduacaoReplicado implements Mapper
             'nome_programa' => $posGraduacao['nome_programa'],
             'data_selecao' => $posGraduacao['data_selecao'],
             'primeira_matricula' => $posGraduacao['primeira_matricula'],
-            'tipo_ultima_ocorrencia' => $posGraduacao['tipo_ultima_ocorrencia'],  // ver?
+            'tipo_ultima_ocorrencia' => $posGraduacao['tipo_ultima_ocorrencia'],
             'data_ultima_ocorrencia' => $posGraduacao['data_ultima_ocorrencia'],
             'data_deposito_trabalho' => $posGraduacao['data_deposito_trabalho'],
             'data_aprovacao_trabalho' => $posGraduacao['data_aprovacao_trabalho'],

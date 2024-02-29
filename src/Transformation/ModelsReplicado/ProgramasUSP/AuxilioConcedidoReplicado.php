@@ -36,6 +36,9 @@ class AuxilioConcedidoReplicado implements Mapper
                                     ?? $auxilio['nivel_pg_beneficiario'],
             'cota_mensal_prevista' => $auxilio['cota_mensal_prevista'],
             'valor_auxilio_especifico' => $auxilio['valor_auxilio_especifico'],
+            'fonte_pagadora_usp' => Deparas::nToNull($auxilio['fonte_pagadora_usp']),
+            'parte_papfe' => Deparas::nToNull($auxilio['parte_papfe']),
+            'exige_avaliacao_socioeconomica' => Deparas::nToNull($auxilio['exige_avaliacao_socioeconomica']),
         ];
 
         return $properties;
