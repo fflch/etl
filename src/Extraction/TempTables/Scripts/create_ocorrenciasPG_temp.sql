@@ -117,7 +117,7 @@ SELECT
     ,CAST(NULL AS VARCHAR) AS 'nivel_programa_destino'
     ,p.qtddiapgcsol AS 'prorrogacao_def_solicitada_dias'
     ,p.qtddiapgc AS 'prorrogacao_def_obtida_dias'
-        -- // ver quando prorrogacao é de fato obtida;
+    -- // ver quando prorrogacao é de fato obtida
 INTO
     #ocorrencias_defesas_pg
 FROM
