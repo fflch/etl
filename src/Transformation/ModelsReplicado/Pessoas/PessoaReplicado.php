@@ -25,7 +25,7 @@ class PessoaReplicado implements Mapper
             'identidade_genero' => $pessoa['identidade_genero'],
             'situacao_vacinal_covid' => Deparas::situacoesVacinaCovid[$pessoa['situacao_vacinal_covid']]
                                         ?? $pessoa['situacao_vacinal_covid'],
-            'cpf' => $pessoa['cpf'],
+            // 'cpf' => $pessoa['cpf'],
         ];
 
         return $properties;
