@@ -20,11 +20,15 @@ cp .env.example .env
 php builder.php
 ```
 
+To bypass the confirmation prompt and force rebuild, you can simply pass the `-y` parameter.
+
 **4.** Once you have created them, data can be inserted (or updated) whenever needed by:
 
 ```sh
 php main.php
 ```
+
+To force build/rebuild while running main.php, you can pass the `-f` parameter.
 
 **5.** To check the last time the ETL scripts were executed, use the `check.php` script:
 

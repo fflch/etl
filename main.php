@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+use Src\Utils\BuilderUtils;
 use Src\Utils\CommonUtils;
 use Src\Utils\MessageUtils;
 
@@ -16,8 +17,16 @@ $scripts = [
     'questSocioEcon',
     'lattes',
 ];
+// user param
+$forceBuildOrRebuild = in_array("-f", $argv);
 
-CommonUtils::timer(function () use ($scripts) {
+CommonUtils::timer(function () use ($scripts, $forceBuildOrRebuild) {
+
+    if ($forceBuildOrRebuild === true) {
+        // trigger a (re)build
+        BuilderUtils::setupDatabase($forceBuildOrRebuild);
+    }
+
     foreach ($scripts as $script) {
         // run script
         include "src/Scripts/$script.php";
