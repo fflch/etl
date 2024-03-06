@@ -100,12 +100,15 @@ class BuilderUtils
         return $missingColumnFound;
     }
 
-    public static function setupDatabase()
+    public static function setupDatabase(bool $forceRebuild)
     {
         $requestingRebuild = false;
         $missingColumnFound = self::validateCurrentDatabaseStructure(false);
 
-        if ($missingColumnFound === false) {
+        if ($forceRebuild === true) {
+            $requestingRebuild = true;
+        }
+        elseif ($missingColumnFound === false) {
             $requestingRebuild = self::offerRebuild();
         }
 
