@@ -32,7 +32,8 @@ class ReplicadoDB
         return self::$instance;
     }
 
-    public static function closeConnection() {
+    public static function closeConnection()
+    {
         self::$instance = null;
     }
 
@@ -44,8 +45,7 @@ class ReplicadoDB
 
         try {
             $stmt->execute();
-        }
-        catch (\Throwable $t) {
+        } catch (\Throwable $t) {
             echo "Erro na consulta! {$t}";
             die();
         }
@@ -54,7 +54,7 @@ class ReplicadoDB
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
             $result = TransformationUtils::utf8_converter($result);
-            $result = array_map(function($arr) {
+            $result = array_map(function ($arr) {
                 return array_map([TransformationUtils::class, 'initialDataCleanup'], $arr);
             }, $result);
         }
@@ -68,12 +68,12 @@ class ReplicadoDB
 
         $statements = explode(';', $query);
         $statements = array_filter($statements);
-        
+
         try {
             foreach ($statements as $statement) {
                 $stmt = $db->prepare($statement);
                 $stmt->execute();
-            } 
+            }
         } catch (\Exception $e) {
             $wasTimedOut = strpos($e->getMessage(), "Changed database context");
 

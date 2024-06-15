@@ -8,7 +8,7 @@ class TransformationUtils
 {
     public static function emptiesToNull(array $attrs)
     {
-        foreach($attrs as $key => $value){
+        foreach ($attrs as $key => $value) {
             $newAttrs[$key] = (!empty($value) || $value === "0") ? $value : NULL;
         }
 
@@ -19,17 +19,8 @@ class TransformationUtils
     {
         array_walk_recursive($array, function (&$item, $key) {
             if (!mb_detect_encoding($item, 'utf-8', true)) {
-                $item = utf8_encode($item);
+                $item = mb_convert_encoding($item, 'utf-8');
             }
-        });
-
-        return $array;
-    }
-
-    public static function trim_recursivo(array $array)
-    {
-        array_walk_recursive($array, function (&$item, $key) {
-            $item = trim($item);
         });
 
         return $array;
@@ -74,7 +65,7 @@ class TransformationUtils
     public static function initialDataCleanup(?string $input)
     {
         $input = preg_replace('/\s+/', ' ', $input);
-        $input = rtrim($input, ","); 
+        $input = rtrim($input, ",");
         return trim($input);
     }
 }

@@ -15,8 +15,7 @@ class DatabaseWorker
         callable $operation,
         string $message,
         ?array $arg = null
-    )
-    {
+    ) {
         echo $message;
         echo MessageUtils::eol(1);
 
@@ -28,7 +27,7 @@ class DatabaseWorker
 
         $total = count($arg);
         $progress = 0;
-    
+
         foreach ($arg as $argElement) {
             CommonUtils::renderLoadingBar($progress, $total);
             $operation($argElement);
@@ -63,7 +62,7 @@ class DatabaseWorker
 
     public function updateTables(array $groups)
     {
-        $message = "Writing new records:";
+        $message = "Fetching data and writing new records:";
 
         $tables = BuilderUtils::getTablesInfoFromTableGroups($groups, true);
 
@@ -89,7 +88,7 @@ class DatabaseWorker
         $operation = function ($table) {
             Capsule::table($table)->delete();
         };
-        
+
         Capsule::statement("SET FOREIGN_KEY_CHECKS = 0");
 
         $this->processDBOperations($operation, $message, array_reverse($tables));
