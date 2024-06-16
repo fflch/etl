@@ -7,9 +7,19 @@ use Src\Utils\CommonUtils;
 
 class DisciplinaPosGraduacaoReplicado implements Mapper
 {
-    public function mapping(Array $disciplinaPG)
+    public function mapping(array $disciplinaPG)
     {
         $properties = [
+            'id_disciplina' => strtoupper(
+                substr(
+                    md5(
+                        $disciplinaPG['codigo_disciplina'] .
+                            $disciplinaPG['versao_disciplina']
+                    ),
+                    0,
+                    8
+                )
+            ),
             'codigo_disciplina' => $disciplinaPG['codigo_disciplina'],
             'versao_disciplina' => $disciplinaPG['versao_disciplina'],
             'departamento' => $disciplinaPG['departamento'],

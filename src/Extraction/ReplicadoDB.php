@@ -53,7 +53,7 @@ class ReplicadoDB
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($result) && getenv('REPLICADO_SYBASE') == 1) {
-            $result = TransformationUtils::utf8_converter($result);
+            $result = TransformationUtils::convertArrayToUtf8($result);
             $result = array_map(function ($arr) {
                 return array_map([TransformationUtils::class, 'initialDataCleanup'], $arr);
             }, $result);

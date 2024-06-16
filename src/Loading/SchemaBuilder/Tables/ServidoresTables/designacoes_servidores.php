@@ -11,13 +11,6 @@ return [
             "type" => "char",
             "size" => 32
         ],
-        "numero_usp" => [
-            "type" => "integer"
-        ],
-        "vinculo" => [
-            "type" => "string",
-            "size" => 48
-        ],
         "data_inicio_designacao" => [
             "type" => "date",
             "nullable" => true
@@ -50,7 +43,7 @@ return [
     "primary" => [
         //
     ],
-    
+
     "foreign" => [
         [
             "keys" => "id_vinculo",

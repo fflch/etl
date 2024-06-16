@@ -7,17 +7,26 @@ use Src\Utils\Deparas;
 
 class TurmaPosGraduacaoReplicado implements Mapper
 {
-    public function mapping(Array $turmaPG)
+    public function mapping(array $turmaPG)
     {
         $properties = [
             'id_turma' => strtoupper(
                 md5(
-                    $turmaPG['codigo_disciplina'] . 
-                    $turmaPG['versao_disciplina'] . 
-                    $turmaPG['codigo_turma']
-                )),
-            'codigo_disciplina' => $turmaPG['codigo_disciplina'],
-            'versao_disciplina' => $turmaPG['versao_disciplina'],
+                    $turmaPG['codigo_disciplina'] .
+                        $turmaPG['versao_disciplina'] .
+                        $turmaPG['codigo_turma']
+                )
+            ),
+            'id_disciplina' => strtoupper(
+                substr(
+                    md5(
+                        $turmaPG['codigo_disciplina'] .
+                            $turmaPG['versao_disciplina']
+                    ),
+                    0,
+                    8
+                )
+            ),
             'codigo_turma' => $turmaPG['codigo_turma'],
             'situacao_turma' => $turmaPG['situacao_turma'],
             'data_inicio_turma' => $turmaPG['data_inicio_turma'],
@@ -42,7 +51,7 @@ class TurmaPosGraduacaoReplicado implements Mapper
             'codigo_area' => $turmaPG['codigo_area'],
             'codigo_convenio' => $turmaPG['codigo_convenio'],
             'nivel_convenio' => Deparas::niveisPG[$turmaPG['nivel_convenio']]
-                                ?? $turmaPG['nivel_convenio'],
+                ?? $turmaPG['nivel_convenio'],
             'lingua_turma' => $turmaPG['lingua_turma'],
             'formato_oferecimento' => $turmaPG['formato_oferecimento'],
         ];

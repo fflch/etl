@@ -11,12 +11,9 @@ return [
             "type" => "char",
             "size" => 32
         ],
-        "codigo_disciplina" => [
+        "id_disciplina" => [
             "type" => "char",
-            "size" => 7
-        ],
-        "versao_disciplina" => [
-            "type" => "smallInteger"
+            "size" => 8,
         ],
         "codigo_turma" => [
             "type" => "smallInteger"
@@ -133,8 +130,8 @@ return [
 
     "foreign" => [
         [
-            "keys" => ["codigo_disciplina", "versao_disciplina"],
-            "references" => ["codigo_disciplina", "versao_disciplina"],
+            "keys" => "id_disciplina",
+            "references" => "id_disciplina",
             "on" => "disciplinas_posgraduacao",
             "onDelete" => "cascade"
         ]

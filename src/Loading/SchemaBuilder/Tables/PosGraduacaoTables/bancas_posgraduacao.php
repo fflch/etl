@@ -27,7 +27,7 @@ return [
             "size" => 1,
             "nullable" => true
         ],
-        "tipoAvaliacao" => [
+        "tipo_avaliacao" => [
             "type" => "string",
             "size" => 16,
             "nullable" => true

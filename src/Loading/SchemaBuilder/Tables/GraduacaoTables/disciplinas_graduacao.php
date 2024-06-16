@@ -7,6 +7,10 @@ return [
     "updateFunction" => 'GraduacaoOps/updateDisciplinasGraduacao',
 
     "columns" => [
+        "id_disciplina" => [
+            "type" => "char",
+            "size" => 8
+        ],
         "codigo_disciplina" => [
             "type" => "char",
             "size" => 7
@@ -63,10 +67,9 @@ return [
     ],
 
     "primary" => [
-        "key" => ["codigo_disciplina", "versao_disciplina"],
-        "keyName" => "disciplinas_graduacao_primary"
+        "key" => ["id_disciplina"],
     ],
-    
+
     "foreign" => [
         //
     ]

@@ -7,17 +7,26 @@ use Src\Transformation\Interfaces\Mapper;
 
 class TurmaGraduacaoReplicado implements Mapper
 {
-    public function mapping(Array $turma)
+    public function mapping(array $turma)
     {
         $properties = [
             'id_turma' => strtoupper(
                 md5(
-                    $turma['codigo_disciplina'] . 
-                    $turma['versao_disciplina'] . 
-                    $turma['codigo_turma']
-                )),
-            'codigo_disciplina' => $turma['codigo_disciplina'],
-            'versao_disciplina' => $turma['versao_disciplina'],
+                    $turma['codigo_disciplina'] .
+                        $turma['versao_disciplina'] .
+                        $turma['codigo_turma']
+                )
+            ),
+            'id_disciplina' => strtoupper(
+                substr(
+                    md5(
+                        $turma['codigo_disciplina'] .
+                            $turma['versao_disciplina']
+                    ),
+                    0,
+                    8
+                )
+            ),
             'codigo_turma' => $turma['codigo_turma'],
             'tipo_turma' => $turma['tipo_turma'],
             'data_criacao_turma' => $turma['data_criacao_turma'],
