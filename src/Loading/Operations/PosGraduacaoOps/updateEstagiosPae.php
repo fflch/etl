@@ -5,7 +5,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
 
-use Src\Transformation\ModelsReplicado\PosGraduacao\EstagioPaeReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\EstagioPaeReplicado;
 use Src\Loading\Models\PosGraduacao\EstagioPae;
 
 class updateEstagiosPae

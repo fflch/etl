@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\CredenciamentoPGReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\CredenciamentoPGReplicado;
 use Src\Loading\Models\PosGraduacao\CredenciamentoPG;
 
 class updateCredenciamentosPG
@@ -20,7 +20,7 @@ class updateCredenciamentosPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->credenciamentosPG, 
+            $this->credenciamentosPG,
             CredenciamentoPG::class
         );
     }

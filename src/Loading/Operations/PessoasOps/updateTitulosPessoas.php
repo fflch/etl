@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PessoasOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Pessoas\TituloPessoaReplicado;
+use Src\Transformation\ReplicadoModels\Pessoas\TituloPessoaReplicado;
 use Src\Loading\Models\Pessoas\TituloPessoa;
 
 class updateTitulosPessoas
@@ -20,7 +20,7 @@ class updateTitulosPessoas
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->titulosPessoas, 
+            $this->titulosPessoas,
             TituloPessoa::class
         );
     }

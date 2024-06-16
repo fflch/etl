@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PesquisasAvancadasOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PesquisasAvancadas\PeriodoPesquisaAvancadaReplicado;
+use Src\Transformation\ReplicadoModels\PesquisasAvancadas\PeriodoPesquisaAvancadaReplicado;
 use Src\Loading\Models\PesquisasAvancadas\PeriodoPesquisaAvancada;
 
 class updatePeriodosPesquisaAvancada
@@ -20,7 +20,7 @@ class updatePeriodosPesquisaAvancada
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->periodosPesquisaAvancada, 
+            $this->periodosPesquisaAvancada,
             PeriodoPesquisaAvancada::class
         );
     }

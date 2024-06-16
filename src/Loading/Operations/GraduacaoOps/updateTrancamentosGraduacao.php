@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\TrancamentoGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\TrancamentoGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\TrancamentoGraduacao;
 
 class updateTrancamentosGraduacao

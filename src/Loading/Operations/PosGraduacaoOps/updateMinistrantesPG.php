@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\MinistrantePosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\MinistrantePosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\MinistrantePosGraduacao;
 
 class updateMinistrantesPG
@@ -20,7 +20,7 @@ class updateMinistrantesPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->ministrantesPG, 
+            $this->ministrantesPG,
             MinistrantePosGraduacao::class
         );
     }

@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\CEUOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\CEU\MinistranteCCExReplicado;
+use Src\Transformation\ReplicadoModels\CEU\MinistranteCCExReplicado;
 use Src\Loading\Models\CEU\MinistranteCCEx;
 
 class updateMinistrantesCCEx
@@ -20,7 +20,7 @@ class updateMinistrantesCCEx
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->ministrantesCCEx, 
+            $this->ministrantesCCEx,
             MinistranteCCEx::class
         );
     }

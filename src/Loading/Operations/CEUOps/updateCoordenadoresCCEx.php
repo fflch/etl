@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\CEUOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\CEU\CoordenadorCCExReplicado;
+use Src\Transformation\ReplicadoModels\CEU\CoordenadorCCExReplicado;
 use Src\Loading\Models\CEU\CoordenadorCCEx;
 
 class updateCoordenadoresCCEx
@@ -20,7 +20,7 @@ class updateCoordenadoresCCEx
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->coordenadoresCCEx, 
+            $this->coordenadoresCCEx,
             CoordenadorCCEx::class
         );
     }

@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ProgramasUSPOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\ProgramasUSP\BolsaDiversaReplicado;
+use Src\Transformation\ReplicadoModels\ProgramasUSP\BolsaDiversaReplicado;
 use Src\Loading\Models\ProgramasUSP\BolsaDiversa;
 
 class updateBolsasDiversas
@@ -20,7 +20,7 @@ class updateBolsasDiversas
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->bolsas, 
+            $this->bolsas,
             BolsaDiversa::class
         );
     }

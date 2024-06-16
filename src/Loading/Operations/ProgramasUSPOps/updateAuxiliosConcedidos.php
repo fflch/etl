@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ProgramasUSPOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\ProgramasUSP\AuxilioConcedidoReplicado;
+use Src\Transformation\ReplicadoModels\ProgramasUSP\AuxilioConcedidoReplicado;
 use Src\Loading\Models\ProgramasUSP\AuxilioConcedido;
 
 class updateAuxiliosConcedidos
@@ -20,7 +20,7 @@ class updateAuxiliosConcedidos
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->auxilios, 
+            $this->auxilios,
             AuxilioConcedido::class
         );
     }

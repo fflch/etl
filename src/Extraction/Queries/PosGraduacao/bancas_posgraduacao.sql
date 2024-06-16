@@ -1,7 +1,7 @@
 SELECT
 	r.codpesdct AS 'numero_usp_membro'
 	,r.codare AS 'codigo_area'
-	,r.codpes AS 'numero_usp_aluno'
+	,r.codpes AS 'numero_usp' -- NUSP do aluno
 	,r.numseqpgm AS 'seq_programa'
 	,r.numseqptpban AS 'sequencia_participacao'
 	,r.vinptpbantrb AS 'vinculo_participacao'

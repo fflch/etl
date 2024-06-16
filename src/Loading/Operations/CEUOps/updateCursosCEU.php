@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\CEUOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\CEU\CursoCulturaExtensaoReplicado;
+use Src\Transformation\ReplicadoModels\CEU\CursoCulturaExtensaoReplicado;
 use Src\Loading\Models\CEU\CursoCulturaExtensao;
 
 class updateCursosCEU
@@ -20,7 +20,7 @@ class updateCursosCEU
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->cursosCEU, 
+            $this->cursosCEU,
             CursoCulturaExtensao::class
         );
     }

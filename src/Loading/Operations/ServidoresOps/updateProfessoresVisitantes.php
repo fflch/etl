@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ServidoresOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Servidores\ProfessorVisitanteReplicado;
+use Src\Transformation\ReplicadoModels\Servidores\ProfessorVisitanteReplicado;
 use Src\Loading\Models\Servidores\ProfessorVisitante;
 
 class updateProfessoresVisitantes
@@ -20,7 +20,7 @@ class updateProfessoresVisitantes
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->professoresVisitantes, 
+            $this->professoresVisitantes,
             ProfessorVisitante::class
         );
     }

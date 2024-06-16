@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PesquisasAvancadasOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PesquisasAvancadas\SupervisaoPesquisaAvancadaReplicado;
+use Src\Transformation\ReplicadoModels\PesquisasAvancadas\SupervisaoPesquisaAvancadaReplicado;
 use Src\Loading\Models\PesquisasAvancadas\SupervisaoPesquisaAvancada;
 
 class updateSupervisoesPesquisaAvancada
@@ -20,7 +20,7 @@ class updateSupervisoesPesquisaAvancada
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->supervisoesPesquisaAvancada, 
+            $this->supervisoesPesquisaAvancada,
             SupervisaoPesquisaAvancada::class
         );
     }
