@@ -6,6 +6,8 @@ use Src\Utils\BuilderUtils;
 use Src\Utils\CommonUtils;
 use Src\Utils\MessageUtils;
 
+ini_set('memory_limit', '2560M');
+
 $scripts = [
     'pessoas',
     'graduacao',
