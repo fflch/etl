@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Utils;
+namespace Src\Jobs\Runner;
 
 use Src\Extraction\TempTables\TempManager;
 use Src\Loading\DbHandle\DatabaseManager;
@@ -8,9 +8,9 @@ use Src\Extraction\ReplicadoDB;
 use Src\Utils\CommonUtils;
 use Src\Utils\BuilderUtils;
 
-class ScriptUtils
+class Runner
 {
-    public static function runScript(
+    public static function runJob(
         array $tempTables,
         array $tableGroups,
         array $notToWipe = []

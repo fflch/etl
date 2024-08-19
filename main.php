@@ -6,9 +6,9 @@ use Src\Utils\BuilderUtils;
 use Src\Utils\CommonUtils;
 use Src\Utils\MessageUtils;
 
-ini_set('memory_limit', '2560M');
+ini_set('memory_limit', '4G');
 
-$scripts = [
+$jobs = [
     'pessoas',
     'graduacao',
     'posGraduacao',
@@ -19,19 +19,20 @@ $scripts = [
     'questSocioEcon',
     'lattes',
 ];
+
 // user param
 $forceBuildOrRebuild = in_array("-f", $argv);
 
-CommonUtils::timer(function () use ($scripts, $forceBuildOrRebuild) {
+CommonUtils::timer(function () use ($jobs, $forceBuildOrRebuild) {
 
     if ($forceBuildOrRebuild === true) {
         // trigger a (re)build
         BuilderUtils::setupDatabase($forceBuildOrRebuild);
     }
 
-    foreach ($scripts as $script) {
-        // run script
-        include "src/Scripts/$script.php";
+    foreach ($jobs as $job) {
+        // run job
+        include "src/Jobs/$job.php";
 
         // for cli readability
         echo MessageUtils::RULE_LINE;

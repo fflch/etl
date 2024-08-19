@@ -2,9 +2,9 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use Src\Utils\ScriptUtils;
+use Src\Jobs\Runner\Runner;
 
-pcntl_alarm(25 * 60); // Kills script if it's taking too long.
+pcntl_alarm(25 * 60); // Kills job if it's taking too long.
 
 $tempTables = [
     'create_areas_programas_hotfix',
@@ -18,4 +18,4 @@ $tempTables = [
 
 $tableGroups = ['PosGraduacaoTables'];
 
-ScriptUtils::runScript($tempTables, $tableGroups);
+Runner::runJob($tempTables, $tableGroups);

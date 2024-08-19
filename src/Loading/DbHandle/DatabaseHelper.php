@@ -9,7 +9,7 @@ use Src\Utils\CommonUtils;
 use Src\Utils\LoadingUtils;
 use Src\Utils\MessageUtils;
 
-class DatabaseWorker
+class DatabaseHelper
 {
     public function processDBOperations(
         callable $operation,
