@@ -5,7 +5,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\IniciacaoCientificaReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\IniciacaoCientificaReplicado;
 use Src\Loading\Models\Graduacao\IniciacaoCientifica;
 
 class updateIniciacoes
@@ -14,7 +14,8 @@ class updateIniciacoes
 
     public function __construct()
     {
-        $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');    }
+        $this->iniciacoes = new Transformer(new IniciacaoCientificaReplicado, 'Graduacao/iniciacoes_cientificas');
+    }
 
     public function update()
     {
@@ -22,7 +23,7 @@ class updateIniciacoes
 
         LoadingUtils::insertIntoTable(
             'full',
-            $this->iniciacoes, 
+            $this->iniciacoes,
             IniciacaoCientifica::class
         );
 

@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\LattesOps;
 
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Src\Transformation\ModelsReplicado\Lattes\LattesReplicado;
+use Src\Transformation\ReplicadoModels\Lattes\LattesReplicado;
 use Src\Loading\Models\Lattes\Lattes;
 
 class updateLattes
@@ -37,10 +37,9 @@ class updateLattes
     {
         $lastExtractionDate = $this->getLastLattesExtractionDate();
 
-        if(is_null($lastExtractionDate)) {
+        if (is_null($lastExtractionDate)) {
             return null;
-        }
-        else {
+        } else {
             return [
                 "replacement" => "AND ((d.dtapcsetc >= '$lastExtractionDate') 
                                   OR (d.dtapcsetc IS NULL))",

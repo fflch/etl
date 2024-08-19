@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\CEUOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\CEU\OferecimentoCCExReplicado;
+use Src\Transformation\ReplicadoModels\CEU\OferecimentoCCExReplicado;
 use Src\Loading\Models\CEU\OferecimentoCCEx;
 
 class updateOferecimentosCCEx
@@ -20,7 +20,7 @@ class updateOferecimentosCCEx
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->oferecimentosCCEx, 
+            $this->oferecimentosCCEx,
             OferecimentoCCEx::class
         );
     }

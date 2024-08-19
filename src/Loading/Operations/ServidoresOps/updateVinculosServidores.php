@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ServidoresOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Servidores\VinculoServidorReplicado;
+use Src\Transformation\ReplicadoModels\Servidores\VinculoServidorReplicado;
 use Src\Loading\Models\Servidores\VinculoServidor;
 
 class updateVinculosServidores
@@ -20,7 +20,7 @@ class updateVinculosServidores
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->vinculosServidores, 
+            $this->vinculosServidores,
             VinculoServidor::class
         );
     }

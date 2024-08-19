@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\QuestSocioEconOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\QuestSocioEcon\QuestionarioQuestaoReplicado;
+use Src\Transformation\ReplicadoModels\QuestSocioEcon\QuestionarioQuestaoReplicado;
 use Src\Loading\Models\QuestSocioEcon\QuestionarioQuestao;
 
 class updateQuestionarioQuestoes
@@ -20,7 +20,7 @@ class updateQuestionarioQuestoes
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->questionarioQuestoes, 
+            $this->questionarioQuestoes,
             QuestionarioQuestao::class
         );
     }

@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\SIICUSPTrabalhoReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\SIICUSPTrabalhoReplicado;
 use Src\Loading\Models\Graduacao\SIICUSPTrabalho;
 
 class updateSiicuspTrabalhos
@@ -20,7 +20,7 @@ class updateSiicuspTrabalhos
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->SIICUSPTrabalhos, 
+            $this->SIICUSPTrabalhos,
             SIICUSPTrabalho::class
         );
     }

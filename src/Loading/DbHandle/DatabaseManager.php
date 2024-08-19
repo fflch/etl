@@ -2,18 +2,18 @@
 
 namespace Src\Loading\DbHandle;
 
-use Src\Loading\DbHandle\DatabaseWorker;
+use Src\Loading\DbHandle\DatabaseHelper;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\CommonUtils;
 use Src\Utils\MessageUtils;
 
 class DatabaseManager
 {
-    private $dbWorker;
+    private $dbHelper;
 
     public function __construct()
     {
-        $this->dbWorker = new DatabaseWorker();
+        $this->dbHelper = new DatabaseHelper();
     }
 
     public function loadOrReloadTables(array $tableGroups, array $notToWipe = [])
@@ -25,13 +25,13 @@ class DatabaseManager
 
                 if (!empty($tablesGroupsToWipe)) {
                     CommonUtils::timer(function () use ($tablesGroupsToWipe) {
-                        $this->dbWorker->WipeTables($tablesGroupsToWipe);
+                        $this->dbHelper->WipeTables($tablesGroupsToWipe);
                     });
                     echo MessageUtils::eol(1);
                 }
 
                 CommonUtils::timer(function () use ($tableGroups) {
-                    $this->dbWorker->updateTables($tableGroups);
+                    $this->dbHelper->updateTables($tableGroups);
                 });
 
                 echo MessageUtils::eol(2);
@@ -52,7 +52,7 @@ class DatabaseManager
     public function buildDB()
     {
         CommonUtils::timer(function () {
-            $this->dbWorker->createTables();
+            $this->dbHelper->createTables();
         });
 
         echo MessageUtils::SPACING_LINES;
@@ -61,7 +61,7 @@ class DatabaseManager
     public function nukeDB()
     {
         CommonUtils::timer(function () {
-            $this->dbWorker->dropTables();
+            $this->dbHelper->dropTables();
         });
 
         echo MessageUtils::eol(1);

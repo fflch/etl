@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ProgramasUSPOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\ProgramasUSP\InscricaoProjetoDiversoReplicado;
+use Src\Transformation\ReplicadoModels\ProgramasUSP\InscricaoProjetoDiversoReplicado;
 use Src\Loading\Models\ProgramasUSP\InscricaoProjetoDiverso;
 
 class updateInscricoesProjetosDiversos
@@ -20,7 +20,7 @@ class updateInscricoesProjetosDiversos
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->inscricoes, 
+            $this->inscricoes,
             InscricaoProjetoDiverso::class
         );
     }

@@ -5,7 +5,7 @@ namespace Src\Loading\Operations\PesquisasAvancadasOps;
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PesquisasAvancadas\AfastEmpresaPesquisaAvancadaReplicado;
+use Src\Transformation\ReplicadoModels\PesquisasAvancadas\AfastEmpresaPesquisaAvancadaReplicado;
 use Src\Loading\Models\PesquisasAvancadas\AfastEmpresaPesquisaAvancada;
 
 class updateAfastEmpresasPesquisaAvancada
@@ -21,7 +21,7 @@ class updateAfastEmpresasPesquisaAvancada
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->afastEmpresasPesquisaAvancada, 
+            $this->afastEmpresasPesquisaAvancada,
             AfastEmpresaPesquisaAvancada::class
         );
 

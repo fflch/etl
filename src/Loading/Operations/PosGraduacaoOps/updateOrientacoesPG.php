@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\OrientacaoPosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\OrientacaoPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\OrientacaoPosGraduacao;
 
 class updateOrientacoesPG
@@ -20,7 +20,7 @@ class updateOrientacoesPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->orientacoesPG, 
+            $this->orientacoesPG,
             OrientacaoPosGraduacao::class
         );
     }

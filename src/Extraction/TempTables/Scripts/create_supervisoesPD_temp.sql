@@ -1,13 +1,19 @@
+SELECT *
+INTO #valid_dates_PDPROJETOSUPERVISOR
+FROM PDPROJETOSUPERVISOR pps
+WHERE pps.dtainispv < pps.dtafimspv
+
+
 -- Create ultimosupervisor temp table
 SELECT
-	pj.anoprj
-	,pj.codprj
-	,pj.tipspv
-	,MAX(numseqspv) AS 'numseqspv'
+	pps.anoprj
+	,pps.codprj
+	,pps.tipspv
+	,MAX(pps.numseqspv) AS 'numseqspv'
 INTO #ultimosupervisor
-FROM PDPROJETOSUPERVISOR pj
-WHERE pj.tipspv LIKE 'Respons_vel'
-GROUP BY pj.anoprj, pj.codprj, pj.tipspv;
+FROM #valid_dates_PDPROJETOSUPERVISOR pps
+WHERE pps.tipspv LIKE 'Respons_vel'
+GROUP BY pps.anoprj, pps.codprj, pps.tipspv;
 
 
 -- Select columns and filter rows
@@ -24,7 +30,7 @@ SELECT
 		ELSE 'N'
 		END AS 'ultimo_supervisor_resp'
 INTO #all_supervisoespd
-FROM PDPROJETOSUPERVISOR pps
+FROM #valid_dates_PDPROJETOSUPERVISOR pps
 	LEFT JOIN PDPROJETO prj ON pps.anoprj = prj.anoprj AND pps.codprj = prj.codprj
 	LEFT JOIN #ultimosupervisor u
         ON pps.anoprj = u.anoprj 

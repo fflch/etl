@@ -5,7 +5,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\BolsaICReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\BolsaICReplicado;
 use Src\Loading\Models\Graduacao\BolsaIC;
 
 class updateBolsasIC
@@ -21,7 +21,7 @@ class updateBolsasIC
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->bolsasIC, 
+            $this->bolsasIC,
             BolsaIC::class
         );
 

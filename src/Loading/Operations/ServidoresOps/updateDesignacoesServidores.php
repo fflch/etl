@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\ServidoresOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Servidores\DesignacaoServidorReplicado;
+use Src\Transformation\ReplicadoModels\Servidores\DesignacaoServidorReplicado;
 use Src\Loading\Models\Servidores\DesignacaoServidor;
 
 class updateDesignacoesServidores

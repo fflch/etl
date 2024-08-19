@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\TurmaGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\TurmaGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\TurmaGraduacao;
 
 class updateTurmasGraduacao
@@ -20,7 +20,7 @@ class updateTurmasGraduacao
     {
         LoadingUtils::insertIntoTable(
             'paginated',
-            $this->turmasGraduacao, 
+            $this->turmasGraduacao,
             TurmaGraduacao::class
         );
     }

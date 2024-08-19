@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\GraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\Graduacao\IntercambioGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\Graduacao\IntercambioGraduacaoReplicado;
 use Src\Loading\Models\Graduacao\IntercambioGraduacao;
 
 class updateIntercambiosGraduacao
@@ -20,7 +20,7 @@ class updateIntercambiosGraduacao
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->intercambiosGraduacao, 
+            $this->intercambiosGraduacao,
             IntercambioGraduacao::class
         );
     }

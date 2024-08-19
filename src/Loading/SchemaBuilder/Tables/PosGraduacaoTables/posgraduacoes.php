@@ -46,7 +46,7 @@ return [
         "data_selecao" => [
             "type" => "date"
         ],
-        "primeira_matricula" => [
+        "data_primeira_matricula" => [
             "type" => "date",
             "nullable" => true
         ],

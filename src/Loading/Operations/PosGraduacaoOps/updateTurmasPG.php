@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\TurmaPosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\TurmaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\TurmaPosGraduacao;
 
 class updateTurmasPG
@@ -20,7 +20,7 @@ class updateTurmasPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->turmasPG, 
+            $this->turmasPG,
             TurmaPosGraduacao::class
         );
     }

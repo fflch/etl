@@ -32,7 +32,7 @@ GROUP BY o.codare, o.codpespgm, o.numseqpgm;
 SELECT
 	o.codpes AS 'numero_usp_orientador'
 	,o.codare AS 'codigo_area'
-	,o.codpespgm AS 'numero_usp_aluno'
+	,o.codpespgm AS 'numero_usp' -- NUSP do aluno
 	,o.numseqpgm AS 'seq_programa'
 	,o.dtainiort AS 'data_inicio_orientacao'
 	,o.dtafimort AS 'data_fim_orientacao'
@@ -73,12 +73,12 @@ SELECT
 INTO #ordered_orientacoespg
 FROM #all_orientacoespg a1
 LEFT JOIN #all_orientacoespg a2
-	ON a1.numero_usp_aluno = a2.numero_usp_aluno 
+	ON a1.numero_usp = a2.numero_usp -- NUSP do aluno
 		AND a1.codigo_area = a2.codigo_area 
         AND a1.seq_programa = a2.seq_programa 
 		AND a1.data_inicio_orientacao > a2.data_inicio_orientacao
-GROUP BY a1.numero_usp_aluno, a1.codigo_area, a1.seq_programa, a1.data_inicio_orientacao
-ORDER BY a1.numero_usp_aluno, a1.codigo_area, a1.seq_programa, a1.data_inicio_orientacao;
+GROUP BY a1.numero_usp, a1.codigo_area, a1.seq_programa, a1.data_inicio_orientacao
+ORDER BY a1.numero_usp, a1.codigo_area, a1.seq_programa, a1.data_inicio_orientacao;
 
 
 -- Drop all tables that won't be needed

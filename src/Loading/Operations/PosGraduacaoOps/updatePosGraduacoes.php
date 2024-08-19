@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\PosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\PosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\PosGraduacao;
 
 class updatePosGraduacoes

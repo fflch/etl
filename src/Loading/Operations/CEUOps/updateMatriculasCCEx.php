@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\CEUOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\CEU\MatriculaCCExReplicado;
+use Src\Transformation\ReplicadoModels\CEU\MatriculaCCExReplicado;
 use Src\Loading\Models\CEU\MatriculaCCEx;
 
 class updateMatriculasCCEx
@@ -20,7 +20,7 @@ class updateMatriculasCCEx
     {
         LoadingUtils::insertIntoTable(
             'paginated',
-            $this->matriculasCCEx, 
+            $this->matriculasCCEx,
             MatriculaCCEx::class
         );
     }

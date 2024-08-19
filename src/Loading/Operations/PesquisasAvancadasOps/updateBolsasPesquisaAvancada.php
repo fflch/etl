@@ -5,7 +5,7 @@ namespace Src\Loading\Operations\PesquisasAvancadasOps;
 use Src\Transformation\Transformer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PesquisasAvancadas\BolsaPesquisaAvancadaReplicado;
+use Src\Transformation\ReplicadoModels\PesquisasAvancadas\BolsaPesquisaAvancadaReplicado;
 use Src\Loading\Models\PesquisasAvancadas\BolsaPesquisaAvancada;
 
 class updateBolsasPesquisaAvancada

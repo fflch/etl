@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\BolsaPosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\BolsaPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\BolsaPosGraduacao;
 
 class updateBolsasPG
@@ -20,7 +20,7 @@ class updateBolsasPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->bolsasPG, 
+            $this->bolsasPG,
             BolsaPosGraduacao::class
         );
     }

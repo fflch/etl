@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\QuestSocioEconOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\QuestSocioEcon\QuestionarioRespostaReplicado;
+use Src\Transformation\ReplicadoModels\QuestSocioEcon\QuestionarioRespostaReplicado;
 use Src\Loading\Models\QuestSocioEcon\QuestionarioResposta;
 
 class updateQuestionarioRespostas
@@ -20,7 +20,7 @@ class updateQuestionarioRespostas
     {
         LoadingUtils::insertIntoTable(
             'paginated',
-            $this->questionarioRespostas, 
+            $this->questionarioRespostas,
             QuestionarioResposta::class
         );
     }

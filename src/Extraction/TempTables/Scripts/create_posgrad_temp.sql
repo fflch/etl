@@ -68,7 +68,7 @@ FROM #admission adm
 -- Join HISTPROGRAMA to get student's first enrollment
 SELECT
     s.*
-    ,jn.dtaocopgm AS 'primeira_matricula'
+    ,jn.dtaocopgm AS 'data_primeira_matricula'
 INTO #primeira_matricula
 FROM #specs s
     LEFT JOIN
@@ -146,7 +146,7 @@ SELECT
 	,p.nome_programa
 	,p.data_selecao
 	,p.tipo_matricula
-	,p.primeira_matricula
+	,p.data_primeira_matricula
 	,t.dschstpgm AS 'tipo_ultima_ocorrencia'
 	,u.data_ultima_ocorrencia
 	,p.nivel_programa

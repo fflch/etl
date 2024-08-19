@@ -4,7 +4,7 @@ namespace Src\Loading\Operations\PosGraduacaoOps;
 
 use Src\Transformation\Transformer;
 use Src\Utils\LoadingUtils;
-use Src\Transformation\ModelsReplicado\PosGraduacao\CoordenadorPosGraduacaoReplicado;
+use Src\Transformation\ReplicadoModels\PosGraduacao\CoordenadorPosGraduacaoReplicado;
 use Src\Loading\Models\PosGraduacao\CoordenadorPosGraduacao;
 
 class updateCoordenadoresPG
@@ -20,7 +20,7 @@ class updateCoordenadoresPG
     {
         LoadingUtils::insertIntoTable(
             'full',
-            $this->coordenadoresPG, 
+            $this->coordenadoresPG,
             CoordenadorPosGraduacao::class
         );
     }
