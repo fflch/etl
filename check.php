@@ -21,13 +21,14 @@ $representativeTables = [
 ];
 
 $lastUpdates = [];
-foreach($representativeTables as $group => $table) {
+foreach ($representativeTables as $group => $table) {
     $lastUpdate = Capsule::select(
-        "SELECT MAX(last_update) AS 'last_update'
+        "SELECT CONVERT_TZ(last_update, @@session.time_zone, '+00:00') AS 'last_update_utc' 
         FROM mysql.innodb_table_stats
         WHERE database_name = '{$db}'
-            AND table_name = '{$table}'"
-    )[0]->last_update;
+            AND table_name = '{$table}'
+            AND n_rows > 0"
+    )->last_update_utc ?? null;
 
     $timeDiff = CommonUtils::getTimeDiffSinceLastUpdate($lastUpdate);
     $lastUpdates[$group] = $timeDiff;
@@ -36,7 +37,7 @@ foreach($representativeTables as $group => $table) {
 echo MessageUtils::eol(2);
 
 $texts = [""];
-foreach($lastUpdates as $k => $v) {
+foreach ($lastUpdates as $k => $v) {
     $texts[] = "Last <$k.php> loading: {$v}";
     $texts[] = "";
 }

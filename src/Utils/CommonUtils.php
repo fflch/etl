@@ -3,6 +3,7 @@
 namespace Src\Utils;
 
 use DateTime;
+use DateTimeZone;
 use Error;
 
 class CommonUtils
@@ -142,10 +143,10 @@ class CommonUtils
 
     public static function getTimeDiffSinceLastUpdate(?string $lastUpdate)
     {
-        $currentDate = new DateTime();
+        $currentDate = new DateTime('now,', new DateTimeZone('UTC'));
 
         if ($lastUpdate) {
-            $lastUpdateDate = new \DateTime($lastUpdate);
+            $lastUpdateDate = new DateTime($lastUpdate, new DateTimeZone('UTC'));
             $diff = $lastUpdateDate->diff($currentDate);
 
             if ($diff->days > 0) {
