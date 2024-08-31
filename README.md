@@ -5,7 +5,7 @@
 
 ## 🗒️ Descrição
 
-O ETL-FFLCH é uma ferramenta criada para simplificar os dados do Replicado USP, transformando-os e reorganizando-os em uma fonte de dados mais prática e acessível. Ela realiza a extração, transformação e carga de dados significativos para a faculdade em um banco de dados simplificado e redundante. Projetado inicialmente para otimizar a usabilidade desses dados e minimizar erros decorrentes da complexidade do Replicado USP, o ETL-FFLCH agora disponibiliza publicamente sua versão simplificada dos dados por meio da [API da FFLCH](https://api.fflch.usp.br), permitindo que qualquer pessoa acesse e integre com facilidade os dados de nossa faculdade.
+O ETL-FFLCH é uma ferramenta criada para simplificar os dados do Replicado USP, transformando-os e reorganizando-os em uma fonte de dados mais prática e acessível. Ela realiza a extração, transformação e carga de dados significativos para a faculdade em um banco de dados altamente desnormalizado e simplificado, com dados redundantes. Projetado inicialmente para otimizar a usabilidade desses dados e minimizar erros decorrentes da complexidade do Replicado USP, o ETL-FFLCH agora disponibiliza publicamente sua versão dos dados por meio da [API da FFLCH](https://api.fflch.usp.br), permitindo que qualquer pessoa acesse e integre com facilidade os dados de nossa faculdade.
 
 #### 🌟 Principais benefícios
 
@@ -16,7 +16,7 @@ O ETL-FFLCH é uma ferramenta criada para simplificar os dados do Replicado USP,
 
 #### 🚧 Limitações
 
- - **Redundância**: O banco de dados simplificado contém dados redundantes, o que facilita o uso, mas não é ideal para todas as finalidades.
+ - **Redundância**: O banco de dados resultante é altamente desnormalizado, levando a uma grande quantidade de dados redundantes. Embora isso facilite o uso, não é recomendado para muitas finalidades.
 
  - **Confiabilidade**: Devido aos problemas inerentes dos dados do Replicado USP e às dificuldades de diagnosticar e resolver completamente suas deficiências, é fundamental utilizar os dados do ETL-FFLCH com cuidado e permanecer crítico quanto à sua precisão, especialmente ao lidar com dados mais antigos. Se achar que encontrou algum erro, não hesite em abrir uma *issue* ou entrar em contato com a STI-FFLCH.
  

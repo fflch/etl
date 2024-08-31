@@ -6,7 +6,7 @@
 
 ## 🗒️ Description
 
-ETL-FFLCH is a tool designed to streamline Replicado USP data by transforming and reorganizing it into a more accessible and practical data source. It (efficiently, hopefully) extracts, transforms, and loads data that is useful to FFLCH into a simplified and redundant database. Originally designed to improve data usability and reduce errors associated with the intricateness of Replicado USP, ETL-FFLCH now has its streamlined data publicly available through [FFLCH API](https://api.fflch.usp.br), making our faculty's data easily accessible and integrable for anyone.
+ETL-FFLCH is a tool designed to streamline Replicado USP data by transforming and reorganizing it into a more accessible and practical data source. It (efficiently, hopefully) extracts, transforms, and loads data that is useful to FFLCH into a highly denormalized and simplified database. Originally designed to improve data usability and reduce errors associated with the intricateness of Replicado USP, ETL-FFLCH now has its streamlined data publicly available through [FFLCH API](https://api.fflch.usp.br), making our faculty's data easily accessible and integrable for anyone.
 
 
 #### 🌟 Core Benefits
@@ -17,7 +17,7 @@ ETL-FFLCH is a tool designed to streamline Replicado USP data by transforming an
 
 #### 🚧 Limitations
 
- - **Redundancy**: The simplified database contains redundant data, which, while making the database easier to use, is not ideal for all purposes.
+ - **Redundancy**: The resulting database is highly denormalized, leading to a large amount of redundant data. Although this makes it easier to use, it is not recommended for many purposes.
 
  - **Reliability**: Due to the inherent issues with Replicado USP data and the difficulties in fully diagnosing and addressing these problems, it's crucial to use ETL-FFLCH data with care and remain critical of its accuracy, especially when dealing with older data. If you think you found any mistakes, don't hesitate to contact STI-FFLCH or [EAIP-FFLCH](eaipfflch@usp.br).
  
